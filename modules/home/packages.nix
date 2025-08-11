@@ -9,8 +9,6 @@
     libnotify
 
     # --- Development ---
-    alejandra
-    nixd
     gcc
     nodejs
     pnpm

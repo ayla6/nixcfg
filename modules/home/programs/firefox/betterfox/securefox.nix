@@ -298,12 +298,12 @@
   # "signon.autofillForms.autocompleteOff" = true;
   "signon.formlessCapture.enabled" = false;
   "signon.privateBrowsingCapture.enabled" = false;
-  # "signon.autofillForms.http" = false;
-  # "signon.generation.enabled" = false;
-  #   "signon.management.page.breach-alerts.enabled" = false;
-  #   "signon.management.page.breachAlertUrl" = "";
-  # "browser.contentblocking.report.lockwise.enabled" = false;
-  # "signon.firefoxRelay.feature" = "";
+  "signon.autofillForms.http" = false;
+  "signon.generation.enabled" = false;
+  "signon.management.page.breach-alerts.enabled" = false;
+  "signon.management.page.breachAlertUrl" = "";
+  "browser.contentblocking.report.lockwise.enabled" = false;
+  "signon.firefoxRelay.feature" = "";
   # "signon.storeWhenAutocompleteOff" = false;
   "network.auth.subresource-http-auth-allow" = 1;
   "editor.truncate_user_pastes" = false;
@@ -394,19 +394,19 @@
   # SECTION: SAFE BROWSING (SB)
   #############################################################
 
-  # "browser.safebrowsing.malware.enabled" = false;
-  # "browser.safebrowsing.phishing.enabled" = false;
-  # "browser.safebrowsing.blockedURIs.enabled" = false;
-  #   "browser.safebrowsing.provider.google4.gethashURL" = "";
-  #   "browser.safebrowsing.provider.google4.updateURL" = "";
-  #   "browser.safebrowsing.provider.google.gethashURL" = "";
-  #   "browser.safebrowsing.provider.google.updateURL" = "";
-  # "browser.safebrowsing.downloads.enabled" = false;
+  "browser.safebrowsing.malware.enabled" = false;
+  "browser.safebrowsing.phishing.enabled" = false;
+  "browser.safebrowsing.blockedURIs.enabled" = false;
+  "browser.safebrowsing.provider.google4.gethashURL" = "";
+  "browser.safebrowsing.provider.google4.updateURL" = "";
+  "browser.safebrowsing.provider.google.gethashURL" = "";
+  "browser.safebrowsing.provider.google.updateURL" = "";
+  "browser.safebrowsing.downloads.enabled" = false;
   "browser.safebrowsing.downloads.remote.enabled" = false;
-  #   "browser.safebrowsing.downloads.remote.url" = "";
-  #   "browser.safebrowsing.downloads.remote.block_potentially_unwanted" = false;
-  #   "browser.safebrowsing.downloads.remote.block_uncommon" = false;
-  # "browser.safebrowsing.allowOverride" = true;
+  "browser.safebrowsing.downloads.remote.url" = "";
+  "browser.safebrowsing.downloads.remote.block_potentially_unwanted" = false;
+  "browser.safebrowsing.downloads.remote.block_uncommon" = false;
+  "browser.safebrowsing.allowOverride" = true;
 
   #############################################################
   # SECTION: MOZILLA
@@ -414,8 +414,8 @@
 
   # "accessibility.force_disabled" = 1;
   #   "devtools.accessibility.enabled" = false;
-  # "identity.fxaccounts.enabled" = false;
-  #   "identity.fxaccounts.autoconfig.uri" = "";
+  "identity.fxaccounts.enabled" = false;
+  "identity.fxaccounts.autoconfig.uri" = "";
 
   #############################################################
   # SECTION: TELEMETRY
