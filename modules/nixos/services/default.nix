@@ -1,0 +1,6 @@
+{...}: {
+  imports = [
+    ./tailscale
+    ./aria2
+  ];
+}
