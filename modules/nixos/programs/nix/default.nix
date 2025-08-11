@@ -1,0 +1,31 @@
+{
+  config,
+  lib,
+  ...
+}: {
+  options.myNixOS.programs.nix.enable = lib.mkEnableOption "sane nix configuration";
+
+  config = lib.mkIf config.myNixOS.programs.nix.enable {
+    nix = {
+      gc = {
+        automatic = true;
+
+        options = "--delete-older-than 3d";
+
+        persistent = true;
+        randomizedDelaySec = "60min";
+      };
+
+      optimise = {
+        automatic = true;
+        persistent = true;
+        randomizedDelaySec = "60min";
+      };
+
+      settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+  };
+}
