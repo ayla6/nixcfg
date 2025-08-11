@@ -28,14 +28,14 @@
   # SECTION: GFX RENDERING TWEAKS
   #############################################################
 
-  # "gfx.webrender.all" = true;
-  # "gfx.webrender.precache-shaders" = true;
-  # "gfx.webrender.compositor" = true;
-  # "gfx.webrender.compositor.force-enabled" = true;
-  # "gfx.webrender.software" = true;
-  # "gfx.webrender.software.opengl" = true;
-  # "gfx.canvas.accelerated" = true;
-  # "gfx.canvas.accelerated.cache-items" = 8192;
+  "gfx.webrender.all" = true;
+  "gfx.webrender.precache-shaders" = true;
+  "gfx.webrender.compositor" = true;
+  "gfx.webrender.compositor.force-enabled" = true;
+  "gfx.webrender.software" = true;
+  "gfx.webrender.software.opengl" = true;
+  "gfx.canvas.accelerated" = true;
+  "gfx.canvas.accelerated.cache-items" = 8192;
   "gfx.canvas.accelerated.cache-size" = 512; # default=256; Chrome=512
   "gfx.content.skia-font-cache-size" = 20; # default=5; Chrome=20
 

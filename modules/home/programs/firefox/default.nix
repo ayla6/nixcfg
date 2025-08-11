@@ -68,22 +68,18 @@ in {
               "general.autoScroll" = true;
               "ui.key.menuAccessKeyFocuses" = false;
               "browser.search.separatePrivateDefault" = false;
-
               "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
-              "browser.safebrowsing.malware.enabled" = false;
-              "browser.safebrowsing.phishing.enabled" = false;
-              "browser.safebrowsing.blockedURIs.enabled" = false;
-              "browser.safebrowsing.provider.google4.gethashURL" = "";
-              "browser.safebrowsing.provider.google4.updateURL" = "";
-              "browser.safebrowsing.provider.google.gethashURL" = "";
-              "browser.safebrowsing.provider.google.updateURL" = "";
-              "browser.safebrowsing.downloads.enabled" = false;
-              "browser.safebrowsing.downloads.remote.enabled" = false;
-              "browser.safebrowsing.downloads.remote.url" = "";
-              "browser.safebrowsing.downloads.remote.block_potentially_unwanted" = false;
-              "browser.safebrowsing.downloads.remote.block_uncommon" = false;
-              "browser.safebrowsing.allowOverride" = true;
+
+              # OneBar settings
+              "onebar.collapse-URLbar" = true;
+              "onebar.conditional-navigation-buttons" = true;
+              "onebar.hide-all-URLbar-icons" = true;
             };
+
+          userChrome = pkgs.fetchurl {
+            url = "https://git.gay/freeplay/Firefox-Onebar/raw/commit/78789cadd56cdf0d273ace47e3ac8b6f7db94eef/onebar.css";
+            sha256 = "sha256-bPBApA5IznRodld+gh6FpzglgVzl0uOQOUUQYNB+nEQ=";
+          };
 
           userContent = ''
             @font-face {

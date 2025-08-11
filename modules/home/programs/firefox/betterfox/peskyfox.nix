@@ -14,7 +14,7 @@
   #############################################################
 
   "browser.privatebrowsing.vpnpromourl" = "";
-  # "browser.vpn_promo.enabled" = false;
+  "browser.vpn_promo.enabled" = false;
 
   "extensions.getAddons.showPane" = false;
   "extensions.htmlaboutaddons.recommendations.enabled" = false;

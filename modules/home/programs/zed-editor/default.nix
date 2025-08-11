@@ -45,23 +45,32 @@
 
         languages = {
           JavaScript = {
+            format_on_save = "on";
+
             formatter = {
-              code_actions = {
-                "source.fixAll.eslint" = true;
+              external = {
+                command = lib.getExe pkgs.prettier;
+                arguments = ["--stdin-filepath" "{buffer_path}"];
               };
             };
           };
           TypeScript = {
+            format_on_save = "on";
+
             formatter = {
-              code_actions = {
-                "source.fixAll.eslint" = true;
+              external = {
+                command = lib.getExe pkgs.prettier;
+                arguments = ["--stdin-filepath" "{buffer_path}"];
               };
             };
           };
           TSX = {
+            format_on_save = "on";
+
             formatter = {
-              code_actions = {
-                "source.fixAll.eslint" = true;
+              external = {
+                command = lib.getExe pkgs.prettier;
+                arguments = ["--stdin-filepath" "{buffer_path}"];
               };
             };
           };
@@ -71,6 +80,26 @@
             language_servers = [
               "nixd"
             ];
+          };
+          JSON = {
+            format_on_save = "on";
+
+            formatter = {
+              external = {
+                command = lib.getExe pkgs.prettier;
+                arguments = ["--stdin-filepath" "{buffer_path}"];
+              };
+            };
+          };
+          CSS = {
+            format_on_save = "on";
+
+            formatter = {
+              external = {
+                command = lib.getExe pkgs.prettier;
+                arguments = ["--stdin-filepath" "{buffer_path}"];
+              };
+            };
           };
         };
         lsp.nixd = {

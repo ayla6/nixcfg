@@ -61,7 +61,7 @@
         };
 
         style = {
-          fonts.enable = true;
+          fonts.enable = false;
         };
       };
     }
