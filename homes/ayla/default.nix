@@ -76,7 +76,47 @@
         homeDirectory = "/home/ayla";
 
         packages = with pkgs; [
+          wl-clipboard
+          libnotify
+
+          # --- Development ---
+          gcc
+          nodejs
+          pnpm
+          typescript
+          ffmpeg-full
+          luajit
+          love
+
+          # --- Applications ---
+          keepassxc
+          libsecret
+          qbittorrent
+          flare-signal
+          kdePackages.kdenlive
+          krita
+          gimp3
+          yt-dlp
+          aseprite
+          inkscape
+          jellyfin-media-player
+          calibre
+          picard
+          freac
+          audacious
+          audacious-plugins
+          lmms
           nicotine-plus
+
+          # --- Gaming ---
+          wine
+          steam-run
+          lutris
+          mgba
+          melonDS
+          openttd
+          prismlauncher
+          mindustry
         ];
 
         stateVersion = "25.05";
