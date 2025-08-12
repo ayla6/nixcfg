@@ -46,6 +46,7 @@
       enable = lib.mkDefault true;
       algorithm = lib.mkDefault "zstd";
       priority = lib.mkDefault 100;
+      memoryPercent = lib.mkDefault 100;
     };
 
     myNixOS.services.fail2ban.enable = true;

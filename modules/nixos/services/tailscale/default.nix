@@ -80,7 +80,7 @@
           ++ lib.optional (config.myNixOS.services.tailscale.operator != null)
           "--operator ${config.myNixOS.services.tailscale.operator}";
 
-        extraSetFlags = ["--advertise-exit-node"];
+        extraSetFlags = ["--advertise-exit-node" "--ssh"];
         extraDaemonFlags = ["--no-logs-no-support"];
 
         openFirewall = true;
