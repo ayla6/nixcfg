@@ -19,10 +19,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #disko = {
+    #  url = "github:nix-community/disko";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     files.url = "github:alyraffauf/files";
     flake-parts.url = "github:hercules-ci/flake-parts";
