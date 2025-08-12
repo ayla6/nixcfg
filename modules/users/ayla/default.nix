@@ -14,7 +14,7 @@
 
       openssh.authorizedKeys.keyFiles =
         lib.map (file: "${self.inputs.secrets}/publicKeys/${file}")
-        (lib.filter (file: lib.hasPrefix "ayla_" file)
+        (lib.filter (file: (lib.hasPrefix "ayla_" file) || (lib.hasPrefix "root_morgana" file))
           (builtins.attrNames (builtins.readDir "${self.inputs.secrets}/publicKeys")));
 
       uid = 1000;
