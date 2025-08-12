@@ -14,10 +14,10 @@
         publicKeyFile = "${self.inputs.secrets}/publicKeys/root_morgana.pub";
       };
 
-      #nan = {
-      #  hostNames = ["nanpi" "nanpi.local" "nanpi.${config.mySnippets.tailnet.name}"];
-      #  publicKeyFile = "${self.inputs.secrets}/publicKeys/root_nanpi.pub";
-      #};
+      nanpi = {
+        hostNames = ["nanpi" "nanpi.local" "nanpi.$config.mySnippets.tailnet.name}"];
+        publicKeyFile = "${self.inputs.secrets}/publicKeys/root_nanpi.pub";
+      };
 
       m23 = {
         hostNames = ["m23" "m23.local" "m23.${config.mySnippets.tailnet.name}"];
