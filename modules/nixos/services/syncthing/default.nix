@@ -63,7 +63,13 @@
             urAccepted = -1;
           };
 
-          inherit devices folders;
+          inherit devices;
+          folders =
+            lib.filterAttrs (
+              _name: value:
+                lib.elem config.networking.hostName value.devices
+            )
+            folders;
         };
       };
     };

@@ -7,7 +7,7 @@ _: {
     self',
     ...
   }: {
-    devShells.default = pkgs.mkShell {
+    devShells.morgana = pkgs.mkShell {
       packages =
         (with pkgs; [
           (lib.hiPrio uutils-coreutils-noprefix)
