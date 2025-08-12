@@ -8,6 +8,7 @@
     ./secrets.nix
     ./services.nix
     self.nixosModules.locale-en-gb
+    self.diskoConfigurations.lvm-ext4
   ];
 
   networking.hostName = "nanpi";
@@ -64,18 +65,5 @@
       "sd_mod"
       "rtsx_pci_sdmmc"
     ];
-  };
-
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/78a1fe3c-cda2-412e-8128-2edba467f856";
-      fsType = "ext4";
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/12CE-A600";
-      fsType = "vfat";
-      options = ["fmask=0022" "dmask=0022"];
-    };
   };
 }
