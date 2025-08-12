@@ -4,12 +4,11 @@
   ...
 }: {
   flake = {
-    #diskoConfigurations = {
-    #  btrfs-subvolumes = ../disko/btrfs-subvolumes;
-    #  luks-btrfs-subvolumes = ../disko/luks-btrfs-subvolumes;
-    #  lvm-ext4 = ../disko/lvm-ext4;
-    #  ext4 = ../disko/ext4;
-    #};
+    diskoConfigurations = {
+      btrfs-subvolumes = ../disko/btrfs-subvolumes;
+      luks-btrfs-subvolumes = ../disko/luks-btrfs-subvolumes;
+      lvm-ext4 = ../disko/lvm-ext4;
+    };
 
     nixosModules = {
       hardware = ../hardware;
@@ -31,7 +30,7 @@
             modules = [
               ../../hosts/${host}
               inputs.agenix.nixosModules.default
-              #inputs.disko.nixosModules.disko
+              inputs.disko.nixosModules.disko
               inputs.home-manager.nixosModules.home-manager
               inputs.lanzaboote.nixosModules.lanzaboote
               modules.hardware
