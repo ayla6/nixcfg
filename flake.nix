@@ -57,6 +57,12 @@
 
   nixConfig = {
     accept-flake-config = true;
+
+    extra-substituters = [
+      "https://ayla6.cachix.org"
+      "https://chaotic-nyx.cachix.org/"
+      "https://nix-community.cachix.org"
+    ];
   };
 
   outputs = inputs @ {flake-parts, ...}:
