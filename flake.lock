@@ -1,5 +1,29 @@
 {
   "nodes": {
+    "actions-nix": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "git-hooks": [
+          "git-hooks-nix"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754669222,
+        "narHash": "sha256-4PbaZ5m2boVVzgSEGp+/HdcyHhW7UZkw/Wji5k4ICGw=",
+        "owner": "alyraffauf",
+        "repo": "actions.nix",
+        "rev": "f2c78ac1a9cfab8f8bce5aa1fd72e221395f0798",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alyraffauf",
+        "repo": "actions.nix",
+        "type": "github"
+      }
+    },
     "agenix": {
       "inputs": {
         "darwin": "darwin",
@@ -60,7 +84,70 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754971456,
+        "narHash": "sha256-p04ZnIBGzerSyiY2dNGmookCldhldWAu03y0s3P8CB0=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "8246829f2e675a46919718f9a64b71afe3bfb22d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
+    "files": {
+      "locked": {
+        "lastModified": 1753414454,
+        "narHash": "sha256-IMdHZjva8z354/TAjkKqgHJ0k7qGZeaf460EPq/awDA=",
+        "owner": "alyraffauf",
+        "repo": "files",
+        "rev": "fdfd673e34933a6836e6dccda820e448300e4c05",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alyraffauf",
+        "repo": "files",
+        "type": "github"
+      }
+    },
+    "firefox-onebar": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-kkg+wplvJvOmO2FseZuF/P2HBh+r/uSEEb9TD6RSA54=",
+        "type": "file",
+        "url": "https://git.gay/freeplay/Firefox-Onebar/raw/branch/waf/onebar.css"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://git.gay/freeplay/Firefox-Onebar/raw/branch/waf/onebar.css"
+      }
+    },
     "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1747046372,
+        "narHash": "sha256-CIVLLkVgvHYbgI2UpXvIIBJ12HWgX+fjA8Xf8PUmqCY=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "9100a0f413b0c601e0533d1d94ffd501ce2e7885",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_2": {
       "flake": false,
       "locked": {
         "lastModified": 1696426674,
@@ -78,6 +165,27 @@
     },
     "flake-parts": {
       "inputs": {
+        "nixpkgs-lib": [
+          "actions-nix",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1738453229,
+        "narHash": "sha256-7H9XgNiGLKN1G1CgRh0vUL4AheZSYzPm+zmZ7vxbJdo=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "32ea77a06711b758da0ad9bd6a844c5740a87abd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
+      "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
@@ -94,7 +202,7 @@
         "type": "github"
       }
     },
-    "flake-parts_2": {
+    "flake-parts_3": {
       "inputs": {
         "nixpkgs-lib": [
           "lanzaboote",
@@ -115,7 +223,7 @@
         "type": "github"
       }
     },
-    "flake-parts_3": {
+    "flake-parts_4": {
       "inputs": {
         "nixpkgs-lib": [
           "nur",
@@ -136,7 +244,50 @@
         "type": "github"
       }
     },
+    "git-hooks-nix": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "gitignore": "gitignore",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754416808,
+        "narHash": "sha256-c6yg0EQ9xVESx6HGDOCMcyRSjaTpNJP10ef+6fRcofA=",
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "rev": "9c52372878df6911f9afc1e2a1391f55e4dfc864",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "type": "github"
+      }
+    },
     "gitignore": {
+      "inputs": {
+        "nixpkgs": [
+          "git-hooks-nix",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1709087332,
+        "narHash": "sha256-HG2cCnktfHsKV0s4XW83gU3F57gaTljL9KNSuG6bnQs=",
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
+    "gitignore_2": {
       "inputs": {
         "nixpkgs": [
           "lanzaboote",
@@ -186,11 +337,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754842705,
-        "narHash": "sha256-2vvncPLsBWV6dRM5LfGHMGYZ+vzqRDqSPBzxPAS0R/A=",
+        "lastModified": 1754974548,
+        "narHash": "sha256-XMjUjKD/QRPcqUnmSDczSYdw46SilnG0+wkho654DFM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "91586008a23c01cc32894ee187dca8c0a7bd20a4",
+        "rev": "27a26be51ff0162a8f67660239f9407dba68d7c5",
         "type": "github"
       },
       "original": {
@@ -203,8 +354,8 @@
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
-        "flake-compat": "flake-compat",
-        "flake-parts": "flake-parts_2",
+        "flake-compat": "flake-compat_2",
+        "flake-parts": "flake-parts_3",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -275,11 +426,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1754800730,
-        "narHash": "sha256-HfVZCXic9XLBgybP0318ym3cDnGwBs/+H5MgxFVYF4I=",
+        "lastModified": 1754956457,
+        "narHash": "sha256-T2+GFBeim9Nd1D1sTytRpgo8E2RwlTwHmQUmewBceo4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "641d909c4a7538f1539da9240dedb1755c907e40",
+        "rev": "5a983011e0f4b3b286aaa73e011ce32b1449a528",
         "type": "github"
       },
       "original": {
@@ -307,15 +458,15 @@
     },
     "nur": {
       "inputs": {
-        "flake-parts": "flake-parts_3",
+        "flake-parts": "flake-parts_4",
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1754883319,
-        "narHash": "sha256-DUddNJ5q6sxzQ8SZaWt2KgNIATwSviQnpoeoUWCGopY=",
+        "lastModified": 1754996709,
+        "narHash": "sha256-IOFqbuRuumZFG9s/c8pablo4AL4jzXdjr86OvMxINkE=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "f657c3820a06481f3a037ffba0e69d01f2cedfb2",
+        "rev": "ccb6cee3ff1f3b002d95144230d3908bcdf1b4d8",
         "type": "github"
       },
       "original": {
@@ -330,7 +481,7 @@
           "lanzaboote",
           "flake-compat"
         ],
-        "gitignore": "gitignore",
+        "gitignore": "gitignore_2",
         "nixpkgs": [
           "lanzaboote",
           "nixpkgs"
@@ -353,13 +504,19 @@
     },
     "root": {
       "inputs": {
+        "actions-nix": "actions-nix",
         "agenix": "agenix",
-        "flake-parts": "flake-parts",
+        "disko": "disko",
+        "files": "files",
+        "firefox-onebar": "firefox-onebar",
+        "flake-parts": "flake-parts_2",
+        "git-hooks-nix": "git-hooks-nix",
         "home-manager": "home-manager_2",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "nur": "nur"
+        "nur": "nur",
+        "secrets": "secrets"
       }
     },
     "rust-overlay": {
@@ -380,6 +537,22 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754995747,
+        "narHash": "sha256-dG8juVoHNl3MVLZ7CODm6BNFVTrBGSTEu5fmf0b2O3o=",
+        "owner": "ayla6",
+        "repo": "secrets",
+        "rev": "4fb41ba578c06d5b93ca4f742fb8141a98ee5b51",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ayla6",
+        "repo": "secrets",
         "type": "github"
       }
     },

@@ -1,3 +1,3 @@
 My NixOS config!
 
-Heavily inspired/stolen from https://github.com/alyraffauf/nixcfg, aly you're really cool!!!
+a loooooot of stuff here is copied from https://github.com/alyraffauf/nixcfg, aly you're really cool!!!

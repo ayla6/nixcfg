@@ -13,11 +13,12 @@
       }
     ];
 
-    services.displayManager.gdm.enable = true;
-    services.desktopManager.gnome.enable = true;
+    services = {
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+    };
 
     environment.gnome.excludePackages = with pkgs; [
-      epiphany # web browser
       geary # email reader
       gedit # text editor
       gnome-characters
@@ -35,11 +36,13 @@
       package = pkgs.gnomeExtensions.gsconnect;
     };
 
-    environment.variables.QT_QPA_PLATFORMTHEME = "qt6ct";
-    environment.systemPackages = with pkgs; [
-      libsForQt5.qt5ct
-      qt6ct
-    ];
+    environment = {
+      variables.QT_QPA_PLATFORMTHEME = "qt6ct";
+      systemPackages = with pkgs; [
+        libsForQt5.qt5ct
+        qt6ct
+      ];
+    };
 
     myNixOS.desktop.enable = true;
 

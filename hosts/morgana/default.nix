@@ -1,6 +1,11 @@
-{self, ...}: {
+{
+  self,
+  config,
+  ...
+}: {
   imports = [
     ./home.nix
+    ./secrets.nix
     self.nixosModules.locale-en-gb
   ];
 
@@ -20,17 +25,36 @@
     profiles = {
       base.enable = true;
       workstation.enable = true;
+      btrfs.enable = true;
+      autoUpgrade = {
+        enable = true;
+        operation = "switch";
+      };
     };
     desktop.gnome.enable = true;
     services = {
-      tailscale.enable = true;
+      # i can't make caddy work :(
+      #caddy.enable = true;
+      tailscale = {
+        enable = true;
+        # i can't make caddy work :(
+        enableCaddy = false;
+        operator = "ayla";
+      };
       aria2.enable = true;
+      syncthing = {
+        enable = true;
+        certFile = config.age.secrets.syncthingCert.path;
+        keyFile = config.age.secrets.syncthingKey.path;
+        user = "ayla";
+      };
     };
     style.fonts.enable = true;
   };
 
   myUsers = {
     ayla = {
+      enable = true;
       password = "REDACTED";
     };
   };

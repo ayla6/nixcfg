@@ -22,10 +22,7 @@
         randomizedDelaySec = "60min";
       };
 
-      settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      inherit (config.mySnippets.nix) settings;
     };
   };
 }
