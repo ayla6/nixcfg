@@ -5,12 +5,32 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    actions-nix = {
+      url = "github:alyraffauf/actions.nix";
+
+      inputs = {
+        git-hooks.follows = "git-hooks-nix";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    files.url = "github:alyraffauf/files";
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -23,6 +43,16 @@
     };
 
     nur.url = "github:nix-community/NUR";
+
+    secrets = {
+      url = "github:ayla6/secrets";
+      flake = false;
+    };
+
+    firefox-onebar = {
+      url = "https://git.gay/freeplay/Firefox-Onebar/raw/branch/waf/onebar.css";
+      flake = false;
+    };
   };
 
   nixConfig = {
@@ -37,6 +67,9 @@
 
       imports = [
         ./modules/flake
+        inputs.actions-nix.flakeModules.default
+        inputs.files.flakeModules.default
+        #inputs.git-hooks-nix.flakeModule
         inputs.home-manager.flakeModules.home-manager
       ];
     };

@@ -13,7 +13,7 @@
     nodejs
     pnpm
     typescript
-    ffmpeg
+    ffmpeg-full
     luajit
     love
 

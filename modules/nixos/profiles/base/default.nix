@@ -24,7 +24,19 @@
     programs = {
       dconf.enable = true; # Needed for home-manager
 
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+        silent = true;
+      };
+
+      gnupg.agent = {
+        enable = true;
+        enableSSHSupport = true;
+      };
+
       nh.enable = true;
+      ssh.knownHosts = config.mySnippets.ssh.knownHosts;
     };
 
     networking.networkmanager.enable = true;

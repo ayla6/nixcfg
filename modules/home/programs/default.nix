@@ -9,5 +9,6 @@
     ./mpv
     ./aria2
     ./micro
+    ./ssh
   ];
 }

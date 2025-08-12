@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  self,
   ...
 }: let
   engines = import ./engines.nix;
@@ -76,10 +77,7 @@ in {
               "onebar.hide-all-URLbar-icons" = true;
             };
 
-          userChrome = pkgs.fetchurl {
-            url = "https://git.gay/freeplay/Firefox-Onebar/raw/commit/78789cadd56cdf0d273ace47e3ac8b6f7db94eef/onebar.css";
-            sha256 = "sha256-bPBApA5IznRodld+gh6FpzglgVzl0uOQOUUQYNB+nEQ=";
-          };
+          userChrome = builtins.readFile self.inputs.firefox-onebar;
 
           userContent = ''
             @font-face {

@@ -6,6 +6,7 @@ _: {
 
     homeModules = {
       default = ../home;
+      snippets = ../snippets;
     };
   };
 }

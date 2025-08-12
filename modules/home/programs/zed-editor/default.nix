@@ -26,7 +26,7 @@
         buffer_font_size = 14;
         buffer_font_family = "JetBrains Mono NL";
         use_on_type_format = true;
-        wrap_guides = [80];
+        wrap_guides = [100];
         minimap.show = "auto";
         preferred_line_length = 80;
         soft_wrap = "preferred_line_length";

@@ -3,6 +3,7 @@
     ./nvidia
     ./intel
     ./acer
+    ./hp
     ./profiles
   ];
 }

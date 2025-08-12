@@ -36,6 +36,7 @@
           mpv.enable = true;
           obs-studio.enable = true;
           zed-editor.enable = true;
+          ssh.enable = true;
         };
 
         profiles = {
@@ -57,7 +58,6 @@
 
         services = {
           aria2.enable = true;
-          syncthing.enable = true;
         };
 
         style = {
