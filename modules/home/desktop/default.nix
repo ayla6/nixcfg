@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./gnome
+    ./packages.nix
   ];
 
   options.myHome.desktop.enable = lib.mkOption {
