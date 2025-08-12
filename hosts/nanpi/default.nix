@@ -8,7 +8,7 @@
     ./secrets.nix
     ./services.nix
     self.nixosModules.locale-en-gb
-    self.diskoConfigurations.lvm-ext4
+    self.diskoConfigurations.ext4
   ];
 
   networking.hostName = "nanpi";
