@@ -11,7 +11,7 @@
       default = {
         extraBackupArgs = [
           "--cleanup-cache"
-          "--compression max"
+          "--compression auto"
           "--no-scan"
         ];
 
