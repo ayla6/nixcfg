@@ -10,6 +10,11 @@
       enable = true;
       userName = "ayla";
       userEmail = "ayla-git.barcode041@silomails.com";
+      signing = {
+        format = "ssh";
+        key = "~/.ssh/id_ed25519";
+        signByDefault = true;
+      };
       extraConfig = {
         color.ui = true;
         github.user = "ayla6";
