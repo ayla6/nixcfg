@@ -6,5 +6,6 @@
     ./workstation
     ./server
     ./autoUpgrade
+    ./tmpOnTmpfs
   ];
 }
