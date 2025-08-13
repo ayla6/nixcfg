@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  backupDestination = "rclone:gdrive-backups/${config.networking.hostName}";
+  backupDestination = "rclone:gdrive:/backups/${config.networking.hostName}";
   mkRepo = service: "${backupDestination}/${service}";
   stop = service: "${pkgs.systemd}/bin/systemctl stop ${service}";
   start = service: "${pkgs.systemd}/bin/systemctl start ${service}";
