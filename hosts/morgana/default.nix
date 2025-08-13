@@ -30,6 +30,7 @@
         enable = true;
         operation = "switch";
       };
+      tmpOnTmpfs.enable = true;
     };
     desktop.gnome.enable = true;
     services = {
