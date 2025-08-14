@@ -18,7 +18,7 @@
 
   myNixOS = {
     programs = {
-      systemd-boot.enable = true;
+      lanzaboote.enable = true;
       nix.enable = true;
     };
     profiles = {
