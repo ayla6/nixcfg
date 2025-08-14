@@ -60,7 +60,8 @@
           aria2.enable = true;
         };
 
-        style = {
+        themes = {
+          #evergarden.enable = true;
           fonts.enable = false;
         };
       };

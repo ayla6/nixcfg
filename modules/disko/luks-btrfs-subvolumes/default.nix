@@ -5,7 +5,7 @@
 }: {
   options.myDisko.installDrive = lib.mkOption {
     description = "Disk to install NixOS to.";
-    default = "/dev/nvme0n1";
+    default = "/dev/sda";
     type = lib.types.str;
   };
 

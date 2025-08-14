@@ -32,9 +32,9 @@
     }) (findFilesRecursive fontSourceDir)
   );
 in {
-  options.myHome.style.fonts.enable = lib.mkEnableOption "custom fonts";
+  options.myHome.themes.fonts.enable = lib.mkEnableOption "custom fonts";
 
-  config = lib.mkIf config.myHome.style.fonts.enable {
+  config = lib.mkIf config.myHome.themes.fonts.enable {
     home.file = fontFileEntries;
   };
 }

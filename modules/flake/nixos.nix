@@ -24,6 +24,7 @@
       inputs.nixpkgs.lib.genAttrs [
         "morgana"
         "nanpi"
+        "nanpi2"
       ] (
         host:
           inputs.nixpkgs.lib.nixosSystem {

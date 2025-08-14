@@ -7,7 +7,7 @@
   imports = [
     ./desktop
     ./profiles
-    ./style
+    ./themes
     ./programs
     ./services
   ];
