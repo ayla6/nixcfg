@@ -27,11 +27,6 @@ in {
     };
 
     caddy.virtualHosts = {
-      "pds.aylac.top" = {
-        extraConfig = ''
-          reverse_proxy http://localhost:3000
-        '';
-      };
       "${config.mySnippets.tailnet.networkMap.jellyfin.vHost}" = {
         extraConfig = ''
           bind tailscale/jellyfin
