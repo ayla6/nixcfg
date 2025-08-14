@@ -46,6 +46,7 @@
       qbittorrent = {
         inherit (config.mySnippets.tailnet.networkMap.qbittorrent) port;
         enable = true;
+        openFirewall = true;
       };
     };
   };
