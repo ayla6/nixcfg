@@ -8,17 +8,17 @@
     ./secrets.nix
     ./services.nix
     self.nixosModules.locale-en-gb
-    self.diskoConfigurations.lvm-ext4
+    self.diskoConfigurations.luks-btrfs-subvolumes
   ];
 
   networking.hostName = "nanpi";
   system.stateVersion = "25.05";
   time.timeZone = "America/Sao_Paulo";
-  myHardware.hp.theRedOne.enable = true;
+  myHardware.lenovo.ideapad."320-14IKB".enable = true;
 
   myNixOS = {
     programs = {
-      systemd-boot.enable = true;
+      lanzaboote.enable = true;
       nix.enable = true;
     };
     profiles = {

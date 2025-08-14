@@ -4,6 +4,7 @@
     ./intel
     ./acer
     ./hp
+    ./lenovo
     ./profiles
   ];
 }
