@@ -24,6 +24,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    evergarden.url = "github:everviolet/nix";
+
     files.url = "github:alyraffauf/files";
     flake-parts.url = "github:hercules-ci/flake-parts";
 

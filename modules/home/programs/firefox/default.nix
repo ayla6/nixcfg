@@ -73,7 +73,7 @@ in {
 
               # OneBar settings
               "onebar.collapse-URLbar" = true;
-              "onebar.conditional-navigation-buttons" = true;
+              "onebar.conditional-navigation-buttons" = false;
               "onebar.hide-all-URLbar-icons" = true;
             };
 

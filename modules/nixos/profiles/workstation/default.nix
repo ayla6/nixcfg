@@ -104,11 +104,15 @@
 
     system.nixos.tags = ["workstation"];
 
-    systemd.oomd = {
-      enable = true;
-      enableRootSlice = true;
-      enableSystemSlice = true;
-      enableUserSlices = true;
+    systemd = {
+      oomd = {
+        enable = true;
+        enableRootSlice = true;
+        enableSystemSlice = true;
+        enableUserSlices = true;
+      };
+      # i hate these guys
+      coredump.enable = false;
     };
 
     zramSwap = {
