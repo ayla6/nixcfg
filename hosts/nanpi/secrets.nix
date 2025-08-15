@@ -8,5 +8,6 @@
     syncthingCert.file = "${self.inputs.secrets}/ayla/syncthing/nanpi/cert.age";
     syncthingKey.file = "${self.inputs.secrets}/ayla/syncthing/nanpi/key.age";
     resticPassword.file = "${self.inputs.secrets}/restic-passwd.age";
+    vaultwarden.file = "${self.inputs.secrets}/vaultwarden.age";
   };
 }

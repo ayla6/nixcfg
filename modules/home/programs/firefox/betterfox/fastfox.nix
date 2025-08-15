@@ -39,13 +39,13 @@
   "gfx.canvas.accelerated.cache-size" = 512; # default=256; Chrome=512
   "gfx.content.skia-font-cache-size" = 20; # default=5; Chrome=20
 
-  # "layers.gpu-process.enabled" = true;                   # DEFAULT WINDOWS
-  # "layers.gpu-process.force-enabled" = true;
-  # "layers.mlgpu.enabled" = true;                         # LINUX
-  # "media.hardware-video-decoding.enabled" = true;        # DEFAULT WINDOWS macOS
-  # "media.hardware-video-decoding.force-enabled" = true;
-  # "media.gpu-process-decoder" = true;                    # DEFAULT WINDOWS
-  # "media.ffmpeg.vaapi.enabled" = true;                   # LINUX
+  "layers.gpu-process.enabled" = true; # DEFAULT WINDOWS
+  "layers.gpu-process.force-enabled" = true;
+  "layers.mlgpu.enabled" = true; # LINUX
+  "media.hardware-video-decoding.enabled" = true; # DEFAULT WINDOWS macOS
+  "media.hardware-video-decoding.force-enabled" = true;
+  "media.gpu-process-decoder" = true; # DEFAULT WINDOWS
+  "media.ffmpeg.vaapi.enabled" = true; # LINUX
 
   #############################################################
   # SECTION: DISK CACHE

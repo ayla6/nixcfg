@@ -5,5 +5,6 @@
     ./tailnet
     ./syncthing
     ./restic
+    ./aylac-top
   ];
 }

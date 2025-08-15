@@ -7,7 +7,7 @@ in {
       environmentFiles = [config.age.secrets.pds.path];
       pdsadmin.enable = true;
       settings = {
-        PDS_HOSTNAME = "pds.aylac.top";
+        PDS_HOSTNAME = config.mySnippets.aylac-top.networkMap.pds.vHost;
       };
     };
 
@@ -15,12 +15,13 @@ in {
       enable = true;
       certificateFile = config.age.secrets.cloudflareCertificate.path;
       tunnels = {
-        "3c012d05-cc92-4598-a726-909088e6588c" = {
+        "efe3d484-102d-4c58-bb17-ceaede4d7a4f" = {
           certificateFile = config.age.secrets.cloudflareCertificate.path;
           credentialsFile = config.age.secrets.cloudflareCredentials.path;
           default = "http_status:404";
           ingress = {
-            "pds.aylac.top" = "http://localhost:3000";
+            "${config.mySnippets.aylac-top.networkMap.pds.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.pds.hostName}:${toString config.mySnippets.aylac-top.networkMap.pds.port}";
+            "${config.mySnippets.aylac-top.networkMap.vaultwarden.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.vaultwarden.hostName}:${toString config.mySnippets.aylac-top.networkMap.vaultwarden.port}";
           };
         };
       };
@@ -54,6 +55,20 @@ in {
     #   openFirewall = true;
     #   inherit (config.mySnippets.tailnet.networkMap.immich) port;
     # };
+
+    vaultwarden = {
+      enable = true;
+
+      config = {
+        DOMAIN = "https://${config.mySnippets.aylac-top.networkMap.vaultwarden.vHost}";
+        ROCKET_ADDRESS = "0.0.0.0";
+        ROCKET_LOG = "critical";
+        ROCKET_PORT = config.mySnippets.aylac-top.networkMap.vaultwarden.port;
+        SIGNUPS_ALLOWED = false;
+      };
+
+      environmentFile = config.age.secrets.vaultwarden.path;
+    };
 
     jellyfin = {
       enable = true;

@@ -9,10 +9,11 @@
           devices = [
             "morgana"
             "m23"
+            "nanpi"
           ];
 
           id = "cerbn-dj3xo";
-          path = "~/Backups";
+          path = "/home/ayla/Backups";
         };
 
         "Books" = {
@@ -29,10 +30,11 @@
           devices = [
             "morgana"
             "m23"
+            "nanpi"
           ];
 
           id = "dcfsw-meuwf";
-          path = "~/DCIM";
+          path = "/home/ayla/DCIM";
         };
 
         "Music" = {
@@ -42,27 +44,29 @@
           ];
 
           id = "pacgr-fvsd7";
-          path = "~/Music";
+          path = "/home/ayla/Music";
         };
 
         "Passwords" = {
           devices = [
             "morgana"
             "m23"
+            "nanpi"
           ];
 
           id = "mkiff-evvnj";
-          path = "~/Documents/Passwords";
+          path = "/home/ayla/Documents/Passwords";
         };
 
         "Pictures" = {
           devices = [
             "morgana"
             "m23"
+            "nanpi"
           ];
 
           id = "u5d66-bcnho";
-          path = "~/Pictures";
+          path = "/home/ayla/Pictures";
         };
 
         "Koreader Settings" = {

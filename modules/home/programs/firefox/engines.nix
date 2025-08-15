@@ -27,7 +27,7 @@
     ];
     icon = "https://wiki.nixos.org/favicon.ico";
     updateInterval = 24 * 60 * 60 * 1000; # every day
-    metaData.hidden = true;
+    #metaData.hidden = true;
 
     urls = [
       {
@@ -37,7 +37,7 @@
   };
 
   "nixpkgs" = {
-    definedAliases = ["!nix"];
+    definedAliases = ["!nix" "!nixpkgs"];
     icon = "https://search.nixos.org/favicon.png";
 
     urls = [
@@ -58,7 +58,7 @@
   };
 
   "Wiktionary" = {
-    definedAliases = ["!wikt"];
+    definedAliases = ["!wikt" "!wt"];
     icon = "https://en.wiktionary.org/favicon.ico";
     updateInterval = 24 * 60 * 60 * 1000; # every day
 
@@ -67,6 +67,10 @@
         template = "https://en.wiktionary.org/wiki/{searchTerms}";
       }
     ];
+  };
+
+  "wikipedia" = {
+    definedAliases = ["!wikp" "!w"];
   };
 
   "bing" = {
