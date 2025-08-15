@@ -20,6 +20,7 @@
                 or (lib.getExe config.programs.firefox.finalPackage);
           fileManager = config.myHome.profiles.defaultApps.fileManager.exec or (lib.getExe pkgs.nautilus);
           editor = config.myHome.profiles.defaultApps.editor.exec or (lib.getExe pkgs.gnome-text-editor);
+          archiveViewer = config.myHome.profiles.defaultApps.archiveViewer.exec or (lib.getExe pkgs.file-roller);
         };
       in {
         "org/gnome/desktop/datetime".automatic-timezone = true;

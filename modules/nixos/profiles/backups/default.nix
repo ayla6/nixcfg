@@ -4,8 +4,10 @@
   pkgs,
   ...
 }: let
-  backupDestination = "rclone:gdrive:/backups/${config.networking.hostName}";
-  mkRepo = service: "${backupDestination}/${service}";
+  backupDestinationA = "rclone:gdrive:/backups/${config.networking.hostName}";
+  mkRepoA = service: "${backupDestinationA}/${service}";
+  #backupDestinationB = "rclone:gdrive:/backups/${config.networking.hostName}";
+  #mkRepoB = service: "${backupDestinationB}/${service}";
   stop = service: "${pkgs.systemd}/bin/systemctl stop ${service}";
   start = service: "${pkgs.systemd}/bin/systemctl start ${service}";
 in {
@@ -21,7 +23,7 @@ in {
           backupCleanupCommand = start "audiobookshelf";
           backupPrepareCommand = stop "audiobookshelf";
           paths = [config.services.audiobookshelf.dataDir];
-          repository = mkRepo "audiobookshelf";
+          repository = mkRepoA "audiobookshelf";
         }
       );
 
@@ -31,7 +33,7 @@ in {
           backupCleanupCommand = start "bazarr";
           backupPrepareCommand = stop "bazarr";
           paths = [config.services.bazarr.dataDir];
-          repository = mkRepo "bazarr";
+          repository = mkRepoA "bazarr";
         }
       );
 
@@ -41,7 +43,7 @@ in {
           backupCleanupCommand = start "couchdb";
           backupPrepareCommand = stop "couchdb";
           paths = [config.services.couchdb.databaseDir];
-          repository = mkRepo "couchdb";
+          repository = mkRepoA "couchdb";
         }
       );
 
@@ -49,26 +51,26 @@ in {
         config.mySnippets.restic
         // {
           paths = [config.services.forgejo.stateDir];
-          repository = mkRepo "forgejo";
+          repository = mkRepoA "forgejo";
         }
       );
 
-      immich = lib.mkIf config.services.immich.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "immich-server";
-          backupPrepareCommand = stop "immich-server";
-
-          paths = [
-            "${config.services.immich.mediaLocation}/library"
-            "${config.services.immich.mediaLocation}/profile"
-            "${config.services.immich.mediaLocation}/upload"
-            "${config.services.immich.mediaLocation}/backups"
-          ];
-
-          repository = mkRepo "immich";
-        }
-      );
+      # immich = lib.mkIf config.services.immich.enable (
+      #   config.mySnippets.restic
+      #   // {
+      #     backupCleanupCommand = start "immich-server";
+      #     backupPrepareCommand = stop "immich-server";
+      #
+      #     paths = [
+      #       "${config.services.immich.mediaLocation}/library"
+      #       "${config.services.immich.mediaLocation}/profile"
+      #       "${config.services.immich.mediaLocation}/upload"
+      #       "${config.services.immich.mediaLocation}/backups"
+      #     ];
+      #
+      #     repository = mkRepoB "immich";
+      #   }
+      # );
 
       jellyfin = lib.mkIf config.services.jellyfin.enable (
         config.mySnippets.restic
@@ -76,7 +78,7 @@ in {
           backupCleanupCommand = start "jellyfin";
           backupPrepareCommand = stop "jellyfin";
           paths = [config.services.jellyfin.dataDir];
-          repository = mkRepo "jellyfin";
+          repository = mkRepoA "jellyfin";
         }
       );
 
@@ -86,7 +88,7 @@ in {
           backupCleanupCommand = start "lidarr";
           backupPrepareCommand = stop "lidarr";
           paths = [config.services.lidarr.dataDir];
-          repository = mkRepo "lidarr";
+          repository = mkRepoA "lidarr";
         }
       );
 
@@ -96,7 +98,7 @@ in {
           backupCleanupCommand = start "ombi";
           backupPrepareCommand = stop "ombi";
           paths = [config.services.ombi.dataDir];
-          repository = mkRepo "ombi";
+          repository = mkRepoA "ombi";
         }
       );
 
@@ -106,7 +108,7 @@ in {
           backupCleanupCommand = start "pds";
           backupPrepareCommand = stop "pds";
           paths = [config.services.pds.settings.PDS_DATA_DIRECTORY];
-          repository = mkRepo "pds";
+          repository = mkRepoA "pds";
         }
       );
 
@@ -117,7 +119,7 @@ in {
           backupPrepareCommand = stop "plex";
           exclude = ["${config.services.plex.dataDir}/Plex Media Server/Plug-in Support/Databases"];
           paths = [config.services.plex.dataDir];
-          repository = mkRepo "plex";
+          repository = mkRepoA "plex";
         }
       );
 
@@ -125,7 +127,7 @@ in {
         config.mySnippets.restic
         // {
           paths = [config.services.postgresql.dataDir];
-          repository = mkRepo "postgresql";
+          repository = mkRepoA "postgresql";
         }
       );
 
@@ -135,7 +137,7 @@ in {
           backupCleanupCommand = start "prowlarr";
           backupPrepareCommand = stop "prowlarr";
           paths = [config.services.prowlarr.dataDir];
-          repository = mkRepo "prowlarr";
+          repository = mkRepoA "prowlarr";
         }
       );
 
@@ -145,7 +147,7 @@ in {
           backupCleanupCommand = start "qbittorrent";
           backupPrepareCommand = stop "qbittorrent";
           paths = [config.myNixOS.services.qbittorrent.dataDir];
-          repository = mkRepo "qbittorrent";
+          repository = mkRepoA "qbittorrent";
         }
       );
 
@@ -155,7 +157,7 @@ in {
           backupCleanupCommand = start "radarr";
           backupPrepareCommand = stop "radarr";
           paths = [config.services.radarr.dataDir];
-          repository = mkRepo "radarr";
+          repository = mkRepoA "radarr";
         }
       );
 
@@ -165,7 +167,7 @@ in {
           backupCleanupCommand = start "readarr";
           backupPrepareCommand = stop "readarr";
           paths = [config.services.readarr.dataDir];
-          repository = mkRepo "readarr";
+          repository = mkRepoA "readarr";
         }
       );
 
@@ -175,7 +177,7 @@ in {
           backupCleanupCommand = start "sonarr";
           backupPrepareCommand = stop "sonarr";
           paths = [config.services.sonarr.dataDir];
-          repository = mkRepo "sonarr";
+          repository = mkRepoA "sonarr";
         }
       );
 
@@ -185,7 +187,7 @@ in {
           backupCleanupCommand = start "tautulli";
           backupPrepareCommand = stop "tautulli";
           paths = [config.services.tautulli.dataDir];
-          repository = mkRepo "tautulli";
+          repository = mkRepoA "tautulli";
         }
       );
 
@@ -195,7 +197,7 @@ in {
           backupCleanupCommand = start "uptime-kuma";
           backupPrepareCommand = stop "uptime-kuma";
           paths = ["/var/lib/uptime-kuma"];
-          repository = mkRepo "uptime-kuma";
+          repository = mkRepoA "uptime-kuma";
         }
       );
 
@@ -205,7 +207,7 @@ in {
           backupCleanupCommand = start "vaultwarden";
           backupPrepareCommand = stop "vaultwarden";
           paths = ["/var/lib/vaultwarden"];
-          repository = mkRepo "vaultwarden";
+          repository = mkRepoA "vaultwarden";
         }
       );
     };

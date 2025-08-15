@@ -217,4 +217,26 @@
     "video/x-theora+ogg"
     "x-content/video-dvd"
   ];
+
+  archiveFiles = [
+    "application/gzip"
+    "application/vnd.rar"
+    "application/x-7z-compressed"
+    "application/x-bzip"
+    "application/x-bzip2"
+    "application/x-compress"
+    "application/x-cpio"
+    "application/x-deb"
+    "application/x-gtar"
+    "application/x-gzip"
+    "application/x-lha"
+    "application/x-lzh"
+    "application/x-lzma"
+    "application/x-rar"
+    "application/x-rpm"
+    "application/x-tar"
+    "application/x-xz"
+    "application/x-zip-compressed"
+    "application/zip"
+  ];
 }

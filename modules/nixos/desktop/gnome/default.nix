@@ -14,7 +14,6 @@
     ];
 
     services = {
-      displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
     };
 
@@ -44,7 +43,10 @@
       ];
     };
 
-    myNixOS.desktop.enable = true;
+    myNixOS = {
+      desktop.enable = true;
+      services.gdm.enable = true;
+    };
 
     #qt = {
     #  enable = true;

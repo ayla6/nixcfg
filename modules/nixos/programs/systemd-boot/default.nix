@@ -16,6 +16,8 @@
           enable = lib.mkDefault true;
           configurationLimit = lib.mkDefault 10;
         };
+
+        timeout = lib.mkDefault 5;
       };
     };
   };

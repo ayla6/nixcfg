@@ -11,6 +11,20 @@ in {
     enable = lib.mkEnableOption "enforce default applications";
     forceMimeAssociations = lib.mkEnableOption "force mime associations for defaultApps";
 
+    archiveViewer = {
+      package = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.nemo;
+        description = "The default archive viewer package.";
+      };
+
+      exec = lib.mkOption {
+        type = lib.types.str;
+        default = lib.getExe cfg.archiveViewer.package;
+        description = "The executable path for the default archive viewer.";
+      };
+    };
+
     audioPlayer = {
       package = lib.mkOption {
         type = lib.types.package;
@@ -169,11 +183,16 @@ in {
     };
 
     xdg = {
-      configFile."xfce4/helpers.rc".text = ''
-        FileManager=${builtins.baseNameOf cfg.fileManager.exec}
-        TerminalEmulator=${builtins.baseNameOf cfg.terminal.exec}
-        WebBrowser=${builtins.baseNameOf cfg.webBrowser.exec}
-      '';
+      configFile = {
+        "xfce4/helpers.rc".text = ''
+          FileManager=${builtins.baseNameOf cfg.fileManager.exec}
+          TerminalEmulator=${builtins.baseNameOf cfg.terminal.exec}
+          WebBrowser=${builtins.baseNameOf cfg.webBrowser.exec}
+        '';
+        "mimeapps.list" = lib.mkIf cfg.forceMimeAssociations {
+          force = true;
+        };
+      };
 
       mimeApps = lib.mkIf cfg.forceMimeAssociations {
         enable = true;
@@ -195,6 +214,8 @@ in {
           imageTypes = mkDefaults mimeTypes.imageFiles "defaultImageViewer.desktop";
 
           videoTypes = mkDefaults mimeTypes.videoFiles "defaultVideoPlayer.desktop";
+
+          archiveTypes = mkDefaults mimeTypes.archiveFiles "defaultArchiveViewer.desktop";
         in
           audioTypes
           // browserTypes
@@ -202,7 +223,8 @@ in {
           // editorTypes
           // folderTypes
           // imageTypes
-          // videoTypes;
+          // videoTypes
+          // archiveTypes;
       };
 
       desktopEntries = let
@@ -225,6 +247,7 @@ in {
           defaultPdfViewer = mkDefaultEntry "PDF Viewer" cfg.pdfViewer.exec;
           defaultVideoPlayer = mkDefaultEntry "Video Player" cfg.videoPlayer.exec;
           defaultWebBrowser = mkDefaultEntry "Web Browser" cfg.webBrowser.exec;
+          defaultArchiveViewer = mkDefaultEntry "Archive Viewer" cfg.archiveViewer.exec;
         };
     };
   };

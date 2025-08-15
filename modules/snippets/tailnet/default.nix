@@ -26,6 +26,12 @@
           port = 8096;
           vHost = "jellyfin.${config.mySnippets.tailnet.name}";
         };
+
+        immich = {
+          hostName = "nanpi";
+          port = 2283;
+          vHost = "immich.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };
