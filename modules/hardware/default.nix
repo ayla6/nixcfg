@@ -6,5 +6,6 @@
     ./hp
     ./lenovo
     ./profiles
+    ./amd
   ];
 }

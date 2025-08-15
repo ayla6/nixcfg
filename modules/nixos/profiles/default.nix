@@ -7,5 +7,6 @@
     ./server
     ./autoUpgrade
     ./tmpOnTmpfs
+    ./swap
   ];
 }

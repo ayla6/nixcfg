@@ -28,7 +28,7 @@
         use_on_type_format = true;
         wrap_guides = [100];
         minimap.show = "auto";
-        preferred_line_length = 80;
+        preferred_line_length = 100;
         soft_wrap = "preferred_line_length";
 
         agent = {
