@@ -98,7 +98,10 @@ in {
             }
           '';
         };
-        test = {};
+        test = {
+          id = 1;
+          isDefault = false;
+        };
       };
     };
   };
