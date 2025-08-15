@@ -4,7 +4,7 @@
   ...
 }: {
   flake.actions-nix = {
-    pre-commit.enable = false; # Set to true if you want pre-commit workflow generation
+    pre-commit.enable = true; # Set to true if you want pre-commit workflow generation
 
     workflows = {
       # build-nix.yml
