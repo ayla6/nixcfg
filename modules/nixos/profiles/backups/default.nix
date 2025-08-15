@@ -210,6 +210,14 @@ in {
           repository = mkRepoA "vaultwarden";
         }
       );
+
+      passwords = lib.mkIf (builtins.elem config.networking.hostName config.mySnippets.syncthing.folders."Passwords".devices) (
+        config.mySnippets.restic
+        // {
+          paths = [config.mySnippets.syncthing.folders."Passwords".path];
+          repository = mkRepoA "passwords";
+        }
+      );
     };
   };
 }

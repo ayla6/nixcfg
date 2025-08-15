@@ -36,7 +36,6 @@ in {
               consent-o-matic
               ublock-origin
               aria2-integration
-              adaptive-tab-bar-colour
               keepassxc-browser
               libredirect
               stylus
@@ -47,6 +46,7 @@ in {
               sponsorblock
               search-by-image
               ff2mpv
+              bitwarden
             ];
 
             search = {
@@ -59,7 +59,7 @@ in {
                 "Home Manager Options"
                 "NixOS Wiki"
                 "nixpkgs"
-                "Wikipedia"
+                "wikipedia"
                 "Wiktionary"
               ];
             };
@@ -115,6 +115,10 @@ in {
           };
 
           userChrome = builtins.readFile self.inputs.firefox-onebar;
+
+          extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            adaptive-tab-bar-colour
+          ];
         };
       })
 
@@ -125,18 +129,26 @@ in {
           settings = {
             "sidebar.revamp" = true;
             "sidebar.verticalTabs" = true;
+            "sidebar.animation.expand-on-hover.duration-ms" = 50;
+            "sidebar.expandOnHover" = false;
+            "sidebar.visibility" = "expand-on-hover";
+            "browser.toolbars.bookmarks.visibility" = "never";
           };
         };
-      })
-
-    (lib.mkIf
+      }
+      // lib.mkIf
       (config.myHome.programs.firefox.mode != "sidebar")
       {
         profiles.default = {
           settings = {
             "sidebar.revamp" = false;
             "sidebar.verticalTabs" = false;
+            "browser.toolbars.bookmarks.visibility" = "newtab";
           };
+
+          userChrome = ''
+            .tab-icon-overlay{ display: none !important; }
+          '';
         };
       })
   ];
