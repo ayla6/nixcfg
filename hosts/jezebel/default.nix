@@ -23,9 +23,14 @@
       base.enable = true;
       btrfs.enable = true;
       server.enable = true;
+      vps.enable = true;
       autoUpgrade = {
         enable = true;
         operation = "switch";
+      };
+      swap = {
+        enable = true;
+        size = 2048;
       };
     };
     services = {
@@ -35,22 +40,5 @@
         enableCaddy = true;
       };
     };
-  };
-
-  services = {
-    qemuGuest.enable = true;
-    spice-vdagentd.enable = true;
-  };
-
-  boot = {
-    loader.grub = {
-      enable = true;
-    };
-    initrd = {
-      availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod"];
-      kernelModules = [];
-    };
-    kernelModules = [""];
-    extraModulePackages = [];
   };
 }
