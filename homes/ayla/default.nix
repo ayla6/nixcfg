@@ -14,9 +14,11 @@
       home = {
         packages = with pkgs; [
           rclone
+          rclone-browser
         ];
 
         username = "ayla";
+        stateVersion = "25.05";
       };
 
       programs.home-manager.enable = true;
@@ -30,7 +32,10 @@
         programs = {
           chromium.enable = true;
           fastfetch.enable = true;
-          firefox.enable = true;
+          firefox = {
+            enable = true;
+            mode = "sidebar";
+          };
           git.enable = true;
           micro.enable = true;
           mpv.enable = true;
@@ -44,6 +49,7 @@
           defaultApps = {
             enable = true;
             forceMimeAssociations = true;
+            archiveViewer.package = pkgs.file-roller;
             audioPlayer.package = config.programs.mpv.finalPackage;
             videoPlayer.package = config.programs.mpv.finalPackage;
             editor.package = pkgs.gnome-text-editor;
@@ -65,6 +71,8 @@
           fonts.enable = false;
         };
       };
+
+      systemd.user.startServices = true; # Needed for auto-mounting agenix secrets.
     }
 
     (lib.mkIf pkgs.stdenv.isLinux {
@@ -119,12 +127,7 @@
           prismlauncher
           mindustry
         ];
-
-        stateVersion = "25.05";
-        username = "ayla";
       };
-
-      systemd.user.startServices = true; # Needed for auto-mounting agenix secrets.
     })
   ];
 }

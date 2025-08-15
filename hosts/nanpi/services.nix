@@ -46,6 +46,15 @@ in {
       };
     };
 
+    # it's failing to build because it can't download some stuff
+    # immich = {
+    #   enable = true;
+    #   host = "0.0.0.0";
+    #   mediaLocation = "${dataDirectory}/immich";
+    #   openFirewall = true;
+    #   inherit (config.mySnippets.tailnet.networkMap.immich) port;
+    # };
+
     jellyfin = {
       enable = true;
       openFirewall = true;

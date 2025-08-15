@@ -17,7 +17,10 @@
         sortKey = "lanza";
       };
 
-      loader.systemd-boot.enable = lib.mkForce false;
+      loader = {
+        systemd-boot.enable = lib.mkForce false;
+        timeout = lib.mkDefault 5;
+      };
     };
 
     environment.systemPackages = [pkgs.sbctl];

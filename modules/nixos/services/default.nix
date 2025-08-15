@@ -6,5 +6,6 @@
     ./syncthing
     ./caddy
     ./qbittorrent
+    ./gdm
   ];
 }
