@@ -34,7 +34,7 @@
       caddy.enable = true;
       tailscale = {
         enable = true;
-        enableCaddy = false;
+        enableCaddy = true;
         operator = "ayla";
       };
       syncthing = {
@@ -46,7 +46,6 @@
       qbittorrent = {
         inherit (config.mySnippets.tailnet.networkMap.qbittorrent) port;
         enable = true;
-        openFirewall = true;
       };
     };
   };
