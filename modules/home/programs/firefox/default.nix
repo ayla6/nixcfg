@@ -87,9 +87,7 @@ in {
               // {
                 "browser.tabs.groups.enabled" = true;
                 "browser.tabs.groups.smart.enabled" = true;
-                "browser.toolbars.bookmarks.visibility" = "newtab";
                 "svg.context-properties.content.enabled" = true;
-                "browser.uidensity" = 2;
                 "general.autoScroll" = true;
                 "ui.key.menuAccessKeyFocuses" = false;
                 "browser.search.separatePrivateDefault" = false;
@@ -148,7 +146,12 @@ in {
             "sidebar.expandOnHover" = false;
             "sidebar.visibility" = "expand-on-hover";
             "browser.toolbars.bookmarks.visibility" = "never";
+            "browser.uidensity" = 1;
           };
+
+          userChrome = ''
+            .tab-icon-overlay{ display: none !important; }
+          '';
         };
       }
       // lib.mkIf
@@ -159,11 +162,8 @@ in {
             "sidebar.revamp" = false;
             "sidebar.verticalTabs" = false;
             "browser.toolbars.bookmarks.visibility" = "newtab";
+            "browser.uidensity" = 0;
           };
-
-          userChrome = ''
-            .tab-icon-overlay{ display: none !important; }
-          '';
         };
       })
   ];

@@ -38,9 +38,6 @@
         deband-range = 17;
         deband-grain = 12;
 
-        # OSD and fonts
-        osd-font = "Roboto Flex";
-
         # Audio and subtitle languages
         alang = "ja,jp,jpn,en,eng";
         slang = "en,eng,pt-br,br,pt";
@@ -50,7 +47,6 @@
         sub-fix-timing = false;
         sub-auto = "fuzzy";
         sub-scale = 0.5;
-        sub-font = "Roboto";
 
         # Screenshot settings
         screenshot-format = "png";

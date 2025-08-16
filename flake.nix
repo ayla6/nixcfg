@@ -24,10 +24,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    evergarden.url = "github:everviolet/nix";
-
     files.url = "github:alyraffauf/files";
+
+    firefox-onebar = {
+      url = "https://git.gay/freeplay/Firefox-Onebar/raw/branch/waf/onebar.css";
+      flake = false;
+    };
+
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    fontix = {
+      url = "github:alyraffauf/fontix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
@@ -48,11 +57,6 @@
 
     secrets = {
       url = "github:ayla6/secrets";
-      flake = false;
-    };
-
-    firefox-onebar = {
-      url = "https://git.gay/freeplay/Firefox-Onebar/raw/branch/waf/onebar.css";
       flake = false;
     };
   };

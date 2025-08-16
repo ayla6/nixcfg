@@ -1,7 +1,7 @@
 {
   imports = [
     # ./ci
-    # ./helix.nix
+    ./helix.nix
     # ./vscode.nix
     ./zed.nix
   ];

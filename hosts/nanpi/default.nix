@@ -44,7 +44,8 @@
         user = "ayla";
       };
       qbittorrent = {
-        inherit (config.mySnippets.tailnet.networkMap.qbittorrent) port;
+        webuiPort = config.mySnippets.tailnet.networkMap.qbittorrent.port;
+        openFirewall = true;
         enable = true;
       };
     };

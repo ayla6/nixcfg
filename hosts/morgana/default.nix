@@ -50,10 +50,6 @@
         user = "ayla";
       };
     };
-    themes = {
-      #evergarden.enable = true;
-      fonts.enable = true;
-    };
   };
 
   myUsers = {

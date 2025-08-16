@@ -9,7 +9,6 @@
     programs.micro = {
       enable = true;
       settings = {
-        colorscheme = "simple";
         mkparents = true;
         scrollspeed = 1;
         tabsize = 2;

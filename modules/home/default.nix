@@ -4,7 +4,6 @@
     ./programs
     ./services
     ./profiles
-    ./themes
     ./packages.nix
     ./hidden.nix
     inputs.agenix.homeManagerModules.default
