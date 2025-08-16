@@ -1,14 +1,16 @@
 {...}: {
   imports = [
-    ./zed-editor
-    ./firefox
-    ./chromium
-    ./git
-    ./obs-studio
-    ./fastfetch
-    ./mpv
+    ./anki
     ./aria2
+    ./chromium
+    ./fastfetch
+    ./firefox
+    ./helix
+    ./git
     ./micro
+    ./mpv
+    ./obs-studio
     ./ssh
+    ./zed-editor
   ];
 }

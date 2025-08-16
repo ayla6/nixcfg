@@ -24,7 +24,8 @@
         auto_indent_on_paste = true;
         auto_update = false;
         buffer_font_size = 14;
-        buffer_font_family = "JetBrains Mono NL";
+        ui_font_size = 14;
+        buffer_font_family = "JetBrainsMono Nerd Font";
         use_on_type_format = true;
         wrap_guides = [100];
         minimap.show = "auto";

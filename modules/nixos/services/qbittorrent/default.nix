@@ -3,11 +3,10 @@
   config,
   lib,
   pkgs,
+  utils,
   ...
 }: let
   cfg = config.myNixOS.services.qbittorrent;
-  UID = 888;
-  GID = 888;
 in {
   options.myNixOS.services.qbittorrent = {
     enable = lib.mkEnableOption "qBittorrent headless";
@@ -30,10 +29,16 @@ in {
       description = "Group under which qBittorrent runs.";
     };
 
-    port = lib.mkOption {
+    webuiPort = lib.mkOption {
       type = lib.types.port;
       default = 8080;
       description = "qBittorrent web UI port.";
+    };
+
+    torrentingPort = lib.mkOption {
+      type = lib.types.port;
+      default = 16620;
+      description = "qBittorrent torrenting port.";
     };
 
     openFirewall = lib.mkOption {
@@ -48,11 +53,24 @@ in {
       defaultText = lib.literalExpression "pkgs.qbittorrent-nox";
       description = "The qbittorrent package to use.";
     };
+
+    extraArgs = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = ''
+        Extra arguments passed to qbittorrent. See `qbittorrent -h`, or the [source code](https://github.com/qbittorrent/qBittorrent/blob/master/src/app/cmdoptions.cpp), for the available arguments.
+      '';
+      example = [
+        "--confirm-legal-notice"
+      ];
+    };
   };
 
   config = lib.mkIf cfg.enable {
-    networking.firewall =
-      lib.mkIf cfg.openFirewall {allowedTCPPorts = [cfg.port];};
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall (
+      lib.optionals (cfg.webuiPort != null) [cfg.webuiPort]
+      ++ lib.optionals (cfg.torrentingPort != null) [cfg.torrentingPort]
+    );
 
     systemd.services.qbittorrent = {
       after = ["local-fs.target" "network-online.target"];
@@ -80,7 +98,13 @@ in {
           '';
         in "!${preStartScript}";
 
-        ExecStart = "${cfg.package}/bin/qbittorrent-nox";
+        ExecStart = utils.escapeSystemdExecArgs (
+          [
+            (lib.getExe cfg.package)
+          ]
+          ++ lib.optionals (cfg.torrentingPort != null) ["--torrenting-port=${toString cfg.torrentingPort}"]
+          ++ cfg.extraArgs
+        );
         # To prevent "Quit & shutdown daemon" from working; we want systemd to
         # manage it!
         #Restart = "on-success";
@@ -90,18 +114,18 @@ in {
 
       environment = {
         QBT_PROFILE = cfg.dataDir;
-        QBT_WEBUI_PORT = toString cfg.port;
+        QBT_WEBUI_PORT = toString cfg.webuiPort;
       };
     };
 
-    users.users = lib.mkIf (cfg.user == "qbittorrent") {
-      qbittorrent = {
-        inherit (cfg) group;
-        uid = UID;
+    users = {
+      users = lib.mkIf (cfg.user == "qbittorrent") {
+        qbittorrent = {
+          inherit (cfg) group;
+          isSystemUser = true;
+        };
       };
+      groups = lib.mkIf (cfg.group == "qbittorrent") {qbittorrent = {};};
     };
-
-    users.groups =
-      lib.mkIf (cfg.group == "qbittorrent") {qbittorrent = {gid = GID;};};
   };
 }

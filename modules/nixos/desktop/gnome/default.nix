@@ -27,6 +27,8 @@
       decibels
     ];
 
+    i18n.inputMethod.type = "ibus";
+
     security.pam.services.greetd.enableGnomeKeyring = true;
     services.gnome.gcr-ssh-agent.enable = true;
 

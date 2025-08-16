@@ -7,14 +7,50 @@
 }: {
   imports = [
     self.homeModules.default
+    self.inputs.fontix.homeModules.default
   ];
 
   config = lib.mkMerge [
     {
       home = {
         packages = with pkgs; [
+          # development
+          gcc
+          nodejs
+          pnpm
+          typescript
+          ffmpeg-full
+          luajit
+          love
+
+          # applications
+          keepassxc
+          qbittorrent
+          flare-signal
+          kdePackages.kdenlive
+          krita
+          gimp3
+          yt-dlp
+          aseprite
+          inkscape
+          jellyfin-media-player
+          calibre
+          picard
+          freac
+          audacious
+          audacious-plugins
+          lmms
+          nicotine-plus
+          blender
           rclone
           rclone-browser
+
+          # gaming
+          mgba
+          melonDS
+          openttd
+          prismlauncher
+          mindustry
         ];
 
         username = "ayla";
@@ -30,6 +66,7 @@
         };
 
         programs = {
+          anki.enable = true;
           chromium.enable = true;
           fastfetch.enable = true;
           firefox = {
@@ -37,11 +74,12 @@
             mode = "sidebar";
           };
           git.enable = true;
+          helix.enable = true;
           micro.enable = true;
           mpv.enable = true;
           obs-studio.enable = true;
-          zed-editor.enable = true;
           ssh.enable = true;
+          zed-editor.enable = true;
         };
 
         profiles = {
@@ -65,11 +103,35 @@
         services = {
           aria2.enable = true;
         };
+      };
 
-        themes = {
-          #evergarden.enable = true;
-          fonts.enable = false;
+      fontix = {
+        fonts = {
+          monospace = {
+            name = "JetBrainsMono Nerd Font";
+            package = pkgs.nerd-fonts.jetbrains-mono;
+          };
+
+          sansSerif = {
+            name = "Roboto Flex";
+            package = pkgs.roboto-flex;
+          };
+
+          serif = {
+            name = "Source Serif Pro";
+            package = pkgs.source-serif-pro;
+          };
         };
+
+        sizes = {
+          applications = 10;
+          desktop = 10;
+        };
+
+        font-packages.enable = true;
+        fontconfig.enable = true;
+        gnome.enable = lib.mkIf pkgs.stdenv.isLinux true;
+        gtk.enable = lib.mkIf pkgs.stdenv.isLinux true;
       };
 
       systemd.user.startServices = true; # Needed for auto-mounting agenix secrets.
@@ -85,47 +147,17 @@
         homeDirectory = "/home/ayla";
 
         packages = with pkgs; [
+          # libraries
+          libsecret
+          wl-clipboard
+          libnotify
           wl-clipboard
           libnotify
 
-          # --- Development ---
-          gcc
-          nodejs
-          pnpm
-          typescript
-          ffmpeg-full
-          luajit
-          love
-
-          # --- Applications ---
-          keepassxc
-          libsecret
-          qbittorrent
-          flare-signal
-          kdePackages.kdenlive
-          krita
-          gimp3
-          yt-dlp
-          aseprite
-          inkscape
-          jellyfin-media-player
-          calibre
-          picard
-          freac
-          audacious
-          audacious-plugins
-          lmms
-          nicotine-plus
-
-          # --- Gaming ---
+          # gaming
           wine
           steam-run
           lutris
-          mgba
-          melonDS
-          openttd
-          prismlauncher
-          mindustry
         ];
       };
     })
