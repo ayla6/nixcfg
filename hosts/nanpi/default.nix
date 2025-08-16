@@ -44,9 +44,9 @@
         user = "ayla";
       };
       qbittorrent = {
+        enable = true;
         webuiPort = config.mySnippets.tailnet.networkMap.qbittorrent.port;
         openFirewall = true;
-        enable = true;
       };
     };
   };
