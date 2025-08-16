@@ -79,8 +79,9 @@ in {
       dataDir = "${dataDirectory}/jellyfin";
     };
 
-    # because of the lack of forwarding the ssh because of the tunnel, repo origins have to be added like this
+    # because of the lack of forwarding the ssh because of the tunnel, repo origins have to be added like this, and nobody can pull your repos
     # git@nanpi:did\:plc\:3c6vkaq7xf5kz3va3muptjh5/nixcfg
+    # you can also ln -s the did to your user name, letting you do git@nanpi:aylac.top/nixcfg
     # as opposed to git@knot.aylac.top:aylac.top/nixcfg
     tangled-knot = {
       enable = true;
