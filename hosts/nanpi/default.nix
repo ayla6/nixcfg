@@ -48,6 +48,10 @@
         webuiPort = config.mySnippets.tailnet.networkMap.qbittorrent.port;
         openFirewall = true;
       };
+      forgejo = {
+        enable = true;
+        db = "postgresql";
+      };
     };
   };
 
