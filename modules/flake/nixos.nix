@@ -35,7 +35,6 @@
               inputs.disko.nixosModules.disko
               inputs.home-manager.nixosModules.home-manager
               inputs.lanzaboote.nixosModules.lanzaboote
-              inputs.tangled-core.nixosModules.knot
               modules.hardware
               modules.nixos
               modules.snippets
