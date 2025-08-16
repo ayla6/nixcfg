@@ -42,7 +42,12 @@
       package =
         if pkgs.stdenv.isDarwin
         then (pkgs.runCommand "chromium-0.0.0" {} "mkdir $out")
-        else pkgs.ungoogled-chromium;
+        else pkgs.chromium;
+
+      commandLineArgs = lib.mkIf pkgs.stdenv.isLinux [
+        "--enable-features=TouchpadOverscrollHistoryNavigation"
+        "--gtk-version=4"
+      ];
     };
   };
 }
