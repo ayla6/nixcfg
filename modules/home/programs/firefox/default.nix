@@ -135,18 +135,18 @@ in {
         };
       })
 
-    (lib.mkIf
-      (config.myHome.programs.firefox.mode == "sidebar")
-      {
+    (
+      if (config.myHome.programs.firefox.mode == "sidebar")
+      then {
         profiles.default = {
           settings = {
             "sidebar.revamp" = true;
             "sidebar.verticalTabs" = true;
             "sidebar.animation.expand-on-hover.duration-ms" = 50;
             "sidebar.expandOnHover" = false;
-            "sidebar.visibility" = "expand-on-hover";
+            "sidebar.visibility" = "always-show";
             "browser.toolbars.bookmarks.visibility" = "never";
-            "browser.uidensity" = 1;
+            "browser.uidensity" = 0;
           };
 
           userChrome = ''
@@ -154,17 +154,16 @@ in {
           '';
         };
       }
-      // lib.mkIf
-      (config.myHome.programs.firefox.mode != "sidebar")
-      {
+      else {
         profiles.default = {
           settings = {
             "sidebar.revamp" = false;
             "sidebar.verticalTabs" = false;
             "browser.toolbars.bookmarks.visibility" = "newtab";
-            "browser.uidensity" = 0;
+            "browser.uidensity" = 1;
           };
         };
-      })
+      }
+    )
   ];
 }
