@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  backupDestinationA = "rclone:gdrive:/backups/${config.networking.hostName}";
+  backupDestinationA = "rclone:a_gdrive:/backups/${config.networking.hostName}";
   mkRepoA = service: "${backupDestinationA}/${service}";
-  #backupDestinationB = "rclone:gdrive:/backups/${config.networking.hostName}";
+  #backupDestinationB = "rclone:b_gdrive:/backups/${config.networking.hostName}";
   #mkRepoB = service: "${backupDestinationB}/${service}";
   stop = service: "${pkgs.systemd}/bin/systemctl stop ${service}";
   start = service: "${pkgs.systemd}/bin/systemctl start ${service}";
