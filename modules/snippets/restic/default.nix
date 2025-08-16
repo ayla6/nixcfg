@@ -28,7 +28,8 @@
         rcloneConfigFile = config.age.secrets.rclone.path;
 
         timerConfig = {
-          OnCalendar = "*-*-* 02:00:00";
+          OnCalendar = "*-*-* 02,14:00:00";
+          #OnCalendar = "*-*-* 03:14:00";
           Persistent = true;
           RandomizedDelaySec = "1200";
         };
