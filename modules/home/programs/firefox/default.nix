@@ -27,6 +27,21 @@ in {
           "en-US"
         ];
 
+        # this for some reason doesn't work neither here nor in /modules/nixos/programs/firefox, but i'm keeping it here so i can remember to install those manually again if i ever need to
+        # policies = {
+        #   ExtensionSettings = {
+        #     "magnolia@12.34" = {
+        #       default_area = "menupanel";
+        #       install_url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_cle# an-latest.xpi";
+        #       installation_mode = "normal_installed";
+        #     };
+        #     "pt-BR@dictionaries.addons.mozilla.org" = {
+        #       install_url = "https://addons.mozilla.org/firefox/downloads/latest/corretor/latest.xpi";
+        #       installation_mode = "normal_installed";
+        #     };
+        #   };
+        # };
+
         profiles = {
           default = {
             id = 0;
@@ -74,7 +89,7 @@ in {
                 "browser.tabs.groups.smart.enabled" = true;
                 "browser.toolbars.bookmarks.visibility" = "newtab";
                 "svg.context-properties.content.enabled" = true;
-                "browser.uidensity" = 1;
+                "browser.uidensity" = 2;
                 "general.autoScroll" = true;
                 "ui.key.menuAccessKeyFocuses" = false;
                 "browser.search.separatePrivateDefault" = false;
