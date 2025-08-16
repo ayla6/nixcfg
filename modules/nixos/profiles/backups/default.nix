@@ -218,16 +218,6 @@ in {
           repository = mkRepoA "passwords";
         }
       );
-
-      tangled-knot = lib.mkIf config.services.tangled-knot.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "knot";
-          backupPrepareCommand = stop "knot";
-          paths = [config.services.tangled-knot.stateDir];
-          repository = mkRepoA "tangled-knot";
-        }
-      );
     };
   };
 }

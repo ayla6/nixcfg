@@ -17,12 +17,6 @@
         vHost = "pds.aylac.top";
       };
 
-      tangled-knot = {
-        hostName = "nanpi";
-        port = 5555;
-        vHost = "knot.aylac.top";
-      };
-
       vaultwarden = {
         hostName = "nanpi";
         port = 8222;

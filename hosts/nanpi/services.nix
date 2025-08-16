@@ -24,8 +24,6 @@ in {
 
             "${config.mySnippets.aylac-top.networkMap.vaultwarden.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.vaultwarden.hostName}:${toString config.mySnippets.aylac-top.networkMap.vaultwarden.port}";
 
-            "${config.mySnippets.aylac-top.networkMap.tangled-knot.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.tangled-knot.hostName}:${toString config.mySnippets.aylac-top.networkMap.tangled-knot.port}";
-
             "${config.mySnippets.aylac-top.networkMap.forgejo.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.forgejo.hostName}:${toString config.mySnippets.aylac-top.networkMap.forgejo.port}";
             "${config.mySnippets.aylac-top.networkMap.forgejo.sshVHost}" = "ssh://${config.mySnippets.aylac-top.networkMap.forgejo.hostName}:2222";
           };
@@ -85,17 +83,5 @@ in {
     };
 
     # because of the lack of forwarding the ssh because of the tunnel, repo origins have to be added like this, and nobody can pull your repos
-    # git@nanpi:did\:plc\:3c6vkaq7xf5kz3va3muptjh5/nixcfg
-    # you can also ln -s the did to your user name, letting you do git@nanpi:aylac.top/nixcfg
-    # as opposed to git@knot.aylac.top:aylac.top/nixcfg
-    tangled-knot = {
-      enable = true;
-      openFirewall = false;
-      server = {
-        hostname = config.mySnippets.aylac-top.networkMap.tangled-knot.vHost;
-        listenAddr = "0.0.0.0:${toString config.mySnippets.aylac-top.networkMap.tangled-knot.port}";
-        secretFile = config.age.secrets.tangled-knot.path;
-      };
-    };
   };
 }
