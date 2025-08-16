@@ -65,6 +65,8 @@ in {
         ROCKET_LOG = "critical";
         ROCKET_PORT = config.mySnippets.aylac-top.networkMap.vaultwarden.port;
         SIGNUPS_ALLOWED = false;
+        ICON_SERVICE = "bitwarden";
+        ICON_CACHE_TTL = 0;
       };
 
       environmentFile = config.age.secrets.vaultwarden.path;
