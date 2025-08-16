@@ -6,6 +6,7 @@
   imports = [
     ./home.nix
     ./secrets.nix
+    ./disko.nix
     self.nixosModules.locale-en-gb
   ];
 
@@ -69,31 +70,5 @@
     ];
 
     luks.devices."luks-cc030211-13e5-4411-a906-94c6ef45a0c6".device = "/dev/disk/by-uuid/cc030211-13e5-4411-a906-94c6ef45a0c6";
-  };
-
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/8ed468ba-610b-49c8-8b93-5a20d4bf14da";
-      fsType = "btrfs";
-      options = [
-        "subvol=@"
-        "compress=zstd"
-        "noatime"
-      ];
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/4831-1B0D";
-      fsType = "vfat";
-      options = [
-        "fmask=0077"
-        "dmask=0077"
-      ];
-    };
-
-    "/home/Data" = {
-      device = "/dev/disk/by-uuid/6cfb1f47-51d6-4ece-ab1c-6ad3c2d41542";
-      fsType = "ext4";
-    };
   };
 }
