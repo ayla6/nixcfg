@@ -63,7 +63,7 @@
             RUN_AT_START = false;
           };
 
-          DEFAULT.APP_NAME = "Forĝejo";
+          DEFAULT.APP_NAME = "git.aylac.top";
           federation.ENABLED = true;
           indexer.REPO_INDEXER_ENABLED = true;
 
