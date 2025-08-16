@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options.myHome.programs.git.enable = lib.mkEnableOption "git version control";
@@ -24,6 +25,14 @@
         push = {
           autoSetupRemote = true;
           default = "current";
+        };
+        credential = {
+          helper = lib.getExe pkgs.git-credential-manager;
+          credentialStore =
+            if config.myHome.desktop.enable
+            then "secretservice"
+            else "pgp";
+          "https://git.aylac.top".provider = "generic";
         };
       };
     };

@@ -7,6 +7,12 @@
 
   config = lib.mkIf config.myNixOS.services.fail2ban.enable {
     environment.etc = {
+      "fail2ban/filter.d/forgejo.conf".text = ''
+        [Definition]
+        failregex =  .*(Failed authentication attempt|invalid credentials|Attempted access of unknown user).* from <HOST>
+        journalmatch = _SYSTEMD_UNIT=forgejo.service
+      '';
+
       "fail2ban/filter.d/vaultwarden.conf".text = ''
         [INCLUDES]
         before = common.conf
