@@ -1,11 +1,11 @@
 {...}: {
   imports = [
-    ./tailscale
     ./aria2
-    ./fail2ban
-    ./syncthing
     ./caddy
-    ./qbittorrent
+    ./fail2ban
     ./gdm
+    ./qbittorrent
+    ./syncthing
+    ./tailscale
   ];
 }
