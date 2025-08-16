@@ -59,6 +59,11 @@
       url = "github:ayla6/secrets";
       flake = false;
     };
+
+    tangled-core = {
+      url = "git+https://tangled.sh/@tangled.sh/core";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {

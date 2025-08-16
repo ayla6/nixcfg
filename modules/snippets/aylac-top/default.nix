@@ -15,6 +15,12 @@
         port = 8222;
         vHost = "vault.aylac.top";
       };
+
+      tangled-knot = {
+        hostName = "nanpi";
+        port = 5555;
+        vHost = "knot.aylac.top";
+      };
     };
   };
 }
