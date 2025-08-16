@@ -5,7 +5,6 @@
     ./services
     ./profiles
     ./packages.nix
-    ./hidden.nix
     inputs.agenix.homeManagerModules.default
   ];
 
