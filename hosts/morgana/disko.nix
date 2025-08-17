@@ -62,22 +62,22 @@
                     extraArgs = ["-f"];
 
                     subvolumes = {
-                      "/home" = {
+                      "@home" = {
                         mountpoint = "/home";
                         mountOptions = ["compress=zstd" "noatime"];
                       };
 
-                      "/home/.snapshots" = {
+                      ".snapshots" = {
                         mountOptions = ["compress=zstd" "noatime"];
                         mountpoint = "/home/.snapshots";
                       };
 
-                      "/nix" = {
+                      "@nix" = {
                         mountpoint = "/nix";
                         mountOptions = ["compress=zstd" "noatime"];
                       };
 
-                      "/root" = {
+                      "@" = {
                         mountpoint = "/";
                         mountOptions = ["compress=zstd" "noatime"];
                       };
@@ -106,7 +106,7 @@
                     extraArgs = ["-f"];
 
                     subvolumes = {
-                      "/data" = {
+                      "@data" = {
                         mountpoint = "/data";
                         mountOptions = ["compress=zstd" "noatime"];
                       };
