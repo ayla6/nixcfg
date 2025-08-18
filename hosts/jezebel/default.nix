@@ -37,6 +37,7 @@
     };
     services = {
       caddy.enable = true;
+      dnsmasq.enable = true;
       tailscale = {
         enable = true;
         enableCaddy = true;
