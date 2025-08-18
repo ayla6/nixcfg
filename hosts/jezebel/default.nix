@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./secrets.nix
+    ./services.nix
     self.nixosModules.locale-en-gb
     "${modulesPath}/profiles/qemu-guest.nix"
     self.diskoConfigurations.btrfs-vps
@@ -23,6 +24,7 @@
       base.enable = true;
       btrfs.enable = true;
       server.enable = true;
+      backups.enable = true;
       vps.enable = true;
       autoUpgrade = {
         enable = true;

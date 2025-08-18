@@ -5,10 +5,6 @@
   self,
   ...
 }: {
-  imports = [
-    ./service.nix
-  ];
-
   options.myNixOS.services.tailscale = {
     enable = lib.mkEnableOption "Tailscale VPN service";
 
@@ -74,7 +70,7 @@
       };
     };
 
-    myNixOS.replacement.services.tailscale = {
+    services.tailscale = {
       enable = true;
       inherit (config.myNixOS.services.tailscale) authKeyFile;
 
@@ -88,6 +84,15 @@
       openFirewall = true;
       permitCertUid = lib.mkIf config.services.caddy.enable "caddy";
       useRoutingFeatures = "both";
+    };
+
+    # who's the devil who made it impossible for this to work dude
+    # this is so dirty
+    systemd.services.tailscaled.serviceConfig.Environment = lib.mkAfter [
+      "TS_NO_LOGS_NO_SUPPORT=true"
+    ];
+    networking.hosts = {
+      "0.0.0.0" = ["log.tailscale.com"];
     };
   };
 }

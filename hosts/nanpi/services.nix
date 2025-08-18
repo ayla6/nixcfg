@@ -8,6 +8,8 @@ in {
       pdsadmin.enable = true;
       settings = {
         PDS_HOSTNAME = config.mySnippets.aylac-top.networkMap.pds.vHost;
+        # PDS_BSKY_APP_VIEW_URL = "https://bsky.zeppelin.social";
+        # PDS_BSKY_APP_VIEW_DID = "did:web:bsky.zeppelin.social";
       };
     };
 

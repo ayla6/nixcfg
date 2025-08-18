@@ -38,6 +38,12 @@
           port = 5232;
           vHost = "radicale.${config.mySnippets.tailnet.name}";
         };
+
+        uptime-kuma = {
+          hostName = "jezebel";
+          port = 3008;
+          vHost = "uptime-kuma.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };
