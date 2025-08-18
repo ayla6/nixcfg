@@ -11,9 +11,15 @@
       settings = {
         listen-address = "127.0.0.1";
         cache-size = 1000;
-        no-resolv = false;
+        no-resolv = true;
+
+        server = ["100.100.100.100"];
+
+        min-cache-ttl = 3600;
+        max-cache-ttl = 172800;
       };
     };
+    services.tailscale.extraUpFlags = ["--accept-dns=false"];
     networking.resolvconf.useLocalResolver = true;
   };
 }
