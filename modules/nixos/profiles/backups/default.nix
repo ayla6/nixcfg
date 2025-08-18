@@ -218,6 +218,16 @@ in {
           repository = mkRepoA "passwords";
         }
       );
+
+      radicale = lib.mkIf config.services.radicale.enable (
+        config.mySnippets.restic
+        // {
+          backupCleanupCommand = start "radicale";
+          backupPrepareCommand = stop "radicale";
+          paths = ["/var/lib/radicale"];
+          repository = mkRepoA "radicale";
+        }
+      );
     };
   };
 }

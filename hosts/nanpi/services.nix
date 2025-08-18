@@ -48,6 +48,14 @@ in {
           reverse_proxy ${config.mySnippets.tailnet.networkMap.qbittorrent.hostName}:${toString config.mySnippets.tailnet.networkMap.qbittorrent.port}
         '';
       };
+
+      "${config.mySnippets.tailnet.networkMap.radicale.vHost}" = {
+        extraConfig = ''
+          bind tailscale/radicale
+          encode zstd gzip
+          reverse_proxy ${config.mySnippets.tailnet.networkMap.radicale.hostName}:${toString config.mySnippets.tailnet.networkMap.radicale.port}
+        '';
+      };
     };
 
     # it's failing to build because it can't download some stuff
@@ -81,6 +89,21 @@ in {
       dataDir = "${dataDirectory}/jellyfin";
     };
 
-    # because of the lack of forwarding the ssh because of the tunnel, repo origins have to be added like this, and nobody can pull your repos
+    radicale = {
+      enable = true;
+      settings = {
+        server = {
+          hosts = ["0.0.0.0:${toString config.mySnippets.tailnet.networkMap.radicale.port}" "[::]:${toString config.mySnippets.tailnet.networkMap.radicale.port}"];
+        };
+        auth = {
+          type = "htpasswd";
+          htpasswd_filename = "/var/lib/radicale/users";
+          htpasswd_encryption = "autodetect";
+        };
+        storage = {
+          filesystem_folder = "/var/lib/radicale/collections";
+        };
+      };
+    };
   };
 }

@@ -32,6 +32,12 @@
           port = 2283;
           vHost = "immich.${config.mySnippets.tailnet.name}";
         };
+
+        radicale = {
+          hostName = "nanpi";
+          port = 5232;
+          vHost = "radicale.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };
