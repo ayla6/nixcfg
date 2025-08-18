@@ -22,6 +22,12 @@
         port = 8222;
         vHost = "vault.aylac.top";
       };
+
+      uptime-kuma = {
+        # Only used for status pages
+        hostName = "jezebel";
+        port = 3008;
+      };
     };
   };
 }
