@@ -77,7 +77,7 @@
           ];
 
           id = "hkw65-lktvx";
-          path = "/data/koreader";
+          path = "/data/Koreader";
         };
       };
     };

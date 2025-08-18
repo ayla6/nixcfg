@@ -49,6 +49,7 @@
       caddy.enable = true;
       tailscale = {
         enable = true;
+        enableCaddy = true;
         operator = "ayla";
       };
       aria2.enable = true;
