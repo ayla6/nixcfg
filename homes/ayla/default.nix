@@ -139,8 +139,8 @@
 
     (lib.mkIf pkgs.stdenv.isLinux {
       gtk.gtk3.bookmarks = lib.mkAfter [
-        "file://home/Data/DCMI"
-        "file://home/Data"
+        "file:///data/DCIM"
+        "file:///data/ Data"
       ];
 
       home = {

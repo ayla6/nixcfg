@@ -5,6 +5,10 @@
   self,
   ...
 }: {
+  imports = [
+    ./service.nix
+  ];
+
   options.myNixOS.services.tailscale = {
     enable = lib.mkEnableOption "Tailscale VPN service";
 
@@ -50,43 +54,40 @@
       trustedInterfaces = [config.services.tailscale.interfaceName];
     };
 
-    services = {
-      caddy = lib.mkIf config.myNixOS.services.tailscale.enableCaddy {
-        enable = true;
+    services.caddy = lib.mkIf config.myNixOS.services.tailscale.enableCaddy {
+      enable = true;
 
-        virtualHosts = {
-          "${config.networking.hostName}.${config.mySnippets.tailnet.name}".extraConfig = let
-            syncthing = ''
-              redir /syncthing /syncthing/
-              handle_path /syncthing/* {
-                reverse_proxy localhost:8384 {
-                  header_up Host localhost
-                }
+      virtualHosts = {
+        "${config.networking.hostName}.${config.mySnippets.tailnet.name}".extraConfig = let
+          syncthing = ''
+            redir /syncthing /syncthing/
+            handle_path /syncthing/* {
+              reverse_proxy localhost:8384 {
+                header_up Host localhost
               }
-            '';
-          in
-            lib.concatLines (
-              lib.optional config.services.syncthing.enable syncthing
-            );
-        };
+            }
+          '';
+        in
+          lib.concatLines (
+            lib.optional config.services.syncthing.enable syncthing
+          );
       };
+    };
 
-      tailscale = {
-        enable = true;
-        inherit (config.myNixOS.services.tailscale) authKeyFile;
+    myNixOS.replacement.services.tailscale = {
+      enable = true;
+      inherit (config.myNixOS.services.tailscale) authKeyFile;
 
-        extraUpFlags =
-          ["--ssh"]
-          ++ lib.optional (config.myNixOS.services.tailscale.operator != null)
-          "--operator ${config.myNixOS.services.tailscale.operator}";
+      extraUpFlags =
+        ["--ssh"]
+        ++ lib.optional (config.myNixOS.services.tailscale.operator != null)
+        "--operator ${config.myNixOS.services.tailscale.operator}";
 
-        extraSetFlags = ["--ssh"];
-        extraDaemonFlags = ["--no-logs-no-support"];
+      extraSetFlags = ["--ssh"];
 
-        openFirewall = true;
-        permitCertUid = lib.mkIf config.services.caddy.enable "caddy";
-        useRoutingFeatures = "both";
-      };
+      openFirewall = true;
+      permitCertUid = lib.mkIf config.services.caddy.enable "caddy";
+      useRoutingFeatures = "both";
     };
   };
 }

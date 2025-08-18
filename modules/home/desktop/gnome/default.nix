@@ -129,6 +129,7 @@
           {package = pkgs.gnomeExtensions.appindicator;}
           {package = pkgs.gnomeExtensions.night-theme-switcher;}
           {package = pkgs.gnomeExtensions.gsconnect;}
+          {package = pkgs.gnomeExtensions.just-perfection;}
         ];
       };
     };

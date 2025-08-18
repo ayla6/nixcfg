@@ -25,7 +25,6 @@ in {
             "${config.mySnippets.aylac-top.networkMap.vaultwarden.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.vaultwarden.hostName}:${toString config.mySnippets.aylac-top.networkMap.vaultwarden.port}";
 
             "${config.mySnippets.aylac-top.networkMap.forgejo.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.forgejo.hostName}:${toString config.mySnippets.aylac-top.networkMap.forgejo.port}";
-            "${config.mySnippets.aylac-top.networkMap.forgejo.sshVHost}" = "ssh://${config.mySnippets.aylac-top.networkMap.forgejo.hostName}:2222";
           };
         };
       };
