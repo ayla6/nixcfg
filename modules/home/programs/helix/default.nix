@@ -50,7 +50,7 @@
 
         keys = {
           normal = {
-            h = "move_line_left";
+            h = "move_char_left";
             n = "move_line_down";
             e = "move_line_up";
             i = "move_char_right";
@@ -63,7 +63,7 @@
             L = "insert_at_line_start";
           };
           select = {
-            h = "extend_visual_line_left";
+            h = "extend_char_left";
             n = "extend_visual_line_down";
             e = "extend_visual_line_up";
             i = "extend_char_right";
