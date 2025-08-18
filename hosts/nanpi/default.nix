@@ -29,6 +29,10 @@
         operation = "boot";
       };
       backups.enable = true;
+      btrfs = {
+        enable = true;
+        deduplicate = true;
+      };
     };
     services = {
       caddy.enable = true;

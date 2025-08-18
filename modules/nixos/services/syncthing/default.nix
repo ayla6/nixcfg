@@ -50,7 +50,7 @@
       in {
         enable = true;
         cert = cfg.certFile;
-        configDir = "${config.services.syncthing.dataDir}/.syncthing";
+        configDir = "${config.services.syncthing.dataDir}/.config/syncthing";
         dataDir = "/home/${cfg.user}";
         key = cfg.keyFile;
         openDefaultPorts = true;

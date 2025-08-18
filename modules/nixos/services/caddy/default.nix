@@ -28,8 +28,8 @@
           hash = "sha256-0GsjeeJnfLsJywWzWwJcCDk5wjTSBwzqMBY7iHjPQa8=";
         };
       };
-
-      tailscale.permitCertUid = "caddy";
     };
+
+    myNixOS.replacement.services.tailscale.permitCertUid = "caddy";
   };
 }

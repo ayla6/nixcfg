@@ -145,10 +145,12 @@
   ];
 
   imageFiles = [
+    "image/avif"
     "image/bmp"
     "image/gif"
     "image/jpeg"
     "image/jpg"
+    "image/jxl"
     "image/pjpeg"
     "image/png"
     "image/svg+xml-compressed"

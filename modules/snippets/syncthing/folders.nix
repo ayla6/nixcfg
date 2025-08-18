@@ -13,7 +13,7 @@
           ];
 
           id = "cerbn-dj3xo";
-          path = "/home/ayla/Backups";
+          path = "/data/Backups";
         };
 
         "Books" = {
@@ -23,7 +23,7 @@
           ];
 
           id = "1pnmb-naasx";
-          path = "/home/Data/Books";
+          path = "/data/Books";
         };
 
         "DCIM" = {
@@ -34,17 +34,18 @@
           ];
 
           id = "dcfsw-meuwf";
-          path = "/home/ayla/DCIM";
+          path = "/data/DCIM";
         };
 
         "Music" = {
           devices = [
             "morgana"
             "m23"
+            "nanpi"
           ];
 
           id = "pacgr-fvsd7";
-          path = "/home/ayla/Music";
+          path = "/data/Music";
         };
 
         "Passwords" = {
@@ -66,7 +67,7 @@
           ];
 
           id = "u5d66-bcnho";
-          path = "/home/ayla/Pictures";
+          path = "/data/Pictures";
         };
 
         "Koreader Settings" = {
@@ -76,7 +77,7 @@
           ];
 
           id = "hkw65-lktvx";
-          path = "/home/Data/koreader";
+          path = "/data/koreader";
         };
       };
     };

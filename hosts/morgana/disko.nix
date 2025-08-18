@@ -1,3 +1,5 @@
+# this was kind of the config used for it, ended up not using it because i had gotten confused about something, but the end result was the same so who cares
+# also if you're reading this never use nano to write a password file to use in one of these because luks counts the newline nano forces on you as a character
 {
   config,
   lib,

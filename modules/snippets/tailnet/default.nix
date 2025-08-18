@@ -5,7 +5,7 @@
 }: {
   options.mySnippets.tailnet = {
     name = lib.mkOption {
-      default = "cinnamon-is.ts.net";
+      default = "cinnamon-in.ts.net";
       description = "Tailnet name.";
       type = lib.types.str;
     };
