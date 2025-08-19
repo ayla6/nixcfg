@@ -12,6 +12,7 @@
 
       extensions = [
         {id = "ddkjiahejlhfcafbddmgiahcphecmpfh";} # ublock origin lite
+        {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
         {id = "mdjildafknihdffpkfmmpnpoiajfjnjd";} # consent-o-matic
         {id = "clngdbkpkpeebahjckkjfobafhncgmne";} # stylus
         {id = "oboonakemofpalcgghocfoadofidjkkk";} # keepassxc
@@ -42,8 +43,8 @@
       package =
         if pkgs.stdenv.isDarwin
         then (pkgs.runCommand "chromium-0.0.0" {} "mkdir $out")
-        else pkgs.chromium;
-      # else pkgs.ungoogled-chromium;
+        # else pkgs.chromium;
+        else pkgs.ungoogled-chromium;
 
       commandLineArgs = lib.mkIf pkgs.stdenv.isLinux [
         "--enable-features=TouchpadOverscrollHistoryNavigation"

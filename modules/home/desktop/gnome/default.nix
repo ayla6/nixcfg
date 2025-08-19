@@ -61,7 +61,7 @@
           switch-to-application-10 = [];
         };
 
-        "org/gnome/system/location".enabled = true;
+        "org/gnome/system/location".enabled = false;
 
         "org/gnome/desktop/wm/keybindings" = {
           move-to-monitor-down = [

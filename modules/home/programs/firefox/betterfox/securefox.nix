@@ -414,8 +414,8 @@
 
   # "accessibility.force_disabled" = 1;
   #   "devtools.accessibility.enabled" = false;
-  "identity.fxaccounts.enabled" = false;
-  "identity.fxaccounts.autoconfig.uri" = "";
+  # "identity.fxaccounts.enabled" = false;
+  # "identity.fxaccounts.autoconfig.uri" = "";
 
   #############################################################
   # SECTION: TELEMETRY

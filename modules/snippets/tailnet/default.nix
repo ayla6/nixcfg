@@ -44,6 +44,11 @@
           port = 3008;
           vHost = "uptime-kuma.${config.mySnippets.tailnet.name}";
         };
+
+        davis = {
+          hostName = "nanpi";
+          vHost = "davis.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };

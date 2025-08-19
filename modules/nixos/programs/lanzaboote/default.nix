@@ -15,6 +15,9 @@
         configurationLimit = 10;
         pkiBundle = lib.mkDefault "/var/lib/sbctl";
         sortKey = "lanza";
+        settings = {
+          inherit (config.boot.loader) timeout;
+        };
       };
 
       loader = {
