@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./arr
     ./base
     ./btrfs
     ./backups

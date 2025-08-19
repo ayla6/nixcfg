@@ -50,6 +50,42 @@
           port = 4918;
           vHost = "webdav.${config.mySnippets.tailnet.name}";
         };
+
+        glance = {
+          hostName = "nanpi";
+          port = 9090;
+          vHost = "glance.${config.mySnippets.tailnet.name}";
+        };
+
+        bazarr = {
+          hostName = "nanpi";
+          port = 6767;
+          vHost = "bazarr.${config.mySnippets.tailnet.name}";
+        };
+
+        #lidarr = {
+        #  hostName = "nanpi";
+        #  port = 8686;
+        #  vHost = "lidarr.${config.mySnippets.tailnet.name}";
+        #};
+
+        prowlarr = {
+          hostName = "nanpi";
+          port = 9696;
+          vHost = "prowlarr.${config.mySnippets.tailnet.name}";
+        };
+
+        radarr = {
+          hostName = "nanpi";
+          port = 7878;
+          vHost = "radarr.${config.mySnippets.tailnet.name}";
+        };
+
+        sonarr = {
+          hostName = "nanpi";
+          port = 8989;
+          vHost = "sonarr.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };
