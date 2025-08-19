@@ -33,6 +33,7 @@
         enable = true;
         deduplicate = true;
       };
+      arr.enable = true;
     };
     services = {
       caddy.enable = true;
