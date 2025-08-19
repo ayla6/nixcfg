@@ -93,6 +93,12 @@
                       icon = "di:bazarr";
                     }
                     {
+                      title = "Autobrr";
+                      url = "https://${config.mySnippets.tailnet.networkMap.autobrr.vHost}/";
+                      check-url = "http://${config.mySnippets.tailnet.networkMap.autobrr.hostName}:${toString config.mySnippets.tailnet.networkMap.autobrr.port}/";
+                      icon = "di:autobrr";
+                    }
+                    {
                       title = "qBittorrent";
                       url = "https://${config.mySnippets.tailnet.networkMap.qbittorrent.vHost}/";
                       check-url = "http://${config.mySnippets.tailnet.networkMap.qbittorrent.hostName}:${toString config.mySnippets.tailnet.networkMap.qbittorrent.port}/";
@@ -110,6 +116,18 @@
                       url = "https://${config.mySnippets.tailnet.networkMap.radicale.vHost}/";
                       check-url = "http://${config.mySnippets.tailnet.networkMap.radicale.hostName}:${toString config.mySnippets.tailnet.networkMap.radicale.port}/";
                       icon = "di:radicale";
+                    }
+                    {
+                      title = "Copyparty";
+                      url = "https://${config.mySnippets.tailnet.networkMap.copyparty.vHost}/";
+                      check-url = "http://${config.mySnippets.tailnet.networkMap.copyparty.hostName}:${toString config.mySnippets.tailnet.networkMap.copyparty.port}/";
+                      icon = "di:copyparty";
+                    }
+                    {
+                      title = "Redlib";
+                      url = "https://${config.mySnippets.tailnet.networkMap.redlib.vHost}/";
+                      check-url = "http://${config.mySnippets.tailnet.networkMap.redlib.hostName}:${toString config.mySnippets.tailnet.networkMap.redlib.port}/";
+                      icon = "di:redlib";
                     }
                   ];
                 }

@@ -181,6 +181,16 @@ in {
         }
       );
 
+      autobrr = lib.mkIf config.services.autobrr.enable (
+        config.mySnippets.restic
+        // {
+          backupCleanupCommand = start "autobrr";
+          backupPrepareCommand = stop "autobrr";
+          paths = ["${config.myNixOS.profiles.arr.dataDir}/autobrr"];
+          repository = mkRepoA "autobrr";
+        }
+      );
+
       tautulli = lib.mkIf config.services.tautulli.enable (
         config.mySnippets.restic
         // {
