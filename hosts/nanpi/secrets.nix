@@ -10,5 +10,11 @@
     syncthingKey.file = "${self.inputs.secrets}/ayla/syncthing/nanpi/key.age";
     vaultwarden.file = "${self.inputs.secrets}/vaultwarden.age";
     gemini.file = "${self.inputs.secrets}/gemini.age";
+    copyparty = {
+      file = "${self.inputs.secrets}/copyparty.age";
+      owner = "copyparty";
+      group = "copyparty";
+      mode = "0400";
+    };
   };
 }

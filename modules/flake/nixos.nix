@@ -32,6 +32,7 @@
             modules = [
               ../../hosts/${host}
               inputs.agenix.nixosModules.default
+              inputs.copyparty.nixosModules.default
               inputs.disko.nixosModules.disko
               inputs.home-manager.nixosModules.home-manager
               inputs.lanzaboote.nixosModules.lanzaboote
@@ -51,6 +52,7 @@
                 nixpkgs = {
                   overlays = [
                     self.inputs.nur.overlays.default
+                    self.inputs.copyparty.overlays.default
                   ];
                   config.allowUnfree = true;
                 };

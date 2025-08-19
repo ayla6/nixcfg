@@ -126,6 +126,16 @@ in {
           reverse_proxy ${config.mySnippets.tailnet.networkMap.karakeep.hostName}:${toString config.mySnippets.tailnet.networkMap.karakeep.port}
         '';
       };
+
+      "${config.mySnippets.tailnet.networkMap.copyparty.vHost}" = {
+        extraConfig = ''
+          bind tailscale/copyparty
+          encode zstd gzip
+          reverse_proxy ${config.mySnippets.tailnet.networkMap.copyparty.hostName}:${toString config.mySnippets.tailnet.networkMap.copyparty.port} {
+            flush_interval -1
+          }
+        '';
+      };
     };
 
     # it's failing to build because it can't download some stuff
@@ -193,6 +203,34 @@ in {
         PORT = "7020";
       };
       environmentFile = config.age.secrets.gemini.path;
+    };
+
+    copyparty = {
+      enable = true;
+      settings = {
+        i = "0.0.0.0";
+        p = [config.mySnippets.tailnet.networkMap.copyparty.port (config.mySnippets.tailnet.networkMap.copyparty.port + 1)];
+        no-reload = true;
+        ignored-flag = false;
+      };
+      accounts = {
+        ayla = {
+          passwordFile = config.age.secrets.copyparty.path;
+        };
+      };
+      volumes = {
+        "/" = {
+          path = "/data/copyparty";
+          access = {
+            r = ["*"];
+            A = ["ayla"];
+          };
+          flags = {
+            fk = 4;
+            scan = 480;
+          };
+        };
+      };
     };
   };
 
