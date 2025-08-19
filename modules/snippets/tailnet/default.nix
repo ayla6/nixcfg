@@ -87,6 +87,12 @@
           vHost = "sonarr.${config.mySnippets.tailnet.name}";
         };
 
+        autobrr = {
+          hostName = "nanpi";
+          port = 7474;
+          vHost = "autobrr.${config.mySnippets.tailnet.name}";
+        };
+
         karakeep = {
           hostName = "nanpi";
           port = 7020;
@@ -97,6 +103,12 @@
           hostName = "nanpi";
           port = 3210;
           vHost = "copyparty.${config.mySnippets.tailnet.name}";
+        };
+
+        redlib = {
+          hostName = "nanpi";
+          port = 6605;
+          vHost = "redlib.${config.mySnippets.tailnet.name}";
         };
       };
     };

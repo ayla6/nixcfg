@@ -895,11 +895,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1755626705,
-        "narHash": "sha256-JkJTF26k+bAW8BqD6Ubw9iAR3QZMzCUgy5gMtLcCxeM=",
+        "lastModified": 1755634054,
+        "narHash": "sha256-nBYm9JH5CRomLQPssNwCqR15q5SF3buO9nmPSUfW4QU=",
         "owner": "ayla6",
         "repo": "secrets",
-        "rev": "0104df7648c10187393222b200e59831fab54ade",
+        "rev": "40a0d31246d725d4744f6ba9d5a99f05aac31818",
         "type": "github"
       },
       "original": {

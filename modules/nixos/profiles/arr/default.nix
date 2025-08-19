@@ -45,6 +45,16 @@
           dataDir = "${config.myNixOS.profiles.arr.dataDir}/sonarr/.config/NzbDrone/";
           openFirewall = true; # Port: 8989
         };
+
+        autobrr = {
+          enable = true;
+          openFirewall = true; # Port: 7474
+          secretFile = config.age.secrets.autobrr.path;
+          settings = {
+            host = "0.0.0.0";
+            port = 7474;
+          };
+        };
       };
 
       systemd = {
@@ -53,6 +63,7 @@
           "d ${config.services.radarr.dataDir} 0755 radarr radarr"
           "d ${config.services.readarr.dataDir} 0755 readarr readarr"
           "d ${config.services.sonarr.dataDir} 0755 sonarr sonarr"
+          "d ${config.myNixOS.profiles.arr.dataDir}/autobrr 0755 autobrr autobrr"
         ];
       };
     })

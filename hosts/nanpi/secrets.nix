@@ -16,5 +16,6 @@
       group = "copyparty";
       mode = "0400";
     };
+    autobrr.file = "${self.inputs.secrets}/autobrr.age";
   };
 }

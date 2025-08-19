@@ -111,6 +111,14 @@ in {
         '';
       };
 
+      "${config.mySnippets.tailnet.networkMap.autobrr.vHost}" = {
+        extraConfig = ''
+          bind tailscale/autobrr
+          encode zstd gzip
+          reverse_proxy ${config.mySnippets.tailnet.networkMap.autobrr.hostName}:${toString config.mySnippets.tailnet.networkMap.autobrr.port}
+        '';
+      };
+
       "${config.mySnippets.tailnet.networkMap.glance.vHost}" = {
         extraConfig = ''
           bind tailscale/glance
@@ -134,6 +142,14 @@ in {
           reverse_proxy ${config.mySnippets.tailnet.networkMap.copyparty.hostName}:${toString config.mySnippets.tailnet.networkMap.copyparty.port} {
             flush_interval -1
           }
+        '';
+      };
+
+      "${config.mySnippets.tailnet.networkMap.redlib.vHost}" = {
+        extraConfig = ''
+          bind tailscale/redlib
+          encode zstd gzip
+          reverse_proxy ${config.mySnippets.tailnet.networkMap.redlib.hostName}:${toString config.mySnippets.tailnet.networkMap.redlib.port}
         '';
       };
     };
@@ -183,6 +199,16 @@ in {
         storage = {
           filesystem_folder = "/var/lib/radicale/collections";
         };
+      };
+    };
+
+    redlib = {
+      enable = true;
+      openFirewall = true;
+      inherit (config.mySnippets.tailnet.networkMap.redlib) port;
+      settings = {
+        ENABLE_RSS = "on";
+        REDLIB_DEFAULT_SHOW_NSFW = "on";
       };
     };
 
