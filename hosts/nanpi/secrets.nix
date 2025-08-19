@@ -9,5 +9,6 @@
     syncthingCert.file = "${self.inputs.secrets}/ayla/syncthing/nanpi/cert.age";
     syncthingKey.file = "${self.inputs.secrets}/ayla/syncthing/nanpi/key.age";
     vaultwarden.file = "${self.inputs.secrets}/vaultwarden.age";
+    gemini.file = "${self.inputs.secrets}/gemini.age";
   };
 }

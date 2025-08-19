@@ -7,6 +7,7 @@
     ./home.nix
     ./secrets.nix
     ./services.nix
+    ./glance.nix
     self.nixosModules.locale-en-gb
     self.diskoConfigurations.luks-btrfs-subvolumes
   ];
