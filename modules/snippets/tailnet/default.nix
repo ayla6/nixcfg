@@ -86,6 +86,12 @@
           port = 8989;
           vHost = "sonarr.${config.mySnippets.tailnet.name}";
         };
+
+        karakeep = {
+          hostName = "nanpi";
+          port = 7020;
+          vHost = "karakeep.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };
