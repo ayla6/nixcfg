@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   dataDirectory = "/var/lib";
 in {
   services = {
@@ -58,6 +62,14 @@ in {
           reverse_proxy ${config.mySnippets.tailnet.networkMap.radicale.hostName}:${toString config.mySnippets.tailnet.networkMap.radicale.port}
         '';
       };
+
+      "${config.mySnippets.tailnet.networkMap.webdav.vHost}" = {
+        extraConfig = ''
+          bind tailscale/webdav
+          encode zstd gzip
+          reverse_proxy ${config.mySnippets.tailnet.networkMap.webdav.hostName}:${toString config.mySnippets.tailnet.networkMap.webdav.port}
+        '';
+      };
     };
 
     # it's failing to build because it can't download some stuff
@@ -107,5 +119,35 @@ in {
         };
       };
     };
+
+    webdav-server-rs = {
+      enable = true;
+      settings = {
+        server.listen = ["0.0.0.0:${toString config.mySnippets.tailnet.networkMap.webdav.port}" "[::]:${toString config.mySnippets.tailnet.networkMap.webdav.port}"];
+        accounts = {
+          auth-type = "htpasswd.default";
+          acct-type = "unix";
+        };
+        htpasswd.default = {
+          htpasswd = pkgs.writeText "htpasswd" ''
+            ayla:$2y$05$LD.VqJF.yVGsp.C3L6IJFO0SvYTeCKbGoGn70ZQaht4gxyEq2XbCS
+          '';
+        };
+        location = [
+          {
+            route = ["/*path"];
+            directory = "${dataDirectory}/webdav";
+            handler = "filesystem";
+            methods = ["webdav-rw"];
+            autoindex = true;
+            auth = "true";
+          }
+        ];
+      };
+    };
   };
+
+  systemd.tmpfiles.rules = [
+    "d /var/lib/webdav 0755 webdav webdav - -"
+  ];
 }

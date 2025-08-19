@@ -45,9 +45,10 @@
           vHost = "uptime-kuma.${config.mySnippets.tailnet.name}";
         };
 
-        davis = {
+        webdav = {
           hostName = "nanpi";
-          vHost = "davis.${config.mySnippets.tailnet.name}";
+          port = 4918;
+          vHost = "webdav.${config.mySnippets.tailnet.name}";
         };
       };
     };

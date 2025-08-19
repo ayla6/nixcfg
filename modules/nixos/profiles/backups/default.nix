@@ -228,6 +228,14 @@ in {
           repository = mkRepoA "radicale";
         }
       );
+
+      webdav = lib.mkIf config.services.webdav-server-rs.enable (
+        config.mySnippets.restic
+        // {
+          paths = ["/var/lib/webdav"];
+          repository = mkRepoA "webdav";
+        }
+      );
     };
   };
 }
