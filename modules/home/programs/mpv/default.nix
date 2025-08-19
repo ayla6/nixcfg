@@ -20,7 +20,6 @@
       config = {
         # Video output and rendering
         vo = "gpu-next";
-        hwdec = "vaapi";
         dither-depth = "auto";
 
         # Window and display

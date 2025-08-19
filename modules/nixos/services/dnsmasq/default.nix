@@ -3,7 +3,14 @@
   config,
   ...
 }: {
-  options.myNixOS.services.dnsmasq.enable = lib.mkEnableOption "dnsmasq";
+  options.myNixOS.services.dnsmasq = {
+    enable = lib.mkEnableOption "dnsmasq";
+    longCaches = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Have really long cache times.";
+    };
+  };
 
   config = lib.mkIf config.myNixOS.services.dnsmasq.enable {
     services.dnsmasq = {
@@ -15,8 +22,14 @@
 
         server = ["100.100.100.100"];
 
-        min-cache-ttl = 3600;
-        max-cache-ttl = 172800;
+        min-cache-ttl =
+          if config.myNixOS.services.dnsmasq.longCaches
+          then 3600
+          else 300;
+        max-cache-ttl =
+          if config.myNixOS.services.dnsmasq.longCaches
+          then 172800
+          else 3600;
       };
     };
     services.tailscale.extraUpFlags = ["--accept-dns=false"];

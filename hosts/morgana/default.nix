@@ -45,8 +45,11 @@
     };
     desktop.gnome.enable = true;
     services = {
-      # i can't make caddy work :(
       caddy.enable = true;
+      dnsmasq = {
+        enable = true;
+        longCaches = false;
+      };
       tailscale = {
         enable = true;
         enableCaddy = true;

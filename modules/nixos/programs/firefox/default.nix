@@ -19,7 +19,7 @@
         DisableSetDesktopBackground = true;
         DisableTelemetry = true;
         DisplayBookmarksToolbar = "newtab";
-        DisableFirefoxAccounts = true;
+        #DisableFirefoxAccounts = true;
         DisableSafeMode = true;
 
         AutofillAddressEnabled = false;

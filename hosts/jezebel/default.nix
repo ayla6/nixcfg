@@ -22,7 +22,10 @@
     };
     profiles = {
       base.enable = true;
-      btrfs.enable = true;
+      btrfs = {
+        enable = true;
+        deduplicate = true;
+      };
       server.enable = true;
       backups.enable = true;
       vps.enable = true;

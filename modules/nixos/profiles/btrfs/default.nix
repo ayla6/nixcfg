@@ -32,7 +32,7 @@
       value = {
         # hashTableSizeMB = 2048;
         # this is ugly but who cares, i can't just get the size of the partition
-        # basically it's like, if it's one /data and on morgana then for sure it's like a terabyte of data, if it's on nanpi then it's 512gb, anything else is my laptop's ssd, 128gb, so 16mb
+        # basically it's like, if it's one /data and on morgana then for sure it's like a terabyte of data, if it's on nanpi then it's 512gb, anything else is my laptop's ssd, 128gb, so 16mb, but could also be the tiny 20gb jezebel disk, as it can't go lower than 16mb
         hashTableSizeMB =
           if config.networking.hostName == "morgana" && fs.mountPoint == "/data"
           then 128
