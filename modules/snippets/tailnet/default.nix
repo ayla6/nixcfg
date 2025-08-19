@@ -92,6 +92,12 @@
           port = 7020;
           vHost = "karakeep.${config.mySnippets.tailnet.name}";
         };
+
+        copyparty = {
+          hostName = "nanpi";
+          port = 3210;
+          vHost = "copyparty.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };
