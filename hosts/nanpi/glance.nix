@@ -6,7 +6,7 @@
     settings = {
       pages = [
         {
-          name = config.mySnippets.tailnet.networkMap.glance.vHost;
+          name = config.mySnippets.aylac-top.networkMap.glance.vHost;
           width = "slim";
           hide-desktop-navigation = true;
           center-vertically = true;
@@ -14,10 +14,6 @@
             {
               size = "full";
               widgets = [
-                {
-                  type = "search";
-                  autofocus = true;
-                }
                 {
                   type = "monitor";
                   cache = "1m";
@@ -41,6 +37,12 @@
                       url = "https://${config.mySnippets.aylac-top.networkMap.vaultwarden.vHost}/";
                       check-url = "http://${config.mySnippets.aylac-top.networkMap.vaultwarden.hostName}:${toString config.mySnippets.aylac-top.networkMap.vaultwarden.port}/";
                       icon = "di:vaultwarden";
+                    }
+                    {
+                      title = "ntfy";
+                      url = "https://${config.mySnippets.aylac-top.networkMap.ntfy.vHost}/";
+                      check-url = "http://${config.mySnippets.aylac-top.networkMap.ntfy.hostName}:${toString config.mySnippets.aylac-top.networkMap.ntfy.port}/";
+                      icon = "di:ntfy";
                     }
                   ];
                 }

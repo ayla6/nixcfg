@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   options.mySnippets.aylac-top.networkMap = lib.mkOption {
     type = lib.types.attrs;
     description = "Hostnames, ports, and vHosts for aylac.top services.";
@@ -23,10 +27,22 @@
         vHost = "vault.aylac.top";
       };
 
+      ntfy = {
+        hostName = "nanpi";
+        port = 9024;
+        vHost = "ntfy.aylac.top";
+      };
+
       uptime-kuma = {
-        # Only used for status pages
-        hostName = "jezebel";
-        port = 3008;
+        inherit (config.mySnippets.tailnet.networkMap.uptime-kuma) hostName;
+        inherit (config.mySnippets.tailnet.networkMap.uptime-kuma) port;
+        vHost = "status.aylac.top";
+      };
+
+      glance = {
+        inherit (config.mySnippets.tailnet.networkMap.glance) hostName;
+        inherit (config.mySnippets.tailnet.networkMap.glance) port;
+        vHost = "services.aylac.top";
       };
     };
   };
