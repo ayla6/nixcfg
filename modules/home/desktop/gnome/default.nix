@@ -14,7 +14,7 @@
 
       settings = let
         defaultApps = {
-          terminal = config.myHome.profiles.defaultApps.terminal.exec or (lib.getExe pkgs.gnome-console);
+          terminal = config.myHome.profiles.defaultApps.terminal.exec or (lib.getExe pkgs.ptyxis);
           webBrowser =
             config.myHome.profiles.defaultApps.webBrowser.exec
                 or (lib.getExe config.programs.firefox.finalPackage);
@@ -147,7 +147,7 @@
       fileManager.package = lib.mkDefault pkgs.nautilus;
       imageViewer.package = lib.mkDefault pkgs.loupe;
       pdfViewer.package = lib.mkDefault pkgs.papers;
-      terminal.package = lib.mkDefault pkgs.gnome-console;
+      terminal.package = lib.mkDefault pkgs.ptyxis;
       videoPlayer.package = lib.mkDefault pkgs.mpv;
     };
   };
