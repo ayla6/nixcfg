@@ -11,7 +11,10 @@
     self.diskoConfigurations.btrfs-vps
   ];
 
-  networking.hostName = "jezebel";
+  networking = {
+    firewall.allowedTCPPorts = [80 443];
+    hostName = "jezebel";
+  };
   system.stateVersion = "25.05";
   time.timeZone = "America/Sao_Paulo";
   nixpkgs.hostPlatform = "x86_64-linux";

@@ -31,6 +31,8 @@ in {
             "${config.mySnippets.aylac-top.networkMap.vaultwarden.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.vaultwarden.hostName}:${toString config.mySnippets.aylac-top.networkMap.vaultwarden.port}";
 
             "${config.mySnippets.aylac-top.networkMap.forgejo.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.forgejo.hostName}:${toString config.mySnippets.aylac-top.networkMap.forgejo.port}";
+
+            "${config.mySnippets.aylac-top.networkMap.ntfy.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.ntfy.hostName}:${toString config.mySnippets.aylac-top.networkMap.ntfy.port}";
           };
         };
       };
@@ -229,6 +231,33 @@ in {
         PORT = "7020";
       };
       environmentFile = config.age.secrets.gemini.path;
+    };
+
+    ntfy-sh = {
+      enable = true;
+      user = "ntfy";
+      group = "ntfy";
+      settings = {
+        listen-http = ":${toString config.mySnippets.aylac-top.networkMap.ntfy.port}";
+        base-url = "https://${config.mySnippets.aylac-top.networkMap.ntfy.vHost}";
+        cache-duration = "30d";
+        cache-startup-queries = ''
+          pragma journal_mode = WAL;
+          pragma synchronous = normal;
+          pragma temp_store = memory;
+        '';
+        behind-proxy = true;
+        auth-default-access = "deny-all";
+        auth-users = [
+          "ayla:$2a$10$hh05DMOuVQ3Zf67Rn8VUl.HYUop/.90V04IhNPmOsSYh9FSHCbL1K:admin"
+          "auto:$2a$10$w7EDB/6orrpM9JVBqu4jHeBKvXliA4jvRI7Nd.fn.Fo4rGTHD50ju:user"
+        ];
+        auth-access = [
+          "everyone:up*:wo"
+          "auto:*:wo"
+          "everyone:message-to-ayla:wo"
+        ];
+      };
     };
 
     copyparty = {
