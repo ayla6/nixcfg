@@ -33,6 +33,8 @@ in {
             "${config.mySnippets.aylac-top.networkMap.forgejo.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.forgejo.hostName}:${toString config.mySnippets.aylac-top.networkMap.forgejo.port}";
 
             "${config.mySnippets.aylac-top.networkMap.ntfy.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.ntfy.hostName}:${toString config.mySnippets.aylac-top.networkMap.ntfy.port}";
+
+            "${config.mySnippets.aylac-top.networkMap.glance.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.glance.hostName}:${toString config.mySnippets.aylac-top.networkMap.glance.port}";
           };
         };
       };

@@ -50,10 +50,10 @@
 
         keys = {
           normal = {
-            h = "move_char_left";
-            n = "move_line_down";
-            e = "move_line_up";
-            i = "move_char_right";
+            n = "move_char_left";
+            e = "move_line_down";
+            i = "move_line_up";
+            o = "move_char_right";
 
             j = "move_next_word_end";
             J = "move_next_long_word_end";
@@ -61,12 +61,15 @@
             K = "search_prev";
             l = "insert_mode";
             L = "insert_at_line_start";
+
+            h = "open_below";
+            H = "open_above";
           };
           select = {
-            h = "extend_char_left";
-            n = "extend_visual_line_down";
-            e = "extend_visual_line_up";
-            i = "extend_char_right";
+            n = "extend_char_left";
+            e = "extend_visual_line_down";
+            i = "extend_visual_line_up";
+            o = "extend_char_right";
           };
         };
       };

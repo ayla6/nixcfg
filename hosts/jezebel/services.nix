@@ -23,13 +23,6 @@
             reverse_proxy ${config.mySnippets.aylac-top.networkMap.uptime-kuma.hostName}:${toString config.mySnippets.aylac-top.networkMap.uptime-kuma.port}
           '';
         };
-
-        "${config.mySnippets.aylac-top.networkMap.glance.vHost}" = {
-          extraConfig = ''
-            encode gzip zstd
-            reverse_proxy ${config.mySnippets.aylac-top.networkMap.glance.hostName}:${toString config.mySnippets.aylac-top.networkMap.glance.port}
-          '';
-        };
       };
     };
 
