@@ -211,6 +211,7 @@ in {
       settings = {
         ENABLE_RSS = "on";
         REDLIB_DEFAULT_SHOW_NSFW = "on";
+        REDLIB_DEFAULT_USE_HLS = "on";
       };
     };
 
