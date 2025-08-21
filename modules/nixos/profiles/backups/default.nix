@@ -305,6 +305,16 @@ in {
           repository = mkRepoA "miniflux";
         }
       );
+
+      jellyseerr = lib.mkIf config.services.jellyseerr.enable (
+        config.mySnippets.restic
+        // {
+          backupCleanupCommand = start "jellyseerr";
+          backupPrepareCommand = stop "jellyseerr";
+          paths = ["/var/lib/jellyseerr"];
+          repository = mkRepoA "jellyseerr";
+        }
+      );
     };
   };
 }
