@@ -24,6 +24,7 @@
       gnome-music
       gnome-user-docs
       gnome-tour
+      gnome-console
       decibels
     ];
 

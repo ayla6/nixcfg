@@ -290,31 +290,31 @@ in {
         };
       };
     };
-  };
 
-  services.webdav-server-rs = {
-    enable = true;
-    settings = {
-      server.listen = ["0.0.0.0:${toString config.mySnippets.tailnet.networkMap.webdav.port}" "[::]:${toString config.mySnippets.tailnet.networkMap.webdav.port}"];
-      accounts = {
-        auth-type = "htpasswd.default";
-        acct-type = "unix";
+    webdav-server-rs = {
+      enable = true;
+      settings = {
+        server.listen = ["0.0.0.0:${toString config.mySnippets.tailnet.networkMap.webdav.port}" "[::]:${toString config.mySnippets.tailnet.networkMap.webdav.port}"];
+        accounts = {
+          auth-type = "htpasswd.default";
+          acct-type = "unix";
+        };
+        htpasswd.default = {
+          htpasswd = pkgs.writeText "htpasswd" ''
+            ayla:$2y$05$LD.VqJF.yVGsp.C3L6IJFO0SvYTeCKbGoGn70ZQaht4gxyEq2XbCS
+          '';
+        };
+        location = [
+          {
+            route = ["/*path"];
+            directory = "${dataDirectory}/webdav";
+            handler = "filesystem";
+            methods = ["webdav-rw"];
+            autoindex = true;
+            auth = "true";
+          }
+        ];
       };
-      htpasswd.default = {
-        htpasswd = pkgs.writeText "htpasswd" ''
-          ayla:$2y$05$LD.VqJF.yVGsp.C3L6IJFO0SvYTeCKbGoGn70ZQaht4gxyEq2XbCS
-        '';
-      };
-      location = [
-        {
-          route = ["/*path"];
-          directory = "${dataDirectory}/webdav";
-          handler = "filesystem";
-          methods = ["webdav-rw"];
-          autoindex = true;
-          auth = "true";
-        }
-      ];
     };
   };
 
