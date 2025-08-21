@@ -131,6 +131,12 @@
                       check-url = "http://${config.mySnippets.tailnet.networkMap.redlib.hostName}:${toString config.mySnippets.tailnet.networkMap.redlib.port}/";
                       icon = "di:redlib";
                     }
+                    {
+                      title = "Miniflux";
+                      url = "https://${config.mySnippets.tailnet.networkMap.miniflux.vHost}/";
+                      check-url = "http://${config.mySnippets.tailnet.networkMap.miniflux.hostName}:${toString config.mySnippets.tailnet.networkMap.miniflux.port}/";
+                      icon = "di:miniflux";
+                    }
                   ];
                 }
               ];

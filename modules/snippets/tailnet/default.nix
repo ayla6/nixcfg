@@ -110,6 +110,12 @@
           port = 6605;
           vHost = "redlib.${config.mySnippets.tailnet.name}";
         };
+
+        miniflux = {
+          hostName = "nanpi";
+          port = 6540;
+          vHost = "miniflux.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };

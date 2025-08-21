@@ -4,12 +4,57 @@
   pkgs,
   ...
 }: let
+  # idk how to share this across files :(
+  mkNotify = {
+    message,
+    channel,
+    priority ? 1,
+  }: ''
+    LOGIN=$(cat "${config.age.secrets.ntfyAuto.path}")
+    ${pkgs.curl}/bin/curl -u $LOGIN \
+    -H "X-Priority: ${toString priority}" \
+      -d '${message}' \
+      https://${config.mySnippets.aylac-top.networkMap.ntfy.vHost}/${channel}
+  '';
+
   backupDestinationA = "rclone:a_gdrive:/backups/${config.networking.hostName}";
   mkRepoA = service: "${backupDestinationA}/${service}";
   #backupDestinationB = "rclone:b_gdrive:/backups/${config.networking.hostName}";
   #mkRepoB = service: "${backupDestinationB}/${service}";
-  stop = service: "${pkgs.systemd}/bin/systemctl stop ${service}";
-  start = service: "${pkgs.systemd}/bin/systemctl start ${service}";
+
+  stop = service: ''
+    #!${pkgs.bash}/bin/bash
+    ${mkNotify {
+      message = "Backing up ${service}, stopping service";
+      channel = "network-status";
+    }}
+    ${pkgs.systemd}/bin/systemctl stop ${service}
+  '';
+
+  start = service: ''
+    #!${pkgs.bash}/bin/bash
+    ${mkNotify {
+      message = "Back up for ${service} was completed (idk if successfully tho), starting service";
+      channel = "network-status";
+    }}
+    ${pkgs.systemd}/bin/systemctl start ${service}
+  '';
+
+  prepareNoService = service: ''
+    #!${pkgs.bash}/bin/bash
+    ${mkNotify {
+      message = "Backing up ${service}";
+      channel = "network-status";
+    }}
+  '';
+
+  cleanupNoService = service: ''
+    #!${pkgs.bash}/bin/bash
+    ${mkNotify {
+      message = "Back up for ${service} was completed (idk if successfully tho)";
+      channel = "network-status";
+    }}
+  '';
 in {
   options.myNixOS.profiles.backups = {
     enable = lib.mkEnableOption "automatically back up enabled services to gdrive";
@@ -224,6 +269,8 @@ in {
       passwords = lib.mkIf (builtins.elem config.networking.hostName config.mySnippets.syncthing.folders."Passwords".devices) (
         config.mySnippets.restic
         // {
+          backupCleanupCommand = cleanupNoService "passwords";
+          backupPrepareCommand = prepareNoService "passwords";
           paths = [config.mySnippets.syncthing.folders."Passwords".path];
           repository = mkRepoA "passwords";
         }
@@ -242,8 +289,20 @@ in {
       webdav = lib.mkIf config.services.webdav-server-rs.enable (
         config.mySnippets.restic
         // {
+          backupCleanupCommand = cleanupNoService "webdav";
+          backupPrepareCommand = prepareNoService "webdav";
           paths = ["/var/lib/webdav"];
           repository = mkRepoA "webdav";
+        }
+      );
+
+      miniflux = lib.mkIf config.services.miniflux.enable (
+        config.mySnippets.restic
+        // {
+          backupCleanupCommand = start "miniflux";
+          backupPrepareCommand = stop "miniflux";
+          paths = ["/var/lib/miniflux"];
+          repository = mkRepoA "miniflux";
         }
       );
     };

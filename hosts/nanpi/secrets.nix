@@ -17,5 +17,7 @@
       mode = "0400";
     };
     autobrr.file = "${self.inputs.secrets}/autobrr.age";
+    ntfyAuto.file = "${self.inputs.secrets}/ntfyAuto.age";
+    miniflux.file = "${self.inputs.secrets}/miniflux.age";
   };
 }

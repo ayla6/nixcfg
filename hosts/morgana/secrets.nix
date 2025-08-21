@@ -4,5 +4,6 @@
     syncthingCert.file = "${self.inputs.secrets}/ayla/syncthing/morgana/cert.age";
     syncthingKey.file = "${self.inputs.secrets}/ayla/syncthing/morgana/key.age";
     rclone.file = "${self.inputs.secrets}/rclone.age";
+    ntfyAuto.file = "${self.inputs.secrets}/ntfyAuto.age";
   };
 }
