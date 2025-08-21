@@ -65,6 +65,12 @@
                       icon = "di:jellyfin";
                     }
                     {
+                      title = "Jellyseerr";
+                      url = "https://${config.mySnippets.tailnet.networkMap.jellyseerr.vHost}/";
+                      check-url = "http://${config.mySnippets.tailnet.networkMap.jellyseerr.hostName}:${toString config.mySnippets.tailnet.networkMap.jellyseerr.port}/";
+                      icon = "di:jellyseerr";
+                    }
+                    {
                       title = "Sonarr";
                       url = "https://${config.mySnippets.tailnet.networkMap.sonarr.vHost}/";
                       check-url = "http://${config.mySnippets.tailnet.networkMap.sonarr.hostName}:${toString config.mySnippets.tailnet.networkMap.sonarr.port}/";

@@ -116,6 +116,12 @@
           port = 6540;
           vHost = "miniflux.${config.mySnippets.tailnet.name}";
         };
+
+        jellyseerr = {
+          hostName = "nanpi";
+          port = 5055;
+          vHost = "jellyseerr.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };

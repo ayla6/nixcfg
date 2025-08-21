@@ -143,9 +143,7 @@ in {
         extraConfig = ''
           bind tailscale/copyparty
           encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.copyparty.hostName}:${toString config.mySnippets.tailnet.networkMap.copyparty.port} {
-            flush_interval -1
-          }
+          reverse_proxy ${config.mySnippets.tailnet.networkMap.copyparty.hostName}:${toString config.mySnippets.tailnet.networkMap.copyparty.port}
         '';
       };
 
@@ -162,6 +160,14 @@ in {
           bind tailscale/miniflux
           encode zstd gzip
           reverse_proxy ${config.mySnippets.tailnet.networkMap.miniflux.hostName}:${toString config.mySnippets.tailnet.networkMap.miniflux.port}
+        '';
+      };
+
+      "${config.mySnippets.tailnet.networkMap.jellyseerr.vHost}" = {
+        extraConfig = ''
+          bind tailscale/jellyseerr
+          encode zstd gzip
+          reverse_proxy ${config.mySnippets.tailnet.networkMap.jellyseerr.hostName}:${toString config.mySnippets.tailnet.networkMap.jellyseerr.port}
         '';
       };
     };
@@ -282,6 +288,12 @@ in {
           "everyone:message-to-ayla:wo"
         ];
       };
+    };
+
+    jellyseerr = {
+      enable = true;
+      inherit (config.mySnippets.tailnet.networkMap.jellyseerr) port;
+      openFirewall = true;
     };
 
     copyparty = {

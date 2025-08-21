@@ -38,10 +38,10 @@
         location = "/data/.swap";
       };
 
-      #autoUpgrade = {
-      #  enable = true;
-      #  operation = "switch";
-      #};
+      autoUpgrade = {
+        enable = true;
+        operation = "switch";
+      };
     };
     desktop.gnome.enable = true;
     services = {
