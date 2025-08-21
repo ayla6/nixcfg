@@ -291,7 +291,7 @@ in {
     };
 
     jellyseerr = {
-      enable = true;
+      enable = false;
       inherit (config.mySnippets.tailnet.networkMap.jellyseerr) port;
       openFirewall = true;
     };
