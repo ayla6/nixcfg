@@ -24,9 +24,7 @@
           love
 
           # applications
-          keepassxc
           qbittorrent
-          flare-signal
           kdePackages.kdenlive
           krita
           gimp3
@@ -37,8 +35,6 @@
           calibre
           picard
           freac
-          audacious
-          audacious-plugins
           lmms
           nicotine-plus
           blender
@@ -158,6 +154,12 @@
           wine
           steam-run
           lutris
+
+          keepassxc
+          fractal
+          flare-signal
+          audacious
+          audacious-plugins
         ];
       };
     })
