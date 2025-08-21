@@ -9,5 +9,6 @@
     ./qbittorrent
     ./syncthing
     ./tailscale
+    ./monitoring
   ];
 }

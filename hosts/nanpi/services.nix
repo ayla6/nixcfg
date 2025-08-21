@@ -156,6 +156,14 @@ in {
           reverse_proxy ${config.mySnippets.tailnet.networkMap.redlib.hostName}:${toString config.mySnippets.tailnet.networkMap.redlib.port}
         '';
       };
+
+      "${config.mySnippets.tailnet.networkMap.miniflux.vHost}" = {
+        extraConfig = ''
+          bind tailscale/miniflux
+          encode zstd gzip
+          reverse_proxy ${config.mySnippets.tailnet.networkMap.miniflux.hostName}:${toString config.mySnippets.tailnet.networkMap.miniflux.port}
+        '';
+      };
     };
 
     # it's failing to build because it can't download some stuff
@@ -214,6 +222,7 @@ in {
         ENABLE_RSS = "on";
         REDLIB_DEFAULT_SHOW_NSFW = "on";
         REDLIB_DEFAULT_USE_HLS = "on";
+        FULL_URL = "https://${config.mySnippets.tailnet.networkMap.redlib.vHost}";
       };
     };
 
@@ -234,6 +243,18 @@ in {
         PORT = "7020";
       };
       environmentFile = config.age.secrets.gemini.path;
+    };
+
+    miniflux = {
+      enable = true;
+      adminCredentialsFile = config.age.secrets.miniflux.path;
+      config = {
+        BATCH_SIZE = 100;
+        CLEANUP_FREQUENCY_HOURS = 48;
+        LISTEN_ADDR = "${config.mySnippets.tailnet.networkMap.miniflux.hostName}:${toString config.mySnippets.tailnet.networkMap.miniflux.port}";
+        BASE_URL = "https://${config.mySnippets.tailnet.networkMap.miniflux.vHost}";
+        WEBAUTHN = "enabled";
+      };
     };
 
     ntfy-sh = {

@@ -8,6 +8,7 @@
     ./secrets.nix
     ./services.nix
     ./glance.nix
+    ./notifier.nix
     self.nixosModules.locale-en-gb
     self.diskoConfigurations.luks-btrfs-subvolumes
   ];
@@ -15,7 +16,7 @@
   networking.hostName = "nanpi";
   system.stateVersion = "25.05";
   time.timeZone = "America/Sao_Paulo";
-  myHardware.lenovo.ideapad."320-14IKB".enable = true;
+  myHardware.acer.aspire."A315-53".enable = true;
 
   myNixOS = {
     programs = {
@@ -25,10 +26,10 @@
     profiles = {
       base.enable = true;
       server.enable = true;
-      autoUpgrade = {
-        enable = true;
-        operation = "boot";
-      };
+      #autoUpgrade = {
+      #  enable = true;
+      #  operation = "boot";
+      #};
       backups.enable = true;
       btrfs = {
         enable = true;
