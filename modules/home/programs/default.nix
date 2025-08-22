@@ -5,6 +5,7 @@
     ./chromium
     ./fastfetch
     ./firefox
+    ./firefox-based
     ./helix
     ./git
     ./micro
@@ -12,5 +13,6 @@
     ./obs-studio
     ./ssh
     ./zed-editor
+    ./zen-browser
   ];
 }

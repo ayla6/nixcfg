@@ -28,11 +28,6 @@
 
     files.url = "github:alyraffauf/files";
 
-    firefox-onebar = {
-      url = "https://git.gay/freeplay/Firefox-Onebar/raw/branch/waf/onebar.css";
-      flake = false;
-    };
-
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     fontix = {
@@ -56,6 +51,16 @@
     };
 
     nur.url = "github:nix-community/NUR";
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    firefox-onebar = {
+      url = "https://git.gay/freeplay/Firefox-Onebar/raw/branch/waf/onebar.css";
+      flake = false;
+    };
 
     secrets = {
       url = "github:ayla6/secrets";
