@@ -15,7 +15,6 @@
       home = {
         packages = with pkgs; [
           # development
-          gcc
           nodejs
           pnpm
           typescript
@@ -40,6 +39,7 @@
           blender
           rclone
           rclone-browser
+          bitwarden
 
           # gaming
           mgba
@@ -69,6 +69,7 @@
             enable = true;
             mode = "sidebar";
           };
+          zen-browser.enable = true;
           git.enable = true;
           helix.enable = true;
           micro.enable = true;
@@ -93,6 +94,10 @@
             terminal.package = pkgs.ptyxis;
             terminalEditor.package = config.programs.micro.package;
             webBrowser.package = config.programs.firefox.finalPackage;
+            #webBrowser = {
+            #  exec = lib.getExe config.programs.zen-browser.finalPackage;
+            #  package = config.programs.zen-browser.finalPackage;
+            #};
           };
         };
 

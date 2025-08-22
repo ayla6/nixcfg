@@ -20,7 +20,6 @@
       nix.enable = true;
       nix-ld.enable = true;
       steam.enable = true;
-      firefox.enable = true;
     };
     profiles = {
       base.enable = true;
