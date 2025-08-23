@@ -4,7 +4,7 @@
     ./programs
     ./services
     ./profiles
-    ./packages.nix
+    ./snippets
     inputs.agenix.homeManagerModules.default
     inputs.zen-browser.homeModules.beta
   ];

@@ -27,11 +27,11 @@
           vHost = "jellyfin.${config.mySnippets.tailnet.name}";
         };
 
-        immich = {
-          hostName = "nanpi";
-          port = 2283;
-          vHost = "immich.${config.mySnippets.tailnet.name}";
-        };
+        #immich = {
+        #  hostName = "nanpi";
+        #  port = 2283;
+        #  vHost = "immich.${config.mySnippets.tailnet.name}";
+        #};
 
         radicale = {
           hostName = "nanpi";
@@ -121,6 +121,12 @@
           hostName = "nanpi";
           port = 5055;
           vHost = "jellyseerr.${config.mySnippets.tailnet.name}";
+        };
+
+        audiobookshelf = {
+          hostName = "nanpi";
+          port = 13378;
+          vHost = "audiobookshelf.${config.mySnippets.tailnet.name}";
         };
       };
     };

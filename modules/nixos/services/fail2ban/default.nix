@@ -4,15 +4,13 @@
   pkgs,
   ...
 }: let
-  # idk how to share this across files :(
   mkNotify = {
     message,
     channel,
     priority ? 1,
   }: ''
-    LOGIN=$(cat "${config.age.secrets.ntfyAuto.path}")
-    ${pkgs.curl}/bin/curl -u $LOGIN \
-    -H "X-Priority: ${toString priority}" \
+    curl -u $(cat "${config.age.secrets.ntfyAuto.path}") \
+      -H "X-Priority: ${toString priority}" \
       -d '${message}' \
       https://${config.mySnippets.aylac-top.networkMap.ntfy.vHost}/${channel}
   '';
@@ -21,12 +19,24 @@ in {
 
   config = lib.mkIf config.myNixOS.services.fail2ban.enable {
     environment.etc = {
+      "fail2ban/action.d/mycloudflare.conf" = {
+        user = "root";
+        group = "root";
+        mode = "0640";
+        source = config.age.secrets.cloudflareFail2ban.path;
+      };
+
       "fail2ban/action.d/ntfy.conf".text = ''
         [Definition]
-        actionbanned = ${mkNotify {
-          message = "Banned <ip> from <jail> at ${config.networking.hostName}";
-          channel = "network-status";
+        actionban = ${mkNotify {
+          message = "Arrested <ip> for trying to rob <name> at ${config.networking.hostName}";
+          channel = "fail2ban";
           priority = 3;
+        }}
+        actionunban = ${mkNotify {
+          message = "Released <ip> from the jail at ${config.networking.hostName}";
+          channel = "fail2ban";
+          priority = 2;
         }}
       '';
 
@@ -62,9 +72,13 @@ in {
       ignoreIP = ["100.64.0.0/10"];
       bantime = "24h";
       bantime-increment.enable = true;
+      extraPackages = [pkgs.curl pkgs.jq pkgs.uutils-coreutils-noprefix];
       jails = {
         forgejo.settings = {
-          action = "iptables-allports";
+          action = ''
+            mycloudflare
+              iptables-allports
+              ntfy'';
           bantime = 900;
           filter = "forgejo";
           findtime = 3600;
@@ -74,6 +88,10 @@ in {
         # HTTP basic-auth failures, 5 tries → 1-day ban
         nginx-http-auth = {
           settings = {
+            action = ''
+              mycloudflare
+                iptables-allports
+                ntfy'';
             enabled = true;
             maxretry = 5;
             findtime = 300;
@@ -84,6 +102,10 @@ in {
         # Generic scanner / bot patterns (wp-login.php, sqladmin, etc.)
         nginx-botsearch = {
           settings = {
+            action = ''
+              mycloudflare
+                iptables-allports
+                ntfy'';
             enabled = true;
             maxretry = 10;
             findtime = 300;
@@ -96,6 +118,9 @@ in {
           filter = vaultwarden
           port = 80,443,${toString config.services.vaultwarden.config.ROCKET_PORT}
           maxretry = 5
+          action = mycloudflare
+              iptables-allports
+              ntfy
         '';
 
         vaultwarden-admin = ''
@@ -105,6 +130,9 @@ in {
           maxretry = 3
           bantime = 14400
           findtime = 14400
+          action = mycloudflare
+              iptables-allports
+              ntfy
         '';
       };
     };

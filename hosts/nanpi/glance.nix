@@ -143,6 +143,12 @@
                       check-url = "http://${config.mySnippets.tailnet.networkMap.miniflux.hostName}:${toString config.mySnippets.tailnet.networkMap.miniflux.port}/";
                       icon = "di:miniflux";
                     }
+                    {
+                      title = "audiobookshelf";
+                      url = "https://${config.mySnippets.tailnet.networkMap.audiobookshelf.vHost}/";
+                      check-url = "http://${config.mySnippets.tailnet.networkMap.audiobookshelf.hostName}:${toString config.mySnippets.tailnet.networkMap.audiobookshelf.port}/";
+                      icon = "di:miniflux";
+                    }
                   ];
                 }
               ];

@@ -163,7 +163,6 @@ in {
               snowflake
               sponsorblock
               karakeep
-              ff2mpv
               bitwarden
             ];
 
