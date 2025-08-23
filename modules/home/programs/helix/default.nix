@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   options.myHome.programs.helix.enable = lib.mkEnableOption "helix";
@@ -72,6 +73,121 @@
             o = "extend_char_right";
           };
         };
+      };
+      languages = {
+        language-server = {
+          bash-language-server = {
+            command = "bash-language-server";
+            args = ["start"];
+          };
+
+          vscode-css-languageserver = {
+            command = lib.getExe pkgs.vscode-css-languageserver;
+            args = ["--stdio"];
+          };
+
+          fish-lsp = {
+            command = lib.getExe pkgs.fish-lsp;
+            args = ["--stdio"];
+          };
+
+          lua-language-server = {
+            command = lib.getExe pkgs.lua-language-server;
+            args = ["--stdio"];
+          };
+
+          marksman = {
+            command = lib.getExe pkgs.marksman;
+            args = ["--stdio"];
+          };
+
+          nixd = {
+            command = lib.getExe pkgs.nixd;
+          };
+
+          vscode-json-languageserver = {
+            command = lib.getExe pkgs.vscode-json-languageserver;
+            args = ["--stdio"];
+          };
+
+          typescript-language-server = with pkgs.nodePackages; {
+            command = "${typescript-language-server}/bin/typescript-language-server";
+            args = ["--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib"];
+          };
+
+          superhtml = {
+            command = lib.getExe pkgs.superhtml;
+            args = ["--stdio"];
+          };
+        };
+
+        language = [
+          {
+            name = "bash";
+            auto-format = true;
+            file-types = ["sh" "bash" "dash" "ksh" "mksh"];
+
+            formatter = {
+              command = lib.getExe pkgs.shfmt;
+              args = ["-i" "2"];
+            };
+
+            language-servers = ["bash-language-server"];
+          }
+          {
+            name = "css";
+            auto-format = true;
+            formatter = {command = lib.getExe pkgs.prettier;};
+            language-servers = ["vscode-css-languageserver"];
+          }
+          {
+            name = "fish";
+            auto-format = true;
+            language-servers = ["fish-lsp"];
+          }
+          {
+            name = "html";
+            auto-format = true;
+            formatter = {command = lib.getExe pkgs.prettier;};
+            language-servers = ["superhtml"];
+          }
+          {
+            name = "javascript";
+            auto-format = true;
+            formatter = {command = lib.getExe pkgs.prettier;};
+            language-servers = ["typescript-language-server"];
+          }
+          {
+            name = "json";
+            auto-format = true;
+            formatter = {command = lib.getExe pkgs.prettier;};
+            language-servers = ["vscode-json-languageserver"];
+          }
+          {
+            name = "lua";
+            auto-format = true;
+            formatter = {command = lib.getExe pkgs.stylua;};
+            language-servers = ["lua-language-server"];
+          }
+          {
+            name = "markdown";
+            auto-format = true;
+            formatter = {command = lib.getExe pkgs.mdformat;};
+            language-servers = ["marksman"];
+          }
+          {
+            name = "nix";
+            auto-format = true;
+            formatter = {command = lib.getExe pkgs.alejandra;};
+            language-servers = ["nixd"];
+          }
+          {
+            name = "typescript";
+            auto-format = true;
+            formatter = {command = lib.getExe pkgs.prettier;};
+            language-servers = ["typescript-language-server"];
+          }
+        ];
       };
     };
   };

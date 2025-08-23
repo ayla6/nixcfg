@@ -917,11 +917,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1755789931,
-        "narHash": "sha256-4BJKIbWkdajOZxVJhdDROMVtK6WfFbZjNXBt8KRtE18=",
+        "lastModified": 1755914550,
+        "narHash": "sha256-3idodE8ltAGjE+j76EVNHtlHX5cufwdslUCUtDOK4BM=",
         "owner": "ayla6",
         "repo": "secrets",
-        "rev": "145a93b5fd6db45596d4c7607c0ef91a86aee593",
+        "rev": "3c93b9f5d1b28a8614a9f36a2816ff6369258207",
         "type": "github"
       },
       "original": {

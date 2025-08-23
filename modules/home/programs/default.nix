@@ -5,7 +5,6 @@
     ./chromium
     ./fastfetch
     ./firefox
-    ./firefox-based
     ./helix
     ./git
     ./micro

@@ -2,6 +2,7 @@
   age.secrets = {
     cloudflareCertificate.file = "${self.inputs.secrets}/cloudflare/certificate.age";
     cloudflareCredentials.file = "${self.inputs.secrets}/cloudflare/credentials.age";
+    cloudflareFail2ban.file = "${self.inputs.secrets}/cloudflare/fail2ban.age";
     pds.file = "${self.inputs.secrets}/pds.age";
     resticPassword.file = "${self.inputs.secrets}/restic-passwd.age";
     rclone.file = "${self.inputs.secrets}/rclone.age";

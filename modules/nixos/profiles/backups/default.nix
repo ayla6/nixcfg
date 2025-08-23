@@ -17,304 +17,251 @@
       https://${config.mySnippets.aylac-top.networkMap.ntfy.vHost}/${channel}
   '';
 
-  backupDestinationA = "rclone:a_gdrive:/backups/${config.networking.hostName}";
-  mkRepoA = service: "${backupDestinationA}/${service}";
-  #backupDestinationB = "rclone:b_gdrive:/backups/${config.networking.hostName}";
-  #mkRepoB = service: "${backupDestinationB}/${service}";
+  repoMap = {
+    A = "rclone:a_gdrive:/backups/${config.networking.hostName}";
+    B = "rclone:b_gdrive:/backups/${config.networking.hostName}";
+  };
+  mkRepo = {
+    repo,
+    service,
+  }: "${repoMap.${repo}}/${service}";
 
-  stop = service: ''
+  stop = {
+    service,
+    repoPath,
+  }: ''
     #!${pkgs.bash}/bin/bash
     ${mkNotify {
-      message = "Backing up ${service}, stopping service";
+      message = "Backing up ${service} to ${repoPath}, stopping service";
       channel = "network-status";
     }}
     ${pkgs.systemd}/bin/systemctl stop ${service}
   '';
 
-  start = service: ''
+  start = {
+    service,
+    repoPath,
+  }: ''
     #!${pkgs.bash}/bin/bash
     ${mkNotify {
-      message = "Back up for ${service} was completed (idk if successfully tho), starting service";
+      message = "Back up for ${service} to ${repoPath} was completed (idk if successfully tho), starting service";
       channel = "network-status";
     }}
     ${pkgs.systemd}/bin/systemctl start ${service}
   '';
 
-  prepareNoService = service: ''
+  prepareNoService = {
+    service,
+    repoPath,
+  }: ''
     #!${pkgs.bash}/bin/bash
     ${mkNotify {
-      message = "Backing up ${service}";
+      message = "Backing up ${service} to ${repoPath}";
       channel = "network-status";
     }}
   '';
 
-  cleanupNoService = service: ''
+  cleanupNoService = {
+    service,
+    repoPath,
+  }: ''
     #!${pkgs.bash}/bin/bash
     ${mkNotify {
-      message = "Back up for ${service} was completed (idk if successfully tho)";
+      message = "Back up for ${service} to ${repoPath} was completed (idk if successfully tho)";
       channel = "network-status";
     }}
   '';
+
+  mkBackups = services:
+    lib.listToAttrs (map (service: let
+      repoKey = service.repo or "A";
+      repoPath = mkRepo {
+        repo = repoKey;
+        service = service.name;
+      };
+      systemdService = service.name;
+      backupMode = service.backupMode or "stop"; # "stop", "notify", "none"
+
+      commands =
+        if backupMode == "stop"
+        then {
+          backupCleanupCommand = start {
+            service = systemdService;
+            inherit repoPath;
+          };
+          backupPrepareCommand = stop {
+            service = systemdService;
+            inherit repoPath;
+          };
+        }
+        else if backupMode == "notify"
+        then {
+          backupCleanupCommand = cleanupNoService {
+            service = service.name;
+            inherit repoPath;
+          };
+          backupPrepareCommand = prepareNoService {
+            service = service.name;
+            inherit repoPath;
+          };
+        }
+        else {};
+    in
+      lib.nameValuePair service.name (
+        config.mySnippets.restic
+        // {
+          repository = repoPath;
+          inherit (service) paths;
+        }
+        // commands
+        // (service.extraConfig or {})
+      )) (lib.filter (s: s.enable) services));
 in {
   options.myNixOS.profiles.backups = {
-    enable = lib.mkEnableOption "automatically back up enabled services to gdrive";
+    enable = lib.mkEnableOption "automatically back up enabled services";
   };
 
   config = lib.mkIf config.myNixOS.profiles.backups.enable {
-    services.restic.backups = {
-      audiobookshelf = lib.mkIf config.services.audiobookshelf.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "audiobookshelf";
-          backupPrepareCommand = stop "audiobookshelf";
-          paths = [config.services.audiobookshelf.dataDir];
-          repository = mkRepoA "audiobookshelf";
-        }
-      );
-
-      bazarr = lib.mkIf config.services.bazarr.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "bazarr";
-          backupPrepareCommand = stop "bazarr";
-          paths = [config.services.bazarr.dataDir];
-          repository = mkRepoA "bazarr";
-        }
-      );
-
-      couchdb = lib.mkIf config.services.couchdb.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "couchdb";
-          backupPrepareCommand = stop "couchdb";
-          paths = [config.services.couchdb.databaseDir];
-          repository = mkRepoA "couchdb";
-        }
-      );
-
-      forgejo = lib.mkIf (config.services.forgejo.enable && config.services.forgejo.settings.storage.STORAGE_TYPE != "minio") (
-        config.mySnippets.restic
-        // {
-          paths = [config.services.forgejo.stateDir];
-          repository = mkRepoA "forgejo";
-        }
-      );
-
-      # immich = lib.mkIf config.services.immich.enable (
-      #   config.mySnippets.restic
-      #   // {
-      #     backupCleanupCommand = start "immich-server";
-      #     backupPrepareCommand = stop "immich-server";
-      #
-      #     paths = [
-      #       "${config.services.immich.mediaLocation}/library"
-      #       "${config.services.immich.mediaLocation}/profile"
-      #       "${config.services.immich.mediaLocation}/upload"
-      #       "${config.services.immich.mediaLocation}/backups"
-      #     ];
-      #
-      #     repository = mkRepoB "immich";
-      #   }
-      # );
-
-      jellyfin = lib.mkIf config.services.jellyfin.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "jellyfin";
-          backupPrepareCommand = stop "jellyfin";
-          paths = [config.services.jellyfin.dataDir];
-          repository = mkRepoA "jellyfin";
-        }
-      );
-
-      lidarr = lib.mkIf config.services.lidarr.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "lidarr";
-          backupPrepareCommand = stop "lidarr";
-          paths = [config.services.lidarr.dataDir];
-          repository = mkRepoA "lidarr";
-        }
-      );
-
-      ombi = lib.mkIf config.services.ombi.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "ombi";
-          backupPrepareCommand = stop "ombi";
-          paths = [config.services.ombi.dataDir];
-          repository = mkRepoA "ombi";
-        }
-      );
-
-      pds = lib.mkIf config.services.pds.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "pds";
-          backupPrepareCommand = stop "pds";
-          paths = [config.services.pds.settings.PDS_DATA_DIRECTORY];
-          repository = mkRepoA "pds";
-        }
-      );
-
-      plex = lib.mkIf config.services.plex.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "plex";
-          backupPrepareCommand = stop "plex";
+    services.restic.backups = mkBackups [
+      {
+        name = "audiobookshelf";
+        inherit (config.services.audiobookshelf) enable;
+        paths = [config.services.audiobookshelf.dataDir];
+      }
+      {
+        name = "bazarr";
+        inherit (config.services.bazarr) enable;
+        paths = [config.services.bazarr.dataDir];
+      }
+      {
+        name = "couchdb";
+        inherit (config.services.couchdb) enable;
+        paths = [config.services.couchdb.databaseDir];
+      }
+      {
+        name = "forgejo";
+        enable = config.services.forgejo.enable && config.services.forgejo.settings.storage.STORAGE_TYPE != "minio";
+        paths = [config.services.forgejo.stateDir];
+        backupMode = "none";
+      }
+      # {
+      #   name = "immich";
+      #   inherit (config.services.immich) enable;
+      #   name = "immich-server";
+      #   paths = [
+      #     "${config.services.immich.mediaLocation}/library"
+      #     "${config.services.immich.mediaLocation}/profile"
+      #     "${config.services.immich.mediaLocation}/upload"
+      #     "${config.services.immich.mediaLocation}/backups"
+      #   ];
+      #   repo = "B";
+      # }
+      {
+        name = "jellyfin";
+        inherit (config.services.jellyfin) enable;
+        paths = [config.services.jellyfin.dataDir];
+      }
+      {
+        name = "lidarr";
+        inherit (config.services.lidarr) enable;
+        paths = [config.services.lidarr.dataDir];
+      }
+      {
+        name = "ombi";
+        inherit (config.services.ombi) enable;
+        paths = [config.services.ombi.dataDir];
+      }
+      {
+        name = "pds";
+        inherit (config.services.pds) enable;
+        paths = [config.services.pds.settings.PDS_DATA_DIRECTORY];
+      }
+      {
+        name = "plex";
+        inherit (config.services.plex) enable;
+        paths = [config.services.plex.dataDir];
+        extraConfig = {
           exclude = ["${config.services.plex.dataDir}/Plex Media Server/Plug-in Support/Databases"];
-          paths = [config.services.plex.dataDir];
-          repository = mkRepoA "plex";
-        }
-      );
-
-      postgresql = lib.mkIf config.services.postgresql.enable (
-        config.mySnippets.restic
-        // {
-          paths = [config.services.postgresql.dataDir];
-          repository = mkRepoA "postgresql";
-        }
-      );
-
-      prowlarr = lib.mkIf config.services.prowlarr.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "prowlarr";
-          backupPrepareCommand = stop "prowlarr";
-          paths = [config.services.prowlarr.dataDir];
-          repository = mkRepoA "prowlarr";
-        }
-      );
-
-      qbittorrent = lib.mkIf config.myNixOS.services.qbittorrent.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "qbittorrent";
-          backupPrepareCommand = stop "qbittorrent";
-          paths = [config.myNixOS.services.qbittorrent.dataDir];
-          repository = mkRepoA "qbittorrent";
-        }
-      );
-
-      radarr = lib.mkIf config.services.radarr.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "radarr";
-          backupPrepareCommand = stop "radarr";
-          paths = [config.services.radarr.dataDir];
-          repository = mkRepoA "radarr";
-        }
-      );
-
-      readarr = lib.mkIf config.services.readarr.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "readarr";
-          backupPrepareCommand = stop "readarr";
-          paths = [config.services.readarr.dataDir];
-          repository = mkRepoA "readarr";
-        }
-      );
-
-      sonarr = lib.mkIf config.services.sonarr.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "sonarr";
-          backupPrepareCommand = stop "sonarr";
-          paths = [config.services.sonarr.dataDir];
-          repository = mkRepoA "sonarr";
-        }
-      );
-
-      autobrr = lib.mkIf config.services.autobrr.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "autobrr";
-          backupPrepareCommand = stop "autobrr";
-          paths = ["${config.myNixOS.profiles.arr.dataDir}/autobrr"];
-          repository = mkRepoA "autobrr";
-        }
-      );
-
-      tautulli = lib.mkIf config.services.tautulli.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "tautulli";
-          backupPrepareCommand = stop "tautulli";
-          paths = [config.services.tautulli.dataDir];
-          repository = mkRepoA "tautulli";
-        }
-      );
-
-      uptime-kuma = lib.mkIf config.services.uptime-kuma.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "uptime-kuma";
-          backupPrepareCommand = stop "uptime-kuma";
-          paths = ["/var/lib/uptime-kuma"];
-          repository = mkRepoA "uptime-kuma";
-        }
-      );
-
-      vaultwarden = lib.mkIf config.services.vaultwarden.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "vaultwarden";
-          backupPrepareCommand = stop "vaultwarden";
-          paths = ["/var/lib/vaultwarden"];
-          repository = mkRepoA "vaultwarden";
-        }
-      );
-
-      passwords = lib.mkIf (builtins.elem config.networking.hostName config.mySnippets.syncthing.folders."Passwords".devices) (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = cleanupNoService "passwords";
-          backupPrepareCommand = prepareNoService "passwords";
-          paths = [config.mySnippets.syncthing.folders."Passwords".path];
-          repository = mkRepoA "passwords";
-        }
-      );
-
-      radicale = lib.mkIf config.services.radicale.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "radicale";
-          backupPrepareCommand = stop "radicale";
-          paths = ["/var/lib/radicale"];
-          repository = mkRepoA "radicale";
-        }
-      );
-
-      webdav = lib.mkIf config.services.webdav-server-rs.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = cleanupNoService "webdav";
-          backupPrepareCommand = prepareNoService "webdav";
-          paths = ["/var/lib/webdav"];
-          repository = mkRepoA "webdav";
-        }
-      );
-
-      miniflux = lib.mkIf config.services.miniflux.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "miniflux";
-          backupPrepareCommand = stop "miniflux";
-          paths = ["/var/lib/miniflux"];
-          repository = mkRepoA "miniflux";
-        }
-      );
-
-      jellyseerr = lib.mkIf config.services.jellyseerr.enable (
-        config.mySnippets.restic
-        // {
-          backupCleanupCommand = start "jellyseerr";
-          backupPrepareCommand = stop "jellyseerr";
-          paths = ["/var/lib/jellyseerr"];
-          repository = mkRepoA "jellyseerr";
-        }
-      );
-    };
+        };
+      }
+      {
+        name = "postgresql";
+        inherit (config.services.postgresql) enable;
+        paths = [config.services.postgresql.dataDir];
+        backupMode = "none";
+      }
+      {
+        name = "prowlarr";
+        inherit (config.services.prowlarr) enable;
+        paths = [config.services.prowlarr.dataDir];
+      }
+      {
+        name = "qbittorrent";
+        inherit (config.services.qbittorrent) enable;
+        paths = [config.services.qbittorrent.dataDir];
+      }
+      {
+        name = "radarr";
+        inherit (config.services.radarr) enable;
+        paths = [config.services.radarr.dataDir];
+      }
+      {
+        name = "readarr";
+        inherit (config.services.readarr) enable;
+        paths = [config.services.readarr.dataDir];
+      }
+      {
+        name = "sonarr";
+        inherit (config.services.sonarr) enable;
+        paths = [config.services.sonarr.dataDir];
+      }
+      {
+        name = "autobrr";
+        inherit (config.services.autobrr) enable;
+        paths = ["${config.myNixOS.profiles.arr.dataDir}/autobrr"];
+      }
+      {
+        name = "tautulli";
+        inherit (config.services.tautulli) enable;
+        paths = [config.services.tautulli.dataDir];
+      }
+      {
+        name = "uptime-kuma";
+        inherit (config.services.uptime-kuma) enable;
+        paths = ["/var/lib/uptime-kuma"];
+      }
+      {
+        name = "vaultwarden";
+        inherit (config.services.vaultwarden) enable;
+        paths = ["/var/lib/vaultwarden"];
+      }
+      {
+        name = "passwords";
+        enable = builtins.elem config.networking.hostName config.mySnippets.syncthing.folders."Passwords".devices;
+        paths = [config.mySnippets.syncthing.folders."Passwords".path];
+        backupMode = "notify";
+      }
+      {
+        name = "radicale";
+        inherit (config.services.radicale) enable;
+        paths = ["/var/lib/radicale"];
+      }
+      {
+        name = "webdav";
+        inherit (config.services.webdav-server-rs) enable;
+        paths = ["/var/lib/webdav"];
+        backupMode = "notify";
+      }
+      {
+        name = "miniflux";
+        inherit (config.services.miniflux) enable;
+        paths = ["/var/lib/miniflux"];
+      }
+      {
+        name = "jellyseerr";
+        inherit (config.services.jellyseerr) enable;
+        paths = ["/var/lib/jellyseerr"];
+      }
+    ];
   };
 }

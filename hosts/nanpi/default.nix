@@ -35,6 +35,11 @@
         enable = true;
         deduplicate = true;
       };
+      swap = {
+        enable = true;
+        size = 4096;
+        location = "/.swap";
+      };
       arr.enable = true;
     };
     services = {

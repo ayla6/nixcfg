@@ -4,6 +4,35 @@
   ...
 }: let
   dataDirectory = "/var/lib";
+
+  mkCaddyVHosts = services:
+    pkgs.lib.listToAttrs (map (service: let
+      netMap = config.mySnippets.${service.location or "tailnet"}.networkMap.${service.name};
+      flush = service.flushInterval or false;
+      proxyConfig =
+        if flush
+        then ''
+          reverse_proxy ${netMap.hostName}:${toString netMap.port} {
+            flush_interval -1
+          }
+        ''
+        else "reverse_proxy ${netMap.hostName}:${toString netMap.port}";
+    in
+      pkgs.lib.nameValuePair "${netMap.vHost}" {
+        extraConfig = ''
+          bind tailscale/${service.name}
+          encode zstd gzip
+          ${proxyConfig}
+        '';
+      })
+    services);
+
+  mkCloudflareIngress = services:
+    pkgs.lib.listToAttrs (map (service: let
+      netMap = config.mySnippets.${service.location or "aylac-top"}.networkMap.${service.name};
+    in
+      pkgs.lib.nameValuePair netMap.vHost "http://${netMap.hostName}:${toString netMap.port}")
+    services);
 in {
   services = {
     pds = {
@@ -25,161 +54,53 @@ in {
           certificateFile = config.age.secrets.cloudflareCertificate.path;
           credentialsFile = config.age.secrets.cloudflareCredentials.path;
           default = "http_status:404";
-          ingress = {
-            "${config.mySnippets.aylac-top.networkMap.pds.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.pds.hostName}:${toString config.mySnippets.aylac-top.networkMap.pds.port}";
-
-            "${config.mySnippets.aylac-top.networkMap.vaultwarden.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.vaultwarden.hostName}:${toString config.mySnippets.aylac-top.networkMap.vaultwarden.port}";
-
-            "${config.mySnippets.aylac-top.networkMap.forgejo.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.forgejo.hostName}:${toString config.mySnippets.aylac-top.networkMap.forgejo.port}";
-
-            "${config.mySnippets.aylac-top.networkMap.ntfy.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.ntfy.hostName}:${toString config.mySnippets.aylac-top.networkMap.ntfy.port}";
-
-            "${config.mySnippets.aylac-top.networkMap.glance.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.glance.hostName}:${toString config.mySnippets.aylac-top.networkMap.glance.port}";
-          };
+          ingress = mkCloudflareIngress [
+            {name = "pds";}
+            {name = "vaultwarden";}
+            {name = "forgejo";}
+            {name = "ntfy";}
+            {name = "glance";}
+          ];
         };
       };
     };
 
-    caddy.virtualHosts = {
-      "${config.mySnippets.tailnet.networkMap.jellyfin.vHost}" = {
-        extraConfig = ''
-          bind tailscale/jellyfin
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.jellyfin.hostName}:${toString config.mySnippets.tailnet.networkMap.jellyfin.port} {
-            flush_interval -1
-          }
-        '';
-      };
+    caddy.virtualHosts = mkCaddyVHosts [
+      {
+        name = "jellyfin";
+        flushInterval = true;
+      }
+      {name = "qbittorrent";}
+      {name = "radicale";}
+      {name = "webdav";}
+      {name = "bazarr";}
+      {name = "prowlarr";}
+      {name = "radarr";}
+      {name = "sonarr";}
+      {name = "autobrr";}
+      {name = "glance";}
+      {name = "karakeep";}
+      {name = "copyparty";}
+      {name = "redlib";}
+      {name = "miniflux";}
+      {name = "jellyseerr";}
+      {name = "audiobookshelf";}
+    ];
 
-      "${config.mySnippets.tailnet.networkMap.qbittorrent.vHost}" = {
-        extraConfig = ''
-          bind tailscale/qbittorrent
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.qbittorrent.hostName}:${toString config.mySnippets.tailnet.networkMap.qbittorrent.port}
-        '';
-      };
+    #immich = {
+    #  enable = true;
+    #  host = "0.0.0.0";
+    #  mediaLocation = "${dataDirectory}/immich";
+    #  openFirewall = true;
+    #  inherit (config.mySnippets.tailnet.networkMap.immich) port;
+    #};
 
-      "${config.mySnippets.tailnet.networkMap.radicale.vHost}" = {
-        extraConfig = ''
-          bind tailscale/radicale
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.radicale.hostName}:${toString config.mySnippets.tailnet.networkMap.radicale.port}
-        '';
-      };
-
-      "${config.mySnippets.tailnet.networkMap.webdav.vHost}" = {
-        extraConfig = ''
-          bind tailscale/webdav
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.webdav.hostName}:${toString config.mySnippets.tailnet.networkMap.webdav.port}
-        '';
-      };
-
-      "${config.mySnippets.tailnet.networkMap.bazarr.vHost}" = {
-        extraConfig = ''
-          bind tailscale/bazarr
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.bazarr.hostName}:${toString config.mySnippets.tailnet.networkMap.bazarr.port}
-        '';
-      };
-
-      #"${config.mySnippets.tailnet.networkMap.lidarr.vHost}" = {
-      #  extraConfig = ''
-      #    bind tailscale/lidarr
-      #    encode zstd gzip
-      #    reverse_proxy ${config.mySnippets.tailnet.networkMap.lidarr.hostName}:${toString config.mySnippets.tailnet.networkMap.lidarr.port}
-      #  '';
-      #};
-
-      "${config.mySnippets.tailnet.networkMap.prowlarr.vHost}" = {
-        extraConfig = ''
-          bind tailscale/prowlarr
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.prowlarr.hostName}:${toString config.mySnippets.tailnet.networkMap.prowlarr.port}
-        '';
-      };
-
-      "${config.mySnippets.tailnet.networkMap.radarr.vHost}" = {
-        extraConfig = ''
-          bind tailscale/radarr
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.radarr.hostName}:${toString config.mySnippets.tailnet.networkMap.radarr.port}
-        '';
-      };
-
-      "${config.mySnippets.tailnet.networkMap.sonarr.vHost}" = {
-        extraConfig = ''
-          bind tailscale/sonarr
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.sonarr.hostName}:${toString config.mySnippets.tailnet.networkMap.sonarr.port}
-        '';
-      };
-
-      "${config.mySnippets.tailnet.networkMap.autobrr.vHost}" = {
-        extraConfig = ''
-          bind tailscale/autobrr
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.autobrr.hostName}:${toString config.mySnippets.tailnet.networkMap.autobrr.port}
-        '';
-      };
-
-      "${config.mySnippets.tailnet.networkMap.glance.vHost}" = {
-        extraConfig = ''
-          bind tailscale/glance
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.glance.hostName}:${toString config.mySnippets.tailnet.networkMap.glance.port}
-        '';
-      };
-
-      "${config.mySnippets.tailnet.networkMap.karakeep.vHost}" = {
-        extraConfig = ''
-          bind tailscale/karakeep
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.karakeep.hostName}:${toString config.mySnippets.tailnet.networkMap.karakeep.port}
-        '';
-      };
-
-      "${config.mySnippets.tailnet.networkMap.copyparty.vHost}" = {
-        extraConfig = ''
-          bind tailscale/copyparty
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.copyparty.hostName}:${toString config.mySnippets.tailnet.networkMap.copyparty.port}
-        '';
-      };
-
-      "${config.mySnippets.tailnet.networkMap.redlib.vHost}" = {
-        extraConfig = ''
-          bind tailscale/redlib
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.redlib.hostName}:${toString config.mySnippets.tailnet.networkMap.redlib.port}
-        '';
-      };
-
-      "${config.mySnippets.tailnet.networkMap.miniflux.vHost}" = {
-        extraConfig = ''
-          bind tailscale/miniflux
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.miniflux.hostName}:${toString config.mySnippets.tailnet.networkMap.miniflux.port}
-        '';
-      };
-
-      "${config.mySnippets.tailnet.networkMap.jellyseerr.vHost}" = {
-        extraConfig = ''
-          bind tailscale/jellyseerr
-          encode zstd gzip
-          reverse_proxy ${config.mySnippets.tailnet.networkMap.jellyseerr.hostName}:${toString config.mySnippets.tailnet.networkMap.jellyseerr.port}
-        '';
-      };
+    audiobookshelf = {
+      enable = true;
+      host = "0.0.0.0";
+      openFirewall = true;
+      inherit (config.mySnippets.tailnet.networkMap.audiobookshelf) port;
     };
-
-    # it's failing to build because it can't download some stuff
-    # immich = {
-    #   enable = true;
-    #   host = "0.0.0.0";
-    #   mediaLocation = "${dataDirectory}/immich";
-    #   openFirewall = true;
-    #   inherit (config.mySnippets.tailnet.networkMap.immich) port;
-    # };
 
     vaultwarden = {
       enable = true;
@@ -192,6 +113,7 @@ in {
         SIGNUPS_ALLOWED = false;
         ICON_SERVICE = "bitwarden";
         ICON_CACHE_TTL = 0;
+        IP_HEADER = "CF-Connecting-IP";
       };
 
       environmentFile = config.age.secrets.vaultwarden.path;

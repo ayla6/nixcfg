@@ -92,7 +92,7 @@
             imageViewer.package = pkgs.loupe;
             pdfViewer.package = pkgs.papers;
             terminal.package = pkgs.ptyxis;
-            terminalEditor.package = config.programs.micro.package;
+            terminalEditor.package = config.programs.helix.package;
             webBrowser.package = config.programs.firefox.finalPackage;
             #webBrowser = {
             #  exec = lib.getExe config.programs.zen-browser.finalPackage;
@@ -165,6 +165,11 @@
           flare-signal
           audacious
           audacious-plugins
+
+          zip
+          xz
+          unzip
+          p7zip
         ];
       };
     })
