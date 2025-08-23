@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }: let
   mkNotify = {
@@ -23,7 +24,7 @@ in {
         user = "root";
         group = "root";
         mode = "0640";
-        source = config.age.secrets.cloudflareFail2ban.path;
+        source = "${self.inputs.secrets}/cloudflare/fail2ban.age";
       };
 
       "fail2ban/action.d/ntfy.conf".text = ''

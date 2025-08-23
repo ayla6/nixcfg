@@ -40,6 +40,7 @@
           rclone
           rclone-browser
           bitwarden
+          tenacity
 
           # gaming
           mgba
@@ -69,7 +70,6 @@
             enable = true;
             mode = "sidebar";
           };
-          zen-browser.enable = true;
           git.enable = true;
           helix.enable = true;
           micro.enable = true;
@@ -77,6 +77,7 @@
           obs-studio.enable = true;
           ssh.enable = true;
           zed-editor.enable = true;
+          zen-browser.enable = false;
         };
 
         profiles = {
