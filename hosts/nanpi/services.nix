@@ -35,6 +35,48 @@
     services);
 in {
   services = {
+    cloudflared = {
+      enable = true;
+      certificateFile = config.age.secrets.cloudflareCertificate.path;
+      tunnels = {
+        "efe3d484-102d-4c58-bb17-ceaede4d7a4f" = {
+          certificateFile = config.age.secrets.cloudflareCertificate.path;
+          credentialsFile = config.age.secrets.cloudflareCredentials.path;
+          default = "http_status:404";
+          ingress = mkCloudflareIngress [
+            {name = "forgejo";}
+            {name = "glance";}
+            {name = "ntfy";}
+            {name = "pds";}
+            {name = "vaultwarden";}
+          ];
+        };
+      };
+    };
+
+    caddy.virtualHosts = mkCaddyVHosts [
+      {name = "audiobookshelf";}
+      {name = "autobrr";}
+      {name = "bazarr";}
+      {name = "copyparty";}
+      {name = "couchdb";}
+      {name = "glance";}
+      {
+        name = "jellyfin";
+        flushInterval = true;
+      }
+      {name = "jellyseerr";}
+      {name = "karakeep";}
+      {name = "miniflux";}
+      {name = "prowlarr";}
+      {name = "qbittorrent";}
+      {name = "radarr";}
+      {name = "radicale";}
+      {name = "redlib";}
+      {name = "sonarr";}
+      {name = "webdav";}
+    ];
+
     pds = {
       enable = true;
       environmentFiles = [config.age.secrets.pds.path];
@@ -45,47 +87,6 @@ in {
         # PDS_BSKY_APP_VIEW_DID = "did:web:bsky.zeppelin.social";
       };
     };
-
-    cloudflared = {
-      enable = true;
-      certificateFile = config.age.secrets.cloudflareCertificate.path;
-      tunnels = {
-        "efe3d484-102d-4c58-bb17-ceaede4d7a4f" = {
-          certificateFile = config.age.secrets.cloudflareCertificate.path;
-          credentialsFile = config.age.secrets.cloudflareCredentials.path;
-          default = "http_status:404";
-          ingress = mkCloudflareIngress [
-            {name = "pds";}
-            {name = "vaultwarden";}
-            {name = "forgejo";}
-            {name = "ntfy";}
-            {name = "glance";}
-          ];
-        };
-      };
-    };
-
-    caddy.virtualHosts = mkCaddyVHosts [
-      {
-        name = "jellyfin";
-        flushInterval = true;
-      }
-      {name = "qbittorrent";}
-      {name = "radicale";}
-      {name = "webdav";}
-      {name = "bazarr";}
-      {name = "prowlarr";}
-      {name = "radarr";}
-      {name = "sonarr";}
-      {name = "autobrr";}
-      {name = "glance";}
-      {name = "karakeep";}
-      {name = "copyparty";}
-      {name = "redlib";}
-      {name = "miniflux";}
-      {name = "jellyseerr";}
-      {name = "audiobookshelf";}
-    ];
 
     #immich = {
     #  enable = true;
@@ -269,6 +270,44 @@ in {
             auth = "true";
           }
         ];
+      };
+    };
+
+    couchdb = {
+      inherit (config.mySnippets.tailnet.networkMap.couchdb) port;
+      enable = true;
+      bindAddress = "0.0.0.0";
+
+      extraConfig = {
+        couchdb = {
+          single_node = true;
+          max_document_size = 50000000;
+        };
+
+        chttpd = {
+          require_valid_user = true;
+          max_http_request_size = 4294967296;
+          enable_cors = true;
+        };
+
+        chttpd_auth = {
+          require_valid_user = true;
+          authentication_redirect = "/_utils/session.html";
+        };
+
+        httpd = {
+          enable_cors = true;
+          "WWW-Authenticate" = "Basic realm=\"couchdb\"";
+          bind_address = "0.0.0.0";
+        };
+
+        cors = {
+          origins = "app://obsidian.md,capacitor://localhost,http://localhost";
+          credentials = true;
+          headers = "accept, authorization, content-type, origin, referer";
+          methods = "GET,PUT,POST,HEAD,DELETE";
+          max_age = 3600;
+        };
       };
     };
   };

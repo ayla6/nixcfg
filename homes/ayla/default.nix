@@ -15,39 +15,40 @@
       home = {
         packages = with pkgs; [
           # development
+          ffmpeg-full
+          love
+          luajit
           nodejs
           pnpm
           typescript
-          ffmpeg-full
-          luajit
-          love
 
           # applications
-          qbittorrent
-          kdePackages.kdenlive
-          krita
-          gimp3
-          yt-dlp
           aseprite
+          bitwarden
+          blender
+          calibre
+          freac
+          gimp3
           inkscape
           jellyfin-media-player
-          calibre
-          picard
-          freac
+          kdePackages.kdenlive
+          krita
           lmms
           nicotine-plus
-          blender
+          obsidian
+          picard
+          qbittorrent
           rclone
           rclone-browser
-          bitwarden
           tenacity
+          yt-dlp
 
           # gaming
-          mgba
           melonDS
+          mgba
+          mindustry
           openttd
           prismlauncher
-          mindustry
         ];
 
         username = "ayla";

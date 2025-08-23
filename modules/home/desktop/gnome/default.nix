@@ -31,10 +31,9 @@
         };
 
         "org/gnome/desktop/peripherals/touchpad".tap-to-click = true;
-
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = "<Super>Return";
-          command = "${defaultApps.terminal}";
+          command = "${defaultApps.terminal}${lib.optionalString (config.myHome.profiles.defaultApps.terminal.package == pkgs.ptyxis) " --new-window"}";
           name = "Terminal";
         };
 
