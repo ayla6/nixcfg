@@ -33,9 +33,12 @@
     security.pam.services.greetd.enableGnomeKeyring = true;
     services.gnome.gcr-ssh-agent.enable = true;
 
-    programs.kdeconnect = {
-      enable = true;
-      package = pkgs.gnomeExtensions.gsconnect;
+    programs = {
+      nautilus-open-any-terminal.enable = true;
+      kdeconnect = {
+        enable = true;
+        package = pkgs.gnomeExtensions.gsconnect;
+      };
     };
 
     environment = {
