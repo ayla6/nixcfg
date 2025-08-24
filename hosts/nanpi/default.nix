@@ -6,8 +6,6 @@
   imports = [
     ./home.nix
     ./secrets.nix
-    ./services.nix
-    ./glance.nix
     ./notifier.nix
     self.nixosModules.locale-en-gb
     self.diskoConfigurations.luks-btrfs-subvolumes
@@ -26,10 +24,11 @@
     profiles = {
       base.enable = true;
       server.enable = true;
-      #autoUpgrade = {
-      #  enable = true;
-      #  operation = "boot";
-      #};
+      autoUpgrade = {
+        enable = true;
+        operation = "boot";
+        allowReboot = false;
+      };
       backups.enable = true;
       btrfs = {
         enable = true;
@@ -43,8 +42,22 @@
       arr.enable = true;
     };
     services = {
+      audiobookshelf.enable = true;
       caddy.enable = true;
+      cloudflared.enable = true;
+      copyparty.enable = true;
+      couchdb.enable = true;
       dnsmasq.enable = true;
+      forgejo = {
+        enable = true;
+        db = "postgresql";
+      };
+      glance.enable = true;
+      jellyfin.enable = true;
+      karakeep.enable = true;
+      miniflux.enable = true;
+      ntfy.enable = true;
+      pds.enable = true;
       tailscale = {
         enable = true;
         enableCaddy = true;
@@ -61,10 +74,9 @@
         webuiPort = config.mySnippets.tailnet.networkMap.qbittorrent.port;
         openFirewall = true;
       };
-      forgejo = {
-        enable = true;
-        db = "postgresql";
-      };
+      radicale.enable = true;
+      redlib.enable = true;
+      webdav.enable = true;
     };
   };
 

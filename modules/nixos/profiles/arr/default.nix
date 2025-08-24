@@ -1,8 +1,13 @@
 {
   config,
   lib,
+  self,
   ...
-}: {
+}: let
+  cfg = config.myNixOS.profiles.arr;
+
+  netMap = config.mySnippets.tailnet.networkMap;
+in {
   options.myNixOS.profiles.arr = {
     enable = lib.mkEnableOption "*arr services";
 
@@ -11,39 +16,50 @@
       default = "/var/lib";
       description = "The directory where *arr stores its data files.";
     };
+
+    autoProxy = lib.mkOption {
+      default = true;
+      example = false;
+      description = "auto proxy the *arrs";
+      type = lib.types.bool;
+    };
   };
 
   config = lib.mkMerge [
-    (lib.mkIf config.myNixOS.profiles.arr.enable {
+    (lib.mkIf cfg.enable {
+      age.secrets.autobrr.file = "${self.inputs.secrets}/autobrr.age";
+
       services = {
-        bazarr = {
-          enable = true;
-          dataDir = "${config.myNixOS.profiles.arr.dataDir}/bazarr";
-          openFirewall = true; # Port: 6767
-        };
+        caddy.virtualHosts = lib.mkIf cfg.autoProxy {
+          "${netMap.autobrr.vHost}".extraConfig = ''
+            bind tailscale/autobrr
+            encode zstd gzip
+            reverse_proxy ${netMap.autobrr.hostName}:${toString netMap.autobrr.port}
+          '';
 
-        #lidarr = {
-        #  enable = true;
-        #  dataDir = "${config.myNixOS.profiles.arr.dataDir}/lidarr/.config/Lidarr";
-        #  openFirewall = true; # Port: 8686
-        #};
+          "${netMap.bazarr.vHost}".extraConfig = ''
+            bind tailscale/bazarr
+            encode zstd gzip
+            reverse_proxy ${netMap.bazarr.hostName}:${toString netMap.bazarr.port}
+          '';
 
-        prowlarr = {
-          enable = true;
-          # dataDir = "${config.myNixOS.profiles.arr.dataDir}/prowlarr";
-          openFirewall = true; # Port: 9696
-        };
+          "${netMap.prowlarr.vHost}".extraConfig = ''
+            bind tailscale/prowlarr
+            encode zstd gzip
+            reverse_proxy ${netMap.prowlarr.hostName}:${toString netMap.prowlarr.port}
+          '';
 
-        radarr = {
-          enable = true;
-          dataDir = "${config.myNixOS.profiles.arr.dataDir}/radarr/.config/Radarr/";
-          openFirewall = true; # Port: 7878
-        };
+          "${netMap.radarr.vHost}".extraConfig = ''
+            bind tailscale/radarr
+            encode zstd gzip
+            reverse_proxy ${netMap.radarr.hostName}:${toString netMap.radarr.port}
+          '';
 
-        sonarr = {
-          enable = true;
-          dataDir = "${config.myNixOS.profiles.arr.dataDir}/sonarr/.config/NzbDrone/";
-          openFirewall = true; # Port: 8989
+          "${netMap.sonarr.vHost}".extraConfig = ''
+            bind tailscale/sonarr
+            encode zstd gzip
+            reverse_proxy ${netMap.sonarr.hostName}:${toString netMap.sonarr.port}
+          '';
         };
 
         autobrr = {
@@ -54,6 +70,36 @@
             host = "0.0.0.0";
             port = 7474;
           };
+        };
+
+        bazarr = {
+          enable = true;
+          dataDir = "${cfg.dataDir}/bazarr";
+          openFirewall = true; # Port: 6767
+        };
+
+        #lidarr = {
+        #  enable = true;
+        #  dataDir = "${cfg.dataDir}/lidarr/.config/Lidarr";
+        #  openFirewall = true; # Port: 8686
+        #};
+
+        prowlarr = {
+          enable = true;
+          # dataDir = "${cfg.dataDir}/prowlarr";
+          openFirewall = true; # Port: 9696
+        };
+
+        radarr = {
+          enable = true;
+          dataDir = "${cfg.dataDir}/radarr/.config/Radarr/";
+          openFirewall = true; # Port: 7878
+        };
+
+        sonarr = {
+          enable = true;
+          dataDir = "${cfg.dataDir}/sonarr/.config/NzbDrone/";
+          openFirewall = true; # Port: 8989
         };
       };
 

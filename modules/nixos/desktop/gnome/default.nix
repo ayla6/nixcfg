@@ -34,7 +34,6 @@
     services.gnome.gcr-ssh-agent.enable = true;
 
     programs = {
-      nautilus-open-any-terminal.enable = true;
       kdeconnect = {
         enable = true;
         package = pkgs.gnomeExtensions.gsconnect;

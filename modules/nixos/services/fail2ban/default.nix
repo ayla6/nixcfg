@@ -19,12 +19,16 @@ in {
   options.myNixOS.services.fail2ban.enable = lib.mkEnableOption "fail2ban";
 
   config = lib.mkIf config.myNixOS.services.fail2ban.enable {
+    age.secrets = {
+      cloudflareFail2ban.file = "${self.inputs.secrets}/cloudflare/fail2ban.age";
+    };
+
     environment.etc = {
       "fail2ban/action.d/mycloudflare.conf" = {
         user = "root";
         group = "root";
         mode = "0640";
-        source = "${self.inputs.secrets}/cloudflare/fail2ban.age";
+        source = config.age.secrets.cloudflareFail2ban.path;
       };
 
       "fail2ban/action.d/ntfy.conf".text = ''

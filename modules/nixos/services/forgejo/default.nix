@@ -4,24 +4,39 @@
   pkgs,
   self,
   ...
-}: {
+}: let
+  name = "forgejo";
+  cfg = config.myNixOS.services.${name};
+
+  network = config.mySnippets.aylac-top;
+  service = network.networkMap.${name};
+in {
   options.myNixOS.services.forgejo = {
-    enable = lib.mkEnableOption "forĝejo git forge";
+    enable = lib.mkEnableOption "forgejo git forge";
 
     db = lib.mkOption {
       description = "Database to use (sqlite or postgresql).";
       default = "sqlite";
       type = lib.types.str;
     };
+
+    autoProxy = lib.mkOption {
+      default = true;
+      example = false;
+      description = "${name} auto proxy";
+      type = lib.types.bool;
+    };
   };
 
-  config = lib.mkIf config.myNixOS.services.forgejo.enable {
-    age.secrets = {
-      postgres-forgejo.file = "${self.inputs.secrets}/postgres/forgejo.age";
-    };
+  config = lib.mkIf cfg.enable {
+    age.secrets.forgejo.file = "${self.inputs.secrets}/postgres/forgejo.age";
 
     services = {
-      postgresql = lib.mkIf (config.myNixOS.services.forgejo.db
+      cloudflared.tunnels."${network.cloudflareTunnel}".ingress = lib.mkIf cfg.autoProxy {
+        "${service.vHost}" = "http://${service.hostName}:${toString service.port}";
+      };
+
+      postgresql = lib.mkIf (cfg.db
         == "postgresql") {
         enable = true;
         package = pkgs.postgresql_16;
@@ -38,12 +53,12 @@
       forgejo = {
         enable = true;
 
-        database = lib.mkIf (config.myNixOS.services.forgejo.db
+        database = lib.mkIf (cfg.db
           == "postgresql") {
           createDatabase = true;
           host = "127.0.0.1";
           name = "forgejo";
-          passwordFile = config.age.secrets.postgres-forgejo.path;
+          passwordFile = config.age.secrets.forgejo.path;
           type = "postgres";
           user = "forgejo";
         };
@@ -95,11 +110,11 @@
           security.PASSWORD_CHECK_PWN = true;
 
           server = {
-            DOMAIN = config.mySnippets.aylac-top.networkMap.forgejo.vHost;
-            HTTP_PORT = config.mySnippets.aylac-top.networkMap.forgejo.port;
+            DOMAIN = service.vHost;
+            HTTP_PORT = service.port;
             LANDING_PAGE = "explore";
             LFS_START_SERVER = true;
-            ROOT_URL = "https://${config.mySnippets.aylac-top.networkMap.forgejo.vHost}/";
+            ROOT_URL = "https://${service.vHost}/";
             DISABLE_SSH = true;
           };
 
