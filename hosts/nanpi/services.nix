@@ -33,6 +33,14 @@
     in
       pkgs.lib.nameValuePair netMap.vHost "http://${netMap.hostName}:${toString netMap.port}")
     services);
+
+  pdsHomePage = ''
+    hiii this is an ATProto PDS!! You will find my (ayla) account here!!
+    i should probably put some cool ass art in here or maybe an actual homepage
+    but having this by itself is fun
+
+    most API routes are under /xrpc/
+  '';
 in {
   services = {
     cloudflared = {
@@ -43,39 +51,65 @@ in {
           certificateFile = config.age.secrets.cloudflareCertificate.path;
           credentialsFile = config.age.secrets.cloudflareCredentials.path;
           default = "http_status:404";
-          ingress = mkCloudflareIngress [
-            {name = "forgejo";}
-            {name = "glance";}
-            {name = "ntfy";}
-            {name = "pds";}
-            {name = "vaultwarden";}
-          ];
+          ingress =
+            mkCloudflareIngress [
+              {name = "forgejo";}
+              {name = "glance";}
+              {name = "ntfy";}
+              {name = "vaultwarden";}
+            ]
+            // {
+              "${config.mySnippets.aylac-top.networkMap.pds.vHost}" = "http://${config.mySnippets.aylac-top.networkMap.pds.hostName}";
+            };
         };
       };
     };
 
-    caddy.virtualHosts = mkCaddyVHosts [
-      {name = "audiobookshelf";}
-      {name = "autobrr";}
-      {name = "bazarr";}
-      {name = "copyparty";}
-      {name = "couchdb";}
-      {name = "glance";}
-      {
-        name = "jellyfin";
-        flushInterval = true;
-      }
-      {name = "jellyseerr";}
-      {name = "karakeep";}
-      {name = "miniflux";}
-      {name = "prowlarr";}
-      {name = "qbittorrent";}
-      {name = "radarr";}
-      {name = "radicale";}
-      {name = "redlib";}
-      {name = "sonarr";}
-      {name = "webdav";}
-    ];
+    caddy.virtualHosts =
+      mkCaddyVHosts [
+        {name = "audiobookshelf";}
+        {name = "autobrr";}
+        {name = "bazarr";}
+        {name = "copyparty";}
+        {name = "couchdb";}
+        {name = "glance";}
+        {
+          name = "jellyfin";
+          flushInterval = true;
+        }
+        {name = "jellyseerr";}
+        {name = "karakeep";}
+        {name = "miniflux";}
+        {name = "prowlarr";}
+        {name = "qbittorrent";}
+        {name = "radarr";}
+        {name = "radicale";}
+        {name = "redlib";}
+        {name = "sonarr";}
+        {name = "webdav";}
+      ]
+      // {
+        "http://${config.mySnippets.aylac-top.networkMap.pds.vHost}" = {
+          extraConfig = ''
+            encode zstd gzip
+
+            handle / {
+              respond "${pdsHomePage}"
+            }
+
+            handle /xrpc/app.bsky.unspecced.getAgeAssuranceState {
+            	header content-type "application/json"
+            	header access-control-allow-headers "authorization,dpop,atproto-accept-labelers,atproto-proxy"
+            	header access-control-allow-origin "*"
+            	respond `{"lastInitiatedAt":"2025-07-14T14:22:43.912Z","status":"assured"}` 200
+            }
+
+            handle {
+              reverse_proxy ${config.mySnippets.aylac-top.networkMap.pds.hostName}:${toString config.mySnippets.aylac-top.networkMap.pds.port}
+            }
+          '';
+        };
+      };
 
     pds = {
       enable = true;
@@ -214,7 +248,7 @@ in {
     };
 
     jellyseerr = {
-      enable = false;
+      enable = true;
       inherit (config.mySnippets.tailnet.networkMap.jellyseerr) port;
       openFirewall = true;
     };

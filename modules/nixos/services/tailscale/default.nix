@@ -35,7 +35,7 @@
       }
     ];
 
-    age.secrets.tailscaleCaddyAuth.file = "${self.inputs.secrets}/tailscale/caddyAuth.age";
+    age.secrets.caddy.file = "${self.inputs.secrets}/caddy.age";
 
     home-manager.sharedModules = [
       {

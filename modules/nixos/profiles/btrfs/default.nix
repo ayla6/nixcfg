@@ -94,6 +94,9 @@ in {
           -.snapshots
           -.thunderbird
           -.zshrc
+          -.zen
+          -.steam
+          -.npm
         '';
 
         persistentTimer = true;
