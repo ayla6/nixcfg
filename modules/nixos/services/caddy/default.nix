@@ -8,14 +8,15 @@
   options.myNixOS.services.caddy.enable = lib.mkEnableOption "Caddy web server.";
 
   config = lib.mkIf config.myNixOS.services.caddy.enable {
-    age.secrets.tailscaleCaddyAuth.file = "${self.inputs.secrets}/tailscale/caddyAuth.age";
+    # TS_AUTHKEY and CF_API_TOKEN are defined in this file
+    age.secrets.caddy.file = "${self.inputs.secrets}/caddy.age";
     networking.firewall.allowedTCPPorts = [80 443];
 
     services = {
       caddy = {
         enable = true;
         enableReload = false;
-        environmentFile = config.age.secrets.tailscaleCaddyAuth.path;
+        environmentFile = config.age.secrets.caddy.path;
 
         globalConfig = ''
           tailscale {
@@ -30,5 +31,6 @@
       };
       tailscale.permitCertUid = "caddy";
     };
+    systemd.services.caddy.serviceConfig.AmbientCapabilities = "CAP_NET_BIND_SERVICE";
   };
 }
