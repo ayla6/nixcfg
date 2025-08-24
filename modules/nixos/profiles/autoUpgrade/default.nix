@@ -12,6 +12,12 @@
       default = "boot";
       description = "Operation to perform on auto-upgrade. Can be 'boot', 'switch', or 'test'.";
     };
+
+    allowReboot = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Allow auto-upgrade to reboot the system.";
+    };
   };
 
   config = lib.mkIf config.myNixOS.profiles.autoUpgrade.enable {
@@ -19,7 +25,7 @@
       inherit (config.myNixOS.profiles.autoUpgrade) operation;
 
       enable = true;
-      allowReboot = lib.mkDefault true;
+      inherit (config.myNixOS.profiles.autoUpgrade) allowReboot;
       dates = "02:00";
       flags = ["--accept-flake-config"];
       flake = config.environment.variables.FLAKE or "github:ayla6/nixcfg";

@@ -1,14 +1,30 @@
 {...}: {
   imports = [
+    ./audiobookshelf
     ./aria2
+    ./couchdb
+    ./cloudflared
+    ./copyparty
     ./caddy
     ./dnsmasq
     ./fail2ban
     ./forgejo
     ./gdm
+    ./glance
+    ./jellyfin
+    ./jellyseerr
+    ./karakeep
+    ./miniflux
+    ./monitoring
+    ./ntfy
+    ./pds
     ./qbittorrent
+    ./radicale
+    ./redlib
     ./syncthing
     ./tailscale
-    ./monitoring
+    ./uptime-kuma
+    ./vaultwarden
+    ./webdav-server-rs
   ];
 }

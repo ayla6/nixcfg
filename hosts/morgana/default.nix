@@ -39,6 +39,7 @@
 
       autoUpgrade = {
         enable = true;
+        allowReboot = false;
         operation = "switch";
       };
     };

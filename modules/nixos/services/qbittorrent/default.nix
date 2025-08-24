@@ -6,7 +6,11 @@
   utils,
   ...
 }: let
-  cfg = config.myNixOS.services.qbittorrent;
+  name = "qbittorrent";
+  cfg = config.myNixOS.services.${name};
+
+  network = config.mySnippets.tailnet;
+  service = network.networkMap.${name};
 in {
   options.myNixOS.services.qbittorrent = {
     enable = lib.mkEnableOption "qBittorrent headless";
@@ -64,6 +68,13 @@ in {
         "--confirm-legal-notice"
       ];
     };
+
+    autoProxy = lib.mkOption {
+      default = true;
+      example = false;
+      description = "${name} auto proxy";
+      type = lib.types.bool;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -71,6 +82,12 @@ in {
       lib.optionals (cfg.webuiPort != null) [cfg.webuiPort]
       ++ lib.optionals (cfg.torrentingPort != null) [cfg.torrentingPort]
     );
+
+    services.caddy.virtualHosts."${service.vHost}".extraConfig = lib.mkIf cfg.autoProxy ''
+      bind tailscale/${name}
+      encode zstd gzip
+      reverse_proxy ${service.hostName}:${toString service.port}
+    '';
 
     systemd.services.qbittorrent = {
       after = ["local-fs.target" "network-online.target"];

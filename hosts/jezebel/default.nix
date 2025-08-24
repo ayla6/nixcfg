@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./secrets.nix
-    ./services.nix
     self.nixosModules.locale-en-gb
     "${modulesPath}/profiles/qemu-guest.nix"
     self.diskoConfigurations.btrfs-vps
@@ -48,6 +47,12 @@
         enable = true;
         enableCaddy = true;
       };
+      uptime-kuma.enable = true;
     };
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "contact@aylac.top";
   };
 }
