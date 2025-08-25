@@ -76,6 +76,7 @@
       };
       radicale.enable = true;
       redlib.enable = true;
+      vaultwarden.enable = true;
       webdav.enable = true;
     };
   };
