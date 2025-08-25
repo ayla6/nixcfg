@@ -54,21 +54,11 @@
       };
       glance.enable = true;
       jellyfin.enable = true;
+      jellyseerr.enable = true;
       karakeep.enable = true;
       miniflux.enable = true;
       ntfy.enable = true;
       pds.enable = true;
-      tailscale = {
-        enable = true;
-        enableCaddy = true;
-        operator = "ayla";
-      };
-      syncthing = {
-        enable = true;
-        certFile = config.age.secrets.syncthingCert.path;
-        keyFile = config.age.secrets.syncthingKey.path;
-        user = "ayla";
-      };
       qbittorrent = {
         enable = true;
         webuiPort = config.mySnippets.tailnet.networkMap.qbittorrent.port;
@@ -76,6 +66,17 @@
       };
       radicale.enable = true;
       redlib.enable = true;
+      syncthing = {
+        enable = true;
+        certFile = config.age.secrets.syncthingCert.path;
+        keyFile = config.age.secrets.syncthingKey.path;
+        user = "ayla";
+      };
+      tailscale = {
+        enable = true;
+        enableCaddy = true;
+        operator = "ayla";
+      };
       vaultwarden.enable = true;
       webdav.enable = true;
     };
