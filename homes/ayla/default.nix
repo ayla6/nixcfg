@@ -41,6 +41,7 @@
           rclone-browser
           tenacity
           yt-dlp
+          obsidian
 
           # gaming
           melonDS
