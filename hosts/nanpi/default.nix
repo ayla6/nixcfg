@@ -46,7 +46,6 @@
       caddy.enable = true;
       cloudflared.enable = true;
       copyparty.enable = true;
-      couchdb.enable = true;
       dnsmasq.enable = true;
       forgejo = {
         enable = true;

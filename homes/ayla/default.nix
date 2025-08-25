@@ -35,7 +35,6 @@
           krita
           lmms
           nicotine-plus
-          obsidian
           picard
           qbittorrent
           rclone
