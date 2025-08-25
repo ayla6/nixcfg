@@ -49,7 +49,13 @@
         glance = {
           inherit (config.mySnippets.tailnet.networkMap.glance) hostName;
           inherit (config.mySnippets.tailnet.networkMap.glance) port;
-          vHost = "services.aylac.top";
+          vHost = "home.aylac.top";
+        };
+
+        tangled-knot = {
+          hostName = "jezebel";
+          port = 5555;
+          vHost = "knot.aylac.top";
         };
       };
     };

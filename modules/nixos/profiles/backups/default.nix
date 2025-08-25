@@ -262,6 +262,11 @@ in {
         inherit (config.services.jellyseerr) enable;
         paths = ["/var/lib/jellyseerr"];
       }
+      {
+        name = "tangled-knot";
+        inherit (config.services.tangled-knot) enable;
+        paths = [config.services.tangled-knot.stateDir];
+      }
     ];
   };
 }

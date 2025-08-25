@@ -23,6 +23,7 @@
     ./redlib
     ./syncthing
     ./tailscale
+    ./tangled-knot
     ./uptime-kuma
     ./vaultwarden
     ./webdav-server-rs
