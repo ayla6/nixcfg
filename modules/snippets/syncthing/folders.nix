@@ -79,6 +79,17 @@
           id = "hkw65-lktvx";
           path = "/data/Koreader";
         };
+
+        "Obsidian" = {
+          devices = [
+            "morgana"
+            "m23"
+            "nanpi"
+          ];
+
+          id = "obsidian";
+          path = "/home/ayla/Documents/Obsidian";
+        };
       };
     };
   };
