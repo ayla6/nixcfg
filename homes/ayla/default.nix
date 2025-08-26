@@ -93,7 +93,7 @@
             fileManager.package = pkgs.nautilus;
             imageViewer.package = pkgs.loupe;
             pdfViewer.package = pkgs.papers;
-            terminal.package = pkgs.ptyxis;
+            #terminal.package = pkgs.ptyxis;
             terminalEditor.package = config.programs.helix.package;
             webBrowser.package = config.programs.firefox.finalPackage;
             #webBrowser = {
