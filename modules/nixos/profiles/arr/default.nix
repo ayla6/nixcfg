@@ -101,6 +101,11 @@ in {
           dataDir = "${cfg.dataDir}/sonarr/.config/NzbDrone/";
           openFirewall = true; # Port: 8989
         };
+
+        flaresolverr = {
+          enable = true;
+          openFirewall = true; # Port: 8191
+        };
       };
 
       systemd = {
