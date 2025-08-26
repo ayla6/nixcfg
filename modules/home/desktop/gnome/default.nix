@@ -139,7 +139,6 @@
       adw-gtk3
       gnome-extension-manager
       morewaita-icon-theme
-      nautilus-open-any-terminal
     ];
 
     myHome.profiles.defaultApps = {
