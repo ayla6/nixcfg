@@ -16,6 +16,7 @@
     ./karakeep
     ./miniflux
     ./monitoring
+    ./nitter
     ./ntfy
     ./pds
     ./qbittorrent

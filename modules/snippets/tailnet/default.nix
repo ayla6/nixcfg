@@ -133,6 +133,18 @@
           port = 8989;
           vHost = "sonarr.${config.mySnippets.tailnet.name}";
         };
+
+        flaresolverr = {
+          hostName = "nanpi";
+          port = 8191;
+          vHost = "flaresolverr.${config.mySnippets.tailnet.name}";
+        };
+
+        nitter = {
+          hostName = "nanpi";
+          port = 6034;
+          vHost = "twotter.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };
