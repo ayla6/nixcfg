@@ -73,7 +73,7 @@ in {
         };
 
         bazarr = {
-          enable = true;
+          enable = false;
           dataDir = "${cfg.dataDir}/bazarr";
           openFirewall = true; # Port: 6767
         };
