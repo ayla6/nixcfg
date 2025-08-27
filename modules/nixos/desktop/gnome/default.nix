@@ -18,14 +18,17 @@
     };
 
     environment.gnome.excludePackages = with pkgs; [
+      decibels
+      epiphany
       geary # email reader
       gedit # text editor
       gnome-characters
+      gnome-console # in case im using something else
       gnome-music
-      gnome-user-docs
+      gnome-software # i like the idea but i really hate how much resources it uses
       gnome-tour
-      gnome-console
-      decibels
+      gnome-user-docs
+      simple-scan
     ];
 
     i18n.inputMethod.type = "ibus";

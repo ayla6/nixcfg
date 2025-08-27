@@ -50,6 +50,7 @@
         enable = true;
         longCaches = false;
       };
+      flatpak.enable = true;
       tailscale = {
         enable = true;
         enableCaddy = true;

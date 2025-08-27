@@ -8,6 +8,7 @@
     ./caddy
     ./dnsmasq
     ./fail2ban
+    ./flatpak
     ./forgejo
     ./gdm
     ./glance

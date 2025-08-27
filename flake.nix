@@ -30,6 +30,8 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
     fontix = {
       url = "github:alyraffauf/fontix";
       inputs.nixpkgs.follows = "nixpkgs";
