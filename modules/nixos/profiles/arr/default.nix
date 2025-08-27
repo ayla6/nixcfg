@@ -102,10 +102,10 @@ in {
           openFirewall = true; # Port: 8989
         };
 
-        flaresolverr = {
-          enable = true;
-          openFirewall = true; # Port: 8191
-        };
+        #flaresolverr = {
+        #  enable = true;
+        #  openFirewall = true; # Port: 8191
+        #};
       };
 
       systemd = {
