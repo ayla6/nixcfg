@@ -9,7 +9,6 @@
     ./git
     ./micro
     ./mpv
-    ./obs-studio
     ./ssh
     ./zed-editor
     ./zen-browser

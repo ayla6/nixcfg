@@ -7,6 +7,7 @@
 }: {
   imports = [
     self.homeModules.default
+    self.inputs.nix-flatpak.homeManagerModules.nix-flatpak
     self.inputs.fontix.homeModules.default
   ];
 
@@ -24,31 +25,9 @@
 
           # applications
           aseprite
-          bitwarden
-          blender
-          calibre
-          freac
-          gimp3
-          inkscape
-          jellyfin-media-player
-          kdePackages.kdenlive
-          krita
-          lmms
-          nicotine-plus
-          picard
-          qbittorrent
           rclone
           rclone-browser
-          tenacity
           yt-dlp
-          obsidian
-
-          # gaming
-          melonDS
-          mgba
-          mindustry
-          openttd
-          prismlauncher
         ];
 
         username = "ayla";
@@ -64,7 +43,6 @@
         };
 
         programs = {
-          anki.enable = true;
           chromium.enable = true;
           fastfetch.enable = true;
           firefox = {
@@ -75,7 +53,6 @@
           helix.enable = true;
           micro.enable = true;
           mpv.enable = true;
-          obs-studio.enable = true;
           ssh.enable = true;
           zed-editor.enable = true;
           zen-browser.enable = false;
@@ -162,17 +139,59 @@
           steam-run
           lutris
 
-          keepassxc
-          fractal
-          flare-signal
-          audacious
-          audacious-plugins
-
           zip
           xz
           unzip
           p7zip
         ];
+      };
+
+      services.flatpak = {
+        packages = [
+          # creative
+          "io.lmms.LMMS"
+          "org.blender.Blender"
+          "org.gimp.GIMP"
+          "org.inkscape.Inkscape"
+          "org.kde.kdenlive"
+          "org.kde.krita"
+
+          # gaming
+          "com.github.Anuken.Mindustry"
+          "io.mgba.mGBA"
+          "net.kuribo64.melonDS"
+          "org.openttd.OpenTTD"
+          "org.prismlauncher.PrismLauncher"
+
+          # internet
+          "org.nicotine_plus.Nicotine"
+          "org.qbittorrent.qBittorrent"
+
+          # media
+          "com.github.iwalton3.jellyfin-media-player"
+          "org.atheme.audacious"
+          "org.freac.freac"
+          "org.musicbrainz.Picard"
+          "org.tenacityaudio.Tenacity"
+
+          # productivity
+          "com.calibre_ebook.calibre"
+          "md.obsidian.Obsidian"
+          "net.ankiweb.Anki"
+
+          # social
+          "de.schmidhuberj.Flare"
+          "org.gnome.Fractal"
+
+          # utilities
+          "com.bitwarden.desktop"
+          "com.github.tchx84.Flatseal"
+          "org.keepassxc.KeePassXC"
+        ];
+        update.auto = {
+          enable = true;
+          onCalendar = "weekly";
+        };
       };
     })
   ];
