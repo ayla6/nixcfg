@@ -181,7 +181,6 @@
 
           # social (basically useless but)
           "im.dino.Dino"
-          "so.libdb.dissent"
           "de.schmidhuberj.Flare"
           "org.gnome.Fractal"
           "org.squidowl.halloy"
