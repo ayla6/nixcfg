@@ -1,12 +1,15 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   options.myNixOS.programs.nix.enable = lib.mkEnableOption "sane nix configuration";
 
   config = lib.mkIf config.myNixOS.programs.nix.enable {
     nix = {
+      package = pkgs.nixVersions.latest;
+
       gc = {
         automatic = true;
 
