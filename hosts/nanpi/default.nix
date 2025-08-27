@@ -7,8 +7,8 @@
     ./home.nix
     ./secrets.nix
     ./notifier.nix
+    ./backups.nix
     self.nixosModules.locale-en-gb
-    self.diskoConfigurations.luks-btrfs-subvolumes
   ];
 
   networking.hostName = "nanpi";
@@ -97,10 +97,53 @@
         "sd_mod"
         "rtsx_pci_sdmmc"
       ];
+
+      luks.devices = {
+        crypted.device = "/dev/disk/by-uuid/d82fc855-f29a-4aef-90d4-da94c23d0ac1";
+        crypted_external.device = "/dev/disk/by-uuid/0e477648-92d6-4cf5-a0c5-8d0707b69935";
+      };
     };
 
     kernelParams = [
       "consoleblank=30"
     ];
+  };
+
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/97fd311a-2575-487e-be03-45dfa9c2db8a";
+      fsType = "btrfs";
+      options = ["subvol=/root" "compress=zstd" "noatime"];
+    };
+
+    "/home" = {
+      device = "/dev/disk/by-uuid/97fd311a-2575-487e-be03-45dfa9c2db8a";
+      fsType = "btrfs";
+      options = ["subvol=/home" "compress=zstd" "noatime"];
+    };
+
+    "/home/.snapshots" = {
+      device = "/dev/disk/by-uuid/97fd311a-2575-487e-be03-45dfa9c2db8a";
+      fsType = "btrfs";
+      options = ["subvol=/home/.snapshots" "compress=zstd" "noatime"];
+    };
+
+    "/nix" = {
+      device = "/dev/disk/by-uuid/97fd311a-2575-487e-be03-45dfa9c2db8a";
+      fsType = "btrfs";
+      options = ["subvol=/nix" "compress=zstd" "noatime"];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/7D56-EE82";
+      fsType = "vfat";
+      options = ["fmask=0077" "dmask=0077"];
+    };
+
+    "/external1" = {
+      device = "/dev/disk/by-uuid/130ead1c-6642-45d5-9053-b6cb2df9c7e4";
+      fsType = "btrfs";
+      options = ["compress=zstd" "noatime"];
+    };
   };
 }
