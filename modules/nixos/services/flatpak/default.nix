@@ -42,6 +42,7 @@
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-emoji
+        roboto-flex
         source-code-pro
         source-sans-pro
       ];
