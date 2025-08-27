@@ -179,9 +179,12 @@
           "md.obsidian.Obsidian"
           "net.ankiweb.Anki"
 
-          # social
+          # social (basically useless but)
+          "im.dino.Dino"
+          "so.libdb.dissent"
           "de.schmidhuberj.Flare"
           "org.gnome.Fractal"
+          "org.squidowl.halloy"
 
           # utilities
           "com.bitwarden.desktop"
