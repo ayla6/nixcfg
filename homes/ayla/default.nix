@@ -59,6 +59,7 @@
         };
 
         profiles = {
+          betterLocations.enable = true;
           shell.enable = true;
           defaultApps = {
             enable = true;
