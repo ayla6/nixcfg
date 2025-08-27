@@ -32,7 +32,7 @@
           #OnCalendar = "*-*-* 02,14:00:00";
           #OnCalendar = "*-*-* 03:14:00";
           Persistent = true;
-          RandomizedDelaySec = "10";
+          RandomizedDelaySec = "10m";
         };
       };
     };
