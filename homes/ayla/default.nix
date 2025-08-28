@@ -38,10 +38,6 @@
       xdg.enable = true;
 
       myHome = {
-        desktop = {
-          gnome.enable = true;
-        };
-
         programs = {
           chromium.enable = true;
           fastfetch.enable = true;
@@ -135,16 +131,21 @@
           wl-clipboard
           libnotify
 
-          # gaming
-          wine
-          steam-run
-          lutris
-
           zip
           xz
           unzip
           p7zip
         ];
+      };
+
+      myHome = {
+        desktop = {
+          gnome.enable = true;
+        };
+
+        programs = {
+          lutris.enable = true;
+        };
       };
 
       services.flatpak = {

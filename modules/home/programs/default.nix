@@ -6,6 +6,7 @@
     ./fastfetch
     ./firefox
     ./helix
+    ./lutris
     ./git
     ./micro
     ./mpv
