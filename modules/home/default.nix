@@ -2,7 +2,6 @@
   imports = [
     ./desktop
     ./programs
-    ./services
     ./profiles
     ./snippets
     inputs.agenix.homeManagerModules.default
