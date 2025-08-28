@@ -38,7 +38,7 @@ in {
           CLEANUP_FREQUENCY_HOURS = 48;
           LISTEN_ADDR = "${service.hostName}:${toString service.port}";
           BASE_URL = "https://${service.vHost}";
-          WEBAUTHN = "enabled";
+          WEBAUTHN = 1;
         };
       };
     };
