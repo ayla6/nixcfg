@@ -102,6 +102,9 @@ in {
 
           # Enable the Remote Data Decoder (RDD) process for FFmpeg to isolate media decoding tasks
           "media.rdd-ffmpeg.enabled" = true;
+
+          # Use the XDG Desktop Portal for file picker instead of the GTK3 one
+          widget.use-xdg-desktop-portal.file-picker = 1;
         };
 
         UserMessaging = {
