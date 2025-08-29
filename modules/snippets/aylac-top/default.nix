@@ -18,7 +18,6 @@
         forgejo = {
           hostName = "nanpi";
           port = 3001;
-          sshVHost = "ssh.aylac.top";
           vHost = "git.aylac.top";
         };
 
@@ -44,12 +43,6 @@
           inherit (config.mySnippets.tailnet.networkMap.uptime-kuma) hostName;
           inherit (config.mySnippets.tailnet.networkMap.uptime-kuma) port;
           vHost = "status.aylac.top";
-        };
-
-        glance = {
-          inherit (config.mySnippets.tailnet.networkMap.glance) hostName;
-          inherit (config.mySnippets.tailnet.networkMap.glance) port;
-          vHost = "home.aylac.top";
         };
 
         tangled-knot = {
