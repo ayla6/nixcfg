@@ -7,7 +7,7 @@
   name = "vaultwarden";
   cfg = config.myNixOS.services.${name};
 
-  network = config.mySnippets.aylac-top;
+  network = config.mySnippets.tailnet;
   service = network.networkMap.${name};
 in {
   options.myNixOS.services.${name} = {
@@ -24,9 +24,11 @@ in {
     age.secrets.vaultwarden.file = "${self.inputs.secrets}/vaultwarden.age";
 
     services = {
-      cloudflared.tunnels."${network.cloudflareTunnel}".ingress = lib.mkIf cfg.autoProxy {
-        "${service.vHost}" = "http://${service.hostName}:${toString service.port}";
-      };
+      caddy.virtualHosts."${service.vHost}".extraConfig = lib.mkIf cfg.autoProxy ''
+        bind tailscale/vault
+        encode zstd gzip
+        reverse_proxy ${service.hostName}:${toString service.port}
+      '';
 
       vaultwarden = {
         enable = true;
@@ -39,7 +41,7 @@ in {
           SIGNUPS_ALLOWED = false;
           ICON_SERVICE = "bitwarden";
           ICON_CACHE_TTL = 0;
-          IP_HEADER = "CF-Connecting-IP";
+          #IP_HEADER = "CF-Connecting-IP";
         };
 
         environmentFile = config.age.secrets.vaultwarden.path;
