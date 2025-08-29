@@ -65,12 +65,6 @@ in {
                           icon = "di:bluesky";
                         }
                         {
-                          title = "Vaultwarden";
-                          url = "https://${aylac-top.networkMap.vaultwarden.vHost}/";
-                          check-url = "http://${aylac-top.networkMap.vaultwarden.hostName}:${toString aylac-top.networkMap.vaultwarden.port}/";
-                          icon = "di:vaultwarden";
-                        }
-                        {
                           title = "ntfy";
                           url = "https://${aylac-top.networkMap.ntfy.vHost}/";
                           check-url = "http://${aylac-top.networkMap.ntfy.hostName}:${toString aylac-top.networkMap.ntfy.port}/";
@@ -84,6 +78,12 @@ in {
                       title = "Private Services";
 
                       sites = [
+                        {
+                          title = "Vaultwarden";
+                          url = "https://${aylac-top.networkMap.vaultwarden.vHost}/";
+                          check-url = "http://${aylac-top.networkMap.vaultwarden.hostName}:${toString aylac-top.networkMap.vaultwarden.port}/";
+                          icon = "di:vaultwarden";
+                        }
                         {
                           title = "Karakeep";
                           url = "https://${tailnet.networkMap.karakeep.vHost}/";

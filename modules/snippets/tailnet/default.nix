@@ -86,6 +86,12 @@
           vHost = "uptime-kuma.${config.mySnippets.tailnet.name}";
         };
 
+        vaultwarden = {
+          hostName = "nanpi";
+          port = 8222;
+          vHost = "vault.${config.mySnippets.tailnet.name}";
+        };
+
         webdav = {
           hostName = "nanpi";
           port = 4918;
