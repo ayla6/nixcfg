@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   name = "radicale";
@@ -40,6 +41,7 @@ in {
           };
           storage = {
             filesystem_folder = "/var/lib/radicale/collections";
+            hook = ''${pkgs.git}/bin/git add -A && (${pkgs.git}/bin/git diff --cached --quiet || ${pkgs.git}/bin/git commit -m "Changes by \"%(user)s\"")'';
           };
         };
       };
