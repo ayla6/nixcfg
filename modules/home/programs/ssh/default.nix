@@ -9,7 +9,6 @@
   config = lib.mkIf config.myHome.programs.ssh.enable {
     programs.ssh = {
       enable = true;
-      compression = true;
 
       # matchBlocks = let
       #   rootMe = name: {
