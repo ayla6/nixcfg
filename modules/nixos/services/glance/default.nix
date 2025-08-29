@@ -9,8 +9,9 @@
   inherit (config.mySnippets) aylac-top;
   inherit (config.mySnippets) tailnet;
 
-  publicNetwork = aylac-top;
-  privateNetwork = tailnet;
+  network = config.mySnippets.tailnet;
+
+  service = network.networkMap.${name};
 in {
   options.myNixOS.services.${name} = {
     enable = lib.mkEnableOption "${name} server";
@@ -24,15 +25,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     services = {
-      caddy.virtualHosts."${privateNetwork.networkMap.${name}.vHost}".extraConfig = lib.mkIf cfg.autoProxy ''
+      caddy.virtualHosts."${service.vHost}".extraConfig = lib.mkIf cfg.autoProxy ''
         bind tailscale/${name}
         encode zstd gzip
-        reverse_proxy ${privateNetwork.networkMap.${name}.hostName}:${toString privateNetwork.networkMap.${name}.port}
+        reverse_proxy ${service.hostName}:${toString service.port}
       '';
-
-      cloudflared.tunnels."${publicNetwork.cloudflareTunnel}".ingress = lib.mkIf cfg.autoProxy {
-        "${publicNetwork.networkMap.pds.vHost}" = "http://${publicNetwork.networkMap.pds.hostName}";
-      };
 
       glance = {
         enable = true;
@@ -41,7 +38,7 @@ in {
         settings = {
           pages = [
             {
-              name = publicNetwork.networkMap.glance.vHost;
+              name = service.vHost;
               width = "slim";
               hide-desktop-navigation = true;
               center-vertically = true;
