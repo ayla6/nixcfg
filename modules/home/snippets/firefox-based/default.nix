@@ -176,6 +176,7 @@ in {
 
               order = [
                 "Unduck"
+                "Brave"
                 "Home Manager Options"
                 "NixOS Wiki"
                 "nixpkgs"
