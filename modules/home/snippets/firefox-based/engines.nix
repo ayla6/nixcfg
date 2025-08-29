@@ -9,6 +9,24 @@
     ];
   };
 
+  "Brave" = {
+    definedAliases = ["!brave"];
+    icon = "https://cdn.search.brave.com/serp/v2/_app/immutable/assets/brave-search-icon.CsIFM2aN.svg";
+    updateInterval = 24 * 60 * 60 * 1000; # every day
+
+    urls = [
+      {
+        template = "https://search.brave.com/search";
+        params = [
+          {
+            name = "q";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+  };
+
   "Home Manager Options" = {
     icon = "https://home-manager-options.extranix.com/images/favicon.png";
     definedAliases = ["!hm"];
