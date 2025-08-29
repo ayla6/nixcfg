@@ -45,7 +45,6 @@
     };
     desktop.gnome.enable = true;
     services = {
-      caddy.enable = true;
       dnsmasq = {
         enable = true;
         longCaches = false;
@@ -53,7 +52,7 @@
       flatpak.enable = true;
       tailscale = {
         enable = true;
-        enableCaddy = true;
+        enableCaddy = false;
         operator = "ayla";
       };
       aria2.enable = true;
