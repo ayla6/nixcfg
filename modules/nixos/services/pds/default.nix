@@ -52,7 +52,7 @@ in {
         }
       '';
 
-      pds = {
+      bluesky-pds = {
         enable = true;
         environmentFiles = [config.age.secrets.pds.path];
         pdsadmin.enable = true;

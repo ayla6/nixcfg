@@ -173,8 +173,8 @@ in {
       }
       {
         name = "pds";
-        inherit (config.services.pds) enable;
-        paths = [config.services.pds.settings.PDS_DATA_DIRECTORY];
+        inherit (config.services.bluesky-pds) enable;
+        paths = [config.services.bluesky-pds.settings.PDS_DATA_DIRECTORY];
       }
       {
         name = "plex";
