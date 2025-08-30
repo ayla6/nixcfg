@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }: let
   name = "forgejo";
@@ -10,6 +11,17 @@
 
   network = config.mySnippets.aylac-top;
   service = network.networkMap.${name};
+
+  mkNotify = {
+    message,
+    channel,
+    priority ? 1,
+  }: ''
+    curl -u $(cat "${config.age.secrets.ntfyAuto.path}") \
+      -H "X-Priority: ${toString priority}" \
+      -d '${message}' \
+      https://${config.mySnippets.aylac-top.networkMap.ntfy.vHost}/${channel}
+  '';
 in {
   options.myNixOS.services.${name} = {
     enable = lib.mkEnableOption "forgejo git forge";
@@ -29,6 +41,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    age.secrets.cloudflareFail2ban.file = "${self.inputs.secrets}/cloudflare/fail2ban.age";
+
     services.cloudflared.tunnels."${network.cloudflareTunnel}".ingress = lib.mkIf cfg.autoProxy {
       "${service.vHost}" = "http://${service.hostName}:${toString service.port}";
     };
@@ -40,6 +54,10 @@ in {
 
     containers.forgejo = {
       autoStart = true;
+      bindMounts = {
+        "${config.age.secrets.cloudflareFail2ban.path}".isReadOnly = true;
+        "${config.age.secrets.ntfyAuto.path}".isReadOnly = true;
+      };
 
       config = {
         services = {
@@ -134,6 +152,53 @@ in {
               };
             };
           };
+
+          fail2ban = {
+            enable = true;
+            ignoreIP = ["100.64.0.0/10"];
+            bantime = "24h";
+            bantime-increment.enable = true;
+            extraPackages = [pkgs.curl pkgs.jq pkgs.uutils-coreutils-noprefix];
+            jails.forgejo.settings = {
+              action = ''
+                mycloudflare
+                  iptables-allports
+                  ntfy'';
+              bantime = 900;
+              filter = "forgejo";
+              findtime = 3600;
+              maxretry = 4;
+            };
+          };
+        };
+
+        environment.etc = {
+          "fail2ban/action.d/mycloudflare.conf" = {
+            user = "root";
+            group = "root";
+            mode = "0640";
+            source = config.age.secrets.cloudflareFail2ban.path;
+          };
+
+          "fail2ban/action.d/ntfy.conf".text = ''
+            [Definition]
+            actionban = ${mkNotify {
+              message = "Arrested <ip> for trying to rob <name> at ${config.networking.hostName}";
+              channel = "fail2ban";
+              priority = 3;
+            }}
+            actionunban = ${mkNotify {
+              message = "Released <ip> from the jail at ${config.networking.hostName}";
+              channel = "fail2ban";
+              priority = 2;
+            }}
+          '';
+
+          "fail2ban/filter.d/forgejo.conf".text = ''
+            [Definition]
+            failregex =  .*(Failed authentication attempt|invalid credentials|Attempted access of unknown user).* from <HOST>
+            journalmatch = _SYSTEMD_UNIT=forgejo.service
+          '';
         };
 
         systemd.services.forgejo = lib.mkIf (cfg.db
