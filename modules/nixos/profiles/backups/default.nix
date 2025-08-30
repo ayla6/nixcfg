@@ -145,7 +145,7 @@ in {
         # damn this is ugly
         name = "forgejo";
         containerised = true;
-        inherit (config.containers.forgejo.config.services.forgejo) enable;
+        inherit (config.myNixOS.services.forgejo) enable;
         paths = ["/var/lib/nixos-containers/forgejo${config.containers.forgejo.config.services.forgejo.stateDir}"];
         backupMode = "none";
       }
@@ -180,7 +180,7 @@ in {
         # damn this is ugly
         name = "pds";
         containerised = true;
-        inherit (config.containers.pds.config.services.bluesky-pds) enable;
+        inherit (config.myNixOS.services.pds) enable;
         paths = ["/var/lib/nixos-containers/pds${config.containers.pds.config.services.bluesky-pds.settings.PDS_DATA_DIRECTORY}"];
       }
       {
@@ -195,7 +195,7 @@ in {
         # damn this is ugly
         name = "postgresql";
         containerised = true;
-        inherit (config.containers.postgresql.config.services.postgresql) enable;
+        inherit (config.myNixOS.services.postgresql) enable;
         paths = ["/var/lib/nixos-containers/postgresql${config.containers.postgresql.config.services.postgresql.dataDir}"];
         backupMode = "quiet";
       }
