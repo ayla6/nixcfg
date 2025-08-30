@@ -51,7 +51,6 @@
           mpv.enable = true;
           ssh.enable = true;
           zed-editor.enable = true;
-          zen-browser.enable = false;
         };
 
         profiles = {
@@ -70,10 +69,6 @@
             #terminal.package = pkgs.ptyxis;
             terminalEditor.package = config.programs.helix.package;
             webBrowser.package = config.programs.firefox.finalPackage;
-            #webBrowser = {
-            #  exec = lib.getExe config.programs.zen-browser.finalPackage;
-            #  package = config.programs.zen-browser.finalPackage;
-            #};
           };
         };
 

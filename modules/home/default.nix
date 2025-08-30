@@ -5,7 +5,6 @@
     ./profiles
     ./snippets
     inputs.agenix.homeManagerModules.default
-    inputs.zen-browser.homeModules.beta
   ];
 
   home = {
