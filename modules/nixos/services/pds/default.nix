@@ -51,16 +51,24 @@ in {
           reverse_proxy ${service.hostName}:${toString service.port}
         }
       '';
+    };
 
-      bluesky-pds = {
-        enable = true;
-        environmentFiles = [config.age.secrets.pds.path];
-        pdsadmin.enable = true;
-        settings = {
-          PDS_HOSTNAME = service.vHost;
-          # PDS_BSKY_APP_VIEW_URL = "https://bsky.zeppelin.social";
-          # PDS_BSKY_APP_VIEW_DID = "did:web:bsky.zeppelin.social";
+    containers.pds = {
+      autoStart = true;
+      bindMounts."${config.age.secrets.pds.path}".isReadOnly = true;
+      config = {
+        services.bluesky-pds = {
+          enable = true;
+          environmentFiles = [config.age.secrets.pds.path];
+          pdsadmin.enable = true;
+          settings = {
+            PDS_HOSTNAME = service.vHost;
+            # PDS_BSKY_APP_VIEW_URL = "https://bsky.zeppelin.social";
+            # PDS_BSKY_APP_VIEW_DID = "did:web:bsky.zeppelin.social";
+          };
         };
+
+        system.stateVersion = "25.11";
       };
     };
   };
