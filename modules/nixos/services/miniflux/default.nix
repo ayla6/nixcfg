@@ -21,10 +21,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets = {
-      miniflux.file = "${self.inputs.secrets}/miniflux.age";
-      postgresMiniflux.file = "${self.inputs.secrets}/postgres/miniflux.age";
-    };
+    age.secrets.miniflux.file = "${self.inputs.secrets}/miniflux.age";
 
     myNixOS.services.postgresql = {
       enable = true;
