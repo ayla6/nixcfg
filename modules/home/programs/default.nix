@@ -12,6 +12,5 @@
     ./mpv
     ./ssh
     ./zed-editor
-    ./zen-browser
   ];
 }
