@@ -20,6 +20,7 @@
     ./nitter
     ./ntfy
     ./pds
+    ./postgresql
     ./qbittorrent
     ./radicale
     ./redlib

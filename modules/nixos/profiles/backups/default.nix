@@ -79,8 +79,11 @@
         repo = repoKey;
         service = service.name;
       };
-      systemdService = service.name;
-      backupMode = service.backupMode or "stop"; # "stop", "notify", "none"
+      systemdService =
+        if service.containerised or false
+        then "container@" + service.name
+        else service.name;
+      backupMode = service.backupMode or "stop"; # "stop", "notify", "quiet"
 
       commands =
         if backupMode == "stop"
@@ -139,9 +142,11 @@ in {
         paths = [config.services.couchdb.databaseDir];
       }
       {
+        # damn this is ugly
         name = "forgejo";
-        enable = config.services.forgejo.enable && config.services.forgejo.settings.storage.STORAGE_TYPE != "minio";
-        paths = [config.services.forgejo.stateDir];
+        containerised = true;
+        inherit (config.containers.forgejo.config.services.forgejo) enable;
+        paths = ["/var/lib/nixos-containers/forgejo${config.containers.forgejo.config.services.forgejo.stateDir}"];
         backupMode = "none";
       }
       # {
@@ -172,9 +177,11 @@ in {
         paths = [config.services.ombi.dataDir];
       }
       {
+        # damn this is ugly
         name = "pds";
-        inherit (config.services.bluesky-pds) enable;
-        paths = [config.services.bluesky-pds.settings.PDS_DATA_DIRECTORY];
+        containerised = true;
+        inherit (config.containers.pds.config.services.bluesky-pds) enable;
+        paths = ["/var/lib/nixos-containers/pds${config.containers.pds.config.services.bluesky-pds.settings.PDS_DATA_DIRECTORY}"];
       }
       {
         name = "plex";
@@ -185,10 +192,12 @@ in {
         };
       }
       {
+        # damn this is ugly
         name = "postgresql";
-        inherit (config.services.postgresql) enable;
-        paths = [config.services.postgresql.dataDir];
-        backupMode = "none";
+        containerised = true;
+        inherit (config.containers.postgresql.config.services.postgresql) enable;
+        paths = ["/var/lib/nixos-containers/postgresql${config.containers.postgresql.config.services.postgresql.dataDir}"];
+        backupMode = "quiet";
       }
       {
         name = "prowlarr";

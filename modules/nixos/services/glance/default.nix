@@ -80,8 +80,8 @@ in {
                       sites = [
                         {
                           title = "Vaultwarden";
-                          url = "https://${aylac-top.networkMap.vaultwarden.vHost}/";
-                          check-url = "http://${aylac-top.networkMap.vaultwarden.hostName}:${toString aylac-top.networkMap.vaultwarden.port}/";
+                          url = "https://${tailnet.networkMap.vaultwarden.vHost}/";
+                          check-url = "http://${tailnet.networkMap.vaultwarden.hostName}:${toString tailnet.networkMap.vaultwarden.port}/";
                           icon = "di:vaultwarden";
                         }
                         {
