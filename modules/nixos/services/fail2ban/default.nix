@@ -19,9 +19,7 @@ in {
   options.myNixOS.services.fail2ban.enable = lib.mkEnableOption "fail2ban";
 
   config = lib.mkIf config.myNixOS.services.fail2ban.enable {
-    age.secrets = {
-      cloudflareFail2ban.file = "${self.inputs.secrets}/cloudflare/fail2ban.age";
-    };
+    age.secrets.cloudflareFail2ban.file = "${self.inputs.secrets}/cloudflare/fail2ban.age";
 
     environment.etc = {
       "fail2ban/action.d/mycloudflare.conf" = {
@@ -43,12 +41,6 @@ in {
           channel = "fail2ban";
           priority = 2;
         }}
-      '';
-
-      "fail2ban/filter.d/forgejo.conf".text = ''
-        [Definition]
-        failregex =  .*(Failed authentication attempt|invalid credentials|Attempted access of unknown user).* from <HOST>
-        journalmatch = _SYSTEMD_UNIT=forgejo.service
       '';
 
       "fail2ban/filter.d/vaultwarden.conf".text = ''
@@ -79,17 +71,6 @@ in {
       bantime-increment.enable = true;
       extraPackages = [pkgs.curl pkgs.jq pkgs.uutils-coreutils-noprefix];
       jails = {
-        forgejo.settings = {
-          action = ''
-            mycloudflare
-              iptables-allports
-              ntfy'';
-          bantime = 900;
-          filter = "forgejo";
-          findtime = 3600;
-          maxretry = 4;
-        };
-
         # HTTP basic-auth failures, 5 tries → 1-day ban
         nginx-http-auth = {
           settings = {
