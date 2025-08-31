@@ -210,5 +210,10 @@ in {
         system.stateVersion = "25.11";
       };
     };
+
+    systemd.services."container@forgejo" = {
+      requires = ["postgresql.service"];
+      after = ["postgresql.service"];
+    };
   };
 }

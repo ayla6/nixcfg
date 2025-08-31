@@ -192,11 +192,10 @@ in {
         };
       }
       {
-        # damn this is ugly
         name = "postgresql";
         containerised = true;
-        inherit (config.myNixOS.services.postgresql) enable;
-        paths = ["/var/lib/nixos-containers/postgresql${config.containers.postgresql.config.services.postgresql.dataDir}"];
+        inherit (config.services.postgresql) enable;
+        paths = [config.services.postgresql.dataDir];
         backupMode = "quiet";
       }
       {

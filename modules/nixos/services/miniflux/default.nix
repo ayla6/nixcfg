@@ -48,5 +48,10 @@ in {
         };
       };
     };
+
+    systemd.services."miniflux" = {
+      requires = ["postgresql.service"];
+      after = ["postgresql.service"];
+    };
   };
 }
