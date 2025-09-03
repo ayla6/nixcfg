@@ -152,6 +152,7 @@
           "org.inkscape.Inkscape"
           "org.kde.kdenlive"
           "org.kde.krita"
+          "com.obsproject.Studio"
 
           # gaming
           "com.github.Anuken.Mindustry"

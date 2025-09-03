@@ -114,12 +114,6 @@ in {
                           check-url = "http://${tailnet.networkMap.radarr.hostName}:${toString tailnet.networkMap.radarr.port}/";
                           icon = "di:radarr";
                         }
-                        #{
-                        #  title = "Lidarr";
-                        #  url = "https://${tailnet.networkMap.lidarr.vHost}/";
-                        #  check-url = "http://${tailnet.networkMap.lidarr.hostName}:${toString tailnet.networkMap.lidarr.port}/";
-                        #  icon = "di:lidarr";
-                        #}
                         {
                           title = "Prowlarr";
                           url = "https://${tailnet.networkMap.prowlarr.vHost}/";
@@ -180,6 +174,35 @@ in {
                           url = "https://${tailnet.networkMap.audiobookshelf.vHost}/";
                           check-url = "http://${tailnet.networkMap.audiobookshelf.hostName}:${toString tailnet.networkMap.audiobookshelf.port}/";
                           icon = "di:audiobookshelf";
+                        }
+                      ];
+                    }
+                    {
+                      type = "split-column";
+                      max-columns = 3;
+                      widgets = [
+                        {
+                          type = "hacker-news";
+                          limit = 30;
+                          collapse-after = 10;
+                        }
+                        {
+                          type = "lobsters";
+                          limit = 30;
+                          collapse-after = 10;
+                        }
+                        {
+                          type = "rss";
+                          title = "Tildes";
+                          limit = 30;
+                          collapse-after = 10;
+                          cache = "1h";
+                          feeds = [
+                            {
+                              url = "https://tildes.net/topics.rss";
+                              title = "tildes.net";
+                            }
+                          ];
                         }
                       ];
                     }
