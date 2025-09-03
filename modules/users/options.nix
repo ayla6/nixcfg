@@ -8,6 +8,12 @@
         description = "Hashed password for ${user}.";
         type = lib.types.nullOr lib.types.str;
       };
+
+      passwordFile = lib.mkOption {
+        default = null;
+        description = "Hashed password file for ${user}.";
+        type = lib.types.nullOr lib.types.path;
+      };
     };
   in {
     defaultGroups = lib.mkOption {

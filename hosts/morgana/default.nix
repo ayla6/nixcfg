@@ -68,7 +68,7 @@
   myUsers = {
     ayla = {
       enable = true;
-      password = "REDACTED";
+      passwordFile = config.age.secrets.aylaPassword.path;
     };
   };
 

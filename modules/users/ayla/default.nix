@@ -10,7 +10,7 @@
       description = "Ayla";
       isNormalUser = true;
       extraGroups = config.myUsers.defaultGroups;
-      hashedPassword = config.myUsers.ayla.password;
+      hashedPasswordFile = config.myUsers.ayla.passwordFile;
 
       openssh.authorizedKeys.keyFiles =
         lib.map (file: "${self.inputs.secrets}/publicKeys/${file}")

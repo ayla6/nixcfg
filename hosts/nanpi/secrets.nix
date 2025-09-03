@@ -1,5 +1,6 @@
 {self, ...}: {
   age.secrets = {
+    aylaPassword.file = "${self.inputs.secrets}/ayla/passwordHash.age";
     pds.file = "${self.inputs.secrets}/pds.age";
     resticPassword.file = "${self.inputs.secrets}/restic-passwd.age";
     rclone.file = "${self.inputs.secrets}/rclone.age";
