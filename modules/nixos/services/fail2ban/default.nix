@@ -29,6 +29,12 @@ in {
         source = config.age.secrets.cloudflareFail2ban.path;
       };
 
+      "fail2ban/filter.d/forgejo.conf".text = ''
+        [Definition]
+        failregex =  .*(Failed authentication attempt|invalid credentials|Attempted access of unknown user).* from <HOST>
+        journalmatch = _SYSTEMD_UNIT=forgejo.service
+      '';
+
       "fail2ban/action.d/ntfy.conf".text = ''
         [Definition]
         actionban = ${mkNotify {
@@ -71,6 +77,17 @@ in {
       bantime-increment.enable = true;
       extraPackages = [pkgs.curl pkgs.jq pkgs.uutils-coreutils-noprefix];
       jails = {
+        forgejo.settings = {
+          action = ''
+            mycloudflare
+              iptables-allports
+              ntfy'';
+          bantime = 900;
+          filter = "forgejo";
+          findtime = 3600;
+          maxretry = 4;
+        };
+
         # HTTP basic-auth failures, 5 tries → 1-day ban
         nginx-http-auth = {
           settings = {

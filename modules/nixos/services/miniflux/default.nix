@@ -23,10 +23,7 @@ in {
   config = lib.mkIf cfg.enable {
     age.secrets.miniflux.file = "${self.inputs.secrets}/miniflux.age";
 
-    myNixOS.services.postgresql = {
-      enable = true;
-      databases = ["miniflux"];
-    };
+    myNixOS.services.postgresql.enable = true;
 
     services = {
       caddy.virtualHosts."${service.vHost}".extraConfig = lib.mkIf cfg.autoProxy ''
@@ -38,20 +35,14 @@ in {
       miniflux = {
         enable = true;
         adminCredentialsFile = config.age.secrets.miniflux.path;
-        createDatabaseLocally = false;
+        createDatabaseLocally = true;
         config = {
           BATCH_SIZE = 100;
           CLEANUP_FREQUENCY_HOURS = 48;
           LISTEN_ADDR = "${service.hostName}:${toString service.port}";
           BASE_URL = "https://${service.vHost}";
-          DATABASE_URL = ''user=miniflux dbname=miniflux sslmode=disable'';
         };
       };
-    };
-
-    systemd.services."miniflux" = {
-      requires = ["postgresql.service"];
-      after = ["postgresql.service"];
     };
   };
 }

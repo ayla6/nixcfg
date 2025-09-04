@@ -142,11 +142,10 @@ in {
         paths = [config.services.couchdb.databaseDir];
       }
       {
-        # damn this is ugly
         name = "forgejo";
         containerised = true;
-        inherit (config.myNixOS.services.forgejo) enable;
-        paths = ["/var/lib/nixos-containers/forgejo${config.containers.forgejo.config.services.forgejo.stateDir}"];
+        inherit (config.services.forgejo) enable;
+        paths = [config.services.forgejo.stateDir];
         backupMode = "none";
       }
       # {

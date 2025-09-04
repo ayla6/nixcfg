@@ -11,7 +11,7 @@ in {
     enable = lib.mkEnableOption "${name} server";
     databases = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = {};
+      default = [];
       description = "PostgreSQL databases.";
     };
   };
@@ -29,13 +29,6 @@ in {
           ensureDBOwnership = true;
         })
         cfg.databases;
-
-      authentication = lib.concatStringsSep "\n" (
-        lib.map (dbName: ''
-          host ${dbName} ${dbName} samehost trust
-        '')
-        cfg.databases
-      );
     };
   };
 }
