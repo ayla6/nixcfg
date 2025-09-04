@@ -31,10 +31,6 @@
       server.enable = true;
       backups.enable = true;
       vps.enable = true;
-      autoUpgrade = {
-        enable = true;
-        operation = "switch";
-      };
       swap = {
         enable = true;
         size = 2048;
