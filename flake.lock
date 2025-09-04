@@ -1005,7 +1005,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "secrets": "secrets",
-        "tangled-core": "tangled-core"
+        "tangled-core": "tangled-core",
+        "tgirlpkgs": "tgirlpkgs"
       }
     },
     "rust-overlay": {
@@ -1032,11 +1033,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1756947975,
-        "narHash": "sha256-Wgu/RE90hq9PixuZnlhx7UO5QXNBLWbrMN0PZnJSGX4=",
+        "lastModified": 1757008448,
+        "narHash": "sha256-VJT0UpykwNz8P9xMbC+8CZxEXz+9badjrcXh20UIMbE=",
         "owner": "ayla6",
         "repo": "secrets",
-        "rev": "9075972fc860180bec1d885a2e00f9aa79944249",
+        "rev": "4b5ce5c5863e7b421e6a300a2be417e872ebf19f",
         "type": "github"
       },
       "original": {
@@ -1114,6 +1115,26 @@
       "original": {
         "type": "git",
         "url": "https://tangled.sh/@tangled.sh/core"
+      }
+    },
+    "tgirlpkgs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756975169,
+        "narHash": "sha256-WGmLn8/KWBCXvQHv0qDtWaXEIsY7IJd0crAkebY1CDE=",
+        "owner": "tgirlcloud",
+        "repo": "pkgs",
+        "rev": "e37520861e648c76ee63ffad2d560bd45326bf92",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tgirlcloud",
+        "repo": "pkgs",
+        "type": "github"
       }
     },
     "treefmt-nix": {

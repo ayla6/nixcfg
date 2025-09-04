@@ -165,7 +165,7 @@ in {
               steam-database
               snowflake
               sponsorblock
-              karakeep
+              #karakeep
               bitwarden
             ];
 

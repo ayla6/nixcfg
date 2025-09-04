@@ -54,7 +54,7 @@
       glance.enable = true;
       jellyfin.enable = true;
       jellyseerr.enable = true;
-      karakeep.enable = true;
+      karakeep.enable = false;
       miniflux.enable = true;
       ntfy.enable = true;
       pds.enable = true;

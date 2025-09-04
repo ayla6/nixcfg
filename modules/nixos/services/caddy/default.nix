@@ -12,6 +12,11 @@
     age.secrets.caddy.file = "${self.inputs.secrets}/caddy.age";
     networking.firewall.allowedTCPPorts = [80 443];
 
+    boot.kernel.sysctl = {
+      "net.core.rmem_max" = 7500000;
+      "net.core.wmem_max" = 7500000;
+    };
+
     services = {
       caddy = {
         enable = true;

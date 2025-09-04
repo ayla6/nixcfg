@@ -59,6 +59,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    tgirlpkgs = {
+      url = "github:tgirlcloud/pkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     firefox-onebar = {
       url = "https://git.gay/freeplay/Firefox-Onebar/raw/branch/waf/onebar.css";
       flake = false;

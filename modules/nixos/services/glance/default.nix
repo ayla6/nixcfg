@@ -84,12 +84,12 @@ in {
                           check-url = "http://${tailnet.networkMap.vaultwarden.hostName}:${toString tailnet.networkMap.vaultwarden.port}/";
                           icon = "di:vaultwarden";
                         }
-                        {
-                          title = "Karakeep";
-                          url = "https://${tailnet.networkMap.karakeep.vHost}/";
-                          check-url = "http://${tailnet.networkMap.karakeep.hostName}:${toString tailnet.networkMap.karakeep.port}/";
-                          icon = "di:karakeep";
-                        }
+                        #{
+                        #  title = "Karakeep";
+                        #  url = "https://${tailnet.networkMap.karakeep.vHost}/";
+                        #  check-url = "http://${tailnet.networkMap.karakeep.hostName}:${toString tailnet.networkMap.karakeep.port}/";
+                        #  icon = "di:karakeep";
+                        #}
                         {
                           title = "Jellyfin";
                           url = "https://${tailnet.networkMap.jellyfin.vHost}/";
