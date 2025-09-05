@@ -55,6 +55,7 @@
                   overlays = [
                     self.inputs.nur.overlays.default
                     self.inputs.copyparty.overlays.default
+                    self.inputs.aylapkgs.overlays.default
                   ];
                   config.allowUnfree = true;
                 };

@@ -67,17 +67,37 @@
         "type": "github"
       }
     },
+    "aylapkgs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1757109107,
+        "narHash": "sha256-EiwgbwyzQs7ntOV4w+3L39CIVHBur0IGSWSMsPLeYkY=",
+        "owner": "ayla6",
+        "repo": "pkgs",
+        "rev": "3b3adb4d52381b68277bbd2f8afa30b5e3250280",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ayla6",
+        "repo": "pkgs",
+        "type": "github"
+      }
+    },
     "copyparty": {
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1756936507,
-        "narHash": "sha256-OhXMy1+YuYlK8d394AImAS+EihDsKzdu8o5NEPyOzOg=",
+        "lastModified": 1757108613,
+        "narHash": "sha256-okw03yWTUT9bmcxs0HOC/hJ8Ui1Qk6zmZyA1i0n2ics=",
         "owner": "9001",
         "repo": "copyparty",
-        "rev": "e6755aa8a1fe85daf81ac5ba462f96c26ff505ba",
+        "rev": "aaeec11f81740b1068ae952ce2e8795e60d5673a",
         "type": "github"
       },
       "original": {
@@ -659,11 +679,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756903364,
-        "narHash": "sha256-vZh/YH2D7oDFek10r0TbGn3qJrqGv69sSP+oF8PFDqQ=",
+        "lastModified": 1757075491,
+        "narHash": "sha256-a+NMGl5tcvm+hyfSG2DlVPa8nZLpsumuRj1FfcKb2mQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6159629d05a0e92bb7fb7211e74106ae1d552401",
+        "rev": "f56bf065f9abedc7bc15e1f2454aa5c8edabaacf",
         "type": "github"
       },
       "original": {
@@ -879,11 +899,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1756819007,
-        "narHash": "sha256-12V64nKG/O/guxSYnr5/nq1EfqwJCdD2+cIGmhz3nrE=",
+        "lastModified": 1756911493,
+        "narHash": "sha256-6n/n1GZQ/vi+LhFXMSyoseKdNfc2QQaSBXJdgamrbkE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "aaff8c16d7fc04991cac6245bee1baa31f72b1e1",
+        "rev": "c6a788f552b7b7af703b1a29802a7233c0067908",
         "type": "github"
       },
       "original": {
@@ -947,11 +967,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1756943002,
-        "narHash": "sha256-EjCUp4JcSeTzPCDwwaJZCmAV8dejVYCH+uRaWzJDDnU=",
+        "lastModified": 1757105782,
+        "narHash": "sha256-t6ysDkG1ISWe4XE/M/o8msGguTTPKRpZJugfkLsvMLs=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "849e949d461b5b1ac83450254f71b47d429e4923",
+        "rev": "3f0eeedfbb93e70a080e84b3689725ebe2051969",
         "type": "github"
       },
       "original": {
@@ -991,6 +1011,7 @@
       "inputs": {
         "actions-nix": "actions-nix",
         "agenix": "agenix",
+        "aylapkgs": "aylapkgs",
         "copyparty": "copyparty",
         "disko": "disko",
         "files": "files",
@@ -1104,11 +1125,11 @@
         "sqlite-lib-src": "sqlite-lib-src"
       },
       "locked": {
-        "lastModified": 1756905886,
-        "narHash": "sha256-zaC6EmDpvM7j0LxPA0NBldYlOjmQd7Durtm39/5ePew=",
+        "lastModified": 1757078979,
+        "narHash": "sha256-3ax8YuYp3MIUYIdov8l2cmXIwO/TSGsc1TUv3r1yIAg=",
         "ref": "refs/heads/master",
-        "rev": "bcb8dc65dac5c0e6c167642b46da52419044261f",
-        "revCount": 1287,
+        "rev": "02b54de9c4f391f75eb8287e3857ecda30d483a4",
+        "revCount": 1291,
         "type": "git",
         "url": "https://tangled.sh/@tangled.sh/core"
       },
@@ -1124,11 +1145,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756975169,
-        "narHash": "sha256-WGmLn8/KWBCXvQHv0qDtWaXEIsY7IJd0crAkebY1CDE=",
+        "lastModified": 1757033007,
+        "narHash": "sha256-350uP++nULHwpkDITAgPalMkzprp4TBWHQinNVBi+Hk=",
         "owner": "tgirlcloud",
         "repo": "pkgs",
-        "rev": "e37520861e648c76ee63ffad2d560bd45326bf92",
+        "rev": "5b7f9185cd99fa8f01a56f2cd5ae0e056f00ed8c",
         "type": "github"
       },
       "original": {
