@@ -5,6 +5,7 @@
     ./profiles
     ./snippets
     inputs.agenix.homeManagerModules.default
+    inputs.aylapkgs.homeModules.default
   ];
 
   home = {

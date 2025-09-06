@@ -39,7 +39,7 @@
 
       myHome = {
         programs = {
-          chromium.enable = true;
+          helium.enable = true;
           fastfetch.enable = true;
           firefox = {
             enable = true;

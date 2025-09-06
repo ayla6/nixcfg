@@ -2,9 +2,9 @@
   imports = [
     ./anki
     ./aria2
-    ./chromium
     ./fastfetch
     ./firefox
+    ./helium
     ./helix
     ./lutris
     ./git

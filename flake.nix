@@ -19,6 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    aylapkgs = {
+      url = "github:ayla6/pkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     copyparty.url = "github:9001/copyparty";
 
     disko = {
@@ -49,11 +54,6 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    aylapkgs = {
-      url = "github:ayla6/pkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

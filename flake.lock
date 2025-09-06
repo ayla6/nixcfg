@@ -74,11 +74,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757109107,
-        "narHash": "sha256-EiwgbwyzQs7ntOV4w+3L39CIVHBur0IGSWSMsPLeYkY=",
+        "lastModified": 1757127879,
+        "narHash": "sha256-YAHmt9eYEQV3Qkvx0/xHoyx6gpJjaErhcz4rMff2+wM=",
         "owner": "ayla6",
         "repo": "pkgs",
-        "rev": "3b3adb4d52381b68277bbd2f8afa30b5e3250280",
+        "rev": "12254a35e0008188a76a1263ef1f9d3844d59631",
         "type": "github"
       },
       "original": {
