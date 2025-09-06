@@ -72,7 +72,6 @@ in {
           # Etc
           [
             "--disk-cache=$XDG_RUNTIME_DIR/helium-cache"
-            (enableFeature false "reading-from-canvas")
             "--no-first-run"
             "--disable-wake-on-wifi"
             "--disable-breakpad"
