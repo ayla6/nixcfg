@@ -68,7 +68,7 @@
             pdfViewer.package = pkgs.papers;
             #terminal.package = pkgs.ptyxis;
             terminalEditor.package = config.programs.helix.package;
-            webBrowser.package = config.programs.firefox.finalPackage;
+            webBrowser.package = config.programs.helium.package;
           };
         };
 
