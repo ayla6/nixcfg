@@ -20,7 +20,6 @@
           love
           luajit
           nodejs
-          pnpm
           typescript
 
           # applications
