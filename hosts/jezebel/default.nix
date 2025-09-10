@@ -37,6 +37,7 @@
       };
     };
     services = {
+      atproto-basic-notifications.enable = true;
       caddy.enable = true;
       dnsmasq.enable = true;
       tailscale = {

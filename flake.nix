@@ -18,6 +18,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    atproto-basic-notifications = {
+      url = "github:ayla6/atproto-basic-notifications";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     aylapkgs = {
       url = "github:ayla6/pkgs";
       inputs.nixpkgs.follows = "nixpkgs";

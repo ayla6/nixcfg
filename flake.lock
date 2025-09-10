@@ -67,6 +67,26 @@
         "type": "github"
       }
     },
+    "atproto-basic-notifications": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1757472523,
+        "narHash": "sha256-RKbdgbaP1ELTe8gZi7xOb/qw8gu/fY+megIKkNQ2a+Q=",
+        "owner": "ayla6",
+        "repo": "atproto-basic-notifications",
+        "rev": "54f8f393ebf6cd85f4c137de81167fe173d93b36",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ayla6",
+        "repo": "atproto-basic-notifications",
+        "type": "github"
+      }
+    },
     "aylapkgs": {
       "inputs": {
         "nixpkgs": [
@@ -995,6 +1015,7 @@
       "inputs": {
         "actions-nix": "actions-nix",
         "agenix": "agenix",
+        "atproto-basic-notifications": "atproto-basic-notifications",
         "aylapkgs": "aylapkgs",
         "copyparty": "copyparty",
         "disko": "disko",
@@ -1037,11 +1058,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1757008448,
-        "narHash": "sha256-VJT0UpykwNz8P9xMbC+8CZxEXz+9badjrcXh20UIMbE=",
+        "lastModified": 1757473092,
+        "narHash": "sha256-VC5Qwpt39QjOI8y59y92D5JA4xkoT7sYj6eSPxa7iUM=",
         "owner": "ayla6",
         "repo": "secrets",
-        "rev": "4b5ce5c5863e7b421e6a300a2be417e872ebf19f",
+        "rev": "4dddc309e111310c43c170ddadd195c93c536466",
         "type": "github"
       },
       "original": {

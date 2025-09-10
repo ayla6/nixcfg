@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./atproto-basic-notifications
     ./audiobookshelf
     ./aria2
     ./couchdb

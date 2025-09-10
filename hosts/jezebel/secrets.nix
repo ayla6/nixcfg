@@ -4,5 +4,6 @@
     resticPassword.file = "${self.inputs.secrets}/restic-passwd.age";
     rclone.file = "${self.inputs.secrets}/rclone.age";
     ntfyAuto.file = "${self.inputs.secrets}/ntfyAuto.age";
+    atp-notif.file = "${self.inputs.secrets}/atproto-notif.age";
   };
 }
