@@ -27,6 +27,7 @@
           rclone
           rclone-browser
           signal-desktop-bin
+          bitwarden-desktop
           yt-dlp
         ];
 
@@ -183,7 +184,6 @@
           "org.squidowl.halloy"
 
           # utilities
-          "com.bitwarden.desktop"
           "com.github.tchx84.Flatseal"
           "org.keepassxc.KeePassXC"
         ];
