@@ -26,6 +26,7 @@
           aseprite
           rclone
           rclone-browser
+          signal-desktop-bin
           yt-dlp
         ];
 
@@ -178,7 +179,6 @@
 
           # social (basically useless but)
           "im.dino.Dino"
-          "de.schmidhuberj.Flare"
           "org.gnome.Fractal"
           "org.squidowl.halloy"
 
