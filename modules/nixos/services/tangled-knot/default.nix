@@ -38,7 +38,7 @@ in {
       };
 
       tangled-knot = {
-        enable = false;
+        enable = true;
         openFirewall = true;
         stateDir = "/home/git";
         server = {
