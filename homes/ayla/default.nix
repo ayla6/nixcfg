@@ -72,10 +72,6 @@
             webBrowser.package = config.programs.helium.package;
           };
         };
-
-        services = {
-          aria2.enable = true;
-        };
       };
 
       fontix = {

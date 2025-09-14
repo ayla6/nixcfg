@@ -55,7 +55,6 @@
         enableCaddy = false;
         operator = "ayla";
       };
-      aria2.enable = true;
       syncthing = {
         enable = true;
         certFile = config.age.secrets.syncthingCert.path;
