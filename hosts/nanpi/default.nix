@@ -24,11 +24,6 @@
     profiles = {
       base.enable = true;
       server.enable = true;
-      autoUpgrade = {
-        enable = true;
-        operation = "boot";
-        allowReboot = false;
-      };
       backups.enable = true;
       btrfs = {
         enable = true;

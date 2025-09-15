@@ -36,12 +36,6 @@
         size = 8192;
         location = "/data/.swap";
       };
-
-      autoUpgrade = {
-        enable = true;
-        allowReboot = false;
-        operation = "switch";
-      };
     };
     desktop.gnome.enable = true;
     services = {
