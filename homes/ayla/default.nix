@@ -29,6 +29,7 @@
           signal-desktop-bin
           bitwarden-desktop
           yt-dlp
+          obsidian
         ];
 
         username = "ayla";
@@ -171,7 +172,6 @@
 
           # productivity
           "com.calibre_ebook.calibre"
-          "md.obsidian.Obsidian"
           "net.ankiweb.Anki"
 
           # social (basically useless but)
