@@ -6,7 +6,7 @@
   imports = [
     ./home.nix
     ./secrets.nix
-    self.nixosModules.locale-en-gb
+    self.nixosModules.locale-en-ca
   ];
 
   networking.hostName = "morgana";

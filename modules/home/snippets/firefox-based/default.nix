@@ -128,7 +128,7 @@ in {
 
         #nativeMessagingHosts = lib.optionals pkgs.stdenv.isLinux [pkgs.bitwarden-desktop];
         languagePacks = [
-          "en-GB"
+          "en-CA"
           "en"
           "en-US"
         ];

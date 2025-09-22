@@ -13,6 +13,7 @@
 
     nixosModules = {
       hardware = ../hardware;
+      locale-en-ca = ../locale/en-ca;
       locale-en-gb = ../locale/en-gb;
       nixos = ../nixos;
       snippets = ../snippets;
