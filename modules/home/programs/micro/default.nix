@@ -13,6 +13,7 @@
         scrollspeed = 1;
         tabsize = 2;
         tabstospaces = true;
+        wordwrap = true;
       };
     };
   };
