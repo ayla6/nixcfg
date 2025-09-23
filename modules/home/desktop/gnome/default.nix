@@ -63,22 +63,10 @@
         "org/gnome/system/location".enabled = false;
 
         "org/gnome/desktop/wm/keybindings" = {
-          move-to-monitor-down = [
-            "<Ctrl><Shift><Super>e"
-            "<Ctrl><Shift><Super>Down"
-          ];
-          move-to-monitor-left = [
-            "<Ctrl><Shift><Super>n"
-            "<Ctrl><Shift><Super>Left"
-          ];
-          move-to-monitor-right = [
-            "<Ctrl><Shift><Super>o"
-            "<Ctrl><Shift><Super>Right"
-          ];
-          move-to-monitor-up = [
-            "<Ctrl><Shift><Super>i"
-            "<Ctrl><Shift><Super>Up"
-          ];
+          move-to-monitor-down = ["<Ctrl><Shift><Super>Down"];
+          move-to-monitor-left = ["<Ctrl><Shift><Super>Left"];
+          move-to-monitor-right = ["<Ctrl><Shift><Super>Right"];
+          move-to-monitor-up = ["<Ctrl><Shift><Super>Up"];
           move-to-workspace-1 = ["<Shift><Super>1"];
           move-to-workspace-10 = ["<Shift><Super>0"];
           move-to-workspace-2 = ["<Shift><Super>2"];
@@ -89,16 +77,6 @@
           move-to-workspace-7 = ["<Shift><Super>7"];
           move-to-workspace-8 = ["<Shift><Super>8"];
           move-to-workspace-9 = ["<Shift><Super>9"];
-          move-to-workspace-down = ["<Shift><Super>j"];
-          move-to-workspace-left = [
-            "<Shift><Super>n"
-            "<Shift><Super>Comma"
-          ];
-          move-to-workspace-right = [
-            "<Shift><Super>o"
-            "<Shift><Super>Period"
-          ];
-          move-to-workspace-up = ["<Shift><Super>k"];
           switch-to-workspace-1 = ["<Super>1"];
           switch-to-workspace-10 = ["<Super>0"];
           switch-to-workspace-2 = ["<Super>2"];
@@ -110,8 +88,8 @@
           switch-to-workspace-8 = ["<Super>8"];
           switch-to-workspace-9 = ["<Super>9"];
           switch-to-workspace-down = [];
-          switch-to-workspace-left = ["<Super>Comma"];
-          switch-to-workspace-right = ["<Super>Period"];
+          switch-to-workspace-left = ["<Ctrl><Super>Left"];
+          switch-to-workspace-right = ["<Ctrl><Super>Right"];
           switch-to-workspace-up = [];
           toggle-fullscreen = ["<Super>w"];
         };
