@@ -22,7 +22,6 @@
       epiphany
       geary # email reader
       gedit # text editor
-      gnome-characters
       gnome-console # in case im using something else
       gnome-music
       gnome-software # i like the idea but i really hate how much resources it uses
