@@ -31,11 +31,6 @@
         snapshots = true;
       };
       tmpOnTmpfs.enable = true;
-      swap = {
-        enable = true;
-        size = 8192;
-        location = "/data/.swap";
-      };
     };
     desktop.gnome.enable = true;
     services = {
