@@ -168,7 +168,7 @@
           "org.atheme.audacious"
           "org.freac.freac"
           "org.musicbrainz.Picard"
-          "org.tenacityaudio.Tenacity"
+          "org.audacityteam.Audacity"
 
           # productivity
           "com.calibre_ebook.calibre"
