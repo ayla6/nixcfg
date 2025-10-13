@@ -60,7 +60,7 @@
       };
 
       # kernelModules = ["ntsync"];
-      kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+      kernelPackages = pkgs.linuxPackages_cachyos;
     };
 
     services = {

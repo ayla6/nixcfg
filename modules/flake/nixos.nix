@@ -40,6 +40,7 @@
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.tangled-core.nixosModules.knot
               inputs.tgirlpkgs.nixosModules.default
+              inputs.chaotic.nixosModules.default
               modules.hardware
               modules.nixos
               modules.snippets

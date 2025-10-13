@@ -25,7 +25,7 @@
           # applications
           aseprite
           rclone
-          rclone-browser
+          #rclone-browser
           signal-desktop-bin
           bitwarden-desktop
           yt-dlp
