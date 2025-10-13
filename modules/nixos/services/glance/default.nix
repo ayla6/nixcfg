@@ -120,12 +120,12 @@ in {
                           check-url = "http://${tailnet.networkMap.prowlarr.hostName}:${toString tailnet.networkMap.prowlarr.port}/";
                           icon = "di:prowlarr";
                         }
-                        {
-                          title = "Bazarr";
-                          url = "https://${tailnet.networkMap.bazarr.vHost}/";
-                          check-url = "http://${tailnet.networkMap.bazarr.hostName}:${toString tailnet.networkMap.bazarr.port}/";
-                          icon = "di:bazarr";
-                        }
+                        #{
+                        #  title = "Bazarr";
+                        #  url = "https://${tailnet.networkMap.bazarr.vHost}/";
+                        #  check-url = "http://${tailnet.networkMap.bazarr.hostName}:${toString tailnet.networkMap.bazarr.port}/";
+                        #  icon = "di:bazarr";
+                        #}
                         {
                           title = "Autobrr";
                           url = "https://${tailnet.networkMap.autobrr.vHost}/";

@@ -37,11 +37,11 @@ in {
             reverse_proxy ${netMap.autobrr.hostName}:${toString netMap.autobrr.port}
           '';
 
-          "${netMap.bazarr.vHost}".extraConfig = ''
-            bind tailscale/bazarr
-            encode zstd gzip
-            reverse_proxy ${netMap.bazarr.hostName}:${toString netMap.bazarr.port}
-          '';
+          #"${netMap.bazarr.vHost}".extraConfig = ''
+          #  bind tailscale/bazarr
+          #  encode zstd gzip
+          #  reverse_proxy ${netMap.bazarr.hostName}:${toString netMap.bazarr.port}
+          #'';
 
           "${netMap.prowlarr.vHost}".extraConfig = ''
             bind tailscale/prowlarr
@@ -72,11 +72,11 @@ in {
           };
         };
 
-        bazarr = {
-          enable = true;
-          dataDir = "${cfg.dataDir}/bazarr";
-          openFirewall = true; # Port: 6767
-        };
+        #bazarr = {
+        #  enable = true;
+        #  dataDir = "${cfg.dataDir}/bazarr";
+        #  openFirewall = true; # Port: 6767
+        #};
 
         #lidarr = {
         #  enable = true;
