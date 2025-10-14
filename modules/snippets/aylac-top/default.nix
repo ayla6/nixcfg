@@ -50,6 +50,12 @@
           port = 5555;
           vHost = "knot.aylac.top";
         };
+
+        privatebin = {
+          hostName = "nanpi";
+          port = 7748;
+          vHost = "bin.aylac.top";
+        };
       };
     };
   };

@@ -53,6 +53,7 @@
       miniflux.enable = true;
       ntfy.enable = true;
       pds.enable = true;
+      privatebin.enable = true;
       qbittorrent = {
         enable = true;
         webuiPort = config.mySnippets.tailnet.networkMap.qbittorrent.port;

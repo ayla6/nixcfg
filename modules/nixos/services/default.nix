@@ -21,6 +21,7 @@
     ./ntfy
     ./pds
     ./postgresql
+    ./privatebin
     ./qbittorrent
     ./radicale
     ./redlib
