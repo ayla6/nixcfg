@@ -48,7 +48,7 @@ in {
             defaultformatter = "syntaxhighlighting";
             syntaxhighlightingtheme = "sons-of-obsidian";
             qrcode = true;
-            template = "bootstrap5";
+            template = "bootstrap-dark";
           };
           model.class = "Filesystem";
           model_options.dir = "/var/lib/privatebin/data";
