@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   name = "privatebin";
@@ -33,6 +34,7 @@ in {
       ];
 
       privatebin = {
+        package = pkgs.privatebin-ayla;
         enable = true;
         enableNginx = true;
         settings = {
