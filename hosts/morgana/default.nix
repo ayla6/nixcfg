@@ -112,4 +112,63 @@
       options = ["subvol=@data" "compress=zstd" "noatime"];
     };
   };
+
+  # samba for ps2 opl
+  services.samba = {
+    enable = true;
+    openFirewall = true;
+    winbindd.enable = false;
+    nmbd.enable = false;
+    settings = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "smbnix";
+        "netbios name" = "smbnix";
+        "security" = "user";
+
+        "bind interfaces only" = "yes";
+        "interfaces" = "lo enp2s0f1";
+
+        "client min protocol" = "CORE";
+        "client max protocol" = "NT1";
+        "server max protocol" = "SMB3";
+        "server min protocol" = "LANMAN1";
+        "strict sync" = "no";
+        "keepalive" = "0";
+
+        "getwd cache" = "yes";
+        "large readwrite" = "yes";
+        "aio read size" = "0";
+        "aio write size" = "0";
+        "strict locking" = "no";
+        "strict allocate" = "no";
+        "read raw" = "no";
+        "write raw" = "no";
+
+        "server signing" = "disabled";
+        "smb encrypt" = "disabled";
+        "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_KEEPALIVE";
+
+        "load printers" = "no";
+        "disable spoolss" = "yes";
+
+        "map to guest" = "bad user";
+
+        "available" = "yes";
+        "create mask" = "0777";
+        "directory mask" = "0777";
+        "force user" = "ayla";
+        "force group" = "users";
+      };
+      "PS2SMB" = {
+        "comment" = "PS2 SMB";
+        "path" = "/data/PS2SMB";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "public" = "yes";
+        "strict sync" = "no";
+      };
+    };
+  };
 }
