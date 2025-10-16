@@ -80,8 +80,13 @@ in {
             qrcode = true;
             template = "bootstrap-dark";
           };
-          model.class = "Filesystem";
-          model_options.dir = "/var/lib/privatebin/data";
+          model.class = "Database";
+          model_options = {
+            dsn = "sqlite:/var/lib/privatebin/data/db.sq3";
+            usr = null;
+            pwd = null;
+            "opt[12]" = true;
+          };
         };
       };
     };
