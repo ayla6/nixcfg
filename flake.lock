@@ -1213,11 +1213,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1757738862,
-        "narHash": "sha256-xmHa2syMlF1pu/aErprkrcqgAiRpzsMjjy3rJZfBxbg=",
+        "lastModified": 1760740637,
+        "narHash": "sha256-ZMBSooid+ECg63h+tYYbAXaS/rTZlcVuUNxCEmtoL1Y=",
         "owner": "ayla6",
         "repo": "secrets",
-        "rev": "274fb6e1617d005dd23588f6aadd5320c598e3dd",
+        "rev": "909f53bbd69b1a44f1c99b2d759e7b47191f5a5d",
         "type": "github"
       },
       "original": {

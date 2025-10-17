@@ -1,6 +1,7 @@
 {
   self,
   config,
+  lib,
   ...
 }: {
   imports = [
@@ -52,6 +53,8 @@
       };
     };
   };
+
+  security.sudo-rs.wheelNeedsPassword = lib.mkForce true;
 
   myUsers = {
     ayla = {
