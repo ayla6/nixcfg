@@ -144,8 +144,8 @@ in {
       {
         name = "forgejo";
         containerised = true;
-        inherit (config.services.forgejo) enable;
-        paths = [config.services.forgejo.stateDir];
+        inherit (config.myNixOS.services.forgejo) enable;
+        paths = ["/var/lib/nixos-containers/forgejo${config.containers.forgejo.config.services.forgejo.stateDir}"];
         backupMode = "none";
       }
       # {

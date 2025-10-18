@@ -42,10 +42,7 @@
       cloudflared.enable = true;
       copyparty.enable = true;
       dnsmasq.enable = true;
-      forgejo = {
-        enable = true;
-        db = "postgresql";
-      };
+      forgejo.enable = true;
       glance.enable = true;
       jellyfin.enable = true;
       jellyseerr.enable = true;
