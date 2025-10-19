@@ -90,6 +90,26 @@
           id = "obsidian";
           path = "/home/ayla/Documents/Obsidian";
         };
+
+        "Phone ROMs" = {
+          devices = [
+            "morgana"
+            "m23"
+          ];
+
+          id = "2jcyv-esxcu";
+          path = "/data/Phone ROMs";
+        };
+
+        "RetroArch Saves" = {
+          devices = [
+            "morgana"
+            "m23"
+          ];
+
+          id = "guhfs-4e5qf";
+          path = "/home/ayla/.var/app/org.libretro.RetroArch/config/retroarch/saves";
+        };
       };
     };
   };
