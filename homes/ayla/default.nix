@@ -19,7 +19,8 @@
           ffmpeg-full
           love
           luajit
-          nodejs
+          #nodejs
+          bun
           typescript
 
           # applications

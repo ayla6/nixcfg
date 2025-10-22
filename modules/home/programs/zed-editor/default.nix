@@ -3,7 +3,17 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  bunPrettier = {
+    external = {
+      command = pkgs.writeScript "prettier-bun" ''
+        #! ${pkgs.bash}/bin/bash -e
+        exec ${lib.getExe pkgs.bun} ${pkgs.prettier}/bin/prettier.cjs "$@"
+      '';
+      arguments = ["--stdin-filepath" "{buffer_path}"];
+    };
+  };
+in {
   options.myHome.programs.zed-editor.enable = lib.mkEnableOption "zed editor";
 
   config = lib.mkIf config.myHome.programs.zed-editor.enable {
@@ -48,32 +58,42 @@
           JavaScript = {
             format_on_save = "on";
 
-            formatter = {
-              external = {
-                command = lib.getExe pkgs.prettier;
-                arguments = ["--stdin-filepath" "{buffer_path}"];
-              };
-            };
+            formatter = bunPrettier;
+            language_servers = [
+              "typescript-language-server"
+              "!vtsls"
+              "!eslint"
+            ];
           };
           TypeScript = {
             format_on_save = "on";
 
-            formatter = {
-              external = {
-                command = lib.getExe pkgs.prettier;
-                arguments = ["--stdin-filepath" "{buffer_path}"];
-              };
-            };
+            formatter = bunPrettier;
+            language_servers = [
+              "typescript-language-server"
+              "!vtsls"
+              "!eslint"
+            ];
           };
           TSX = {
             format_on_save = "on";
 
-            formatter = {
-              external = {
-                command = lib.getExe pkgs.prettier;
-                arguments = ["--stdin-filepath" "{buffer_path}"];
-              };
-            };
+            formatter = bunPrettier;
+            language_servers = [
+              "typescript-language-server"
+              "!vtsls"
+              "!eslint"
+            ];
+          };
+          JSON = {
+            format_on_save = "on";
+
+            formatter = bunPrettier;
+          };
+          CSS = {
+            format_on_save = "on";
+
+            formatter = bunPrettier;
           };
           Nix = {
             format_on_save = "on";
@@ -82,30 +102,39 @@
               "nixd"
             ];
           };
-          JSON = {
-            format_on_save = "on";
-
-            formatter = {
-              external = {
-                command = lib.getExe pkgs.prettier;
-                arguments = ["--stdin-filepath" "{buffer_path}"];
-              };
-            };
-          };
-          CSS = {
-            format_on_save = "on";
-
-            formatter = {
-              external = {
-                command = lib.getExe pkgs.prettier;
-                arguments = ["--stdin-filepath" "{buffer_path}"];
-              };
-            };
-          };
         };
-        lsp.nixd = {
-          binary.path = lib.getExe pkgs.nixd;
-          settings.formatting.command = [(lib.getExe pkgs.alejandra) "--quiet" "--"];
+        lsp = {
+          nixd = {
+            binary.path = lib.getExe pkgs.nixd;
+            settings.formatting.command = [(lib.getExe pkgs.alejandra) "--quiet" "--"];
+          };
+          typescript-language-server = with pkgs.nodePackages; {
+            binary = {
+              path = pkgs.writeScript "typescript-language-server-bun" ''
+                #! ${pkgs.bash}/bin/bash -e
+                exec ${lib.getExe pkgs.bun} ${typescript-language-server}/lib/node_modules/typescript-language-server/lib/cli.mjs "$@"
+              '';
+              arguments = ["--stdio"];
+            };
+          };
+          json-language-server = {
+            binary = {
+              path = pkgs.writeScript "vscode-json-languageserver-bun" ''
+                #! ${pkgs.bash}/bin/bash -e
+                exec ${lib.getExe pkgs.bun} ${pkgs.vscode-json-languageserver}/lib/node_modules/vscode-json-languageserver/./bin/vscode-json-languageserver "$@"
+              '';
+              arguments = ["--stdio"];
+            };
+          };
+          css-language-server = {
+            binary = {
+              path = pkgs.writeScript "vscode-css-languageserver-bun" ''
+                #! ${pkgs.bash}/bin/bash -e
+                exec ${lib.getExe pkgs.bun} ${pkgs.vscode-css-languageserver}/lib/node_modules/vscode-css-languageserver/out/node/cssServerMain.js "$@"
+              '';
+              arguments = ["--stdio"];
+            };
+          };
         };
         telemetry = {
           diagnostics = false;

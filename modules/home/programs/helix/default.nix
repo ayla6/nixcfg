@@ -82,7 +82,10 @@
           };
 
           vscode-css-languageserver = {
-            command = lib.getExe pkgs.vscode-css-languageserver;
+            command = pkgs.writeScript "vscode-css-languageserver-bun" ''
+              #! ${pkgs.bash}/bin/bash -e
+              exec ${lib.getExe pkgs.bun} ${pkgs.vscode-css-languageserver}/lib/node_modules/vscode-css-languageserver/out/node/cssServerMain.js "$@"
+            '';
             args = ["--stdio"];
           };
 
@@ -106,13 +109,19 @@
           };
 
           vscode-json-languageserver = {
-            command = lib.getExe pkgs.vscode-json-languageserver;
+            command = pkgs.writeScript "vscode-json-languageserver-bun" ''
+              #! ${pkgs.bash}/bin/bash -e
+              exec ${lib.getExe pkgs.bun} ${pkgs.vscode-json-languageserver}/lib/node_modules/vscode-json-languageserver/./bin/vscode-json-languageserver "$@"
+            '';
             args = ["--stdio"];
           };
 
           typescript-language-server = with pkgs.nodePackages; {
-            command = "${typescript-language-server}/bin/typescript-language-server";
-            args = ["--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib"];
+            command = pkgs.writeScript "typescript-language-server-bun" ''
+              #! ${pkgs.bash}/bin/bash -e
+              exec ${lib.getExe pkgs.bun} ${typescript-language-server}/lib/node_modules/typescript-language-server/lib/cli.mjs "$@"
+            '';
+            args = ["--stdio"];
           };
 
           superhtml = {
