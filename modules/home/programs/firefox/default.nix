@@ -1,15 +1,15 @@
 {
   lib,
   config,
-  pkgs,
-  self,
+  #pkgs,
+  #self,
   ...
 }: {
   options.myHome.programs.firefox = {
     enable = lib.mkEnableOption "firefox web browser";
     mode = lib.mkOption {
-      type = lib.types.enum ["onebar" "sidebar" "default"];
-      default = "onebar";
+      type = lib.types.enum ["sidebar" "default"];
+      default = "sidebar";
       description = "Firefox UI mode";
     };
   };
@@ -21,23 +21,23 @@
       config.mySnippets.firefox-based.userConfig
     )
 
-    (lib.mkIf
-      (config.myHome.programs.firefox.mode == "onebar")
-      {
-        profiles.default = {
-          settings = {
-            "onebar.collapse-URLbar" = true;
-            "onebar.conditional-navigation-buttons" = false;
-            "onebar.hide-all-URLbar-icons" = true;
-          };
-
-          userChrome = builtins.readFile self.inputs.firefox-onebar;
-
-          extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-            adaptive-tab-bar-colour
-          ];
-        };
-      })
+    #(lib.mkIf
+    #  (config.myHome.programs.firefox.mode == "onebar")
+    #  {
+    #    profiles.default = {
+    #      settings = {
+    #        "onebar.collapse-URLbar" = true;
+    #        "onebar.conditional-navigation-buttons" = false;
+    #        "onebar.hide-all-URLbar-icons" = true;
+    #      };
+    #
+    #      userChrome = builtins.readFile self.inputs.firefox-onebar;
+    #
+    #      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+    #        adaptive-tab-bar-colour
+    #      ];
+    #    };
+    #  })
 
     (
       if (config.myHome.programs.firefox.mode == "sidebar")

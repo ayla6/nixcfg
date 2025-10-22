@@ -75,10 +75,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    firefox-onebar = {
-      url = "https://git.gay/freeplay/Firefox-Onebar/raw/branch/waf/onebar.css";
-      flake = false;
-    };
+    #firefox-onebar = {
+    #  url = "https://git.gay/freeplay/Firefox-Onebar/raw/branch/waf/onebar.css";
+    #  flake = false;
+    #};
 
     secrets = {
       url = "github:ayla6/secrets";
