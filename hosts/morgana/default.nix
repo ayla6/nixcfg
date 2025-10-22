@@ -35,6 +35,7 @@
     };
     desktop.gnome.enable = true;
     services = {
+      gdm.enable = true;
       dnsmasq = {
         enable = true;
         longCaches = false;

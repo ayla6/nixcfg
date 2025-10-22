@@ -52,7 +52,6 @@
 
     myNixOS = {
       desktop.enable = true;
-      services.gdm.enable = true;
     };
 
     #qt = {
