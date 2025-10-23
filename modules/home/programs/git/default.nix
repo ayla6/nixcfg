@@ -9,14 +9,16 @@
   config = lib.mkIf config.myHome.programs.git.enable {
     programs.git = {
       enable = true;
-      userName = "ayla";
-      userEmail = "ayla-git.barcode041@silomails.com";
       signing = {
         format = "ssh";
         key = "~/.ssh/id_ed25519";
         signByDefault = true;
       };
-      extraConfig = {
+      settings = {
+        user = {
+          name = "ayla";
+          email = "ayla-git.barcode041@silomails.com";
+        };
         color.ui = true;
         github.user = "ayla6";
         init = {

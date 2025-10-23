@@ -1,9 +1,9 @@
 {...}: {
   imports = [
     ./arr
+    ./backups
     ./base
     ./btrfs
-    ./backups
     ./workstation
     ./server
     ./autoUpgrade
