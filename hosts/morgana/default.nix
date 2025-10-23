@@ -32,6 +32,16 @@
         snapshots = true;
       };
       tmpOnTmpfs.enable = true;
+
+      hibernation = {
+        enable = true;
+        swap = {
+          size = 24576;
+          location = "/data/.swapfile";
+          keyFile = "/.swapkey";
+          blkDev = "/dev/disk/by-uuid/e88969b5-98a0-4d46-a059-8e07ebf2689e";
+        };
+      };
     };
     desktop.gnome.enable = true;
     services = {

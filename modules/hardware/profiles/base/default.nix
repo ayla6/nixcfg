@@ -23,8 +23,8 @@
       fstrim.enable = true;
 
       logind.settings.Login = {
-        HandlePowerKey = "suspend";
-        HandlePowerKeyLongPress = "poweroff";
+        HandlePowerKey = lib.mkDefault "suspend";
+        HandlePowerKeyLongPress = lib.mkDefault "poweroff";
       };
 
       xserver.xkb = {

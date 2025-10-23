@@ -4,6 +4,7 @@
     ./backups
     ./base
     ./btrfs
+    ./hibernation
     ./workstation
     ./server
     ./autoUpgrade
