@@ -128,6 +128,11 @@
             command = lib.getExe pkgs.superhtml;
             args = ["--stdio"];
           };
+
+          biome = {
+            command = lib.getExe pkgs.biome;
+            args = ["lsp-proxy"];
+          };
         };
 
         language = [
@@ -146,8 +151,13 @@
           {
             name = "css";
             auto-format = true;
-            formatter = {command = lib.getExe pkgs.prettier;};
-            language-servers = ["vscode-css-languageserver"];
+            language-servers = [
+              {
+                name = "vscode-css-languageserver";
+                except-features = ["format"];
+              }
+              "biome"
+            ];
           }
           {
             name = "fish";
@@ -157,20 +167,35 @@
           {
             name = "html";
             auto-format = true;
-            formatter = {command = lib.getExe pkgs.prettier;};
-            language-servers = ["superhtml"];
+            language-servers = [
+              {
+                name = "superhmtl";
+                except-features = ["format"];
+              }
+              "biome"
+            ];
           }
           {
             name = "javascript";
             auto-format = true;
-            formatter = {command = lib.getExe pkgs.prettier;};
-            language-servers = ["typescript-language-server"];
+            language-servers = [
+              {
+                name = "typescript-language-server";
+                except-features = ["format"];
+              }
+              "biome"
+            ];
           }
           {
             name = "json";
             auto-format = true;
-            formatter = {command = lib.getExe pkgs.prettier;};
-            language-servers = ["vscode-json-languageserver"];
+            language-servers = [
+              {
+                name = "vscode-json-languageserver";
+                except-features = ["format"];
+              }
+              "biome"
+            ];
           }
           {
             name = "lua";
@@ -193,8 +218,35 @@
           {
             name = "typescript";
             auto-format = true;
-            formatter = {command = lib.getExe pkgs.prettier;};
-            language-servers = ["typescript-language-server"];
+            language-servers = [
+              {
+                name = "typescript-language-server";
+                except-features = ["format"];
+              }
+              "biome"
+            ];
+          }
+          {
+            name = "jsx";
+            auto-format = true;
+            language-servers = [
+              {
+                name = "typescript-language-server";
+                except-features = ["format"];
+              }
+              "biome"
+            ];
+          }
+          {
+            name = "tsx";
+            auto-format = true;
+            language-servers = [
+              {
+                name = "typescript-language-server";
+                except-features = ["format"];
+              }
+              "biome"
+            ];
           }
         ];
       };

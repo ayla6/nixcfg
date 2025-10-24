@@ -4,7 +4,26 @@
   pkgs,
   ...
 }: let
-  bunPrettier = {
+  biome = {
+    format_on_save = "on";
+
+    formatter = {language_server = {name = "biome";};};
+    code_actions_on_format = {
+      "source.fixAll.biome" = true;
+      "source.organizeImports.biome" = true;
+    };
+  };
+  biomeTS =
+    biome
+    // {
+      language_servers = [
+        "typescript-language-server"
+        "biome"
+        "!vtsls"
+        "!eslint"
+      ];
+    };
+  prettier = {
     external = {
       command = pkgs.writeScript "prettier-bun" ''
         #! ${pkgs.bash}/bin/bash -e
@@ -29,6 +48,7 @@ in {
         "nix"
         "scss"
         "toml"
+        "biome"
       ];
       userSettings = {
         auto_indent_on_paste = true;
@@ -55,52 +75,22 @@ in {
         };
 
         languages = {
-          JavaScript = {
-            format_on_save = "on";
-
-            formatter = bunPrettier;
-            language_servers = [
-              "typescript-language-server"
-              "!vtsls"
-              "!eslint"
-            ];
-          };
-          TypeScript = {
-            format_on_save = "on";
-
-            formatter = bunPrettier;
-            language_servers = [
-              "typescript-language-server"
-              "!vtsls"
-              "!eslint"
-            ];
-          };
-          TSX = {
-            format_on_save = "on";
-
-            formatter = bunPrettier;
-            language_servers = [
-              "typescript-language-server"
-              "!vtsls"
-              "!eslint"
-            ];
-          };
-          JSON = {
-            format_on_save = "on";
-
-            formatter = bunPrettier;
-          };
-          CSS = {
-            format_on_save = "on";
-
-            formatter = bunPrettier;
-          };
+          JavaScript = biomeTS;
+          TypeScript = biomeTS;
+          TSX = biomeTS;
+          JSON = biome;
+          CSS = biome;
           Nix = {
             format_on_save = "on";
             formatter = "language_server";
             language_servers = [
               "nixd"
             ];
+          };
+          Markdown = {
+            format_on_save = "on";
+
+            formatter = prettier;
           };
         };
         lsp = {
@@ -133,6 +123,12 @@ in {
                 exec ${lib.getExe pkgs.bun} ${pkgs.vscode-css-languageserver}/lib/node_modules/vscode-css-languageserver/out/node/cssServerMain.js "$@"
               '';
               arguments = ["--stdio"];
+            };
+          };
+          biome = {
+            binary = {
+              path = lib.getExe pkgs.biome;
+              arguments = ["lsp-proxy"];
             };
           };
         };

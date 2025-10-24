@@ -3,7 +3,26 @@ _: {
     lib,
     pkgs,
     ...
-  }: {
+  }: let
+    prettier = {
+      external = {
+        command = pkgs.writeScript "prettier-bun" ''
+          #! ${pkgs.bash}/bin/bash -e
+          exec ${lib.getExe pkgs.bun} ${pkgs.prettier}/bin/prettier.cjs "$@"
+        '';
+        arguments = ["--stdin-filepath" "{buffer_path}"];
+      };
+    };
+    biome = {
+      format_on_save = "on";
+
+      formatter = {language_server = {name = "biome";};};
+      code_actions_on_format = {
+        "source.fixAll.biome" = true;
+        "source.organizeImports.biome" = true;
+      };
+    };
+  in {
     files.files = [
       {
         checkFile = false;
@@ -16,24 +35,12 @@ _: {
           };
 
           languages = {
-            JSON = {
-              format_on_save = "on";
-
-              formatter = {
-                external = {
-                  command = lib.getExe pkgs.prettier;
-                  arguments = ["--stdin-filepath" "{buffer_path}"];
-                };
-              };
-            };
+            JSON = biome;
 
             Markdown = {
               format_on_save = "on";
 
-              formatter.external = {
-                command = lib.getExe pkgs.prettier;
-                arguments = ["--stdin-filepath" "{buffer_path}"];
-              };
+              formatter = prettier;
             };
 
             Nix = {
@@ -58,10 +65,7 @@ _: {
 
             YAML = {
               format_on_save = "on";
-              formatter.external = {
-                command = lib.getExe pkgs.prettier;
-                arguments = ["--stdin-filepath" "{buffer_path}"];
-              };
+              formatter = prettier;
             };
           };
 
