@@ -33,7 +33,7 @@ in {
 
       glance = {
         enable = true;
-        openFirewall = true;
+        openFirewall = false;
 
         settings = {
           pages = [

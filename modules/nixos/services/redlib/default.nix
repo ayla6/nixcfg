@@ -29,7 +29,7 @@ in {
 
       redlib = {
         enable = true;
-        openFirewall = true;
+        openFirewall = false;
         inherit (service) port;
         settings = {
           ENABLE_RSS = "on";
