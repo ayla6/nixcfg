@@ -44,7 +44,6 @@
         enable = true;
         enableCaddy = true;
       };
-      tangled-knot.enable = false;
       uptime-kuma.enable = true;
     };
   };

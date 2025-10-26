@@ -31,7 +31,7 @@
 
         package = pkgs.caddy.withPlugins {
           plugins = ["github.com/tailscale/caddy-tailscale@v0.0.0-20250508175905-642f61fea3cc"];
-          hash = "sha256-r68btTv8N7X/pKwGkP8FWg371rt+bZETXdEN0/ZlFJI=";
+          hash = "sha256-r9EDkhcgwK11dB46AV+Em8ZE6Aa7IDMwibDGkg3e/rc=";
         };
       };
       tailscale.permitCertUid = "caddy";

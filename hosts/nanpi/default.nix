@@ -37,10 +37,10 @@
       arr.enable = true;
     };
     services = {
-      audiobookshelf.enable = true;
+      audiobookshelf.enable = false;
       caddy.enable = true;
       cloudflared.enable = true;
-      copyparty.enable = true;
+      copyparty.enable = false;
       dnsmasq.enable = true;
       forgejo.enable = true;
       glance.enable = true;
@@ -71,6 +71,7 @@
       };
       vaultwarden.enable = true;
       webdav.enable = true;
+      tangled-knot.enable = true;
     };
   };
 

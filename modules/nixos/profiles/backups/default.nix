@@ -269,8 +269,9 @@ in {
       }
       {
         name = "tangled-knot";
-        inherit (config.services.tangled-knot) enable;
-        paths = [config.services.tangled-knot.stateDir];
+        containerised = true;
+        inherit (config.myNixOS.services.tangled-knot) enable;
+        paths = ["/var/lib/nixos-containers/tangled-knot${config.containers.tangled-knot.config.services.tangled-knot.stateDir}"];
       }
     ];
   };

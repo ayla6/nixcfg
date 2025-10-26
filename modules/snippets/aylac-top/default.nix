@@ -46,8 +46,9 @@
         };
 
         tangled-knot = {
-          hostName = "jezebel";
+          hostName = "nanpi";
           port = 5555;
+          sshPort = 2222;
           vHost = "knot.aylac.top";
         };
 

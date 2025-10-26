@@ -64,7 +64,7 @@ in {
 
         autobrr = {
           enable = true;
-          openFirewall = true; # Port: 7474
+          openFirewall = false; # Port: 7474
           secretFile = config.age.secrets.autobrr.path;
           settings = {
             host = "0.0.0.0";
@@ -87,19 +87,19 @@ in {
         prowlarr = {
           enable = true;
           # dataDir = "${cfg.dataDir}/prowlarr";
-          openFirewall = true; # Port: 9696
+          openFirewall = false; # Port: 9696
         };
 
         radarr = {
           enable = true;
           dataDir = "${cfg.dataDir}/radarr/.config/Radarr/";
-          openFirewall = true; # Port: 7878
+          openFirewall = false; # Port: 7878
         };
 
         sonarr = {
           enable = true;
           dataDir = "${cfg.dataDir}/sonarr/.config/NzbDrone/";
-          openFirewall = true; # Port: 8989
+          openFirewall = false; # Port: 8989
         };
 
         #flaresolverr = {
