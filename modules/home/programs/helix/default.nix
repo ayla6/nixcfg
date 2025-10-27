@@ -91,21 +91,24 @@
 
           fish-lsp = {
             command = lib.getExe pkgs.fish-lsp;
-            args = ["--stdio"];
+            args = ["start"];
           };
 
           lua-language-server = {
             command = lib.getExe pkgs.lua-language-server;
-            args = ["--stdio"];
           };
 
           marksman = {
             command = lib.getExe pkgs.marksman;
-            args = ["--stdio"];
+            args = ["server"];
           };
 
           nixd = {
             command = lib.getExe pkgs.nixd;
+          };
+
+          nil = {
+            command = lib.getExe pkgs.nil;
           };
 
           vscode-json-languageserver = {
@@ -126,12 +129,23 @@
 
           superhtml = {
             command = lib.getExe pkgs.superhtml;
-            args = ["--stdio"];
+            args = ["lsp"];
           };
 
           biome = {
             command = lib.getExe pkgs.biome;
             args = ["lsp-proxy"];
+            config = {
+              format = {"html.formatter.enabled" = true;};
+            };
+          };
+
+          vscode-html-language-server = {
+            command = pkgs.writeScript "vscode-html-language-server-bun" ''
+              #! ${pkgs.bash}/bin/bash -e
+              exec ${lib.getExe pkgs.bun} ${pkgs.vscode-langservers-extracted}/lib/node_modules/vscode-langservers-extracted/bin/vscode-html-language-server "$@"
+            '';
+            args = ["--stdio"];
           };
         };
 
@@ -169,11 +183,22 @@
             auto-format = true;
             language-servers = [
               {
-                name = "superhmtl";
+                name = "vscode-html-language-server";
                 except-features = ["format"];
               }
-              "biome"
+              {
+                name = "superhtml";
+                except-features = ["format"];
+              }
+              {
+                name = "biome";
+                except-features = ["format"];
+              }
             ];
+            formatter = {
+              command = lib.getExe pkgs.biome;
+              args = ["format" "--use-server" "--html-formatter-enabled=true" "--stdin-file-path=%{buffer_name}"];
+            };
           }
           {
             name = "javascript";
@@ -213,7 +238,10 @@
             name = "nix";
             auto-format = true;
             formatter = {command = lib.getExe pkgs.alejandra;};
-            language-servers = ["nixd"];
+            language-servers = [
+              "nixd"
+              "nil"
+            ];
           }
           {
             name = "typescript";

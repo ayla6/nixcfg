@@ -15,7 +15,7 @@ _: {
               name = "nix";
               auto-format = true;
               formatter = {command = lib.getExe pkgs.alejandra;};
-              language-servers = ["nixd"];
+              language-servers = ["nixd" "nil"];
             }
             {
               name = "bash";
@@ -39,6 +39,10 @@ _: {
 
             nixd = {
               command = lib.getExe pkgs.nixd;
+            };
+
+            nil = {
+              command = lib.getExe pkgs.nil;
             };
           };
         };

@@ -32,21 +32,25 @@ _: {
           auto_install_extensions = {
             basher = true;
             nix = true;
+            marksman = true;
           };
 
           languages = {
-            JSON = biome;
+            JSON = biome // {language_servers = ["json-language-server"];};
 
             Markdown = {
               format_on_save = "on";
-
               formatter = prettier;
+              language_servers = ["marksman"];
             };
 
             Nix = {
               format_on_save = "on";
               formatter = "language_server";
-              language_servers = ["nixd"];
+              language_servers = [
+                "nixd"
+                "nil"
+              ];
             };
 
             "Shell Script" = {
@@ -69,9 +73,32 @@ _: {
             };
           };
 
-          lsp.nixd = {
-            binary.path = lib.getExe pkgs.nixd;
-            settings.formatting.command = [(lib.getExe pkgs.alejandra) "--quiet" "--"];
+          lsp = {
+            nixd = {
+              binary.path = lib.getExe pkgs.nixd;
+              settings.formatting.command = [(lib.getExe pkgs.alejandra) "--quiet" "--"];
+            };
+            nil = {
+              binary = {
+                path = lib.getExe pkgs.nil;
+                arguments = ["--stdio"];
+              };
+            };
+            json-language-server = {
+              binary = {
+                path = pkgs.writeScript "vscode-json-languageserver-bun" ''
+                  #! ${pkgs.bash}/bin/bash -e
+                  exec ${lib.getExe pkgs.bun} ${pkgs.vscode-json-languageserver}/lib/node_modules/vscode-json-languageserver/./bin/vscode-json-languageserver "$@"
+                '';
+                arguments = ["--stdio"];
+              };
+            };
+            marksman = {
+              binary = {
+                path = lib.getExe pkgs.marksman;
+                arguments = ["server"];
+              };
+            };
           };
         };
       }

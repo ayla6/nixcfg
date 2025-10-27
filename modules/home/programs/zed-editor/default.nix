@@ -11,18 +11,9 @@
     code_actions_on_format = {
       "source.fixAll.biome" = true;
       "source.organizeImports.biome" = true;
+      "source.action.useSortedKeys.biome" = true;
     };
   };
-  biomeTS =
-    biome
-    // {
-      language_servers = [
-        "typescript-language-server"
-        "biome"
-        "!vtsls"
-        "!eslint"
-      ];
-    };
   prettier = {
     external = {
       command = pkgs.writeScript "prettier-bun" ''
@@ -49,6 +40,8 @@ in {
         "scss"
         "toml"
         "biome"
+        "superhtml"
+        "marksman"
       ];
       userSettings = {
         auto_indent_on_paste = true;
@@ -75,28 +68,102 @@ in {
         };
 
         languages = {
-          JavaScript = biomeTS;
-          TypeScript = biomeTS;
-          TSX = biomeTS;
-          JSON = biome;
-          CSS = biome;
+          JavaScript =
+            biome
+            // {
+              language_servers = [
+                "typescript-language-server"
+                "biome"
+                "!vtsls"
+                "!eslint"
+              ];
+            };
+          TypeScript =
+            biome
+            // {
+              language_servers = [
+                "typescript-language-server"
+                "biome"
+                "!vtsls"
+                "!eslint"
+              ];
+            };
+          TSX =
+            biome
+            // {
+              language_servers = [
+                "typescript-language-server"
+                "biome"
+                "!vtsls"
+                "!eslint"
+              ];
+            };
+          JSON =
+            biome
+            // {
+              language_servers = [
+                "json-language-server"
+                "biome"
+              ];
+            };
+          CSS =
+            biome
+            // {
+              language_servers = [
+                "css-language-server"
+                "biome"
+              ];
+            };
+          HTML = {
+            format_on_save = "on";
+            formatter = {
+              language_server = {
+                name = "biome";
+              };
+            };
+            code_actions_on_format = {
+              "html.formatter.enabled.biome" = true;
+            };
+            language_servers = ["vscode-html-language-server" "superhtml" "biome"];
+          };
           Nix = {
             format_on_save = "on";
             formatter = "language_server";
             language_servers = [
               "nixd"
+              "nil"
             ];
           };
           Markdown = {
             format_on_save = "on";
-
             formatter = prettier;
+            language_servers = ["marksman"];
+          };
+          Fish = {
+            format_on_save = "on";
+            formatter = "language_server";
+            language_servers = ["fish-lsp"];
+          };
+          Lua = {
+            format_on_save = "on";
+            formatter = {
+              external = {
+                command = lib.getExe pkgs.stylua;
+              };
+            };
+            language_servers = ["lua-language-server"];
           };
         };
         lsp = {
           nixd = {
             binary.path = lib.getExe pkgs.nixd;
             settings.formatting.command = [(lib.getExe pkgs.alejandra) "--quiet" "--"];
+          };
+          nil = {
+            binary = {
+              path = lib.getExe pkgs.nil;
+              arguments = ["--stdio"];
+            };
           };
           typescript-language-server = with pkgs.nodePackages; {
             binary = {
@@ -125,10 +192,42 @@ in {
               arguments = ["--stdio"];
             };
           };
+          vscode-html-language-server = {
+            binary = {
+              path = pkgs.writeScript "vscode-html-language-server-bun" ''
+                #! ${pkgs.bash}/bin/bash -e
+                exec ${lib.getExe pkgs.bun} ${pkgs.vscode-langservers-extracted}/lib/node_modules/vscode-langservers-extracted/bin/vscode-html-language-server "$@"
+              '';
+              arguments = ["--stdio"];
+            };
+          };
           biome = {
             binary = {
               path = lib.getExe pkgs.biome;
               arguments = ["lsp-proxy"];
+            };
+          };
+          superhtml = {
+            binary = {
+              path = lib.getExe pkgs.superhtml;
+              arguments = ["lsp"];
+            };
+          };
+          marksman = {
+            binary = {
+              path = lib.getExe pkgs.marksman;
+              arguments = ["server"];
+            };
+          };
+          fish-lsp = {
+            binary = {
+              path = lib.getExe pkgs.fish-lsp;
+              arguments = ["start"];
+            };
+          };
+          lua-language-server = {
+            binary = {
+              path = lib.getExe pkgs.lua-language-server;
             };
           };
         };
