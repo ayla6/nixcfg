@@ -11,7 +11,6 @@
     code_actions_on_format = {
       "source.fixAll.biome" = true;
       "source.organizeImports.biome" = true;
-      "source.action.useSortedKeys.biome" = true;
     };
   };
   prettier = {
@@ -42,6 +41,13 @@ in {
         "biome"
         "superhtml"
         "marksman"
+        "makefile"
+        "zig"
+        "gleam"
+        "glsl"
+        "gdscript"
+        "svelte"
+        #"elixir"
       ];
       userSettings = {
         auto_indent_on_paste = true;
@@ -153,6 +159,53 @@ in {
             };
             language_servers = ["lua-language-server"];
           };
+          Go = {
+            format_on_save = "on";
+            formatter = "language_server";
+            language_servers = ["gopls"];
+          };
+          Rust = {
+            format_on_save = "on";
+            formatter = "language_server";
+            language_servers = ["rust-analyzer"];
+          };
+          Gleam = {
+            format_on_save = "on";
+            formatter = "language_server";
+            language_servers = ["gleam"];
+          };
+          # Elixir = {
+          #   format_on_save = "on";
+          #   formatter = "language_server";
+          #   language_servers = ["elixir-ls"];
+          # };
+          # HEEX = {
+          #   format_on_save = "on";
+          #   formatter = "language_server";
+          #   language_servers = ["elixir-ls"];
+          # };
+          GLSL = {
+            format_on_save = "on";
+            formatter = "language_server";
+            language_servers = ["glsl_analyzer"];
+          };
+          GDScript = {
+            format_on_save = "on";
+            formatter = {external = {command = lib.getExe pkgs.gdscript-formatter;};};
+            language_servers = ["gdscript-language-server"];
+          };
+          Bash = {
+            format_on_save = "on";
+            language_servers = ["bash-language-server"];
+          };
+          Svelte =
+            biome
+            // {
+              language_servers = [
+                "svelte-language-server"
+                "biome"
+              ];
+            };
         };
         lsp = {
           nixd = {
@@ -230,12 +283,77 @@ in {
               path = lib.getExe pkgs.lua-language-server;
             };
           };
+          gopls = {
+            binary = {
+              path = lib.getExe pkgs.gopls;
+              arguments = ["serve"];
+            };
+          };
+          rust-analyzer = {
+            binary = {
+              path = lib.getExe pkgs.rust-analyzer;
+            };
+          };
+          zls = {
+            binary = {
+              path = lib.getExe pkgs.zls;
+            };
+          };
+          gleam = {
+            binary = {
+              path = lib.getExe pkgs.gleam;
+              arguments = ["lsp"];
+            };
+          };
+          glsl_analyzer = {
+            binary = {
+              path = lib.getExe pkgs.glsl_analyzer;
+            };
+          };
+          #elixir-ls = {
+          #  binary = {
+          #    path = lib.getExe pkgs.elixir-ls;
+          #  };
+          #};
+          gdscript-language-server = {
+            binary = {
+              path = lib.getExe pkgs.netcat;
+              arguments = ["127.0.0.1" "6005"];
+            };
+          };
+          bash-language-server = {
+            binary = {
+              path = lib.getExe pkgs.bash-language-server;
+              arguments = ["start"];
+            };
+          };
+          svelte-language-server = {
+            binary = {
+              path = pkgs.writeScript "svelte-language-server-bun" ''
+                #! ${pkgs.bash}/bin/bash -e
+                exec ${lib.getExe pkgs.bun} ${pkgs.svelte-language-server}/lib/node_modules/svelte-language-server/bin/server.js "$@"
+              '';
+              arguments = ["--stdio"];
+            };
+          };
         };
         telemetry = {
           diagnostics = false;
           metrics = false;
         };
       };
+      userTasks = [
+        {
+          label = "jjui";
+          command = "jjui";
+          hide = "on_success";
+          use_new_terminal = true;
+          allow_concurrent_runs = false;
+          shell = {
+            program = "fish";
+          };
+        }
+      ];
     };
   };
 }

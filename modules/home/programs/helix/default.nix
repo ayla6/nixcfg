@@ -77,7 +77,7 @@
       languages = {
         language-server = {
           bash-language-server = {
-            command = "bash-language-server";
+            command = lib.getExe pkgs.bash-language-server;
             args = ["start"];
           };
 
@@ -144,6 +144,42 @@
             command = pkgs.writeScript "vscode-html-language-server-bun" ''
               #! ${pkgs.bash}/bin/bash -e
               exec ${lib.getExe pkgs.bun} ${pkgs.vscode-langservers-extracted}/lib/node_modules/vscode-langservers-extracted/bin/vscode-html-language-server "$@"
+            '';
+            args = ["--stdio"];
+          };
+
+          gopls = {
+            command = lib.getExe pkgs.gopls;
+            args = ["serve"];
+          };
+
+          rust-analyzer = {
+            command = lib.getExe pkgs.rust-analyzer;
+          };
+
+          zls = {
+            command = lib.getExe pkgs.zls;
+          };
+
+          gleam = {
+            command = lib.getExe pkgs.gleam;
+            args = ["lsp"];
+          };
+
+          glsl_analyzer = {
+            command = lib.getExe pkgs.glsl_analyzer;
+          };
+
+          gdscript-language-server = {
+            command = lib.getExe pkgs.netcat;
+            args = ["127.0.0.1" "6005"];
+            language-id = "gdscript";
+          };
+
+          svelte-language-server = {
+            command = pkgs.writeScript "svelte-language-server-bun" ''
+              #! ${pkgs.bash}/bin/bash -e
+              exec ${lib.getExe pkgs.bun} ${pkgs.svelte-language-server}/lib/node_modules/svelte-language-server/bin/server.js "$@"
             '';
             args = ["--stdio"];
           };
@@ -271,6 +307,48 @@
             language-servers = [
               {
                 name = "typescript-language-server";
+                except-features = ["format"];
+              }
+              "biome"
+            ];
+          }
+          {
+            name = "go";
+            auto-format = true;
+            language-servers = ["gopls"];
+          }
+          {
+            name = "rust";
+            auto-format = true;
+            language-servers = ["rust-analyzer"];
+          }
+          {
+            name = "zig";
+            auto-format = true;
+            language-servers = ["zls"];
+          }
+          {
+            name = "gleam";
+            auto-format = true;
+            language-servers = ["gleam"];
+          }
+          {
+            name = "glsl";
+            auto-format = true;
+            language-servers = ["glsl_analyzer"];
+          }
+          {
+            name = "gdscript";
+            auto-format = true;
+            formatter = {command = lib.getExe pkgs.gdscript-formatter;};
+            language-servers = ["gdscript-language-server"];
+          }
+          {
+            name = "svelte";
+            auto-format = true;
+            language-servers = [
+              {
+                name = "svelte-language-server";
                 except-features = ["format"];
               }
               "biome"
