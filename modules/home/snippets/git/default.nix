@@ -1,8 +1,11 @@
-{...}: {
+{lib, ...}: {
   options.mySnippets.git = {
-    user = {
-      name = "ayla";
-      email = "ayla-git.barcode041@silomails.com";
+    user = lib.mkOption {
+      type = lib.types.attrs;
+      default = {
+        name = "ayla";
+        email = "ayla-git.barcode041@silomails.com";
+      };
     };
   };
 }
