@@ -64,7 +64,7 @@
                 };
               }
             ];
-            specialArgs = {inherit self;};
+            specialArgs = {inherit self inputs;};
           }
       );
   };
