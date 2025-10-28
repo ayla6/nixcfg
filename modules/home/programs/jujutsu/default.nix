@@ -12,10 +12,7 @@
     programs.jujutsu = {
       enable = true;
       settings = {
-        user = {
-          name = "ayla";
-          email = "ayla-git.barcode041@silomails.com";
-        };
+        inherit (config.mySnippets.git) user;
         signing = {
           behavior = "own";
           backend = "ssh";

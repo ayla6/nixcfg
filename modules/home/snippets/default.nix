@@ -1,5 +1,6 @@
 {...}: {
   imports = [
     ./firefox-based
+    ./git
   ];
 }

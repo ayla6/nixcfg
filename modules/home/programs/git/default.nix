@@ -15,10 +15,7 @@
         signByDefault = true;
       };
       settings = {
-        user = {
-          name = "ayla";
-          email = "ayla-git.barcode041@silomails.com";
-        };
+        inherit (config.mySnippets.git) user;
         color.ui = true;
         github.user = "ayla6";
         init = {
