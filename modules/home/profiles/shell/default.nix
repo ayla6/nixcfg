@@ -20,6 +20,7 @@
         l = "eza -lah";
         tree = "eza --tree";
         top = "btop";
+        cat = "bat";
         ytmusic = "yt-dlp -f 251 --remux-video opus --embed-metadata --embed-thumbnail -o \"%(album)s/%(disc_number>0)s%(disc_number)02d-%(track_number)02d %(title)s.%(ext)s\"";
       };
     };
@@ -77,6 +78,11 @@
       zellij = {
         enable = true;
         enableFishIntegration = false;
+        settings = {
+          theme = "onedark";
+          default_shell = "fish";
+          show_startup_tips = false;
+        };
       };
 
       zoxide = {

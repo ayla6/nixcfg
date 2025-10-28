@@ -50,6 +50,7 @@
           };
           git.enable = true;
           helix.enable = true;
+          jujutsu.enable = true;
           micro.enable = true;
           mpv.enable = true;
           ssh.enable = true;
