@@ -86,12 +86,12 @@ in {
         args = ["lsp"];
       };
 
-      vscode-css-languageserver = mkLspServer "vscode-css-languageserver" {
+      css-language-server = mkLspServer "css-language-server" {
         command = lib.getExe pkgs.bun;
         args = ["${pkgs.vscode-css-languageserver}/lib/node_modules/vscode-css-languageserver/out/node/cssServerMain.js" "--stdio"];
       };
 
-      vscode-json-languageserver = mkLspServer "vscode-json-languageserver" {
+      json-language-server = mkLspServer "json-language-server" {
         command = lib.getExe pkgs.bun;
         args = ["${pkgs.vscode-json-languageserver}/lib/node_modules/vscode-json-languageserver/bin/vscode-json-languageserver" "--stdio"];
       };
@@ -239,7 +239,7 @@ in {
 
       css = mkLanguage "css" {
         full-name = "CSS";
-        language-servers = ["vscode-css-languageserver" "biome"];
+        language-servers = ["css-language-server" "biome"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -309,7 +309,7 @@ in {
 
       json = mkLanguage "json" {
         full-name = "JSON";
-        language-servers = ["vscode-json-languageserver" "biome"];
+        language-servers = ["json-language-server" "biome"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -318,7 +318,7 @@ in {
 
       jsonc = mkLanguage "jsonc" {
         full-name = "JSONC";
-        language-servers = ["vscode-json-languageserver" "biome"];
+        language-servers = ["json-language-server" "biome"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
