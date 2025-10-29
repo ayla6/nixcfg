@@ -27,7 +27,7 @@
   mkZedLanguage = name: lang:
     lib.filterAttrs (_: v: v != null) {
       formatter = mkZedFormatter lang.formatter;
-      language_servers = lang.language-servers;
+      language_servers = lang.language-servers ++ lang.zed-only-language-servers;
       code_actions_on_format = lang.code-actions-on-format;
     };
 
@@ -36,28 +36,24 @@
     cfg = srv.config or {};
     hasArgs = args != [];
     hasSettings = lib.isAttrs cfg && (builtins.length (builtins.attrNames cfg) > 0);
-    isHelixOnly = srv.helix-only or false;
   in
-    if isHelixOnly
-    then null
-    else
-      lib.filterAttrs (_: v: v != null) (
-        {
-          binary = lib.filterAttrs (_: v: v != null) (
-            {path = srv.command;}
-            // (
-              if hasArgs
-              then {arguments = args;}
-              else {}
-            )
-          );
-        }
-        // (
-          if hasSettings
-          then {settings = cfg;}
-          else {}
-        )
-      );
+    lib.filterAttrs (_: v: v != null) (
+      {
+        binary = lib.filterAttrs (_: v: v != null) (
+          {path = srv.command;}
+          // (
+            if hasArgs
+            then {arguments = args;}
+            else {}
+          )
+        );
+      }
+      // (
+        if hasSettings
+        then {settings = cfg;}
+        else {}
+      )
+    );
 in {
   options.myHome.programs.zed-editor.enable = lib.mkEnableOption "zed editor";
 
@@ -133,7 +129,7 @@ in {
             editorCfg.languages
           )
         );
-        lsp = lib.filterAttrs (_: v: v != null) (lib.mapAttrs mkZedLsp editorCfg.languageServers);
+        lsp = lib.mapAttrs mkZedLsp editorCfg.languageServers;
       };
       userTasks = [
         {
@@ -144,6 +140,20 @@ in {
           allow_concurrent_runs = false;
           shell = {
             program = "fish";
+          };
+        }
+      ];
+      userKeymaps = [
+        {
+          context = "Workspace";
+          bindings = {
+            ctrl-g = [
+              "task::Spawn"
+              {
+                task_name = "jjui";
+                reveal_target = "center";
+              }
+            ];
           };
         }
       ];

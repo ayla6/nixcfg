@@ -8,9 +8,8 @@
     command,
     args ? [],
     config ? {},
-    helix-only ? false,
   }: {
-    inherit name command args config helix-only;
+    inherit name command args config;
   };
 
   # Helper function to create formatter definitions
@@ -30,11 +29,13 @@
     auto-format ? true,
     file-types ? [],
     language-servers ? [],
+    zed-only-language-servers ? [],
+    helix-only-language-servers ? [],
     formatter ? null,
     helix-formatter ? null,
     code-actions-on-format ? {},
   }: {
-    inherit name full-name auto-format file-types language-servers formatter helix-formatter code-actions-on-format;
+    inherit name full-name auto-format file-types language-servers zed-only-language-servers helix-only-language-servers formatter helix-formatter code-actions-on-format;
   };
 in {
   options.mySnippets.editor = lib.mkOption {
@@ -59,21 +60,27 @@ in {
           echo = "${pkgs.uutils-coreutils-noprefix}/bin/echo";
           bun = lib.getExe pkgs.bun;
           twls = lib.getExe pkgs.tailwindcss-language-server;
+          printf = "${pkgs.uutils-coreutils-noprefix}/bin/printf";
         in
           pkgs.writeScript "tailwindcss-language-server-bun" ''
             #!${lib.getExe pkgs.bash} -e
 
             if ! ${fd} -H -I -E "node_modules" "package\\.json$" . | \
               ${xargs} ${grep} -q '"tailwindcss"'; then
-              ${echo} "No tailwindcss found in project; skipping tailwindcss-language-server." >&2
-              exec tail -f /dev/null
+              ${echo} "No tailwindcss found in project; faking clean LSP exit." >&2
+
+              # Send a fake LSP shutdown + exit sequence to stdout.
+              ${printf} 'Content-Length: 47\r\n\r\n{"jsonrpc":"2.0","id":1,"method":"shutdown"}'
+              ${printf} 'Content-Length: 41\r\n\r\n{"jsonrpc":"2.0","method":"exit"}'
+
+              # Exit with success so the client treats this as a normal termination.
+              exit 0
             fi
 
             exec ${bun} ${twls}
           '';
         args = [];
         config = {provideFormatter = false;};
-        helix-only = true;
       };
 
       vscode-html-language-server = mkLspServer "vscode-html-language-server" {
@@ -96,9 +103,9 @@ in {
         args = ["${pkgs.vscode-json-languageserver}/lib/node_modules/vscode-json-languageserver/bin/vscode-json-languageserver" "--stdio"];
       };
 
-      typescript-language-server = mkLspServer "typescript-language-server" {
+      vtsls = mkLspServer "vtsls" {
         command = lib.getExe pkgs.bun;
-        args = ["${pkgs.nodePackages.typescript-language-server}/lib/node_modules/typescript-language-server/lib/cli.mjs" "--stdio"];
+        args = ["${pkgs.vtsls}/bin/vtsls" "--stdio"];
       };
 
       svelte-language-server = mkLspServer "svelte-language-server" {
@@ -228,7 +235,9 @@ in {
     languages = {
       html = mkLanguage "html" {
         full-name = "HTML";
-        language-servers = ["vscode-html-language-server" "superhtml" "biome"];
+        language-servers = ["vscode-html-language-server" "biome"];
+        zed-only-language-servers = ["!eslint" "..."];
+        helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         helix-formatter = "biomeHtml";
         code-actions-on-format = {
@@ -240,6 +249,8 @@ in {
       css = mkLanguage "css" {
         full-name = "CSS";
         language-servers = ["css-language-server" "biome"];
+        zed-only-language-servers = ["..."];
+        helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -249,7 +260,9 @@ in {
 
       javascript = mkLanguage "javascript" {
         full-name = "JavaScript";
-        language-servers = ["typescript-language-server" "biome"];
+        language-servers = ["vtsls" "biome"];
+        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -259,7 +272,9 @@ in {
 
       typescript = mkLanguage "typescript" {
         full-name = "TypeScript";
-        language-servers = ["typescript-language-server" "biome"];
+        language-servers = ["vtsls" "biome"];
+        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -269,7 +284,9 @@ in {
 
       jsx = mkLanguage "jsx" {
         full-name = "JSX";
-        language-servers = ["typescript-language-server" "biome"];
+        language-servers = ["vtsls" "biome"];
+        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -279,7 +296,9 @@ in {
 
       tsx = mkLanguage "tsx" {
         full-name = "TSX";
-        language-servers = ["typescript-language-server" "biome"];
+        language-servers = ["vtsls" "biome"];
+        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -289,7 +308,9 @@ in {
 
       svelte = mkLanguage "svelte" {
         full-name = "Svelte";
-        language-servers = ["svelte-language-server" "typescript-language-server" "biome"];
+        language-servers = ["svelte-language-server" "vtsls" "biome"];
+        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -300,6 +321,8 @@ in {
       vue = mkLanguage "vue" {
         full-name = "Vue.js";
         language-servers = ["vue-language-server" "biome"];
+        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -327,7 +350,7 @@ in {
       };
 
       bash = mkLanguage "bash" {
-        full-name = "Bash";
+        full-name = "Shell Script";
         file-types = ["sh" "bash" "dash" "ksh" "mksh"];
         language-servers = ["bash-language-server"];
         formatter = "shfmt";

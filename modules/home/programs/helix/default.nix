@@ -52,7 +52,8 @@
             }
             else {name = srvName;}
         )
-        lang.language-servers
+        (lang.language-servers
+          ++ lang.helix-only-language-servers)
       else map (srvName: {name = srvName;}) lang.language-servers;
   in
     lib.filterAttrs (_: v: v != null) (
