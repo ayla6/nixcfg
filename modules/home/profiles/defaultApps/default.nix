@@ -23,6 +23,12 @@ in {
         default = lib.getExe cfg.archiveViewer.package;
         description = "The executable path for the default archive viewer.";
       };
+
+      icon = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "The icon name for the default archive viewer.";
+      };
     };
 
     audioPlayer = {
@@ -36,6 +42,18 @@ in {
         type = lib.types.str;
         default = lib.getExe cfg.audioPlayer.package;
         description = "The executable path for the default audio player.";
+      };
+
+      terminal = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Whether the editor is a terminal-based application.";
+      };
+
+      icon = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "The icon name for the default audio player.";
       };
     };
 
@@ -51,6 +69,18 @@ in {
         default = lib.getExe cfg.editor.package;
         description = "The executable path for the default text editor.";
       };
+
+      terminal = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Whether the editor is a terminal-based application.";
+      };
+
+      icon = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "The icon name for the default text editor.";
+      };
     };
 
     fileManager = {
@@ -64,6 +94,18 @@ in {
         type = lib.types.str;
         default = lib.getExe cfg.fileManager.package;
         description = "The executable path for the default file manager.";
+      };
+
+      terminal = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Whether the editor is a terminal-based application.";
+      };
+
+      icon = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "The icon name for the default file manager.";
       };
     };
 
@@ -79,6 +121,12 @@ in {
         default = lib.getExe cfg.imageViewer.package;
         description = "The executable path for the default image viewer.";
       };
+
+      icon = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "The icon name for the default image viewer.";
+      };
     };
 
     pdfViewer = {
@@ -93,6 +141,18 @@ in {
         default = lib.getExe cfg.pdfViewer.package;
         description = "The executable path for the default PDF viewer.";
       };
+
+      terminal = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Whether the editor is a terminal-based application.";
+      };
+
+      icon = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "The icon name for the default PDF viewer.";
+      };
     };
 
     terminal = {
@@ -106,6 +166,12 @@ in {
         type = lib.types.str;
         default = lib.getExe cfg.terminal.package;
         description = "The executable path for the default terminal emulator.";
+      };
+
+      icon = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "The icon name for the default terminal emulator.";
       };
     };
 
@@ -135,6 +201,12 @@ in {
         default = lib.getExe cfg.videoPlayer.package;
         description = "The executable path for the default video player.";
       };
+
+      icon = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "The icon name for the default video player.";
+      };
     };
 
     webBrowser = {
@@ -148,6 +220,12 @@ in {
         type = lib.types.str;
         default = lib.getExe cfg.webBrowser.package;
         description = "The executable path for the default web browser.";
+      };
+
+      icon = lib.mkOption {
+        type = lib.types.str;
+        default = lib.getIcon cfg.webBrowser.package;
+        description = "The icon name for the default web browser.";
       };
     };
   };
@@ -228,11 +306,14 @@ in {
       };
 
       desktopEntries = let
-        mkDefaultEntry = name: exec: {
+        mkDefaultEntry = name: exec: terminal: icon: {
           exec = "${exec} %U";
-          icon = "${builtins.baseNameOf exec}";
+          icon =
+            if icon != ""
+            then icon
+            else "${builtins.baseNameOf exec}";
           name = "Default ${name}";
-          terminal = false;
+          inherit terminal;
 
           settings = {
             NoDisplay = "true";
@@ -240,14 +321,22 @@ in {
         };
       in
         lib.mkIf cfg.forceMimeAssociations {
-          defaultAudioPlayer = mkDefaultEntry "Audio Player" cfg.audioPlayer.exec;
-          defaultEditor = mkDefaultEntry "Editor" cfg.editor.exec;
-          defaultFileManager = mkDefaultEntry "File Manager" cfg.fileManager.exec;
-          defaultImageViewer = mkDefaultEntry "Image Viewer" cfg.imageViewer.exec;
-          defaultPdfViewer = mkDefaultEntry "PDF Viewer" cfg.pdfViewer.exec;
-          defaultVideoPlayer = mkDefaultEntry "Video Player" cfg.videoPlayer.exec;
-          defaultWebBrowser = mkDefaultEntry "Web Browser" cfg.webBrowser.exec;
-          defaultArchiveViewer = mkDefaultEntry "Archive Viewer" cfg.archiveViewer.exec;
+          defaultAudioPlayer =
+            mkDefaultEntry "Audio Player" cfg.audioPlayer.exec cfg.audioPlayer.terminal cfg.audioPlayer.icon;
+          defaultEditor =
+            mkDefaultEntry "Editor" cfg.editor.exec cfg.editor.terminal cfg.editor.icon;
+          defaultFileManager =
+            mkDefaultEntry "File Manager" cfg.fileManager.exec cfg.fileManager.terminal cfg.fileManager.icon;
+          defaultImageViewer =
+            mkDefaultEntry "Image Viewer" cfg.imageViewer.exec false cfg.imageViewer.icon;
+          defaultPdfViewer =
+            mkDefaultEntry "PDF Viewer" cfg.pdfViewer.exec cfg.pdfViewer.terminal cfg.pdfViewer.icon;
+          defaultVideoPlayer =
+            mkDefaultEntry "Video Player" cfg.videoPlayer.exec false cfg.videoPlayer.icon;
+          defaultWebBrowser =
+            mkDefaultEntry "Web Browser" cfg.webBrowser.exec false cfg.webBrowser.icon;
+          defaultArchiveViewer =
+            mkDefaultEntry "Archive Viewer" cfg.archiveViewer.exec false cfg.archiveViewer.icon;
         };
     };
   };

@@ -120,13 +120,38 @@
     ];
 
     myHome.profiles.defaultApps = {
-      audioPlayer.package = lib.mkDefault pkgs.mpv;
-      editor.package = lib.mkDefault pkgs.gnome-text-editor;
-      fileManager.package = lib.mkDefault pkgs.nautilus;
-      imageViewer.package = lib.mkDefault pkgs.loupe;
-      pdfViewer.package = lib.mkDefault pkgs.papers;
-      terminal.package = lib.mkDefault pkgs.gnome-console;
-      videoPlayer.package = lib.mkDefault pkgs.mpv;
+      archiveViewer = {
+        package = lib.mkDefault pkgs.file-roller;
+        icon = lib.mkDefault "org.gnome.FileRoller";
+      };
+      audioPlayer = {
+        package = lib.mkDefault config.programs.mpv.finalPackage;
+        icon = lib.mkDefault "mpv";
+      };
+      editor = {
+        package = lib.mkDefault pkgs.gnome-text-editor;
+        icon = lib.mkDefault "org.gnome.TextEditor";
+      };
+      fileManager = {
+        package = lib.mkDefault pkgs.nautilus;
+        icon = lib.mkDefault "org.gnome.Nautilus";
+      };
+      imageViewer = {
+        package = lib.mkDefault pkgs.loupe;
+        icon = lib.mkDefault "org.gnome.Loupe";
+      };
+      pdfViewer = {
+        package = lib.mkDefault pkgs.papers;
+        icon = lib.mkDefault "org.gnome.Papers";
+      };
+      terminal = {
+        package = lib.mkDefault pkgs.gnome-console;
+        icon = lib.mkDefault "org.gnome.Terminal";
+      };
+      videoPlayer = {
+        package = lib.mkDefault config.programs.mpv.finalPackage;
+        icon = lib.mkDefault "mpv";
+      };
     };
   };
 }

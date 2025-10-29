@@ -64,17 +64,16 @@
           defaultApps = {
             enable = true;
             forceMimeAssociations = true;
-            archiveViewer.package = pkgs.file-roller;
-            audioPlayer.package = config.programs.mpv.finalPackage;
-            videoPlayer.package = config.programs.mpv.finalPackage;
-            #editor.package = pkgs.gnome-text-editor;
-            editor.package = pkgs.helix;
-            fileManager.package = pkgs.nautilus;
-            imageViewer.package = pkgs.loupe;
-            pdfViewer.package = pkgs.papers;
-            #terminal.package = pkgs.ptyxis;
+            editor = {
+              package = config.programs.helix.package;
+              terminal = true;
+              icon = "helix";
+            };
             terminalEditor.package = config.programs.helix.package;
-            webBrowser.package = config.programs.helium.package;
+            webBrowser = {
+              package = config.programs.helium.package;
+              icon = "helium";
+            };
           };
         };
       };
