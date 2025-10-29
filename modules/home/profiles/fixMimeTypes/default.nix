@@ -34,7 +34,7 @@ in {
       "mime/packages/typescript.xml".source = makeMimeFile {
         type = "text/x-typescript";
         comment = "TypeScript source file";
-        globs = ["*.ts" "*.tsx"];
+        globs = ["*.ts" "*.tsx" "*.mts" "*.cts"];
       };
 
       "mime/packages/svelte.xml".source = makeMimeFile {
