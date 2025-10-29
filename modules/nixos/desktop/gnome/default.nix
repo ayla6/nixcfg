@@ -33,7 +33,10 @@
     i18n.inputMethod.type = "ibus";
 
     security.pam.services.greetd.enableGnomeKeyring = true;
-    services.gnome.gcr-ssh-agent.enable = true;
+    services.gnome = {
+      gcr-ssh-agent.enable = true;
+      gnome-remote-desktop.enable = lib.mkForce false;
+    };
 
     programs = {
       kdeconnect = {

@@ -60,13 +60,15 @@
         profiles = {
           betterLocations.enable = true;
           shell.enable = true;
+          fixMimeTypes.enable = true;
           defaultApps = {
             enable = true;
             forceMimeAssociations = true;
             archiveViewer.package = pkgs.file-roller;
             audioPlayer.package = config.programs.mpv.finalPackage;
             videoPlayer.package = config.programs.mpv.finalPackage;
-            editor.package = pkgs.gnome-text-editor;
+            #editor.package = pkgs.gnome-text-editor;
+            editor.package = pkgs.helix;
             fileManager.package = pkgs.nautilus;
             imageViewer.package = pkgs.loupe;
             pdfViewer.package = pkgs.papers;

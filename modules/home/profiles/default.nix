@@ -3,5 +3,6 @@
     ./betterLocations
     ./defaultApps
     ./shell
+    ./fixMimeTypes
   ];
 }

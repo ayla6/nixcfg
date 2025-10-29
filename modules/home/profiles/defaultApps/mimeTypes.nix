@@ -142,6 +142,9 @@
     "text/markdown"
     "text/plain"
     "text/x-python"
+    "text/x-typescript"
+    "text/x-javascript"
+    "text/x-svelte"
   ];
 
   imageFiles = [
