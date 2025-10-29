@@ -259,6 +259,17 @@
             ];
           }
           {
+            name = "jsonc";
+            auto-format = true;
+            language-servers = [
+              {
+                name = "vscode-json-languageserver";
+                except-features = ["format"];
+              }
+              "biome"
+            ];
+          }
+          {
             name = "lua";
             auto-format = true;
             formatter = {command = lib.getExe pkgs.stylua;};

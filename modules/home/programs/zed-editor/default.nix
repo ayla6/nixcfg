@@ -5,8 +5,6 @@
   ...
 }: let
   biome = {
-    format_on_save = "on";
-
     formatter = {language_server = {name = "biome";};};
     code_actions_on_format = {
       "source.fixAll.biome" = true;
@@ -61,6 +59,12 @@ in {
         preferred_line_length = 100;
         soft_wrap = "preferred_line_length";
 
+        tab_size = 2;
+        format_on_save = "on";
+        prettier = {
+          allowed = false;
+        };
+
         agent = {
           default_model = {
             provider = "google";
@@ -112,6 +116,14 @@ in {
                 "biome"
               ];
             };
+          JSONC =
+            biome
+            // {
+              language_servers = [
+                "json-language-server"
+                "biome"
+              ];
+            };
           CSS =
             biome
             // {
@@ -121,7 +133,6 @@ in {
               ];
             };
           HTML = {
-            format_on_save = "on";
             formatter = {
               language_server = {
                 name = "biome";
@@ -133,7 +144,6 @@ in {
             language_servers = ["vscode-html-language-server" "superhtml" "biome"];
           };
           Nix = {
-            format_on_save = "on";
             formatter = "language_server";
             language_servers = [
               "nixd"
@@ -141,17 +151,14 @@ in {
             ];
           };
           Markdown = {
-            format_on_save = "on";
             formatter = prettier;
             language_servers = ["marksman"];
           };
           Fish = {
-            format_on_save = "on";
             formatter = "language_server";
             language_servers = ["fish-lsp"];
           };
           Lua = {
-            format_on_save = "on";
             formatter = {
               external = {
                 command = lib.getExe pkgs.stylua;
@@ -160,17 +167,14 @@ in {
             language_servers = ["lua-language-server"];
           };
           Go = {
-            format_on_save = "on";
             formatter = "language_server";
             language_servers = ["gopls"];
           };
           Rust = {
-            format_on_save = "on";
             formatter = "language_server";
             language_servers = ["rust-analyzer"];
           };
           Gleam = {
-            format_on_save = "on";
             formatter = "language_server";
             language_servers = ["gleam"];
           };
@@ -185,17 +189,14 @@ in {
           #   language_servers = ["elixir-ls"];
           # };
           GLSL = {
-            format_on_save = "on";
             formatter = "language_server";
             language_servers = ["glsl_analyzer"];
           };
           GDScript = {
-            format_on_save = "on";
             formatter = {external = {command = lib.getExe pkgs.gdscript-formatter;};};
             language_servers = ["gdscript-language-server"];
           };
           Bash = {
-            format_on_save = "on";
             language_servers = ["bash-language-server"];
           };
           Svelte =

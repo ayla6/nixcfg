@@ -36,7 +36,9 @@ _: {
           };
 
           languages = {
-            JSON = biome // {language_servers = ["json-language-server"];};
+            JSON = biome // {language_servers = ["json-language-server" "biome"];};
+
+            JSONC = biome // {language_servers = ["json-language-server" "biome"];};
 
             Markdown = {
               format_on_save = "on";
