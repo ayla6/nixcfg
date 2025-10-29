@@ -1,25 +1,59 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }: let
-  biome = {
-    formatter = {language_server = {name = "biome";};};
-    code_actions_on_format = {
-      "source.fixAll.biome" = true;
-      "source.organizeImports.biome" = true;
+  editorCfg = config.mySnippets.editor;
+
+  mkZedFormatter = fmtName:
+    if fmtName == null
+    then null
+    else let
+      f = editorCfg.formatters.${fmtName};
+    in
+      if f.type == "external"
+      then {
+        external = {
+          command = f.command;
+          arguments = f.args or [];
+        };
+      }
+      else if f.type == "lsp"
+      then {
+        language_server = {name = f.lspName;};
+      }
+      else null;
+
+  mkZedLanguage = name: lang:
+    lib.filterAttrs (_: v: v != null) {
+      formatter = mkZedFormatter lang.formatter;
+      language_servers = lang.language-servers;
+      code_actions_on_format = lang.code-actions-on-format;
     };
-  };
-  prettier = {
-    external = {
-      command = pkgs.writeScript "prettier-bun" ''
-        #! ${pkgs.bash}/bin/bash -e
-        exec ${lib.getExe pkgs.bun} ${pkgs.prettier}/bin/prettier.cjs "$@"
-      '';
-      arguments = ["--stdin-filepath" "{buffer_path}"];
-    };
-  };
+
+  mkZedLsp = name: srv: let
+    args = srv.args or [];
+    cfg = srv.config or {};
+    hasArgs = args != [];
+    hasSettings = lib.isAttrs cfg && (builtins.length (builtins.attrNames cfg) > 0);
+  in
+    lib.filterAttrs (_: v: v != null) (
+      {
+        binary = lib.filterAttrs (_: v: v != null) (
+          {path = srv.command;}
+          // (
+            if hasArgs
+            then {arguments = args;}
+            else {}
+          )
+        );
+      }
+      // (
+        if hasSettings
+        then {settings = cfg;}
+        else {}
+      )
+    );
 in {
   options.myHome.programs.zed-editor.enable = lib.mkEnableOption "zed editor";
 
@@ -45,6 +79,8 @@ in {
         "glsl"
         "gdscript"
         "svelte"
+        "vue"
+        "basher"
         #"elixir"
       ];
       userSettings = {
@@ -77,271 +113,21 @@ in {
           default_profile = "ask";
         };
 
-        languages = {
-          JavaScript =
-            biome
-            // {
-              language_servers = [
-                "typescript-language-server"
-                "biome"
-                "!vtsls"
-                "!eslint"
-              ];
-            };
-          TypeScript =
-            biome
-            // {
-              language_servers = [
-                "typescript-language-server"
-                "biome"
-                "!vtsls"
-                "!eslint"
-              ];
-            };
-          TSX =
-            biome
-            // {
-              language_servers = [
-                "typescript-language-server"
-                "biome"
-                "!vtsls"
-                "!eslint"
-              ];
-            };
-          JSON =
-            biome
-            // {
-              language_servers = [
-                "json-language-server"
-                "biome"
-              ];
-            };
-          JSONC =
-            biome
-            // {
-              language_servers = [
-                "json-language-server"
-                "biome"
-              ];
-            };
-          CSS =
-            biome
-            // {
-              language_servers = [
-                "css-language-server"
-                "biome"
-              ];
-            };
-          HTML = {
-            formatter = {
-              language_server = {
-                name = "biome";
-              };
-            };
-            code_actions_on_format = {
-              "html.formatter.enabled.biome" = true;
-            };
-            language_servers = ["vscode-html-language-server" "superhtml" "biome"];
-          };
-          Nix = {
-            formatter = "language_server";
-            language_servers = [
-              "nixd"
-              "nil"
-            ];
-          };
-          Markdown = {
-            formatter = prettier;
-            language_servers = ["marksman"];
-          };
-          Fish = {
-            formatter = "language_server";
-            language_servers = ["fish-lsp"];
-          };
-          Lua = {
-            formatter = {
-              external = {
-                command = lib.getExe pkgs.stylua;
-              };
-            };
-            language_servers = ["lua-language-server"];
-          };
-          Go = {
-            formatter = "language_server";
-            language_servers = ["gopls"];
-          };
-          Rust = {
-            formatter = "language_server";
-            language_servers = ["rust-analyzer"];
-          };
-          Gleam = {
-            formatter = "language_server";
-            language_servers = ["gleam"];
-          };
-          # Elixir = {
-          #   format_on_save = "on";
-          #   formatter = "language_server";
-          #   language_servers = ["elixir-ls"];
-          # };
-          # HEEX = {
-          #   format_on_save = "on";
-          #   formatter = "language_server";
-          #   language_servers = ["elixir-ls"];
-          # };
-          GLSL = {
-            formatter = "language_server";
-            language_servers = ["glsl_analyzer"];
-          };
-          GDScript = {
-            formatter = {external = {command = lib.getExe pkgs.gdscript-formatter;};};
-            language_servers = ["gdscript-language-server"];
-          };
-          Bash = {
-            language_servers = ["bash-language-server"];
-          };
-          Svelte =
-            biome
-            // {
-              language_servers = [
-                "svelte-language-server"
-                "biome"
-              ];
-            };
-        };
-        lsp = {
-          nixd = {
-            binary.path = lib.getExe pkgs.nixd;
-            settings.formatting.command = [(lib.getExe pkgs.alejandra) "--quiet" "--"];
-          };
-          nil = {
-            binary = {
-              path = lib.getExe pkgs.nil;
-              arguments = ["--stdio"];
-            };
-          };
-          typescript-language-server = with pkgs.nodePackages; {
-            binary = {
-              path = pkgs.writeScript "typescript-language-server-bun" ''
-                #! ${pkgs.bash}/bin/bash -e
-                exec ${lib.getExe pkgs.bun} ${typescript-language-server}/lib/node_modules/typescript-language-server/lib/cli.mjs "$@"
-              '';
-              arguments = ["--stdio"];
-            };
-          };
-          json-language-server = {
-            binary = {
-              path = pkgs.writeScript "vscode-json-languageserver-bun" ''
-                #! ${pkgs.bash}/bin/bash -e
-                exec ${lib.getExe pkgs.bun} ${pkgs.vscode-json-languageserver}/lib/node_modules/vscode-json-languageserver/./bin/vscode-json-languageserver "$@"
-              '';
-              arguments = ["--stdio"];
-            };
-          };
-          css-language-server = {
-            binary = {
-              path = pkgs.writeScript "vscode-css-languageserver-bun" ''
-                #! ${pkgs.bash}/bin/bash -e
-                exec ${lib.getExe pkgs.bun} ${pkgs.vscode-css-languageserver}/lib/node_modules/vscode-css-languageserver/out/node/cssServerMain.js "$@"
-              '';
-              arguments = ["--stdio"];
-            };
-          };
-          vscode-html-language-server = {
-            binary = {
-              path = pkgs.writeScript "vscode-html-language-server-bun" ''
-                #! ${pkgs.bash}/bin/bash -e
-                exec ${lib.getExe pkgs.bun} ${pkgs.vscode-langservers-extracted}/lib/node_modules/vscode-langservers-extracted/bin/vscode-html-language-server "$@"
-              '';
-              arguments = ["--stdio"];
-            };
-          };
-          biome = {
-            binary = {
-              path = lib.getExe pkgs.biome;
-              arguments = ["lsp-proxy"];
-            };
-          };
-          superhtml = {
-            binary = {
-              path = lib.getExe pkgs.superhtml;
-              arguments = ["lsp"];
-            };
-          };
-          marksman = {
-            binary = {
-              path = lib.getExe pkgs.marksman;
-              arguments = ["server"];
-            };
-          };
-          fish-lsp = {
-            binary = {
-              path = lib.getExe pkgs.fish-lsp;
-              arguments = ["start"];
-            };
-          };
-          lua-language-server = {
-            binary = {
-              path = lib.getExe pkgs.lua-language-server;
-            };
-          };
-          gopls = {
-            binary = {
-              path = lib.getExe pkgs.gopls;
-              arguments = ["serve"];
-            };
-          };
-          rust-analyzer = {
-            binary = {
-              path = lib.getExe pkgs.rust-analyzer;
-            };
-          };
-          zls = {
-            binary = {
-              path = lib.getExe pkgs.zls;
-            };
-          };
-          gleam = {
-            binary = {
-              path = lib.getExe pkgs.gleam;
-              arguments = ["lsp"];
-            };
-          };
-          glsl_analyzer = {
-            binary = {
-              path = lib.getExe pkgs.glsl_analyzer;
-            };
-          };
-          #elixir-ls = {
-          #  binary = {
-          #    path = lib.getExe pkgs.elixir-ls;
-          #  };
-          #};
-          gdscript-language-server = {
-            binary = {
-              path = lib.getExe pkgs.netcat;
-              arguments = ["127.0.0.1" "6005"];
-            };
-          };
-          bash-language-server = {
-            binary = {
-              path = lib.getExe pkgs.bash-language-server;
-              arguments = ["start"];
-            };
-          };
-          svelte-language-server = {
-            binary = {
-              path = pkgs.writeScript "svelte-language-server-bun" ''
-                #! ${pkgs.bash}/bin/bash -e
-                exec ${lib.getExe pkgs.bun} ${pkgs.svelte-language-server}/lib/node_modules/svelte-language-server/bin/server.js "$@"
-              '';
-              arguments = ["--stdio"];
-            };
-          };
-        };
         telemetry = {
           diagnostics = false;
           metrics = false;
         };
+
+        languages = lib.listToAttrs (
+          lib.attrValues (
+            lib.mapAttrs (name: lang: {
+              name = lang.full-name;
+              value = mkZedLanguage name lang;
+            })
+            editorCfg.languages
+          )
+        );
+        lsp = lib.mapAttrs mkZedLsp editorCfg.languageServers;
       };
       userTasks = [
         {

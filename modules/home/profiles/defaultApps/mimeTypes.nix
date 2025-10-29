@@ -82,15 +82,6 @@
   ];
 
   browserFiles = [
-    "application/vnd.mozilla.xul+xml"
-    "application/x-extension-htm"
-    "application/x-extension-html"
-    "application/x-extension-shtml"
-    "application/x-extension-xht"
-    "application/x-extension-xhtml"
-    "application/xhtml+xml"
-    "text/html"
-    "text/xml"
     "x-scheme-handler/chrome"
     "x-scheme-handler/ftp"
     "x-scheme-handler/http"
@@ -136,8 +127,17 @@
   ];
 
   editorFiles = [
+    "application/vnd.mozilla.xul+xml"
+    "application/x-extension-htm"
+    "application/x-extension-html"
+    "application/x-extension-shtml"
+    "application/x-extension-xht"
+    "application/x-extension-xhtml"
+    "application/xhtml+xml"
+    "text/html"
+    "text/xml"
+
     "application/json"
-    "application/x-shellscript"
     "application/x-shellscript"
     "text/markdown"
     "text/plain"
@@ -145,6 +145,23 @@
     "text/x-typescript"
     "text/x-javascript"
     "text/x-svelte"
+    "text/css"
+    "text/x-lua"
+    "text/x-nix"
+    "text/x-scss"
+    "application/toml"
+    "text/x-zig"
+    "text/x-gleam"
+    "text/x-glsl"
+    "text/x-gdscript"
+    "text/x-vue"
+    "text/x-go"
+    "text/x-rust"
+    "text/x-makefile"
+    "text/x-fish"
+    "text/x-elixir"
+    "text/html"
+    "application/x-yaml"
   ];
 
   imageFiles = [
