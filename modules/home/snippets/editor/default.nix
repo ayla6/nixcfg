@@ -8,8 +8,9 @@
     command,
     args ? [],
     config ? {},
+    helix-only ? false,
   }: {
-    inherit name command args config;
+    inherit name command args config helix-only;
   };
 
   # Helper function to create formatter definitions
@@ -72,6 +73,7 @@ in {
           '';
         args = [];
         config = {provideFormatter = false;};
+        helix-only = true;
       };
 
       vscode-html-language-server = mkLspServer "vscode-html-language-server" {
@@ -165,6 +167,15 @@ in {
         args = ["127.0.0.1" "6005"];
         config = {language-id = "gdscript";};
       };
+
+      solargraph = mkLspServer "solargraph" {
+        command = lib.getExe pkgs.rubyPackages.solargraph;
+        args = ["stdio"];
+      };
+
+      #rubocop = mkLspServer "rubocop" {
+      #  command = lib.getExe pkgs.rubocop;
+      #};
     };
 
     # Formatters
@@ -217,7 +228,7 @@ in {
     languages = {
       html = mkLanguage "html" {
         full-name = "HTML";
-        language-servers = ["vscode-html-language-server" "superhtml" "biome" "tailwindcss-language-server"];
+        language-servers = ["vscode-html-language-server" "superhtml" "biome"];
         formatter = "biome";
         helix-formatter = "biomeHtml";
         code-actions-on-format = {
@@ -228,7 +239,7 @@ in {
 
       css = mkLanguage "css" {
         full-name = "CSS";
-        language-servers = ["vscode-css-languageserver" "biome" "tailwindcss-language-server"];
+        language-servers = ["vscode-css-languageserver" "biome"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -238,7 +249,7 @@ in {
 
       javascript = mkLanguage "javascript" {
         full-name = "JavaScript";
-        language-servers = ["typescript-language-server" "biome" "tailwindcss-language-server"];
+        language-servers = ["typescript-language-server" "biome"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -248,7 +259,7 @@ in {
 
       typescript = mkLanguage "typescript" {
         full-name = "TypeScript";
-        language-servers = ["typescript-language-server" "biome" "tailwindcss-language-server"];
+        language-servers = ["typescript-language-server" "biome"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -258,7 +269,7 @@ in {
 
       jsx = mkLanguage "jsx" {
         full-name = "JSX";
-        language-servers = ["typescript-language-server" "biome" "tailwindcss-language-server"];
+        language-servers = ["typescript-language-server" "biome"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -268,7 +279,7 @@ in {
 
       tsx = mkLanguage "tsx" {
         full-name = "TSX";
-        language-servers = ["typescript-language-server" "biome" "tailwindcss-language-server"];
+        language-servers = ["typescript-language-server" "biome"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -278,7 +289,7 @@ in {
 
       svelte = mkLanguage "svelte" {
         full-name = "Svelte";
-        language-servers = ["svelte-language-server" "biome" "tailwindcss-language-server"];
+        language-servers = ["svelte-language-server" "typescript-language-server" "biome"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -288,7 +299,7 @@ in {
 
       vue = mkLanguage "vue" {
         full-name = "Vue.js";
-        language-servers = ["vue-language-server" "biome" "tailwindcss-language-server"];
+        language-servers = ["vue-language-server" "biome"];
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
@@ -302,7 +313,6 @@ in {
         formatter = "biome";
         code-actions-on-format = {
           "source.fixAll.biome" = true;
-          "source.organizeImports.biome" = true;
         };
       };
 
@@ -375,6 +385,11 @@ in {
         full-name = "GDScript";
         language-servers = ["gdscript-language-server"];
         formatter = "gdscript-formatter";
+      };
+
+      ruby = mkLanguage "ruby" {
+        full-name = "Ruby";
+        language-servers = ["solargraph" "rubocop" "!ruby-lsp"];
       };
     };
   };

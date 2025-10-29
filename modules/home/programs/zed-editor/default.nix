@@ -36,24 +36,28 @@
     cfg = srv.config or {};
     hasArgs = args != [];
     hasSettings = lib.isAttrs cfg && (builtins.length (builtins.attrNames cfg) > 0);
+    isHelixOnly = srv.helix-only or false;
   in
-    lib.filterAttrs (_: v: v != null) (
-      {
-        binary = lib.filterAttrs (_: v: v != null) (
-          {path = srv.command;}
-          // (
-            if hasArgs
-            then {arguments = args;}
-            else {}
-          )
-        );
-      }
-      // (
-        if hasSettings
-        then {settings = cfg;}
-        else {}
-      )
-    );
+    if isHelixOnly
+    then null
+    else
+      lib.filterAttrs (_: v: v != null) (
+        {
+          binary = lib.filterAttrs (_: v: v != null) (
+            {path = srv.command;}
+            // (
+              if hasArgs
+              then {arguments = args;}
+              else {}
+            )
+          );
+        }
+        // (
+          if hasSettings
+          then {settings = cfg;}
+          else {}
+        )
+      );
 in {
   options.myHome.programs.zed-editor.enable = lib.mkEnableOption "zed editor";
 
@@ -81,6 +85,8 @@ in {
         "svelte"
         "vue"
         "basher"
+        "sql"
+        #"ruby"
         #"elixir"
       ];
       userSettings = {
@@ -127,7 +133,7 @@ in {
             editorCfg.languages
           )
         );
-        lsp = lib.mapAttrs mkZedLsp editorCfg.languageServers;
+        lsp = lib.filterAttrs (_: v: v != null) (lib.mapAttrs mkZedLsp editorCfg.languageServers);
       };
       userTasks = [
         {
