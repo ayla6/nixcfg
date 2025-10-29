@@ -71,7 +71,7 @@ in {
         "scss"
         "toml"
         "biome"
-        "superhtml"
+        #"superhtml"
         "marksman"
         "makefile"
         "zig"
