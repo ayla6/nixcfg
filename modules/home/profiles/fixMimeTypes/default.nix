@@ -31,7 +31,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     xdg.dataFile = {
-      "mime/packages/typescript-ts.xml".source = makeMimeFile {
+      "mime/packages/typescript.xml".source = makeMimeFile {
         type = "text/x-typescript";
         comment = "TypeScript source file";
         globs = ["*.ts" "*.tsx"];
