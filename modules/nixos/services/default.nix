@@ -25,6 +25,7 @@
     ./qbittorrent
     ./radicale
     ./redlib
+    ./sddm
     ./syncthing
     ./tailscale
     ./tangled-knot

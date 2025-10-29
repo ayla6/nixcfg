@@ -6,10 +6,11 @@
 }: {
   imports = [
     ./gnome
+    ./plasma
   ];
 
   options.myHome.desktop.enable = lib.mkOption {
-    default = config.myHome.desktop.gnome.enable;
+    default = config.myHome.desktop.gnome.enable or config.myHome.desktop.plasma.enable;
     description = "Desktop environment configuration.";
     type = lib.types.bool;
   };

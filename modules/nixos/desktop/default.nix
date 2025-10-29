@@ -4,7 +4,10 @@
   lib,
   ...
 }: {
-  imports = [./gnome];
+  imports = [
+    ./gnome
+    ./plasma
+  ];
 
   options.myNixOS.desktop.enable = lib.mkOption {
     default =
