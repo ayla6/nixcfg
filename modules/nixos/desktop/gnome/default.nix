@@ -38,8 +38,8 @@
 
     programs = {
       kdeconnect = {
-        enable = true;
-        package = pkgs.gnomeExtensions.gsconnect;
+        enable = lib.mkDefault true;
+        package = lib.mkDefault pkgs.gnomeExtensions.gsconnect;
       };
     };
 
