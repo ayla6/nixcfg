@@ -7,6 +7,7 @@
   imports = [
     ./gnome
     ./plasma
+    ./cosmic
   ];
 
   options.myNixOS.desktop.enable = lib.mkOption {

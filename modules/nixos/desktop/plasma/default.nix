@@ -21,5 +21,7 @@
     ];
 
     services.desktopManager.plasma6.enable = true;
+    system.nixos.tags = ["plasma"];
+    myNixOS.desktop.enable = true;
   };
 }

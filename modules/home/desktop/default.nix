@@ -7,6 +7,7 @@
   imports = [
     ./gnome
     ./plasma
+    ./cosmic
   ];
 
   options.myHome.desktop.enable = lib.mkOption {

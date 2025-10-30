@@ -51,9 +51,8 @@
       ];
     };
 
-    myNixOS = {
-      desktop.enable = true;
-    };
+    myNixOS.desktop.enable = true;
+    system.nixos.tags = ["gnome"];
 
     #qt = {
     #  enable = true;

@@ -93,6 +93,8 @@
           switch-to-workspace-up = [];
           toggle-fullscreen = ["<Super>w"];
         };
+
+        "org/gnome/desktop/wm/preferences".button-layout = "appmenu:close";
       };
     };
 
