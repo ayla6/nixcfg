@@ -126,6 +126,10 @@ in {
             e = "extend_visual_line_down";
             i = "extend_visual_line_up";
             o = "extend_char_right";
+            "A-t" = "normal_mode";
+          };
+          insert = {
+            "A-t" = "normal_mode";
           };
         };
       };
