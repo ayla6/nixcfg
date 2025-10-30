@@ -6,19 +6,20 @@
   # Helper function to create language server definitions
   mkLspServer = name: {
     command,
-    args ? [],
-    config ? {},
+    helix-command ? null,
+    args ? null,
+    config ? null,
   }: {
-    inherit name command args config;
+    inherit name command helix-command args config;
   };
 
   # Helper function to create formatter definitions
   mkFormatter = name: {
     type,
     command ? null,
-    args ? [],
+    args ? null,
     lspName ? null,
-    config ? {},
+    config ? null,
   }: {
     inherit name type command args lspName config;
   };
@@ -27,13 +28,13 @@
   mkLanguage = name: {
     full-name ? name,
     auto-format ? true,
-    file-types ? [],
+    file-types ? null,
     language-servers ? [],
     zed-only-language-servers ? [],
     helix-only-language-servers ? [],
     formatter ? null,
     helix-formatter ? null,
-    code-actions-on-format ? {},
+    code-actions-on-format ? null,
   }: {
     inherit name full-name auto-format file-types language-servers zed-only-language-servers helix-only-language-servers formatter helix-formatter code-actions-on-format;
   };
@@ -53,27 +54,23 @@ in {
       };
 
       tailwindcss-language-server = mkLspServer "tailwindcss-language-server" {
-        command = let
+        command = pkgs.writeScript "tailwindcss-language-server-bun" ''
+          #!${lib.getExe pkgs.bash} -e
+          exec ${lib.getExe pkgs.bun} ${lib.getExe pkgs.tailwindcss-language-server}
+        '';
+        helix-command = let
           fd = lib.getExe pkgs.fd;
           xargs = "${pkgs.uutils-findutils}/bin/xargs";
           grep = lib.getExe pkgs.gnugrep;
-          echo = "${pkgs.uutils-coreutils-noprefix}/bin/echo";
           bun = lib.getExe pkgs.bun;
           twls = lib.getExe pkgs.tailwindcss-language-server;
-          printf = "${pkgs.uutils-coreutils-noprefix}/bin/printf";
         in
-          pkgs.writeScript "tailwindcss-language-server-bun" ''
-            #!${lib.getExe pkgs.bash} -e
+          pkgs.writeScript "tailwindcss-language-server-bun-helix" ''
+            #!${lib.getExe pkgs.bash} -euo
 
             if ! ${fd} -H -I -E "node_modules" "package\\.json$" . | \
               ${xargs} ${grep} -q '"tailwindcss"'; then
-              ${echo} "No tailwindcss found in project; faking clean LSP exit." >&2
 
-              # Send a fake LSP shutdown + exit sequence to stdout.
-              ${printf} 'Content-Length: 47\r\n\r\n{"jsonrpc":"2.0","id":1,"method":"shutdown"}'
-              ${printf} 'Content-Length: 41\r\n\r\n{"jsonrpc":"2.0","method":"exit"}'
-
-              # Exit with success so the client treats this as a normal termination.
               exit 0
             fi
 
@@ -189,7 +186,6 @@ in {
     formatters = {
       biome = mkFormatter "biome" {
         type = "lsp";
-        lspName = "biome";
       };
 
       biomeHtml = mkFormatter "biomeHtml" {
@@ -410,10 +406,10 @@ in {
         formatter = "gdscript-formatter";
       };
 
-      ruby = mkLanguage "ruby" {
-        full-name = "Ruby";
-        language-servers = ["solargraph" "rubocop" "!ruby-lsp"];
-      };
+      #ruby = mkLanguage "ruby" {
+      #  full-name = "Ruby";
+      #  language-servers = ["solargraph" "rubocop"];
+      #};
     };
   };
 }

@@ -7,7 +7,7 @@
 
   mkZedFormatter = fmtName:
     if fmtName == null
-    then null
+    then "language_server"
     else let
       f = editorCfg.formatters.${fmtName};
     in
@@ -19,9 +19,7 @@
         };
       }
       else if f.type == "lsp"
-      then {
-        language_server = {name = f.lspName;};
-      }
+      then {language_server = {name = fmtName;};}
       else null;
 
   mkZedLanguage = name: lang:
@@ -31,29 +29,14 @@
       code_actions_on_format = lang.code-actions-on-format;
     };
 
-  mkZedLsp = name: srv: let
-    args = srv.args or [];
-    cfg = srv.config or {};
-    hasArgs = args != [];
-    hasSettings = lib.isAttrs cfg && (builtins.length (builtins.attrNames cfg) > 0);
-  in
-    lib.filterAttrs (_: v: v != null) (
-      {
-        binary = lib.filterAttrs (_: v: v != null) (
-          {path = srv.command;}
-          // (
-            if hasArgs
-            then {arguments = args;}
-            else {}
-          )
-        );
-      }
-      // (
-        if hasSettings
-        then {settings = cfg;}
-        else {}
-      )
-    );
+  mkZedLsp = name: srv:
+    lib.filterAttrs (_: v: v != null) {
+      binary = lib.filterAttrs (_: v: v != null) {
+        path = srv.command;
+        arguments = srv.args or null;
+      };
+      settings = srv.config or null;
+    };
 in {
   options.myHome.programs.zed-editor.enable = lib.mkEnableOption "zed editor";
 
@@ -144,6 +127,28 @@ in {
         }
       ];
       userKeymaps = [
+        {
+          context = "(vim_mode == helix_normal || vim_mode == helix_select) && !menu";
+          bindings = {
+            n = "vim::WrappingLeft";
+            e = "vim::Down";
+            i = "vim::Up";
+            o = "vim::WrappingRight";
+          };
+        }
+        {
+          context = "vim_mode == helix_normal && !menu";
+          bindings = {
+            j = "vim::NextWordEnd";
+            J = ["vim::NextWordEnd" {ignore_punctuation = true;}];
+            k = "vim::MoveToNextMatch";
+            K = "vim::MoveToPreviousMatch";
+            l = "vim::HelixInsert";
+            L = "vim::InsertFirstNonWhitespace";
+            h = "vim::InsertLineBelow";
+            H = "vim::InsertLineAbove";
+          };
+        }
         {
           context = "Workspace";
           bindings = {
