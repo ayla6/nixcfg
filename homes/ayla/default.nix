@@ -135,9 +135,7 @@
       };
 
       myHome = {
-        desktop = {
-          gnome.enable = true;
-        };
+        desktop.gnome.enable = true;
 
         programs = {
           lutris.enable = true;

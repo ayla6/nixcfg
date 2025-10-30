@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   options.myNixOS.desktop.cosmic.enable = lib.mkEnableOption "COSMIC desktop environment";
@@ -10,6 +11,10 @@
       {
         config.myHome.desktop.cosmic.enable = true;
       }
+    ];
+
+    environment.cosmic.excludePackages = with pkgs; [
+      cosmic-store
     ];
 
     services.desktopManager.cosmic.enable = true;
