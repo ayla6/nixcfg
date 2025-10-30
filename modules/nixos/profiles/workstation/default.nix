@@ -111,8 +111,6 @@
         enableSystemSlice = true;
         enableUserSlices = true;
       };
-      # i hate these guys
-      coredump.enable = false;
     };
 
     zramSwap = {
