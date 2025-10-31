@@ -60,10 +60,19 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs.nixpkgs.follows = "nixpkgs";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "rust-overlay";
+      };
     };
 
     nur.url = "github:nix-community/NUR";
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     tangled-core = {
       url = "git+https://tangled.sh/@tangled.sh/core";
