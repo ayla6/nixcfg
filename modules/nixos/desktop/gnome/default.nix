@@ -47,7 +47,7 @@
       variables.QT_QPA_PLATFORMTHEME = "qt6ct";
       systemPackages = with pkgs; [
         libsForQt5.qt5ct
-        qt6ct
+        qt6Packages.qt6ct
       ];
     };
 
