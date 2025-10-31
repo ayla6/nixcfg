@@ -52,22 +52,21 @@
         };
 
         # have i told you how much i despise fontconfig. literally zero reason to pick bitmap fonts over noto fonts but it always does.
-        localConf = ''
-          <?xml version="1.0"?>
-          <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
-          <fontconfig>
-            <description>Reject bitmap fonts except bitmap emoji fonts</description>
-            <!-- Reject bitmap fonts -->
-            <selectfont>
-              <rejectfont>
-                <pattern>
-                  <patelt name="outline"><bool>false</bool></patelt>
-                  <patelt name="scalable"><bool>false</bool></patelt>
-                </pattern>
-              </rejectfont>
-            </selectfont>
-          </fontconfig>
-        '';
+        #localConf = ''
+        #  <?xml version="1.0"?>
+        #  <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+        #  <fontconfig>
+        #    <description>Reject bitmap fonts except bitmap emoji fonts</description>
+        #    <selectfont>
+        #      <rejectfont>
+        #        <pattern>
+        #          <patelt name="outline"><bool>false</bool></patelt>
+        #          <patelt name="scalable"><bool>false</bool></patelt>
+        #        </pattern>
+        #      </rejectfont>
+        #    </selectfont>
+        #  </fontconfig>
+        #'';
       };
 
       packages = with pkgs; [
