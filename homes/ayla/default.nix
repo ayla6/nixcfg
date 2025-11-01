@@ -31,6 +31,11 @@
           bitwarden-desktop
           yt-dlp
           obsidian
+          gimp
+          kdePackages.kdenlive
+          krita
+          inkscape
+          qbittorrent
         ];
 
         username = "ayla";
@@ -147,12 +152,6 @@
       services.flatpak = {
         packages = [
           # creative
-          "io.lmms.LMMS"
-          "org.blender.Blender"
-          "org.gimp.GIMP"
-          "org.inkscape.Inkscape"
-          "org.kde.kdenlive"
-          "org.kde.krita"
           "com.obsproject.Studio"
 
           # gaming
@@ -168,19 +167,10 @@
 
           # media
           "com.github.iwalton3.jellyfin-media-player"
-          "org.atheme.audacious"
-          "org.freac.freac"
-          "org.musicbrainz.Picard"
           "org.audacityteam.Audacity"
 
           # productivity
           "com.calibre_ebook.calibre"
-          "net.ankiweb.Anki"
-
-          # social (basically useless but)
-          "im.dino.Dino"
-          "org.gnome.Fractal"
-          "org.squidowl.halloy"
 
           # utilities
           "com.github.tchx84.Flatseal"
