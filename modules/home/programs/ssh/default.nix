@@ -27,6 +27,13 @@
           hostname = "nanpi";
           port = 2222;
         };
+
+        "git.aylac.top" = {
+          user = "forgejo";
+          # dont know if i can just link snippets knot here
+          hostname = "nanpi";
+          port = 2223;
+        };
       };
 
       package = pkgs.openssh;

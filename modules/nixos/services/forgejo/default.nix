@@ -85,7 +85,8 @@ in {
             LANDING_PAGE = "explore";
             LFS_START_SERVER = true;
             ROOT_URL = "https://${service.vHost}/";
-            DISABLE_SSH = true;
+            DISABLE_SSH = false;
+            SSH_PORT = 2223;
           };
 
           service = {
@@ -105,7 +106,7 @@ in {
 
           "ui.meta" = {
             AUTHOR = "Ayla";
-            DESCRIPTION = "i can't set up ssh via cloudflare tunnels!";
+            DESCRIPTION = "morgana the cat!";
             KEYWORDS = "git,source code,forge,forgejo,aylac";
           };
         };

@@ -18,6 +18,7 @@
         forgejo = {
           hostName = "nanpi";
           port = 3001;
+          sshPort = 2223;
           vHost = "git.aylac.top";
         };
 
