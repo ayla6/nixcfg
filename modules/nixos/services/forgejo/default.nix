@@ -30,6 +30,8 @@ in {
         "${service.vHost}" = "http://${service.hostName}:${toString service.port}";
       };
 
+      openssh.ports = [service.sshPort];
+
       forgejo = {
         enable = true;
 
