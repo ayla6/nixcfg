@@ -43,7 +43,6 @@
       };
 
       programs.home-manager.enable = true;
-      programs.helix.defaultEditor = true;
 
       xdg.enable = true;
 

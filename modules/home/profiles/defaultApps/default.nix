@@ -260,6 +260,12 @@ in {
       };
     };
 
+    programs.fish.shellInit = ''
+      set -gx BROWSER ${builtins.baseNameOf cfg.webBrowser.exec};
+      set -gx EDITOR ${builtins.baseNameOf cfg.terminalEditor.exec};
+      set -gx TERMINAL ${builtins.baseNameOf cfg.terminal.exec};
+    '';
+
     xdg = {
       configFile = {
         "xfce4/helpers.rc".text = ''
