@@ -71,13 +71,13 @@
             enable = true;
             forceMimeAssociations = true;
             editor = {
-              package = config.programs.helix.package;
+              inherit (config.programs.helix) package;
               terminal = true;
               icon = "helix";
             };
             terminalEditor.package = config.programs.helix.package;
             webBrowser = {
-              package = config.programs.helium.package;
+              inherit (config.programs.helium) package;
               icon = "helium";
             };
           };

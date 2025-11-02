@@ -14,7 +14,7 @@
       if f.type == "external"
       then {
         external = {
-          command = f.command;
+          inherit (f) command;
           arguments = f.args or [];
         };
       }
@@ -22,14 +22,14 @@
       then {language_server = {name = fmtName;};}
       else null;
 
-  mkZedLanguage = name: lang:
+  mkZedLanguage = lang:
     lib.filterAttrs (_: v: v != null) {
       formatter = mkZedFormatter lang.formatter;
       language_servers = lang.language-servers ++ lang.zed-only-language-servers;
       code_actions_on_format = lang.code-actions-on-format;
     };
 
-  mkZedLsp = name: srv:
+  mkZedLsp = srv:
     lib.filterAttrs (_: v: v != null) {
       binary = lib.filterAttrs (_: v: v != null) {
         path = srv.command;
@@ -105,9 +105,8 @@ in {
 
         languages = lib.listToAttrs (
           lib.attrValues (
-            lib.mapAttrs (name: lang: {
-              name = lang.full-name;
-              value = mkZedLanguage name lang;
+            lib.mapAttrs (lang: {
+              value = mkZedLanguage lang;
             })
             editorCfg.languages
           )

@@ -34,8 +34,7 @@
       if fmt != null && fmt.type == "external"
       then
         lib.filterAttrs (_: v: v != null) {
-          command = fmt.command;
-          args = fmt.args;
+          inherit (fmt) command args;
         }
       else null;
 
@@ -52,10 +51,8 @@
     fullLspList;
   in
     lib.filterAttrs (_: v: v != null) {
-      name = lang.name;
-      auto-format = lang.auto-format;
       language-servers = languageServers;
-      file-types = lang.file-types;
+      inherit (lang) name auto-format file-types;
       inherit formatter;
     };
 in {

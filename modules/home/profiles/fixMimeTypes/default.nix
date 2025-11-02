@@ -19,7 +19,7 @@
         "@xmlns" = "http://www.freedesktop.org/standards/shared-mime-info";
         "mime-type" = {
           "@type" = type;
-          comment = comment;
+          inherit comment;
           glob = map (pattern: {"@pattern" = pattern;}) globs;
         };
       };
