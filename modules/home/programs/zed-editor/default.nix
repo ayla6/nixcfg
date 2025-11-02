@@ -20,7 +20,7 @@
       }
       else if f.type == "lsp"
       then {language_server = {name = fmtName;};}
-      else null;
+      else "language_server";
 
   mkZedLanguage = lang:
     lib.filterAttrs (_: v: v != null) {
@@ -29,7 +29,7 @@
       code_actions_on_format = lang.code-actions-on-format;
     };
 
-  mkZedLsp = srv:
+  mkZedLsp = _name: srv:
     lib.filterAttrs (_: v: v != null) {
       binary = lib.filterAttrs (_: v: v != null) {
         path = srv.command;
@@ -105,7 +105,8 @@ in {
 
         languages = lib.listToAttrs (
           lib.attrValues (
-            lib.mapAttrs (lang: {
+            lib.mapAttrs (name: lang: {
+              name = lang.full-name;
               value = mkZedLanguage lang;
             })
             editorCfg.languages
