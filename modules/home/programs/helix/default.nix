@@ -9,7 +9,7 @@
     lib.filterAttrs (_: v: v != null) {
       inherit name;
       command =
-        if (srv ? helix-command)
+        if (srv ? helix-command) && srv.helix-command != null
         then srv.helix-command
         else srv.command;
       args = srv.args or null;
