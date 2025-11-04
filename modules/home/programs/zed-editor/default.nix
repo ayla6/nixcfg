@@ -66,7 +66,7 @@ in {
         "basher"
         "sql"
         #"ruby"
-        #"elixir"
+        "elixir"
       ];
       userSettings = {
         auto_indent_on_paste = true;

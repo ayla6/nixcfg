@@ -183,9 +183,14 @@ in {
         args = ["server"];
       };
 
-      expert = mkLspServer "expert" {
-        command = "${inputs.expert.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/expert";
-        args = ["--stdio"];
+      # switch to expert when it gets stable
+      #expert = mkLspServer "expert" {
+      #  command = "${inputs.expert.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/expert";
+      #  args = ["--stdio"];
+      #};
+
+      elixir-ls = {
+        command = "${pkgs.beam28Packages.elixir-ls}/bin/elixir-ls";
       };
 
       #rubocop = mkLspServer "rubocop" {
@@ -425,14 +430,18 @@ in {
 
       elixir = mkLanguage "elixir" {
         full-name = "Elixir";
-        language-servers = ["expert"];
-        zed-only-language-servers = ["!elixir-ls" "!next-ls" "!lexical" "..."];
+        language-servers = ["elixir-ls"];
+        zed-only-language-servers = ["!expert" "!next-ls" "!lexical" "..."];
+        #language-servers = ["expert"];
+        #zed-only-language-servers = ["!elixir-ls" "!next-ls" "!lexical" "..."];
       };
 
       heex = mkLanguage "heex" {
         full-name = "HEEX";
-        language-servers = ["expert"];
-        zed-only-language-servers = ["!elixir-ls" "!next-ls" "!lexical" "..."];
+        language-servers = ["elixir-ls"];
+        zed-only-language-servers = ["!expert" "!next-ls" "!lexical" "..."];
+        #language-servers = ["expert"];
+        #zed-only-language-servers = ["!elixir-ls" "!next-ls" "!lexical" "..."];
       };
 
       #ruby = mkLanguage "ruby" {
