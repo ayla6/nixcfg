@@ -37,6 +37,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    expert = {
+      url = "github:elixir-lang/expert";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     files.url = "github:alyraffauf/files";
 
     flake-parts.url = "github:hercules-ci/flake-parts";

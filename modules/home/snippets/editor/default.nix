@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   # Helper function to create language server definitions
@@ -175,6 +176,16 @@ in {
       solargraph = mkLspServer "solargraph" {
         command = lib.getExe pkgs.rubyPackages.solargraph;
         args = ["stdio"];
+      };
+
+      elp = mkLspServer "erlang-language-platform" {
+        command = "${pkgs.erlang-language-platform}/bin/elp";
+        args = ["server"];
+      };
+
+      expert = mkLspServer "expert" {
+        command = "${inputs.expert.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/expert";
+        args = ["--stdio"];
       };
 
       #rubocop = mkLspServer "rubocop" {
@@ -404,6 +415,24 @@ in {
         full-name = "GDScript";
         language-servers = ["gdscript-language-server"];
         formatter = "gdscript-formatter";
+      };
+
+      erlang = mkLanguage "erlang" {
+        full-name = "Erlang";
+        language-servers = ["elp"];
+        zed-only-language-servers = ["!erlang-ls" "..."];
+      };
+
+      elixir = mkLanguage "elixir" {
+        full-name = "Elixir";
+        language-servers = ["expert"];
+        zed-only-language-servers = ["!elixir-ls" "!next-ls" "!lexical" "..."];
+      };
+
+      heex = mkLanguage "heex" {
+        full-name = "HEEX";
+        language-servers = ["expert"];
+        zed-only-language-servers = ["!elixir-ls" "!next-ls" "!lexical" "..."];
       };
 
       #ruby = mkLanguage "ruby" {
