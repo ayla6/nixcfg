@@ -70,6 +70,7 @@ in {
           auto-format = true;
           auto-pairs = false;
           auto-save = true;
+          bufferline = "multiple";
           color-modes = true;
           cursorline = true;
 
@@ -81,17 +82,20 @@ in {
 
           indent-guides.render = true;
 
+          line-number = "relative";
+
           lsp = {
             display-inlay-hints = true;
-            display-messages = true;
+            #display-messages = true;
           };
+
+          shell = ["fish" "-c"];
 
           soft-wrap = {
             enable = true;
             wrap-at-text-width = true;
           };
 
-          statusline.center = ["position-percentage"];
           text-width = 100;
           true-color = true;
 
