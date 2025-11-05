@@ -36,6 +36,8 @@
           krita
           inkscape
           qbittorrent
+
+          self.inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.v3
         ];
 
         username = "ayla";

@@ -13,6 +13,11 @@
       };
     };
 
+    affinity-nix = {
+      url = "github:mrshmllow/affinity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -107,12 +112,14 @@
       "https://ayla6.cachix.org"
       "https://chaotic-nyx.cachix.org/"
       "https://nix-community.cachix.org"
+      "https://cache.garnix.io"
     ];
 
     extra-trusted-public-keys = [
       "ayla6.cachix.org-1:40BzoflmIK8MovQ5zewLsWlDNWQh7Gdtu2i220h1YmE="
       "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8"
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
     ];
   };
 
