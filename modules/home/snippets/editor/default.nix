@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }: let
   # Helper function to create language server definitions

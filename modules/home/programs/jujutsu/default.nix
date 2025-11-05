@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }: {
   options.myHome.programs.jujutsu.enable = lib.mkEnableOption "jujutsu version control";
