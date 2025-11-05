@@ -24,9 +24,9 @@
           key = "~/.ssh/id_ed25519.pub";
         };
         ui = {
-          diff-editor = "meld";
+          diff-editor = ":builtin";
         };
-        merge-tools.meld.program = lib.getExe pkgs.meld;
+        #merge-tools.meld.program = lib.getExe pkgs.meld;
       };
     };
   };
