@@ -85,7 +85,6 @@ in {
         preferred_line_length = 100;
         soft_wrap = "preferred_line_length";
 
-        tab_size = 2;
         format_on_save = "on";
         prettier = {
           allowed = false;
