@@ -16,6 +16,10 @@
         wget
       ];
 
+      sessionVariables = {
+        RUST_SRC_PATH = pkgs.rustPlatform.rustLibSrc;
+      };
+
       shellAliases = {
         l = "eza -lah";
         tree = "eza --tree";
