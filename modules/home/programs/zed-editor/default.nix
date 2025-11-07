@@ -41,6 +41,11 @@ in {
   options.myHome.programs.zed-editor.enable = lib.mkEnableOption "zed editor";
 
   config = lib.mkIf config.myHome.programs.zed-editor.enable {
+    # lazy
+    home = {
+      inherit (editorCfg) packages;
+    };
+
     programs.zed-editor = {
       enable = true;
       extensions = [

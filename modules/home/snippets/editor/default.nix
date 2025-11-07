@@ -46,6 +46,8 @@ in {
   };
 
   config.mySnippets.editor = {
+    # extra packages it should have in its env, unfortunately it just goes to the main env
+    packages = with pkgs; [rustfmt];
     # Language Servers
     languageServers = {
       biome = mkLspServer "biome" {

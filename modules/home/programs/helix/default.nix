@@ -59,6 +59,11 @@ in {
   options.myHome.programs.helix.enable = lib.mkEnableOption "helix";
 
   config = lib.mkIf config.myHome.programs.helix.enable {
+    # lazy
+    home = {
+      inherit (editorCfg) packages;
+    };
+
     programs.helix = {
       enable = true;
 
