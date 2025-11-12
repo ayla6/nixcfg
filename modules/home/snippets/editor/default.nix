@@ -103,8 +103,13 @@ in {
       };
 
       vtsls = mkLspServer "vtsls" {
+        command = lib.getExe pkgs.vtsls;
+        args = ["--stdio"];
+      };
+
+      typescript-language-server = mkLspServer "vtsls" {
         command = lib.getExe pkgs.bun;
-        args = ["${pkgs.vtsls}/bin/vtsls" "--stdio"];
+        args = ["${pkgs.typescript-language-server}/lib/node_modules/typescript-language-server/lib/cli.mjs" "--stdio"];
       };
 
       svelte-language-server = mkLspServer "svelte-language-server" {
