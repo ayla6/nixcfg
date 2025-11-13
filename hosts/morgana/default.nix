@@ -15,6 +15,11 @@
   time.timeZone = "America/Sao_Paulo";
   myHardware.acer.aspire.A515-52G.enable = true;
 
+  services.xserver.xkb = {
+    layout = lib.mkForce "colemak_ayla";
+    variant = lib.mkForce "";
+  };
+
   myNixOS = {
     programs = {
       lanzaboote.enable = true;

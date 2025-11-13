@@ -32,5 +32,6 @@
     ./uptime-kuma
     ./vaultwarden
     ./webdav-server-rs
+    ./xkb
   ];
 }
