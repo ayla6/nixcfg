@@ -278,8 +278,8 @@ in {
 
       javascript = mkLanguage "javascript" {
         full-name = "JavaScript";
-        language-servers = ["vtsls" "biome"];
-        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        language-servers = ["typescript-language-server" "biome"];
+        zed-only-language-servers = ["!eslint" "!vtsls" "..."];
         helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
@@ -290,8 +290,8 @@ in {
 
       typescript = mkLanguage "typescript" {
         full-name = "TypeScript";
-        language-servers = ["vtsls" "biome"];
-        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        language-servers = ["typescript-language-server" "biome"];
+        zed-only-language-servers = ["!eslint" "!vtsls" "..."];
         helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
@@ -302,8 +302,8 @@ in {
 
       jsx = mkLanguage "jsx" {
         full-name = "JSX";
-        language-servers = ["vtsls" "biome"];
-        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        language-servers = ["typescript-language-server" "biome"];
+        zed-only-language-servers = ["!eslint" "!vtsls" "..."];
         helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
@@ -314,8 +314,8 @@ in {
 
       tsx = mkLanguage "tsx" {
         full-name = "TSX";
-        language-servers = ["vtsls" "biome"];
-        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        language-servers = ["typescript-language-server" "biome"];
+        zed-only-language-servers = ["!eslint" "!vtsls" "..."];
         helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
@@ -326,8 +326,8 @@ in {
 
       svelte = mkLanguage "svelte" {
         full-name = "Svelte";
-        language-servers = ["svelte-language-server" "vtsls" "biome"];
-        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        language-servers = ["svelte-language-server" "typescript-language-server" "biome"];
+        zed-only-language-servers = ["!eslint" "!vtsls" "..."];
         helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
@@ -338,8 +338,8 @@ in {
 
       vue = mkLanguage "vue" {
         full-name = "Vue.js";
-        language-servers = ["vue-language-server" "biome"];
-        zed-only-language-servers = ["!eslint" "!typescript-language-server" "..."];
+        language-servers = ["vue-language-server" "typescript-language-server" "biome"];
+        zed-only-language-servers = ["!eslint" "!vtsls" "..."];
         helix-only-language-servers = ["tailwindcss-language-server"];
         formatter = "biome";
         code-actions-on-format = {
