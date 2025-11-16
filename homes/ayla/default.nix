@@ -127,6 +127,10 @@
       home = {
         homeDirectory = "/home/ayla";
 
+        sessionVariables = {
+          GOPATH = "/home/ayla/.go";
+        };
+
         packages = with pkgs; [
           # libraries
           libsecret
