@@ -83,11 +83,23 @@
       zellij = {
         enable = true;
         enableFishIntegration = false;
+        attachExistingSession = true;
         settings = {
           theme = "onedark";
           default_shell = "fish";
           show_startup_tips = false;
+          pane_frames = false;
+          default_layout = "compact";
+          keybinds = {unbind = "Ctrl q";};
+          ui = {pane_frames = {rounded_corners = true;};};
         };
+        extraConfig = ''
+          plugins {
+              compact-bar location="zellij:compact-bar" {
+                tooltip "F1"
+              }
+          }
+        '';
       };
 
       zoxide = {

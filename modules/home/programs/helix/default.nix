@@ -73,7 +73,6 @@ in {
         editor = {
           auto-completion = true;
           auto-format = true;
-          auto-pairs = false;
           auto-save = true;
           bufferline = "multiple";
           color-modes = true;
