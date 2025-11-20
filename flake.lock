@@ -44,6 +44,22 @@
         "type": "github"
       }
     },
+    "actor-typeahead-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1762835797,
+        "narHash": "sha256-heizoWUKDdar6ymfZTnj3ytcEv/L4d4fzSmtr0HlXsQ=",
+        "ref": "refs/heads/main",
+        "rev": "677fe7f743050a4e7f09d4a6f87bbf1325a06f6b",
+        "revCount": 6,
+        "type": "git",
+        "url": "https://tangled.org/@jakelazaroff.com/actor-typeahead"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://tangled.org/@jakelazaroff.com/actor-typeahead"
+      }
+    },
     "affinity-nix": {
       "inputs": {
         "elemental-wine-source": "elemental-wine-source",
@@ -1554,6 +1570,7 @@
     },
     "tangled-core": {
       "inputs": {
+        "actor-typeahead-src": "actor-typeahead-src",
         "flake-compat": "flake-compat_7",
         "gomod2nix": "gomod2nix",
         "htmx-src": "htmx-src",
@@ -1568,11 +1585,11 @@
         "sqlite-lib-src": "sqlite-lib-src"
       },
       "locked": {
-        "lastModified": 1762854346,
-        "narHash": "sha256-Rb6vRlaeTQyQlBXQWFEnGOY8oGAGE3gJGyAu22QbDpw=",
+        "lastModified": 1763627666,
+        "narHash": "sha256-t8UQ85/bPXrbFs3V/paFtQvv4lSrr2lszrdcgspuAaA=",
         "ref": "refs/heads/master",
-        "rev": "428c002e8c532d34c8b89bb49b2b4a98d388de4f",
-        "revCount": 1636,
+        "rev": "12ef7f8f63ee4a14a552ebed603802c79e4d72f8",
+        "revCount": 1678,
         "type": "git",
         "url": "https://tangled.org/@tangled.org/core"
       },

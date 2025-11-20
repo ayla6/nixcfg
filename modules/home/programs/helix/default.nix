@@ -123,6 +123,30 @@ in {
 
             h = "open_below";
             H = "open_above";
+
+            N = "no_op";
+            E = "no_op";
+            I = "no_op";
+            O = "no_op";
+
+            C-s = ":w";
+
+            C-i = "save_selection";
+            C-o = "jump_forward";
+            C-n = "jump_backward";
+
+            z = {
+              i = "scroll_up";
+              e = "scroll_down";
+              j = "no_op";
+              k = "no_op";
+            };
+            Z = {
+              i = "scroll_up";
+              e = "scroll_down";
+              j = "no_op";
+              k = "no_op";
+            };
           };
           select = {
             n = "extend_char_left";
@@ -135,9 +159,15 @@ in {
             k = "search_next";
             K = "search_prev";
           };
-          view = {
-            i = "scroll_up";
-            e = "scroll_down";
+          insert = {
+            up = "no_op";
+            down = "no_op";
+            left = "no_op";
+            right = "no_op";
+            pageup = "no_op";
+            pagedown = "no_op";
+            home = "no_op";
+            end = "no_op";
           };
         };
       };
