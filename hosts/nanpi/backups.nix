@@ -23,7 +23,8 @@ in {
     };
     script = ''
       set -e
-      rclone --config ${config.age.secrets.rclone.path} sync "a_gdrive:/backups" "${mirrorRepo}"
+      rclone --config ${config.age.secrets.rclone.path} sync "a_gdrive:/backups" "${mirrorRepo}/a"
+      rclone --config ${config.age.secrets.rclone.path} sync "b_gdrive:/backups" "${mirrorRepo}/b"
     '';
   };
 

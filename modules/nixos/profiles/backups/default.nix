@@ -146,18 +146,6 @@ in {
         inherit (config.services.forgejo) enable;
         paths = [config.services.forgejo.stateDir];
       }
-      # {
-      #   name = "immich";
-      #   inherit (config.services.immich) enable;
-      #   name = "immich-server";
-      #   paths = [
-      #     "${config.services.immich.mediaLocation}/library"
-      #     "${config.services.immich.mediaLocation}/profile"
-      #     "${config.services.immich.mediaLocation}/upload"
-      #     "${config.services.immich.mediaLocation}/backups"
-      #   ];
-      #   repo = "B";
-      # }
       {
         name = "jellyfin";
         inherit (config.services.jellyfin) enable;
@@ -179,14 +167,7 @@ in {
         containerised = true;
         inherit (config.myNixOS.services.pds) enable;
         paths = ["/var/lib/nixos-containers/pds${config.containers.pds.config.services.bluesky-pds.settings.PDS_DATA_DIRECTORY}"];
-      }
-      {
-        name = "plex";
-        inherit (config.services.plex) enable;
-        paths = [config.services.plex.dataDir];
-        extraConfig = {
-          exclude = ["${config.services.plex.dataDir}/Plex Media Server/Plug-in Support/Databases"];
-        };
+        repoKey = "B";
       }
       {
         name = "postgresql";
