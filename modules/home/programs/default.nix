@@ -6,6 +6,7 @@
     ./firefox
     ./helium
     ./helix
+    ./helix-zellij
     ./jujutsu
     ./lutris
     ./git

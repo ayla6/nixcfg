@@ -103,6 +103,11 @@
       url = "github:ayla6/secrets";
       flake = false;
     };
+
+    wrappers = {
+      url = "github:lassulus/wrappers";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {

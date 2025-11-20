@@ -129,10 +129,13 @@ in {
             e = "extend_visual_line_down";
             i = "extend_visual_line_up";
             o = "extend_char_right";
-            "A-t" = "normal_mode";
-          };
-          insert = {
-            "A-t" = "normal_mode";
+
+            j = "move_next_word_end";
+            J = "move_next_long_word_end";
+            k = "search_next";
+            K = "search_prev";
+            l = "insert_mode";
+            L = "insert_at_line_start";
           };
         };
       };

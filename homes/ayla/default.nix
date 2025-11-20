@@ -22,6 +22,10 @@
           #nodejs
           bun
           typescript
+          gcc
+          rustc
+          cargo
+          clippy
 
           # applications
           aseprite

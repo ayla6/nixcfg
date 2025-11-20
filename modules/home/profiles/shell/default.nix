@@ -83,7 +83,6 @@
       zellij = {
         enable = true;
         enableFishIntegration = false;
-        attachExistingSession = true;
         settings = {
           theme = "onedark";
           default_shell = "fish";
