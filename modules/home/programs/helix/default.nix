@@ -134,8 +134,10 @@ in {
             J = "move_next_long_word_end";
             k = "search_next";
             K = "search_prev";
-            l = "insert_mode";
-            L = "insert_at_line_start";
+          };
+          view = {
+            i = "scroll_up";
+            e = "scroll_down";
           };
         };
       };
