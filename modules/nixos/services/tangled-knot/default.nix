@@ -42,7 +42,7 @@ in {
           };
         };
 
-        services.tangled-knot = {
+        services.tangled.knot = {
           enable = true;
           stateDir = "/var/lib/knot";
           server = {
