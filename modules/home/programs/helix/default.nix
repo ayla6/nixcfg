@@ -77,6 +77,8 @@ in {
           bufferline = "multiple";
           color-modes = true;
           cursorline = true;
+          # auto-pairs works terribly when you can't move around in insert mode
+          auto-pairs = false;
 
           cursor-shape = {
             insert = "bar";
@@ -105,6 +107,9 @@ in {
             newline = "↴";
             tab = "⇥";
           };
+
+          end-of-line-diagnostics = "hint";
+          inline-diagnostics.cursor-line = "warning";
         };
 
         keys = {
