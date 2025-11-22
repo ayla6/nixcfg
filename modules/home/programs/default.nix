@@ -14,5 +14,6 @@
     ./mpv
     ./ssh
     ./zed-editor
+    ./ghostty
   ];
 }

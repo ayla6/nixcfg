@@ -67,6 +67,7 @@
           mpv.enable = true;
           ssh.enable = true;
           zed-editor.enable = true;
+          ghostty.enable = true;
         };
 
         profiles = {
@@ -76,6 +77,10 @@
           defaultApps = {
             enable = true;
             forceMimeAssociations = true;
+            terminal = {
+              inherit (config.programs.ghostty) package;
+              icon = "ghostty";
+            };
             editor = {
               inherit (config.programs.helix) package;
               terminal = true;

@@ -98,7 +98,7 @@ in {
             wrap-at-text-width = true;
           };
 
-          text-width = 100;
+          text-width = 80;
           true-color = true;
 
           whitespace.characters = {
