@@ -8,7 +8,6 @@
   imports = [
     self.homeModules.default
     self.inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    self.inputs.fontix.homeModules.default
   ];
 
   config = lib.mkMerge [
@@ -93,35 +92,6 @@
             };
           };
         };
-      };
-
-      fontix = {
-        fonts = {
-          monospace = {
-            name = "JetBrainsMono Nerd Font";
-            package = pkgs.nerd-fonts.jetbrains-mono;
-          };
-
-          sansSerif = {
-            name = "Roboto Flex";
-            package = pkgs.roboto-flex;
-          };
-
-          serif = {
-            name = "Source Serif Pro";
-            package = pkgs.source-serif-pro;
-          };
-        };
-
-        sizes = {
-          applications = 10;
-          desktop = 10;
-        };
-
-        font-packages.enable = true;
-        fontconfig.enable = true;
-        gnome.enable = lib.mkIf pkgs.stdenv.isLinux true;
-        gtk.enable = lib.mkIf pkgs.stdenv.isLinux true;
       };
 
       systemd.user.startServices = true; # Needed for auto-mounting agenix secrets.

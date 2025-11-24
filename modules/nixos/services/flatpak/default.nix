@@ -41,7 +41,6 @@
         nerd-fonts.jetbrains-mono
         noto-fonts
         noto-fonts-cjk-sans
-        noto-fonts-monochrome-emoji
         noto-fonts-color-emoji
         roboto-flex
         source-code-pro

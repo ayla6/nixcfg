@@ -53,11 +53,6 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
-    fontix = {
-      url = "github:alyraffauf/fontix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";

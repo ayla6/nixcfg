@@ -7,6 +7,7 @@
   imports = [
     ./home.nix
     ./secrets.nix
+    ./kanata.nix
     self.nixosModules.locale-en-ca
   ];
 
@@ -16,7 +17,7 @@
   myHardware.acer.aspire.A515-52G.enable = true;
 
   services.xserver.xkb = {
-    layout = lib.mkForce "colemak_ayla";
+    layout = lib.mkForce "us";
     variant = lib.mkForce "";
   };
 
@@ -89,8 +90,12 @@
     ];
 
     luks.devices = {
-      crypted1.device = "/dev/disk/by-uuid/796c4c65-22b9-40e2-a928-66d20d528330";
-      crypted2.device = "/dev/disk/by-uuid/7665834d-1f38-4c1e-9b44-449ea8fc055c";
+      crypted1 = {
+        device = "/dev/disk/by-uuid/796c4c65-22b9-40e2-a928-66d20d528330";
+      };
+      crypted2 = {
+        device = "/dev/disk/by-uuid/7665834d-1f38-4c1e-9b44-449ea8fc055c";
+      };
     };
   };
 

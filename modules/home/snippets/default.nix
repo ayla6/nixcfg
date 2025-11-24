@@ -3,5 +3,6 @@
     ./editor
     ./firefox-based
     ./git
+    ./fonts
   ];
 }
