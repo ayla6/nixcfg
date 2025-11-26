@@ -66,7 +66,6 @@
           mpv.enable = true;
           ssh.enable = true;
           zed-editor.enable = true;
-          ghostty.enable = true;
         };
 
         profiles = {
@@ -77,8 +76,8 @@
             enable = true;
             forceMimeAssociations = true;
             terminal = {
-              inherit (config.programs.ghostty) package;
-              icon = "ghostty";
+              package = pkgs.gnome-console;
+              icon = "gnome-console";
             };
             editor = {
               inherit (config.programs.helix) package;

@@ -202,6 +202,14 @@ in {
       #rubocop = mkLspServer "rubocop" {
       #  command = lib.getExe pkgs.rubocop;
       #};
+
+      fennel-ls = {
+        command = lib.getExe pkgs.fennel-ls;
+      };
+
+      clojure-lsp = {
+        command = lib.getExe pkgs.clojure-lsp;
+      };
     };
 
     # Formatters
@@ -246,6 +254,11 @@ in {
         type = "external";
         command = lib.getExe pkgs.bun;
         args = ["${pkgs.prettier}/bin/prettier.cjs" "--stdin-filepath" "{buffer_path}"];
+      };
+
+      fnlfmt = mkFormatter "fnlmt" {
+        type = "external";
+        commad = lib.getExe pkgs.fnlfmt;
       };
     };
 
@@ -448,6 +461,16 @@ in {
         zed-only-language-servers = ["!expert" "!next-ls" "!lexical" "..."];
         #language-servers = ["expert"];
         #zed-only-language-servers = ["!elixir-ls" "!next-ls" "!lexical" "..."];
+      };
+
+      fennel = mkLanguage "fennel" {
+        full-name = "Fennel";
+        language-servers = ["fennel-ls"];
+      };
+
+      clojure = mkLanguage "clojure" {
+        full-name = "Clojure";
+        language-servers = ["clojure-lsp"];
       };
 
       #ruby = mkLanguage "ruby" {

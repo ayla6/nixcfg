@@ -72,6 +72,7 @@ in {
         "sql"
         #"ruby"
         "elixir"
+        "clojure"
       ];
       userSettings = {
         auto_indent_on_paste = true;

@@ -11,7 +11,8 @@
   rgt right
 
   ;; change modes
-  sym (tap-hold 200 200 ralt (layer-toggle symbols))
+  num (tap-hold 180 180 f (layer-toggle numbers))
+  sym (layer-toggle symbols)
   nav (layer-toggle navigation)
   bas (layer-switch base)
 
@@ -55,13 +56,13 @@
 (deflayer base
          1    2    3    4    5    6    =    7    8    9    0    -
          
-  tab    q    w    f    p    b    [    j    l    u    y    @cl  esc
+  tab    q    w    @num p    b    [    j    l    u    y    @cl  esc
                                             
   @nav   a    r    s    t    g    ]    m    n    e    i    o    '
          
-  lsft   z    x    c    d    v    \    /    k    h    ,    .    ret
+  lsft   z   x    c    d    v  \  /   k    h    ,    .    ret
     
-  lctl   lalt spc  @sym ralt
+  lctl   @sym spc  lalt ralt
 )
 
 (deflayer symbols
@@ -69,9 +70,9 @@
           
      _    @!   @@   @#   @%   @~   XX   `    @&   @|   @?   @:   _
 
-     _    -    @cl  [    @pl  @^   XX   @*   @{   @_   =    @+   @qt
+     _    @+   =    [    @pl  @^   XX   @*   @{   @_   @cl  -    @qt
  
-     _    _    _    ]    @pr  \  XX XX  /    @}   @<   @>   _
+_    _    _    \    ]    @pr     XX XX  /    @}   @<   @>   _
       
      _    _    _    _    _
 )
@@ -81,11 +82,23 @@
           
      _    _    _    _    _    _    XX   _    home pgdn pgup end  _
           
-     _    esc  lalt lsft lctl _    XX   _    left down up   @rgt del
+     _    _    lalt lsft lctl _    XX   ret  left down up   @rgt del
  
-     _    _    _    _    _    _  XX XX  ret  bspc _    _    _
+     _    _    _    _    esc  _  XX XX  bspc _    _    _    _
       
      _    _    _    _    _
+)
+
+(deflayer numbers
+          _    _    _    _    _    XX   _    _    _    _    _    _
+          
+     _    _    _    _    _    _    XX   =    7    8    9    @+   _
+          
+     _    _    _    _    _    _    XX   /    1    2    3    -    \
+ 
+     _    _    _    _    _    _  XX XX  @*   4    5    6    _
+      
+     _    _    0    _    _
 )
 
 (deflayer empty
