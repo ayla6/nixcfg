@@ -2,27 +2,17 @@
        1 2 3 4 5 6 7 8 9 0 - =
   tab  q w e r t y u i o p [ ]
   caps a s d f g h j k l ; ' \
-  lsgt z x c v b n m , . /
-  lalt spc lsft lctl
+  lsft lsgt z x c v b n m , . / rsft
+  lctl lalt spc ralt            menu
 )
 
 (defalias
   ;; shortenings
-  bsp bspc
-
-  ;; shortcuts
-  cut C-x
-  cpy C-c
-  pst C-v
-  und C-z
-  red C-S-z
-  all C-a
+  rgt right
 
   ;; change modes
-  sym (tap-hold-release 200 200 spc (layer-toggle symbols))
-  bsnv (tap-hold-release 200 200 bspc (layer-toggle navigation))
-  nav (layer-switch navigation)
-  mse (layer-switch mouse)
+  sym (tap-hold 200 200 ralt (layer-toggle symbols))
+  nav (layer-toggle navigation)
   bas (layer-switch base)
 
   ;; mouse movement
@@ -52,6 +42,14 @@
   pr S-0
   : S-;
   cl ;
+  { S-[
+  } S-]
+  | S-\
+  ? S-/
+  qt S-'
+  ~ S-`
+  < S-,
+  > S-.
 )
 
 (deflayer base
@@ -59,45 +57,45 @@
          
   tab    q    w    f    p    b    [    j    l    u    y    @cl  esc
                                             
-  @bsnv  a    r    s    t    g    ]    m    n    e    i    o    '
+  @nav   a    r    s    t    g    ]    m    n    e    i    o    '
          
-     z   x    c    d    v    \    /    k    h    ,    .
+  lsft   z    x    c    d    v    \    /    k    h    ,    .    ret
     
-  lalt   @sym lsft lctl
+  lctl   lalt spc  @sym ralt
 )
 
 (deflayer symbols
           _    _    _    _    _    XX   _    _    _    _    _    _
           
-     _    @@   @#   @*   @_   @+   XX   @^   =    -    @&   @%   @$
-          
-     _    @:   @cl  @pl  @pr  ret  XX   _    S-[  S-]  [    ]    S-'
+     _    @!   @@   @#   @%   @~   XX   `    @&   @|   @?   @:   _
+
+     _    -    @cl  [    @pl  @^   XX   @*   @{   @_   =    @+   @qt
  
-     lctl _    @mse @nav esc  S-/  XX   S-\  @!    S-,  S-.
- 
-     _    _    _    _
+     _    _    _    ]    @pr  \  XX XX  /    @}   @<   @>   _
+      
+     _    _    _    _    _
 )
 
 (deflayer navigation
           _    _    _    _    _    XX   _    _    _    _    _    _
           
-     _    _    _    _    _    _    XX   _    _    _    _    _    _
+     _    _    _    _    _    _    XX   _    home pgdn pgup end  _
           
-     _    @all @pst @cpy @cut @und XX   _    left down up   rght _  
+     _    esc  lalt lsft lctl _    XX   _    left down up   @rgt del
  
-     _    _    _    del  _    @red XX        end  pgdn pgup home
+     _    _    _    _    _    _  XX XX  ret  bspc _    _    _
       
-  lalt    @bas _    _
+     _    _    _    _    _
 )
 
-(deflayer mouse
+(deflayer empty
           _    _    _    _    _    XX   _    _    _    _    _    _
           
-     _    _    _    _    _    _    XX   @red @pst @cpy @cut @und _
+     _    _    _    _    _    _    XX   _    _    _    _    _    _
           
-     _    _    mmid mrgt mlft _    XX   _    @mlf @mdn @mup @mrt _  
+     _    _    _    _    _    _    XX   _    _    _    _    _    _
  
-     _    _    _    _    _    _    XX        @mwl @mwd @mwu @mwr
+     _    _    _    _    _    _  XX XX  _    _    _    _    _
       
-     _    @bas _    _
+     _    _    _    _    _
 )

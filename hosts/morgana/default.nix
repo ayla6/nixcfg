@@ -17,7 +17,7 @@
   myHardware.acer.aspire.A515-52G.enable = true;
 
   services.xserver.xkb = {
-    layout = lib.mkForce "us";
+    layout = lib.mkForce "us_for_kanata";
     variant = lib.mkForce "";
   };
 
