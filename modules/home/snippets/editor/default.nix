@@ -253,12 +253,13 @@ in {
       prettier = mkFormatter "prettier" {
         type = "external";
         command = lib.getExe pkgs.bun;
-        args = ["${pkgs.prettier}/bin/prettier.cjs" "--stdin-filepath" "{buffer_path}"];
+        args = ["${pkgs.prettier}/bin/prettier.cjs" "--stdin-filepath" "%{buffer_name}"];
       };
 
-      fnlfmt = mkFormatter "fnlmt" {
+      fnlfmt = mkFormatter "fnflmt" {
         type = "external";
-        commad = lib.getExe pkgs.fnlfmt;
+        command = lib.getExe pkgs.fnlfmt;
+        args = ["%{buffer_name}"];
       };
     };
 
@@ -466,6 +467,8 @@ in {
       fennel = mkLanguage "fennel" {
         full-name = "Fennel";
         language-servers = ["fennel-ls"];
+        formatter = "fnlfmt";
+        auto-format = false;
       };
 
       clojure = mkLanguage "clojure" {
