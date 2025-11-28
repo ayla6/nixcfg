@@ -167,7 +167,6 @@ in {
         containerised = true;
         inherit (config.myNixOS.services.pds) enable;
         paths = ["/var/lib/nixos-containers/pds${config.containers.pds.config.services.bluesky-pds.settings.PDS_DATA_DIRECTORY}"];
-        repoKey = "B";
       }
       {
         name = "postgresql";
