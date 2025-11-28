@@ -7,6 +7,8 @@
   options.myHome.profiles.shell.enable = lib.mkEnableOption "basic shell environment";
 
   config = lib.mkIf config.myHome.profiles.shell.enable {
+    myHome.programs.zellij.enable = true;
+
     home = {
       packages = with pkgs; [
         (lib.hiPrio uutils-coreutils-noprefix)
@@ -79,27 +81,6 @@
 
       ripgrep-all.enable = true;
 
-      zellij = {
-        enable = true;
-        enableFishIntegration = false;
-        settings = {
-          theme = "onedark";
-          default_shell = "fish";
-          show_startup_tips = false;
-          pane_frames = false;
-          default_layout = "compact";
-          keybinds = {unbind = "Ctrl q";};
-          ui = {pane_frames = {rounded_corners = true;};};
-        };
-        extraConfig = ''
-          plugins {
-              compact-bar location="zellij:compact-bar" {
-                tooltip "F1"
-              }
-          }
-        '';
-      };
-
       zoxide = {
         enable = true;
         enableFishIntegration = true;
@@ -111,11 +92,10 @@
         enableFishIntegration = true;
         modal = true;
         settings = {
+          icon_theme = "nerdfont";
+          initial_mode = "command";
+          default_flags = "-gc :sort_by_type";
           verbs = [
-            {
-              key = "o";
-              execution = ":open_stay";
-            }
             {
               key = "n";
               execution = ":parent";
@@ -129,16 +109,8 @@
               execution = ":line_up";
             }
             {
-              key = "j";
-              execution = ":create {new_file}";
-            }
-            {
-              key = "k";
-              execution = "$EDITOR {file}";
-            }
-            {
-              key = "l";
-              execution = ":toggle_git_ignore";
+              key = "o";
+              execution = ":open_stay";
             }
           ];
         };

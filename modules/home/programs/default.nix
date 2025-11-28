@@ -6,7 +6,6 @@
     ./firefox
     ./helium
     ./helix
-    ./helix-zellij
     ./jujutsu
     ./lutris
     ./git
@@ -16,5 +15,6 @@
     ./zed-editor
     ./ghostty
     ./foot
+    ./zellij
   ];
 }

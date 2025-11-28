@@ -1162,8 +1162,7 @@
         "rust-overlay": "rust-overlay_2",
         "secrets": "secrets",
         "tangled-core": "tangled-core",
-        "tgirlpkgs": "tgirlpkgs",
-        "wrappers": "wrappers"
+        "tgirlpkgs": "tgirlpkgs"
       }
     },
     "rust-overlay": {
@@ -1331,26 +1330,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "wrappers": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1763526891,
-        "narHash": "sha256-7BJv2Sg4XunqYpUgT1ktw2cXCRz7J7UeTY24lFkIBeo=",
-        "owner": "lassulus",
-        "repo": "wrappers",
-        "rev": "58bc6dbd30d885d23d812b3c519c6768b72aa232",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lassulus",
-        "repo": "wrappers",
         "type": "github"
       }
     }
