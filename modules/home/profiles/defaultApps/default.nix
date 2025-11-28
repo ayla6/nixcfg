@@ -173,6 +173,12 @@ in {
         default = "";
         description = "The icon name for the default terminal emulator.";
       };
+
+      desktop = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "The desktop file for the terminal.";
+      };
     };
 
     terminalEditor = {
@@ -257,6 +263,7 @@ in {
         BROWSER = "${builtins.baseNameOf cfg.webBrowser.exec}";
         EDITOR = "${builtins.baseNameOf cfg.terminalEditor.exec}";
         TERMINAL = "${builtins.baseNameOf cfg.terminal.exec}";
+        TERM = "${builtins.baseNameOf cfg.terminal.exec}";
       };
     };
 
@@ -264,9 +271,17 @@ in {
       set -gx BROWSER ${builtins.baseNameOf cfg.webBrowser.exec};
       set -gx EDITOR ${builtins.baseNameOf cfg.terminalEditor.exec};
       set -gx TERMINAL ${builtins.baseNameOf cfg.terminal.exec};
+      set -gx TERM ${builtins.baseNameOf cfg.terminal.exec};
     '';
 
     xdg = {
+      terminal-exec = {
+        enable = true;
+        settings = {
+          default = ["${builtins.baseNameOf cfg.terminal.desktop}.desktop"];
+        };
+      };
+
       configFile = {
         "xfce4/helpers.rc".text = ''
           FileManager=${builtins.baseNameOf cfg.fileManager.exec}

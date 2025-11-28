@@ -78,7 +78,6 @@
       };
 
       ripgrep-all.enable = true;
-      joshuto.enable = true;
 
       zellij = {
         enable = true;
@@ -105,6 +104,44 @@
         enable = true;
         enableFishIntegration = true;
         options = ["--cmd cd"];
+      };
+
+      broot = {
+        enable = true;
+        enableFishIntegration = true;
+        modal = true;
+        settings = {
+          verbs = [
+            {
+              key = "o";
+              execution = ":open_stay";
+            }
+            {
+              key = "n";
+              execution = ":parent";
+            }
+            {
+              key = "e";
+              execution = ":line_down";
+            }
+            {
+              key = "i";
+              execution = ":line_up";
+            }
+            {
+              key = "j";
+              execution = ":create {new_file}";
+            }
+            {
+              key = "k";
+              execution = "$EDITOR {file}";
+            }
+            {
+              key = "l";
+              execution = ":toggle_git_ignore";
+            }
+          ];
+        };
       };
     };
   };

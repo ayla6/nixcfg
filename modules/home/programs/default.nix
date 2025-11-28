@@ -15,5 +15,6 @@
     ./ssh
     ./zed-editor
     ./ghostty
+    ./foot
   ];
 }

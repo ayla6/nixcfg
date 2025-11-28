@@ -66,6 +66,7 @@
           mpv.enable = true;
           ssh.enable = true;
           zed-editor.enable = true;
+          foot.enable = true;
         };
 
         profiles = {
@@ -76,8 +77,10 @@
             enable = true;
             forceMimeAssociations = true;
             terminal = {
-              package = pkgs.gnome-console;
-              icon = "gnome-console";
+              inherit (config.programs.foot) package;
+              exec = "${config.programs.foot.package}/bin/footclient";
+              icon = "foot";
+              desktop = "footclient.desktop";
             };
             editor = {
               inherit (config.programs.helix) package;
