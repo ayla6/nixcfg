@@ -115,6 +115,7 @@
         // {
           repository = repoPath;
           inherit (service) paths;
+          exclude = service.exclude or [];
         }
         // commands
         // (service.extraConfig or {})
@@ -145,6 +146,7 @@ in {
         name = "forgejo";
         inherit (config.services.forgejo) enable;
         paths = [config.services.forgejo.stateDir];
+        exclude = ["data/repo-archive"];
       }
       {
         name = "jellyfin";

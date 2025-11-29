@@ -26,6 +26,8 @@
       gnome-tour
       gnome-user-docs
       simple-scan
+      gnome-text-editor
+      gnome-connections
     ];
 
     i18n.inputMethod.type = "ibus";

@@ -14,6 +14,7 @@
         curl
         rclone
         restic
+        git
       ];
 
       stateVersion = "25.05";
@@ -26,21 +27,15 @@
         defaultEditor = true;
       };
 
-      micro = {
-        enable = true;
-      };
-
       home-manager.enable = true;
     };
 
     myHome = {
+      profiles.shell.enable = true;
       programs = {
-        git.enable = true;
         ssh.enable = true;
         fastfetch.enable = true;
       };
-
-      profiles.shell.enable = true;
     };
   };
 }

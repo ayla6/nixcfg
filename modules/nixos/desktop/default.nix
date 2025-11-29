@@ -82,7 +82,7 @@
       }
     ];
 
-    programs.system-config-printer.enable = true;
+    programs.xwayland.enable = true;
 
     services = {
       avahi = {
@@ -113,17 +113,8 @@
         pulse.enable = true;
       };
 
-      printing.enable = false;
-
       pulseaudio = {
         support32Bit = true;
-      };
-
-      system-config-printer.enable = true;
-
-      xserver = {
-        enable = true;
-        excludePackages = with pkgs; [xterm];
       };
     };
 

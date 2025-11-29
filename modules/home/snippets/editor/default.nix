@@ -210,6 +210,10 @@ in {
       clojure-lsp = {
         command = lib.getExe pkgs.clojure-lsp;
       };
+
+      clangd = {
+        command = "${pkgs.clang-tools}/bin/clangd";
+      };
     };
 
     # Formatters
@@ -474,6 +478,16 @@ in {
       clojure = mkLanguage "clojure" {
         full-name = "Clojure";
         language-servers = ["clojure-lsp"];
+      };
+
+      c = mkLanguage "c" {
+        full-name = "C";
+        language-servers = ["clangd"];
+      };
+
+      cpp = mkLanguage "cpp" {
+        full-name = "C++";
+        language-servers = ["clangd"];
       };
 
       #ruby = mkLanguage "ruby" {

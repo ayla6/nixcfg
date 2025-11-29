@@ -179,6 +179,12 @@ in {
         default = "";
         description = "The desktop file for the terminal.";
       };
+
+      term = lib.mkOption {
+        type = lib.types.str;
+        default = lib.getExe cfg.terminal.package;
+        description = "Term to say hey my terminal is normal.";
+      };
     };
 
     terminalEditor = {
@@ -263,7 +269,7 @@ in {
         BROWSER = "${builtins.baseNameOf cfg.webBrowser.exec}";
         EDITOR = "${builtins.baseNameOf cfg.terminalEditor.exec}";
         TERMINAL = "${builtins.baseNameOf cfg.terminal.exec}";
-        TERM = "${builtins.baseNameOf cfg.terminal.exec}";
+        TERM = "${builtins.baseNameOf cfg.terminal.term}";
       };
     };
 
@@ -271,7 +277,7 @@ in {
       set -gx BROWSER ${builtins.baseNameOf cfg.webBrowser.exec};
       set -gx EDITOR ${builtins.baseNameOf cfg.terminalEditor.exec};
       set -gx TERMINAL ${builtins.baseNameOf cfg.terminal.exec};
-      set -gx TERM ${builtins.baseNameOf cfg.terminal.exec};
+      set -gx TERM ${builtins.baseNameOf cfg.terminal.term};
     '';
 
     xdg = {

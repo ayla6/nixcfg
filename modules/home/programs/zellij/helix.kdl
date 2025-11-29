@@ -179,12 +179,8 @@ plugins {
 
 layout {
     tab name="main" hide_floating_panes=true {
-        pane split_direction="vertical" {
-            pane name="sidebar" size=40 command="broot" {
-            	// args "--conf=/home/ayla/.config/broot/conf.hjson;/home/ayla/.config/broot/verbs.hjson;/nix/store/nmqsi7ggc355ik9nbrq5mdsyh7r6xzdc-broot-conf.toml"
-            	args "--conf=__BROOT_CONFIG__"
-            }
-            pane name="helix" command="hx"
+        pane name="helix" command="hx" {
+            args "."
         }
         pane size=1 borderless=true {
             plugin location="compact-bar"
@@ -193,18 +189,22 @@ layout {
     tab name="term" {
     	pane split_direction="vertical" {
 	    	pane
-	    	pane
+	    	pane {
+	    	    pane
+	    	    pane
+	    	}
 	    }
         pane size=1 borderless=true {
             plugin location="compact-bar"
         }
     }
     tab name="files" {
-         pane command="broot" {
-           	args "--conf=/home/ayla/.config/broot/conf.hjson;/home/ayla/.config/broot/verbs.hjson;__BROOT_CONFIG__"
-         }
-        pane size=1 borderless=true {
+         pane command="__YAZI__"
+         pane size=1 borderless=true {
             plugin location="compact-bar"
         }
+    }
+    tab name="jjui" {
+        pane command="jjui"
     }
 }

@@ -21,7 +21,7 @@
           #nodejs
           bun
           typescript
-          gcc
+          clang
           rustc
           cargo
           clippy
@@ -67,6 +67,7 @@
           ssh.enable = true;
           zed-editor.enable = true;
           foot.enable = true;
+          yazi.enable = true;
         };
 
         profiles = {
@@ -80,6 +81,7 @@
               inherit (config.programs.foot) package;
               exec = "${config.programs.foot.package}/bin/footclient";
               icon = "foot";
+              term = "xterm-256color";
               desktop = "footclient.desktop";
             };
             editor = {
@@ -115,15 +117,6 @@
         packages = with pkgs; [
           # libraries
           libsecret
-          wl-clipboard
-          libnotify
-          wl-clipboard
-          libnotify
-
-          zip
-          xz
-          unzip
-          p7zip
         ];
       };
 

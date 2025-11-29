@@ -16,5 +16,7 @@
     ./ghostty
     ./foot
     ./zellij
+    ./yazi
+    ./fish
   ];
 }

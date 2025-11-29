@@ -11,10 +11,9 @@
   rgt right
 
   ;; change modes
-  num (tap-hold 180 180 f (layer-toggle numbers))
   sym (layer-toggle symbols)
   nav (layer-toggle navigation)
-  bas (layer-switch base)
+  num (layer-toggle numbers)
 
   ;; mouse movement
   mlf (movemouse-accel-left 10 500 1 5)
@@ -39,10 +38,10 @@
   * S-8
   + S-=
   _ S--
-  pl S-9
-  pr S-0
+  po S-9
+  pc S-0
   : S-;
-  cl ;
+  sc ;
   { S-[
   } S-]
   | S-\
@@ -54,61 +53,62 @@
 )
 
 (deflayer base
-         1    2    3    4    5    6    =    7    8    9    0    -
-         
-  tab    q    w    @num p    b    [    j    l    u    y    @cl  esc
-                                            
-  @nav   a    r    s    t    g    ]    m    n    e    i    o    '
-         
-  lsft   z   x    c    d    v  \  /   k    h    ,    .    ret
-    
-  lctl   @sym spc  lalt ralt
+         1    2    3    4    5    6    XX    7    8    9    0    -
+
+  tab    q    w    f    p    b    XX   j    l    u    y    esc  XX
+
+  @nav   a    r    s    t    g    XX   m    n    e    i    o    '
+
+  lsft   z    x    c    d    v  XX XX  k    h    ,    .    rsft
+
+  lctl   lalt spc  @sym ralt
 )
 
 (deflayer symbols
           _    _    _    _    _    XX   _    _    _    _    _    _
-          
-     _    @!   @@   @#   @%   @~   XX   `    @&   @|   @?   @:   _
 
-     _    @+   =    [    @pl  @^   XX   @*   @{   @_   @cl  -    @qt
- 
-_    _    _    \    ]    @pr     XX XX  /    @}   @<   @>   _
-      
-     _    _    _    _    _
+     _    @%   @+   @!   [    @@   XX   @#   ]    @_   @?   @^   _
+
+     _    /    @:   =   @{    @$   XX   \    @}   @qt  @sc  -    _
+
+     _    @#   `    @*   @po  @& XX XX  @|   @pc  @<   @>   _
+
+     _    @num _    XX    _
+)
+
+;; the devil made kanata so you actually have to hold @sym then hold @num and then release @ralt to be able to use numbers holy shit
+(deflayer numbers
+          _    _    _    _    _    XX   _    _    _    _    _    _
+          
+     _    _    _    _    _    _    XX   _    _    _    _    _    _
+
+     _    0    1    2    3    .    XX   ,    4    5    6    9    _
+
+     _    _    _    _    8    8  XX XX  7    7    _    _    _
+
+     _    XX   _    XX   _
 )
 
 (deflayer navigation
           _    _    _    _    _    XX   _    _    _    _    _    _
-          
-     _    _    _    _    _    _    XX   _    home pgdn pgup end  _
-          
-     _    _    lalt lsft lctl _    XX   ret  left down up   @rgt del
- 
-     _    _    _    _    esc  _  XX XX  bspc _    _    _    _
-      
-     _    _    _    _    _
-)
 
-(deflayer numbers
-          _    _    _    _    _    XX   _    _    _    _    _    _
-          
-     _    _    _    _    _    _    XX   =    7    8    9    @+   _
-          
-     _    _    _    _    _    _    XX   /    1    2    3    -    \
- 
-     _    _    _    _    _    _  XX XX  @*   4    5    6    _
-      
-     _    _    0    _    _
+     _    _    _    _    _    _    XX   _    pgdn home end  pgup  _
+
+     _    _    lalt lsft lctl _    XX   ret  left down up   @rgt del
+
+     _    _    _    _    esc  esc XX XX bspc bspc    _    _    _
+
+     _    _    _    _    _
 )
 
 (deflayer empty
           _    _    _    _    _    XX   _    _    _    _    _    _
-          
+
      _    _    _    _    _    _    XX   _    _    _    _    _    _
-          
+
      _    _    _    _    _    _    XX   _    _    _    _    _    _
- 
+
      _    _    _    _    _    _  XX XX  _    _    _    _    _
-      
+
      _    _    _    _    _
 )

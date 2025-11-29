@@ -77,8 +77,7 @@ in {
           bufferline = "multiple";
           color-modes = true;
           cursorline = true;
-          # auto-pairs works terribly when you can't move around in insert mode
-          auto-pairs = false;
+          auto-pairs = true;
 
           cursor-shape = {
             insert = "bar";
@@ -118,6 +117,9 @@ in {
             e = "move_line_down";
             i = "move_line_up";
             o = "move_char_right";
+
+            a = "goto_line_start";
+            t = "goto_line_end";
 
             j = "move_next_word_end";
             J = "move_next_long_word_end";

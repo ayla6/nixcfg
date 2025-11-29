@@ -7,7 +7,10 @@
   options.myHome.profiles.shell.enable = lib.mkEnableOption "basic shell environment";
 
   config = lib.mkIf config.myHome.profiles.shell.enable {
-    myHome.programs.zellij.enable = true;
+    myHome.programs = {
+      zellij.enable = true;
+      fish.enable = true;
+    };
 
     home = {
       packages = with pkgs; [
@@ -16,6 +19,15 @@
         btop
         nixos-rebuild
         wget
+        imagemagick
+        wl-clipboard
+        p7zip-rar
+        zip
+        xz
+        unzip
+        wl-clipboard
+        libnotify
+        sd
       ];
 
       sessionVariables = {
@@ -65,11 +77,8 @@
         icons = "auto";
       };
 
-      fish = {
+      fd = {
         enable = true;
-        interactiveShellInit = ''
-          set -gx PATH $PATH /home/$USER/.local/bin
-        '';
       };
 
       fzf.enable = true;
@@ -85,35 +94,6 @@
         enable = true;
         enableFishIntegration = true;
         options = ["--cmd cd"];
-      };
-
-      broot = {
-        enable = true;
-        enableFishIntegration = true;
-        modal = true;
-        settings = {
-          icon_theme = "nerdfont";
-          initial_mode = "command";
-          default_flags = "-gc :sort_by_type";
-          verbs = [
-            {
-              key = "n";
-              execution = ":parent";
-            }
-            {
-              key = "e";
-              execution = ":line_down";
-            }
-            {
-              key = "i";
-              execution = ":line_up";
-            }
-            {
-              key = "o";
-              execution = ":open_stay";
-            }
-          ];
-        };
       };
     };
   };
