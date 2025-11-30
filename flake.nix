@@ -98,6 +98,11 @@
       url = "github:ayla6/secrets";
       flake = false;
     };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
