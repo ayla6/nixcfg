@@ -133,12 +133,15 @@ layout {
         }
     }
     tab name="files" {
-         pane command="__YAZI__"
-         pane size=1 borderless=true {
+        pane command="__YAZI__"
+        pane size=1 borderless=true {
             plugin location="compact-bar"
         }
     }
     tab name="jjui" {
         pane command="jjui"
+        pane size=1 borderless=true {
+            plugin location="compact-bar"
+        }
     }
 }

@@ -7,7 +7,6 @@
   imports = [
     ./home.nix
     ./secrets.nix
-    ./kanata.nix
     self.nixosModules.locale-en-ca
   ];
 
@@ -15,11 +14,6 @@
   system.stateVersion = "25.05";
   time.timeZone = "America/Sao_Paulo";
   myHardware.acer.aspire.A515-52G.enable = true;
-
-  services.xserver.xkb = {
-    layout = lib.mkForce "us_for_kanata";
-    variant = lib.mkForce "";
-  };
 
   myNixOS = {
     programs = {
@@ -51,6 +45,7 @@
     };
     desktop.gnome.enable = true;
     services = {
+      kanata.enable = true;
       gdm.enable = true;
       dnsmasq = {
         enable = true;

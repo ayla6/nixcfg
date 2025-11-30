@@ -33,5 +33,6 @@
     ./vaultwarden
     ./webdav-server-rs
     ./xkb
+    ./kanata
   ];
 }
