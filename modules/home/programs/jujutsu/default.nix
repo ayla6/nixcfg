@@ -9,7 +9,7 @@
     programs.jjui = {
       enable = true;
       settings = {
-        ui.colors.selected.bg = "dim black";
+        ui.colors.selected.bg = "#808080";
       };
     };
     programs.jujutsu = {
