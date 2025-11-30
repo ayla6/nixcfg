@@ -9,6 +9,7 @@
   config = lib.mkIf config.myHome.programs.ssh.enable {
     programs.ssh = {
       enable = true;
+      enableDefaultConfig = false;
 
       # matchBlocks = let
       #   rootMe = name: {

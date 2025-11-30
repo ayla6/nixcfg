@@ -1,7 +1,10 @@
 {
   security.pam = {
-    services.login = {
-      failDelay.enable = true;
+    services = {
+      login = {
+        failDelay.enable = true;
+      };
+      swaylock = {};
     };
   };
 }

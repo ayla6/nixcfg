@@ -1,15 +1,10 @@
 {
   pkgs,
   lib,
-  self,
   config,
+  inputs,
   ...
 }: {
-  imports = [
-    self.homeModules.default
-    self.inputs.nix-flatpak.homeManagerModules.nix-flatpak
-  ];
-
   config = lib.mkMerge [
     {
       home = {
@@ -40,7 +35,7 @@
           inkscape
           qbittorrent
 
-          self.inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.v3
+          inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.v3
         ];
 
         username = "ayla";
@@ -122,6 +117,7 @@
 
       myHome = {
         desktop.gnome.enable = true;
+        # desktop.niri.enable = true;
 
         programs = {
           lutris.enable = true;

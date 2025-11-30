@@ -1,7 +1,7 @@
 _: {
   flake = {
     homeConfigurations = {
-      ayla = ../../homes/ayla;
+      ayla = {imports = [../../homes/ayla ../home];};
     };
 
     homeModules = {

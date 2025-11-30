@@ -8,6 +8,7 @@
     ./gnome
     ./plasma
     ./cosmic
+    ./niri
   ];
 
   options.myHome.desktop.enable = lib.mkOption {
@@ -20,7 +21,7 @@
     home.packages = [
       pkgs.adwaita-icon-theme
 
-      config.mySnippets.fonts.sans-serif.package
+      config.mySnippets.fonts.sans_serif.package
       config.mySnippets.fonts.serif.package
       config.mySnippets.fonts.monospace.package
       config.mySnippets.fonts.emoji.package
@@ -60,13 +61,13 @@
     fonts.fontconfig.defaultFonts = {
       emoji = [config.mySnippets.fonts.emoji.name];
       monospace = [config.mySnippets.fonts.monospace.name];
-      sansSerif = [config.mySnippets.fonts.sans-serif.name];
+      sansSerif = [config.mySnippets.fonts.sans_serif.name];
       serif = [config.mySnippets.fonts.serif.name];
     };
 
     dconf.settings."org/gnome/desktop/interface" = {
       document-font-name = "${config.mySnippets.fonts.serif.name} ${toString (config.mySnippets.fonts.sizes.applications - 1)}";
-      font-name = "${config.mySnippets.fonts.sans-serif.name} ${toString config.mySnippets.fonts.sizes.applications}";
+      font-name = "${config.mySnippets.fonts.sans_serif.name} ${toString config.mySnippets.fonts.sizes.applications}";
       monospace-font-name = "${config.mySnippets.fonts.monospace.name} ${toString config.mySnippets.fonts.sizes.applications}";
     };
 
@@ -74,7 +75,7 @@
       enable = true;
 
       font = {
-        inherit (config.mySnippets.fonts.sans-serif) name package;
+        inherit (config.mySnippets.fonts.sans_serif) name package;
         size = config.mySnippets.fonts.sizes.applications;
       };
       gtk2.force = true;

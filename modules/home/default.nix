@@ -6,6 +6,7 @@
     ./snippets
     inputs.agenix.homeManagerModules.default
     inputs.aylapkgs.homeModules.default
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
   ];
 
   home = {

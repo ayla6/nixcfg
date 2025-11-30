@@ -21,42 +21,41 @@
           label-letters = "arstneiovkgmfuwy";
         };
 
-        csd = {
-          preferred = "client";
+        csd = with config.mySnippets.colors; {
           border-width = 1;
-          border-color = "b477cf";
-          color = "282c33"; # background
-          button-color = "c8ccd4"; # font
+          border-color = magenta;
+          color = background;
+          button-color = foreground;
         };
 
-        colors = {
+        colors = with config.mySnippets.colors; {
           cursor = "74ade8 fafafa";
-          foreground = "c8ccd4";
-          background = "282c33";
-          regular0 = "282c33"; # black
-          regular1 = "d07277"; # red
-          regular2 = "a1c181"; # green
-          regular3 = "dfc184"; # yellow
-          regular4 = "73ade9"; # blue
-          regular5 = "b477cf"; # magenta
-          regular6 = "6eb4bf"; # cyan
-          regular7 = "dce0e5"; # white
-          dim0 = "dce0e5"; # black
-          dim1 = "673a3c"; # red
-          dim2 = "4d6140"; # green
-          dim3 = "e5c07b"; # yellow
-          dim4 = "385378"; # blue
-          dim5 = "612a79"; # magenta
-          dim6 = "3a565b"; # cyan
-          dim7 = "575d65"; # white
-          bright0 = "525561"; # black
-          bright1 = "eab7b9"; # red
-          bright2 = "d1e0bf"; # green
-          bright3 = "f1dfc1"; # yellow
-          bright4 = "bed5f4"; # blue
-          bright5 = "d6b4e4"; # magenta
-          bright6 = "b9d9df"; # cyan
-          bright7 = "fafafa"; # white
+          inherit foreground;
+          inherit background;
+          inherit regular0;
+          inherit regular1;
+          inherit regular2;
+          inherit regular3;
+          inherit regular4;
+          inherit regular5;
+          inherit regular6;
+          inherit regular7;
+          inherit dim0;
+          inherit dim1;
+          inherit dim2;
+          inherit dim3;
+          inherit dim4;
+          inherit dim5;
+          inherit dim6;
+          inherit dim7;
+          inherit bright0;
+          inherit bright1;
+          inherit bright2;
+          inherit bright3;
+          inherit bright4;
+          inherit bright5;
+          inherit bright6;
+          inherit bright7;
         };
       };
     };

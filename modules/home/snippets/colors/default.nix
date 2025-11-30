@@ -1,0 +1,59 @@
+{lib, ...}: {
+  options.mySnippets.colors = lib.mkOption {
+    type = lib.types.attrs;
+    default = rec {
+      black = "282c33";
+      red = "d07277";
+      green = "a1c181";
+      yellow = "dfc184";
+      blue = "73ade9";
+      magenta = "b477cf";
+      cyan = "6eb4bf";
+      white = "dce0e5";
+      dim_black = "dce0e5";
+      dim_red = "673a3c";
+      dim_green = "4d6140";
+      dim_yellow = "e5c07b";
+      dim_blue = "385378";
+      dim_magenta = "612a79";
+      dim_cyan = "3a565b";
+      dim_white = "575d65";
+      br_black = "525561";
+      br_red = "eab7b9";
+      br_green = "d1e0bf";
+      br_yellow = "f1dfc1";
+      br_blue = "bed5f4";
+      br_magenta = "d6b4e4";
+      br_cyan = "b9d9df";
+      br_white = "fafafa";
+
+      foreground = "c8ccd4";
+      background = regular0;
+      regular0 = black;
+      regular1 = red;
+      regular2 = green;
+      regular3 = yellow;
+      regular4 = blue;
+      regular5 = magenta;
+      regular6 = cyan;
+      regular7 = white;
+      dim0 = dim_black;
+      dim1 = dim_red;
+      dim2 = dim_green;
+      dim3 = dim_yellow;
+      dim4 = dim_blue;
+      dim5 = dim_magenta;
+      dim6 = dim_cyan;
+      dim7 = dim_white;
+      bright0 = br_black;
+      bright1 = br_red;
+      bright2 = br_green;
+      bright3 = br_yellow;
+      bright4 = br_blue;
+      bright5 = br_magenta;
+      bright6 = br_cyan;
+      bright7 = br_white;
+    };
+    description = "Nice terminal colours";
+  };
+}

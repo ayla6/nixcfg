@@ -55,12 +55,13 @@
                 };
 
                 nixpkgs = {
-                  overlays = [
-                    self.inputs.nur.overlays.default
-                    self.inputs.copyparty.overlays.default
-                    self.inputs.aylapkgs.overlays.default
-                  ];
                   config.allowUnfree = true;
+                  overlays = [
+                    inputs.nur.overlays.default
+                    inputs.copyparty.overlays.default
+                    inputs.aylapkgs.overlays.default
+                    inputs.niri.overlays.niri
+                  ];
                 };
               }
             ];
