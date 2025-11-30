@@ -154,6 +154,12 @@ in {
               j = "no_op";
               k = "no_op";
             };
+            g = {
+              j = "no_op";
+              k = "no_op";
+              e = "move_line_down";
+              i = "move_line_up";
+            };
           };
           select = {
             n = "extend_char_left";
