@@ -9,6 +9,23 @@
     programs.jjui = {
       enable = true;
       settings = {
+        keys = {
+          up = ["up" "i"];
+          down = ["down" "e"];
+          jump_to_parent = ["E"];
+          jump_to_children = ["I"];
+          edit = ["h"];
+          diffedit = ["H"];
+          rebase.insert = ["l"];
+          revert = {
+            insert = ["l"];
+            skip_empied = ["e"];
+          };
+          squash = {
+            interactive = ["l"];
+            keep_emptied = ["e"];
+          };
+        };
         ui.colors.selected.bg = "#808080";
       };
     };
