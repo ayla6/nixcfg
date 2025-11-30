@@ -8,6 +8,9 @@
   config = lib.mkIf config.myHome.programs.jujutsu.enable {
     programs.jjui = {
       enable = true;
+      settings = {
+        ui.colors.selected.bg = "dim black";
+      };
     };
     programs.jujutsu = {
       enable = true;

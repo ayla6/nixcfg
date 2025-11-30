@@ -22,6 +22,9 @@
         };
 
         csd = {
+          preferred = "client";
+          border-width = 1;
+          border-color = "b477cf";
           color = "282c33"; # background
           button-color = "c8ccd4"; # font
         };
@@ -38,22 +41,22 @@
           regular5 = "b477cf"; # magenta
           regular6 = "6eb4bf"; # cyan
           regular7 = "dce0e5"; # white
-          bright0 = "525561"; # black
-          bright1 = "673a3c"; # red
-          bright2 = "4d6140"; # green
-          bright3 = "e5c07b"; # yellow
-          bright4 = "385378"; # blue
-          bright5 = "d6b4e4"; # magenta
-          bright6 = "3a565b"; # cyan
-          bright7 = "fafafa"; # white
           dim0 = "dce0e5"; # black
-          dim1 = "eab7b9"; # red
-          dim2 = "d1e0bf"; # green
-          dim3 = "f1dfc1"; # yellow
-          dim4 = "bed5f4"; # blue
+          dim1 = "673a3c"; # red
+          dim2 = "4d6140"; # green
+          dim3 = "e5c07b"; # yellow
+          dim4 = "385378"; # blue
           dim5 = "612a79"; # magenta
-          dim6 = "b9d9df"; # cyan
+          dim6 = "3a565b"; # cyan
           dim7 = "575d65"; # white
+          bright0 = "525561"; # black
+          bright1 = "eab7b9"; # red
+          bright2 = "d1e0bf"; # green
+          bright3 = "f1dfc1"; # yellow
+          bright4 = "bed5f4"; # blue
+          bright5 = "d6b4e4"; # magenta
+          bright6 = "b9d9df"; # cyan
+          bright7 = "fafafa"; # white
         };
       };
     };
