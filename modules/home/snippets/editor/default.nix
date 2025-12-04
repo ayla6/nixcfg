@@ -158,6 +158,7 @@ in {
 
       zls = mkLspServer "zls" {
         command = lib.getExe pkgs.zls;
+        config.zls.zig_exe_path = lib.getExe pkgs.zig;
       };
 
       glsl_analyzer = mkLspServer "glsl_analyzer" {
@@ -214,6 +215,10 @@ in {
       clangd = {
         command = "${pkgs.clang-tools}/bin/clangd";
       };
+
+      # ols = {
+      #   command = lib.getExe pkgs.ols;
+      # };
     };
 
     # Formatters
@@ -489,6 +494,11 @@ in {
         full-name = "C++";
         language-servers = ["clangd"];
       };
+
+      # odin = mkLanguage "odin" {
+      #   full-name = "Odin";
+      #   language-servers = ["ols"];
+      # };
 
       #ruby = mkLanguage "ruby" {
       #  full-name = "Ruby";
