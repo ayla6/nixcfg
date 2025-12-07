@@ -35,7 +35,6 @@
         inherit (config.mySnippets.git) user;
         git = {
           fetch = ["origin" "upstream"];
-          push-new-bookmarks = true;
         };
         signing = {
           behavior = "own";
