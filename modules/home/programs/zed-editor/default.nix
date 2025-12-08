@@ -79,7 +79,7 @@ in {
         auto_update = false;
         buffer_font_size = 14;
         ui_font_size = 14;
-        buffer_font_family = "JetBrainsMono Nerd Font";
+        buffer_font_family = config.mySnippets.fonts.monospace.name;
         use_on_type_format = true;
         wrap_guides = [100];
         minimap.show = "auto";

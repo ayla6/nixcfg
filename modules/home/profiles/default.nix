@@ -4,5 +4,6 @@
     ./defaultApps
     ./shell
     ./fixMimeTypes
+    ./themes
   ];
 }

@@ -15,7 +15,7 @@
 
       settings = lib.mkIf pkgs.stdenv.isLinux {
         theme = "Adwaita Dark";
-        font-family = "JetBrainsMono NF";
+        font-family = config.mySnippets.fonts.monospace.name;
         font-style = "Semibold";
         font-feature = "calt";
         font-size = 9;

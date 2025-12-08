@@ -53,9 +53,9 @@
 )
 
 (deflayer base
-         1    2    3    4    5    6    XX    7    8    9    0    -
+         1    2    3    4    5    6    XX   7    8    9    0    -
 
-  tab    q    w    f    p    b    XX   j    l    u    y    esc  XX
+  tab    q    w    f    p    b    XX   j    l    u    y    @sc  XX
 
   @nav   a    r    s    t    g    XX   m    n    e    i    o    '
 

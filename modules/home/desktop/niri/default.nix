@@ -38,60 +38,63 @@ in {
       ];
     };
 
-    services.polkit-gnome.enable = true;
+    programs = {
+      niri = {
+        enable = true;
+        package = pkgs.niri;
+        settings = lib.mkMerge [
+          (import ./binds.nix {inherit config;})
+          ./input.nix
+          (import ./spawn.nix {inherit config lib;})
+          ./misc.nix
+          ./layout.nix
+        ];
+      };
 
-    programs.niri = {
-      enable = true;
-      package = pkgs.niri;
-      settings = lib.mkMerge [
-        (import ./binds.nix {inherit config;})
-        ./input.nix
-        (import ./spawn.nix {inherit config lib;})
-        ./misc.nix
-        ./layout.nix
-      ];
-    };
+      waybar = import ./waybar.nix {inherit config;};
 
-    programs.waybar = import ./waybar.nix {inherit config;};
-
-    services.swaync = {
-      enable = true;
-    };
-
-    programs.swaylock = {
-      enable = true;
-      settings = {
-        color = "808080";
-        font-size = 24;
-        indicator-idle-visible = false;
-        indicator-radius = 100;
-        line-color = "ffffff";
-        show-failed-attempts = true;
+      swaylock = {
+        enable = true;
+        settings = {
+          color = "808080";
+          font-size = 24;
+          indicator-idle-visible = false;
+          indicator-radius = 100;
+          line-color = "ffffff";
+          show-failed-attempts = true;
+        };
       };
     };
 
-    services.swayidle = {
-      enable = true;
-      timeouts = [
-        {
-          timeout = 600;
-          command = "${pidof} swaylock || ${niri} msg action spawn -- swaylock";
-        }
-        {
-          timeout = 630;
-          command = "${pidof} swaylock && ${systemctl} suspend";
-        }
-      ];
-      events = [
-        {
-          event = "before-sleep";
-          command = "${niri} msg action power-off-monitors";
-        }
-        {
-          event = "after-resume";
-          command = "${niri} msg action power-on-monitors";
-        }
-      ];
+    services = {
+      polkit-gnome.enable = true;
+      swaync = {
+        enable = true;
+      };
+
+      swayidle = {
+        enable = true;
+        timeouts = [
+          {
+            timeout = 600;
+            command = "${pidof} swaylock || ${niri} msg action spawn -- swaylock";
+          }
+          {
+            timeout = 630;
+            command = "${pidof} swaylock && ${systemctl} suspend";
+          }
+        ];
+        events = [
+          {
+            event = "before-sleep";
+            command = "${niri} msg action power-off-monitors";
+          }
+          {
+            event = "after-resume";
+            command = "${niri} msg action power-on-monitors";
+          }
+        ];
+      };
     };
   };
 }

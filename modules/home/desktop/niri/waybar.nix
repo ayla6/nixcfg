@@ -1,28 +1,34 @@
 {config, ...}: let
-  colors = config.mySnippets.colors;
-  fonts = config.mySnippets.fonts;
+  inherit (config.myHome.profiles) colours;
+  inherit (config.mySnippets) fonts;
 
   icons = {
-    network.disconnected = "󰤮 ";
-    network.ethernet = "󰈀 ";
-    network.strength = [
-      "󰤟 "
-      "󰤢 "
-      "󰤥 "
-      "󰤨 "
-    ];
-    notification.red-badge = "<span foreground='red'><sup></sup></span>";
-    notification.bell = "󰂚";
-    notification.bell-badge = "󱅫";
-    notification.bell-outline = "󰂜";
-    notification.bell-outline-badge = "󰅸";
-    volume.source = "󱄠";
-    volume.muted = "󰝟";
-    volume.levels = [
-      "󰕿"
-      "󰖀"
-      "󰕾"
-    ];
+    network = {
+      disconnected = "󰤮 ";
+      ethernet = "󰈀 ";
+      strength = [
+        "󰤟 "
+        "󰤢 "
+        "󰤥 "
+        "󰤨 "
+      ];
+    };
+    notification = {
+      red-badge = "<span foreground='red'><sup></sup></span>";
+      bell = "󰂚";
+      bell-badge = "󱅫";
+      bell-outline = "󰂜";
+      bell-outline-badge = "󰅸";
+    };
+    volume = {
+      source = "󱄠";
+      muted = "󰝟";
+      levels = [
+        "󰕿"
+        "󰖀"
+        "󰕾"
+      ];
+    };
   };
 in {
   enable = true;
@@ -97,9 +103,9 @@ in {
     };
   };
 
-  style = with colors; ''
+  style = with colours; ''
     * {
-      font-family: ${fonts.sans_serif.name}, ${fonts.monospace.name}, sans-serif;
+      font-family: ${fonts.sans-serif.name}, ${fonts.monospace.name}, sans-serif;
       font-weight: bold;
       font-size: 13px;
       min-height: 0;

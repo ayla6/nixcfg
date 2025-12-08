@@ -68,8 +68,6 @@ in {
       enable = true;
 
       settings = {
-        theme = "zed_onedark";
-
         editor = {
           auto-completion = true;
           auto-format = true;
@@ -99,7 +97,7 @@ in {
             wrap-at-text-width = true;
           };
 
-          text-width = 80;
+          text-width = 100;
           true-color = true;
 
           whitespace.characters = {

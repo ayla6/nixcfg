@@ -2,7 +2,17 @@
   lib,
   config,
   ...
-}: {
+}: let
+  inherit (config.mySnippets) fonts;
+  colours =
+    lib.mapAttrs (
+      _: v:
+        if v != null
+        then lib.strings.removePrefix "#" v
+        else ""
+    )
+    config.myHome.profiles.colours;
+in {
   options.myHome.programs.foot.enable = lib.mkEnableOption "foot terminal";
 
   config = lib.mkIf config.myHome.programs.foot.enable {
@@ -12,51 +22,69 @@
       settings = {
         main = {
           term = "xterm-256color";
-          font = "JetBrainsMono Nerd Font:size=10, Noto Color Emoji:size=10";
-          initial-window-size-chars = "140x36";
+          font = "${fonts.monospace.name}:size=${toString fonts.size.app}, ${fonts.emoji.name}:size=${toString fonts.size.app}";
+          initial-window-size-chars = "100x30";
           bold-text-in-bright = "no";
         };
 
         url = {
-          label-letters = "arstneiovkgmfuwy";
+          label-letters = "tsraneiovkgmfuwy";
         };
 
-        csd = with config.mySnippets.colors; {
+        csd = with colours; {
           border-width = 1;
           border-color = magenta;
           color = background;
           button-color = foreground;
         };
 
-        colors = with config.mySnippets.colors; {
-          cursor = "74ade8 fafafa";
-          inherit foreground;
-          inherit background;
-          inherit regular0;
-          inherit regular1;
-          inherit regular2;
-          inherit regular3;
-          inherit regular4;
-          inherit regular5;
-          inherit regular6;
-          inherit regular7;
-          inherit dim0;
-          inherit dim1;
-          inherit dim2;
-          inherit dim3;
-          inherit dim4;
-          inherit dim5;
-          inherit dim6;
-          inherit dim7;
-          inherit bright0;
-          inherit bright1;
-          inherit bright2;
-          inherit bright3;
-          inherit bright4;
-          inherit bright5;
-          inherit bright6;
-          inherit bright7;
-        };
+        colors = with colours;
+          {
+            cursor = "${foreground} ${foreground}";
+
+            inherit
+              foreground
+              background
+              ;
+
+            inherit
+              regular0
+              regular1
+              regular2
+              regular3
+              regular4
+              regular5
+              regular6
+              regular7
+              ;
+
+            inherit
+              bright0
+              bright1
+              bright2
+              bright3
+              bright4
+              bright5
+              bright6
+              bright7
+              ;
+          }
+          // (
+            if (dim0 != "")
+            then {
+              inherit
+                dim0
+                dim1
+                dim2
+                dim3
+                dim4
+                dim5
+                dim6
+                dim7
+                ;
+            }
+            else {}
+          );
       };
     };
   };

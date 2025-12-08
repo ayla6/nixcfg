@@ -19,24 +19,6 @@
   console = {
     font = "${pkgs.cozette}/share/consolefonts/cozette6x13.psfu";
     packages = with pkgs; [cozette];
-    colors = [
-      "282c33" # 0  - Black
-      "d07277" # 1  - Red
-      "a1c181" # 2  - Green
-      "dfc184" # 3  - Yellow
-      "73ade9" # 4  - Blue
-      "b477cf" # 5  - Magenta
-      "6eb4bf" # 6  - Cyan
-      "dce0e5" # 7  - White
-      "525561" # 8  - BrBlack
-      "eab7b9" # 9  - BrRed
-      "d1e0bf" # 10 - BrGreen
-      "f1dfc1" # 11 - BrYellow
-      "bed5f4" # 12 - BrBlue
-      "d6b4e4" # 13 - BrMagent
-      "b9d9df" # 14 - BrCyan
-      "fafafa" # 15 - BrWhite
-    ];
   };
 
   myNixOS = {

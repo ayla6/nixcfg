@@ -4,6 +4,5 @@
     ./firefox-based
     ./git
     ./fonts
-    ./colors
   ];
 }

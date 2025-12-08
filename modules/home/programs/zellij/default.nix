@@ -34,7 +34,6 @@ in {
       enable = true;
       enableFishIntegration = false;
       settings = {
-        theme = "onedark";
         default_shell = "fish";
         show_startup_tips = false;
         pane_frames = false;
