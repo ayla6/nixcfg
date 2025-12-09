@@ -14,18 +14,21 @@
   sym (layer-toggle symbols)
   nav (layer-toggle navigation)
   num (layer-toggle numbers)
+  
+  game (layer-switch game)
+  base (layer-switch base)
 
   ;; mouse movement
-  mlf (movemouse-accel-left 10 500 1 5)
-  mrt (movemouse-accel-right 10 500 1 5)
-  mup (movemouse-accel-up 10 500 1 5)
-  mdn (movemouse-accel-down 10 500 1 5)
+  ;; mlf (movemouse-accel-left 10 500 1 5)
+  ;; mrt (movemouse-accel-right 10 500 1 5)
+  ;; mup (movemouse-accel-up 10 500 1 5)
+  ;; mdn (movemouse-accel-down 10 500 1 5)
 
   ;; mouse wheel
-  mwu (mwheel-up 10 10)
-  mwd (mwheel-down 10 10)
-  mwl (mwheel-left 10 10)
-  mwr (mwheel-right 10 10)
+  ;; mwu (mwheel-up 10 10)
+  ;; mwd (mwheel-down 10 10)
+  ;; mwl (mwheel-left 10 10)
+  ;; mwr (mwheel-right 10 10)
 
   ;; looks more obvious
   ! S-1
@@ -57,7 +60,7 @@
 
   tab    q    w    f    p    b    XX   j    l    u    y    @sc  XX
 
-  @nav   a    r    s    t    g    XX   m    n    e    i    o    '
+  @nav   a    r    s    t    g  @game  m    n    e    i    o    '
 
   lsft   z    x    c    d    v  XX XX  k    h    ,    .    rsft
 
@@ -73,7 +76,7 @@
 
      _    @#   `    @*   @po  @& XX XX  @|   @pc  @<   @>   _
 
-     _    @num _    XX    _
+     _    @num _    _    _
 )
 
 ;; the devil made kanata so you actually have to hold @sym then hold @num and then release @ralt to be able to use numbers holy shit
@@ -86,17 +89,29 @@
 
      _    _    _    _    8    8  XX XX  7    7    _    _    _
 
-     _    XX   _    XX   _
+     _    _    _    _    _
 )
 
 (deflayer navigation
           _    _    _    _    _    XX   _    _    _    _    _    _
 
-     _    _    _    _    _    _    XX   _    pgdn home end  pgup  _
+     _    _    C-x  C-v  C-c  _    XX   _    pgdn home end  pgup  _
 
-     _    _    lalt lsft lctl _    XX   ret  left down up   @rgt del
+     _    _    lalt lsft lctl C-a  XX   ret  left down up   @rgt del
 
      _    _    _    _    esc  esc XX XX bspc bspc    _    _    _
+
+     _    _    _    _    _
+)
+
+(deflayer game
+          _    _    _    _    _    XX   _    _    _    _    _    _
+
+     _    t    q    w    e    r    XX   _    _    _    _    _    _
+
+     _    g    a    s    d    f  @base  _    _    _    _    _    _
+
+     _    d    z    x    c    v  XX XX  _    _    _    _    _
 
      _    _    _    _    _
 )

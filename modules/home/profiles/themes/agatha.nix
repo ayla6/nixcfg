@@ -117,7 +117,7 @@ in {
         "ui.window" = bg1;
         "ui.help" = {bg = bg1;};
         "ui.text.directory" = {
-          fg = light-pink;
+          fg = pink;
           modifiers = ["bold"];
         };
         "ui.text.focus" = {

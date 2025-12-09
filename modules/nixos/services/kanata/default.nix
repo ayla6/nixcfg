@@ -41,13 +41,13 @@
             key <AE08>	{[	 8,	 asterisk	]};
             key <AE09>	{[	 9,	 parenleft	]};
             key <AE10>	{[	 0,	 parenright	]};
-            key <AE11>	{[   minus,	 underscore, endash, emdash ]};
+            key <AE11>	{[   minus,	 underscore, emdash, endash ]};
             key <AE12>	{[   equal,	 plus		]};
 
             key <AD01>	{[	 q,	 Q, atilde, Atilde		]};
             key <AD02>	{[	 w,	 W		]};
             key <AD03>	{[	 e,	 E, eacute, Eacute		]};
-            key <AD04>	{[	 r,	 R		]};
+            key <AD04>	{[	 r,	 R, atilde, Atilde		]};
             key <AD05>	{[	 t,	 T		]};
             key <AD06>	{[	 y,	 Y		]};
             key <AD07>	{[	 u,	 U, uacute, Uacute		]};

@@ -18,8 +18,8 @@
   };
 
   config = lib.mkIf config.myHome.desktop.enable {
-    home.packages = [
-      pkgs.adwaita-icon-theme
+    home.packages = with pkgs; [
+      adwaita-icon-theme
 
       config.mySnippets.fonts.sans-serif.package
       config.mySnippets.fonts.serif.package
