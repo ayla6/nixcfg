@@ -53,6 +53,12 @@ in {
         	header access-control-allow-origin "*"
         	respond `{"lastInitiatedAt":"2025-07-14T14:22:43.912Z","status":"assured"}` 200
         }
+        handle /xrpc/app.bsky.ageassurance.getState {
+        	header content-type "application/json"
+        	header access-control-allow-headers "authorization,dpop,atproto-accept-labelers,atproto-proxy"
+        	header access-control-allow-origin "*"
+        	respond `{"state":{"lastInitiatedAt":"2025-07-24T09:45:50.390Z","status":"assured","access":"full"},"metadata":{"accountCreatedAt":"2023-10-23T16:20:24.188Z"}}` 200
+        }
 
         # hijack the links for pds-gatekeeper
         #@gatekeeper {
