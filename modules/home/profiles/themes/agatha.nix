@@ -6,24 +6,24 @@
   background = bg;
   foreground = fg;
 
-  bg = "#181515";
-  bg1 = "#2a1e21";
-  bg2 = "#372a2d";
-  bg3 = "#44363a";
-  bg5 = "#6e5e63";
+  bg = "#201d1d";
+  bg1 = "#302427";
+  bg2 = "#3d3033";
+  bg3 = "#4b3d41";
+  bg6 = "#8c7b80";
   fg = "#e9d9e0";
 
-  light-pink = "#f19ddf";
-  pink = "#ff78bb";
-  comment = "#e5939f";
+  light-pink = "#ffc4ff";
+  pink = "#ffa9df";
+  comment = "#d88669";
 
   black = "#010000";
   red = "#ff725c";
-  green = "#a9e277";
-  yellow = "#ffda5a";
-  blue = "#74c6ff";
+  green = "#b7df6b";
+  yellow = "#f6c668";
+  blue = "#9eddff";
   magenta = "#af54d3";
-  cyan = "#71d4b3";
+  cyan = "#6de8c1";
   white = "#e7dade";
   grey = "#cbb7c0";
 
@@ -45,100 +45,77 @@ in {
       inherit foreground background black red green yellow blue magenta cyan white grey br_red br_green br_yellow br_blue br_magenta br_cyan br_white;
     };
 
+    # used https://github.com/helix-editor/helix/blob/master/runtime/themes/gruber-darker.toml
+    # as a template
     programs.helix = {
       settings.theme = "agatha";
       themes.agatha = {
-        "attribute" = fg;
-        "keyword" = {fg = pink;};
-        "keyword.directive" = light-pink;
-        "namespace" = light-pink;
-        "punctuation" = fg;
-        "punctuation.delimiter" = fg;
-        "operator" = fg;
-        "special" = {fg = pink;};
-        "variable" = fg;
-        "variable.builtin" = {fg = pink;};
-        "variable.parameter" = fg;
-        "type" = light-pink;
-        "constructor" = {fg = light-pink;};
-        "function" = light-pink;
-        "function.builtin" = pink;
-        "tag" = light-pink;
-        "comment" = {fg = comment;};
-        "constant.character" = {fg = green;};
-        "constant.character.escape" = {fg = pink;};
-        "constant.builtin" = {fg = pink;};
+        "keyword" = pink;
+        "special" = pink;
+
+        "comment" = comment;
+        "comment.unused" = {inherit bg fg;};
+
         "string" = green;
+
+        "constant" = yellow;
+        "constant.builtin" = yellow;
+        "constant.character" = yellow;
+        "constant.character.escape" = yellow;
         "constant.numeric" = yellow;
+
+        "namespace" = fg;
+        "variable" = fg;
+        "variable.parameter" = fg;
+        "attribute" = fg;
+        "punctuation" = fg;
+        "function" = fg;
+        "constructor" = fg;
+
+        "tag" = fg;
         "label" = fg;
+
+        "type" = fg;
+        "type.enum" = fg;
+        "type.enum.variant" = fg;
+
         "module" = light-pink;
+        "operator" = light-pink;
 
         "diff.plus" = green;
-        "diff.delta" = light-pink;
+        "diff.delta" = yellow;
         "diff.minus" = red;
 
-        "warning" = {
-          fg = yellow;
-          modifiers = ["bold"];
-        };
-        "error" = {
-          fg = red;
-          modifiers = ["bold"];
-        };
-        "info" = {
-          fg = light-pink;
-          modifiers = ["bold"];
-        };
-        "hint" = {
-          fg = blue;
-          modifiers = ["bold"];
-        };
+        "warning" = yellow;
+        "error" = red;
+        "info" = light-pink;
+        "hint" = blue;
 
         "ui.background" = {inherit bg;};
-        "ui.linenr" = {fg = bg3;};
-        "ui.linenr.selected" = {fg = light-pink;};
+        "ui.linenr" = bg3;
+        "ui.linenr.selected" = light-pink;
         "ui.cursorline" = {bg = bg1;};
-
-        "ui.statusline" = {
-          inherit fg;
-          bg = bg1;
-        };
+        "ui.statusline" = {bg = bg1;};
         "ui.statusline.normal" = {
           fg = bg1;
           bg = pink;
-          modifiers = ["bold"];
         };
         "ui.statusline.insert" = {
           fg = bg1;
           bg = blue;
-          modifiers = ["bold"];
         };
         "ui.statusline.select" = {
           fg = bg1;
           bg = light-pink;
-          modifiers = ["bold"];
         };
-        "ui.statusline.inactive" = {
-          fg = fg;
-          bg = bg1;
-        };
-
+        "ui.statusline.inactive" = {bg = bg1;};
         "ui.bufferline" = {
-          inherit fg;
           bg = bg1;
         };
-        "ui.bufferline.active" = {
-          inherit fg;
-          bg = bg2;
-        };
-
+        "ui.bufferline.active" = {bg = bg3;};
         "ui.popup" = {bg = bg1;};
-        "ui.window" = {fg = bg1;};
-        "ui.help" = {
-          bg = bg1;
-          inherit fg;
-        };
-        "ui.text" = {inherit fg;};
+        "ui.window" = bg1;
+        "ui.help" = {bg = bg1;};
         "ui.text.directory" = {
           fg = light-pink;
           modifiers = ["bold"];
@@ -151,23 +128,21 @@ in {
         "ui.selection.primary" = {bg = bg3;};
         "ui.cursor.primary" = {
           bg = fg;
-          fg = pink;
+          fg = bg2;
         };
-        "ui.cursor.match" = {bg = pink;};
-        "ui.menu" = {
-          inherit fg;
-          bg = bg1;
+        "ui.cursor.match" = {
+          bg = pink;
+          fg = bg2;
         };
+        "ui.menu" = {bg = bg1;};
         "ui.menu.selected" = {
-          inherit fg;
-          bg = bg2;
+          bg = bg3;
           modifiers = ["bold"];
         };
-
         "ui.virtual.whitespace" = bg1;
         "ui.virtual.indent-guide" = bg1;
         "ui.virtual.ruler" = {bg = bg2;};
-        "ui.virtual.inlay-hint" = {fg = bg5;};
+        "ui.virtual.inlay-hint" = {fg = bg6;};
         "ui.virtual.wrap" = {fg = bg3;};
         "ui.virtual.jump-label" = {
           fg = dark-red;
@@ -209,12 +184,11 @@ in {
         "markup.italic" = {modifiers = ["italic"];};
         "markup.strikethrough" = {modifiers = ["crossed_out"];};
         "markup.link.url" = {
-          fg = green;
+          fg = cyan;
           modifiers = ["underlined"];
         };
         "markup.link.text" = dark-red;
         "markup.raw" = {
-          inherit fg;
           bg = bg1;
           modifiers = ["bold"];
         };
