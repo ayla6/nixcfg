@@ -72,7 +72,7 @@
 
      _    @%   @!   @+   [    @@   XX   @#   ]    @_   @?   @^   _
 
-     _    /    @:   =    @{   @$   XX   \    @}   @qt  @sc  -    @~
+     @nav /    @:   =    @{   @$   XX   \    @}   @qt  @sc  -    @~
 
      _    @#   `    @*   @po  @& XX XX  @|   @pc  @<   @>   _
 
@@ -85,7 +85,7 @@
           
      _    _    _    _    _    _    XX   _    _    _    _    _    _
 
-     _    0    1    2    3    .    XX   ,    4    5    6    9    _
+     @nav 0    1    2    3    .    XX   ,    4    5    6    9    _
 
      _    _    _    _    8    8  XX XX  7    7    _    _    _
 
@@ -97,7 +97,7 @@
 
      _    _    C-x  C-c  C-v  _    XX   _    pgdn home end  pgup  _
 
-     _    _    lalt lsft lctl C-a  XX   ret  left down up   @rgt del
+     XX   _    lalt lsft lctl C-a  XX   ret  left down up   @rgt del
 
      _    _    _    _    esc  esc XX XX bspc bspc    _    _    _
 
@@ -109,7 +109,7 @@
 
      _    t    q    w    e    r    XX   _    _    _    _    _    _
 
-     _    g    a    s    d    f  @base  _    _    _    _    _    _
+     @nav g    a    s    d    f  @base  _    _    _    _    _    _
 
      _    d    z    x    c    v  XX XX  _    _    _    _    _
 
@@ -121,7 +121,7 @@
 
      _    _    _    _    _    _    XX   _    _    _    _    _    _
 
-     _    _    _    _    _    _    XX   _    _    _    _    _    _
+     @nav    _    _    _    _    _    XX   _    _    _    _    _    _
 
      _    _    _    _    _    _  XX XX  _    _    _    _    _
 
