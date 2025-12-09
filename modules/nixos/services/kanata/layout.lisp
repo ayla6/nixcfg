@@ -95,7 +95,7 @@
 (deflayer navigation
           _    _    _    _    _    XX   _    _    _    _    _    _
 
-     _    _    C-x  C-v  C-c  _    XX   _    pgdn home end  pgup  _
+     _    _    C-x  C-c  C-v  _    XX   _    pgdn home end  pgup  _
 
      _    _    lalt lsft lctl C-a  XX   ret  left down up   @rgt del
 
