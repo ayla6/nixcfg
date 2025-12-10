@@ -26,7 +26,6 @@
             keep_emptied = ["e"];
           };
         };
-        ui.colors.selected.bg = "#808080";
       };
     };
     programs.jujutsu = {
