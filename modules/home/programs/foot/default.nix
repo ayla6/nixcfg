@@ -28,7 +28,7 @@ in {
         };
 
         url = {
-          label-letters = "tsraneiovkgmfuwy";
+          label-letters = "sraneiovkgmfuwy";
         };
 
         csd = with colours; {
