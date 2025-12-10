@@ -4,32 +4,30 @@
   pkgs,
   ...
 }: let
-  bg = "#2a282b";
+  bg = "#232124";
   fg = "#e9d9e0";
-  bg1 = "#353137";
-  bg2 = "#454048";
-  bg3 = "#534e56";
-  bg4 = "#666169";
-
-  comment = "#fd9f5f";
+  bg1 = "#2a282b";
+  bg2 = "#353137";
+  bg3 = "#454048";
+  bg4 = "#534e56";
 
   black = "#010000";
   red = "#fd7b64";
   green = "#9bd26c";
   yellow = "#f6c668";
   blue = "#8cc0f2";
-  magenta = "#b286b9";
-  cyan = "#72debc";
+  magenta = "#d89ae1";
+  cyan = "#8dd7d1";
   white = "#e7dade";
   grey = "#cbb7c0";
 
-  pink = "#ffa9df";
+  pink = "#fc90c1";
 
   light-pink = "#ffc4ff";
 
   dark-red = "#eb5747";
   dark-green = "#82af3a";
-  dark-yellow = "#d79d19";
+  dark-yellow = "#f0a943";
   dark-blue = "#2d96d8";
   dark-magenta = "#ad6dcd";
   dark-cyan = "#0cb0a0";
@@ -80,35 +78,39 @@ in {
         helix.themes.agatha = {
           "keyword" = pink;
           "special" = pink;
+          "type.builtin" = pink;
+          "constant.builtin" = pink;
+          "variable.builtin" = pink;
+          "tag.builtin" = pink;
 
-          "comment" = comment;
+          "comment" = dark-yellow;
           "comment.unused" = {inherit bg fg;};
 
           "string" = green;
 
-          "constant" = yellow;
-          "constant.builtin" = yellow;
-          "constant.character" = yellow;
-          "constant.character.escape" = yellow;
-          "constant.numeric" = yellow;
+          "constant" = fg;
+          "constant.character" = fg;
+          "constant.character.escape" = fg;
+          "constant.numeric" = fg;
 
-          "namespace" = fg;
           "variable" = fg;
           "variable.parameter" = fg;
           "attribute" = fg;
           "punctuation" = fg;
+
           "function" = fg;
           "constructor" = fg;
 
           "tag" = fg;
           "label" = fg;
 
-          "type" = fg;
-          "type.enum" = fg;
-          "type.enum.variant" = fg;
+          "type" = cyan;
+          "type.enum" = cyan;
+          "type.enum.variant" = cyan;
+          "namespace" = cyan;
+          "module" = cyan;
 
-          "module" = light-pink;
-          "operator" = light-pink;
+          "operator" = fg;
 
           "diff.plus" = green;
           "diff.delta" = yellow;
@@ -255,7 +257,7 @@ in {
                   <key>settings</key>
                   <dict>
                     <key>foreground</key>
-                    <string>${comment}</string>
+                    <string>${dark-yellow}</string>
                   </dict>
                 </dict>
                 <dict>
@@ -273,11 +275,11 @@ in {
                   <key>name</key>
                   <string>Constant</string>
                   <key>scope</key>
-                  <string>constant, constant.numeric, constant.language, constant.character, constant.other</string>
+                  <string>entity.name.type</string>
                   <key>settings</key>
                   <dict>
                     <key>foreground</key>
-                    <string>${yellow}</string>
+                    <string>${light-pink}</string>
                   </dict>
                 </dict>
                 <dict>
@@ -317,7 +319,7 @@ in {
                   <key>name</key>
                   <string>Default</string>
                   <key>scope</key>
-                  <string>variable, entity.name.function, entity.name.class, entity.name.type, support.type, support.class, meta.function-call, punctuation</string>
+                  <string>variable, entity.name.function, entity.name.class, entity.name.type, support.type, support.class, meta.function-call, punctuation, constant, constant.numeric, constant.language, constant.character, constant.other</string>
                   <key>settings</key>
                   <dict>
                     <key>foreground</key>
