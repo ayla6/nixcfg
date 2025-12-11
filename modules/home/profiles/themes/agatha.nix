@@ -61,7 +61,9 @@ in {
   config = lib.mkMerge [
     (lib.mkIf (config.myHome.profiles.theme == "agatha") {
       myHome.profiles.colours = {
-        inherit foreground background black red green yellow blue magenta cyan white grey br_red br_green br_yellow br_blue br_magenta br_cyan br_white;
+        inherit foreground background black red green yellow blue magenta cyan white grey br_red br_green br_yellow br_blue br_magenta br_cyan br_white bg1 bg2 bg3 bg4;
+        accent = pink;
+        light_accent = light-pink;
       };
 
       programs = {
@@ -91,7 +93,8 @@ in {
           "constant" = fg;
           "constant.character" = fg;
           "constant.character.escape" = fg;
-          "constant.numeric" = fg;
+
+          "constant.numeric" = cyan;
 
           "variable" = fg;
           "variable.parameter" = fg;

@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   hexColor = lib.types.strMatching "#[0-9a-fA-F]{6}";
 
   mkBase = default:
@@ -39,12 +43,33 @@ in {
     description = "set your theme for a bunch of apps at once!";
   };
 
+  options.myHome.profiles.coloursNoHash = lib.mkOption {
+    description = "Colours defined by the theme";
+
+    type = lib.types.attrs;
+    default =
+      lib.mapAttrs (
+        _: v:
+          if v != null
+          then lib.strings.removePrefix "#" v
+          else ""
+      )
+      config.myHome.profiles.colours;
+  };
+
   options.myHome.profiles.colours = lib.mkOption {
     description = "Colours defined by the theme";
 
     type = lib.types.submodule ({config, ...}:
       with config; {
         options = {
+          accent = mkAlias blue;
+          light_accent = mkAlias blue;
+          bg1 = mkAlias background;
+          bg2 = mkAlias background;
+          bg3 = mkAlias background;
+          bg4 = mkAlias background;
+
           foreground = mkAlias white;
           background = mkAlias black;
 

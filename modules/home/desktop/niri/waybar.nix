@@ -44,7 +44,6 @@ in {
     ];
     modules-right = [
       "network"
-      "battery"
       "wireplumber"
       "idle_inhibitor"
       "custom/swaync"
@@ -66,17 +65,21 @@ in {
       format-icons = icons.network.strength;
     };
 
+    idle_inhibitor = {
+      format = "{icon}";
+      format-icons = {
+        activated = "";
+        deactivated = "";
+      };
+    };
+
     wireplumber = {
       format = "{icon} {volume}%";
       format-muted = "${icons.volume.muted} {volume}%";
       format-icons = icons.volume.levels;
       reverse-scrolling = 1;
       tooltip = false;
-    };
-
-    "wireplumber#source" = {
-      format = icons.volume.source;
-      tooltip = false;
+      on-click = "wpctl set-default $(wpctl status | awk '/Sinks:/,/Sources:/ {if ($0 ~ /^[ \t]*[0-9]/ && $0 !~ /\\*/) {print $2; exit}}' | tr -d '.')";
     };
 
     "custom/swaync" = {
@@ -105,17 +108,25 @@ in {
 
   style = with colours; ''
     * {
-      font-family: ${fonts.sans-serif.name}, ${fonts.monospace.name}, sans-serif;
+      font-family: ${fonts.pixel.name}, ${fonts.monospace.name}, sans-serif;
       font-weight: bold;
-      font-size: 13px;
+      font-size: 12px;
       min-height: 0;
+      padding: 0;
+      margin: 0;
     }
-
     window#waybar {
-      background-color: #${background};
-      color: #${foreground};
+      background-color: ${background};
+      color: ${foreground};
+      padding: 0;
     }
-
+    #workspaces button {
+      border-radius: 2px;
+    }
+    #workspaces button.active {
+      background-color: ${light_accent};
+      color: ${background};
+    }
     #workspaces,
     #window,
     #clock,
@@ -123,8 +134,9 @@ in {
     #battery,
     #wireplumber,
     #idle_inhibitor,
-    #swaync {
-    	margin: 0 4px;
+    #custom-swaync {
+      margin: 2px 4px;
+      padding: 0 4px;
     }
   '';
 }

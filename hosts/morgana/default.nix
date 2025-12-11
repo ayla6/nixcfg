@@ -49,10 +49,10 @@
         };
       };
     };
-    desktop.gnome.enable = true;
+    # desktop.gnome.enable = true;
     services = {
       kanata.enable = true;
-      gdm.enable = true;
+      # gdm.enable = true;
       dnsmasq = {
         enable = true;
         longCaches = false;

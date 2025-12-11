@@ -35,6 +35,9 @@
           inkscape
           qbittorrent
 
+          fend
+          libqalculate
+
           inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.v3
         ];
 
@@ -116,8 +119,8 @@
       };
 
       myHome = {
-        desktop.gnome.enable = true;
-        # desktop.niri.enable = true;
+        # desktop.gnome.enable = true;
+        desktop.niri.enable = true;
 
         programs = {
           lutris.enable = true;

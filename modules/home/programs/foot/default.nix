@@ -4,14 +4,7 @@
   ...
 }: let
   inherit (config.mySnippets) fonts;
-  colours =
-    lib.mapAttrs (
-      _: v:
-        if v != null
-        then lib.strings.removePrefix "#" v
-        else ""
-    )
-    config.myHome.profiles.colours;
+  colours = config.myHome.profiles.coloursNoHash;
 in {
   options.myHome.programs.foot.enable = lib.mkEnableOption "foot terminal";
 
@@ -22,7 +15,7 @@ in {
       settings = {
         main = {
           term = "xterm-256color";
-          font = "${fonts.monospace.name}:size=${toString fonts.size.app}, ${fonts.emoji.name}:size=${toString fonts.size.app}";
+          font = "${fonts.pixel.name}:size=${toString fonts.size.app}, ${fonts.emoji.name}:size=${toString fonts.size.app}";
           initial-window-size-chars = "100x30";
           bold-text-in-bright = "no";
         };
@@ -33,7 +26,7 @@ in {
 
         csd = with colours; {
           border-width = 1;
-          border-color = magenta;
+          border-color = accent;
           color = background;
           button-color = foreground;
         };

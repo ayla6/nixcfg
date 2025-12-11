@@ -8,6 +8,12 @@
   pidof = lib.getExe' pkgs.procps "pidof";
   niri = lib.getExe config.programs.niri.package;
   systemctl = config.systemd.user.systemctlPath;
+
+  defaultApps = config.myHome.profiles.defaultApps;
+
+  colours = config.myHome.profiles.colours;
+  coloursNh = config.myHome.profiles.coloursNoHash;
+  inherit (config.mySnippets) fonts;
 in {
   imports = [inputs.niri.homeModules.niri];
 
@@ -43,11 +49,11 @@ in {
         enable = true;
         package = pkgs.niri;
         settings = lib.mkMerge [
-          (import ./binds.nix {inherit config;})
+          (import ./binds.nix {inherit config lib;})
           ./input.nix
           (import ./spawn.nix {inherit config lib;})
           ./misc.nix
-          ./layout.nix
+          (import ./layout.nix {inherit config;})
         ];
       };
 
@@ -60,8 +66,33 @@ in {
           font-size = 24;
           indicator-idle-visible = false;
           indicator-radius = 100;
-          line-color = "ffffff";
+          line-color = coloursNh.accent;
           show-failed-attempts = true;
+        };
+      };
+
+      tofi = {
+        enable = true;
+        settings = with colours; {
+          background-color = background;
+          text-color = foreground;
+          selection-color = foreground;
+          font = fonts.pixel.name;
+          font-size = 10;
+
+          width = "100%";
+          height = "100%";
+
+          border-width = 1;
+          border-color = accent;
+
+          outline-width = 0;
+          anchor = "center";
+
+          history = true;
+
+          terminal = defaultApps.terminal.exec;
+          drun-launch = true;
         };
       };
     };
@@ -84,16 +115,10 @@ in {
             command = "${pidof} swaylock && ${systemctl} suspend";
           }
         ];
-        events = [
-          {
-            event = "before-sleep";
-            command = "${niri} msg action power-off-monitors";
-          }
-          {
-            event = "after-resume";
-            command = "${niri} msg action power-on-monitors";
-          }
-        ];
+        events = {
+          "before-sleep" = "${niri} msg action power-off-monitors";
+          "after-resume" = "${niri} msg action power-on-monitors";
+        };
       };
     };
   };

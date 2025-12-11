@@ -35,6 +35,8 @@ in {
 
         emoji = mkFontOption "Noto Color Emoji" pkgs.noto-fonts-color-emoji;
 
+        pixel = mkFontOption "Cozette" pkgs.cozette;
+
         size = lib.mkOption {
           description = "Font sizes";
           type = lib.types.submodule {
