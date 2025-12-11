@@ -43,9 +43,13 @@
 
     services.gnome = {
       gnome-keyring.enable = true;
-      gcr-ssh-agent.enable = true;
+      gcr-ssh-agent = {
+        enable = true;
+        package = pkgs.gcr_4;
+      };
     };
     security.polkit.enable = true;
+    programs.ssh.askPassword = lib.mkDefault "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
 
     environment = {
       variables.QT_QPA_PLATFORMTHEME = "qt6ct";
