@@ -110,7 +110,7 @@ in {
 
         languages = lib.listToAttrs (
           lib.attrValues (
-            lib.mapAttrs (name: lang: {
+            lib.mapAttrs (_name: lang: {
               name = lang.full-name;
               value = mkZedLanguage lang;
             })
