@@ -48,11 +48,11 @@ in {
       "Mod+Shift+8".action.move-column-to-workspace = [8];
       "Mod+Shift+9".action.move-column-to-workspace = [9];
 
-      "Mod+Y".action = maximize-window-to-edges;
-
       "Mod+R".action = consume-or-expel-window-left;
       "Mod+S".action = consume-or-expel-window-right;
 
+      "F11".action = fullscreen-window;
+      "Mod+Y".action = maximize-window-to-edges;
       "Mod+Shift+F".action = expand-column-to-available-width;
       "Mod+C".action = center-column;
       "Mod+Shift+C".action = center-visible-columns;
