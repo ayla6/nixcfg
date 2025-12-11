@@ -111,7 +111,7 @@ in {
         settings = with colours; {
           background-color = background;
           text-color = foreground;
-          selection-color = foreground;
+          selection-color = accent;
           font = fonts.pixel.name;
           font-size = 10;
 
