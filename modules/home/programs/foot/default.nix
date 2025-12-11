@@ -11,11 +11,11 @@ in {
   config = lib.mkIf config.myHome.programs.foot.enable {
     programs.foot = {
       enable = true;
-      server.enable = true;
+      # server.enable = true;
       settings = {
         main = {
           term = "xterm-256color";
-          font = "${fonts.pixel.name}:size=${toString fonts.size.app}, ${fonts.emoji.name}:size=${toString fonts.size.app}";
+          font = "${fonts.pixel.name}:size=${toString fonts.size.pixel}, ${fonts.emoji.name}:size=${toString fonts.size.pixel}";
           initial-window-size-chars = "100x30";
           bold-text-in-bright = "no";
         };

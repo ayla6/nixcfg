@@ -49,6 +49,10 @@ in {
                 type = lib.types.int;
                 default = 10;
               };
+              pixel = lib.mkOption {
+                type = lib.types.int;
+                default = 9;
+              };
             };
           };
           default = {};
