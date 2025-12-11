@@ -17,6 +17,8 @@
       };
     };
 
+    environment.sessionVariables.XKB_DEFAULT_LAYOUT = "us_for_kanata";
+
     services.xserver.xkb = {
       layout = lib.mkForce "us_for_kanata";
       variant = lib.mkForce "";

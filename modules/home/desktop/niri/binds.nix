@@ -48,6 +48,8 @@ in {
       "Mod+Shift+8".action.move-column-to-workspace = [8];
       "Mod+Shift+9".action.move-column-to-workspace = [9];
 
+      "Mod+Y".action = maximize-window-to-edges;
+
       "Mod+R".action = consume-or-expel-window-left;
       "Mod+S".action = consume-or-expel-window-right;
 
@@ -78,11 +80,11 @@ in {
 
       "XF86AudioRaiseVolume" = {
         allow-when-locked = true;
-        action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
+        action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.01+ -l 1.0";
       };
       "XF86AudioLowerVolume" = {
         allow-when-locked = true;
-        action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+        action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.01-";
       };
       "XF86AudioMute" = {
         allow-when-locked = true;
@@ -112,11 +114,11 @@ in {
 
       "XF86MonBrightnessUp" = {
         allow-when-locked = true;
-        action = spawn "brightnessctl" "--class=backlight" "set" "+10%";
+        action = spawn "brightnessctl" "--class=backlight" "set" "+2.5%";
       };
       "XF86MonBrightnessDown" = {
         allow-when-locked = true;
-        action = spawn "brightnessctl" "--class=backlight" "set" "10%-";
+        action = spawn "brightnessctl" "--class=backlight" "set" "2.5%-";
       };
     }
     // (

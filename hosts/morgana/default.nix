@@ -50,6 +50,7 @@
       };
     };
     # desktop.gnome.enable = true;
+    desktop.niri.enable = true;
     services = {
       kanata.enable = true;
       # gdm.enable = true;

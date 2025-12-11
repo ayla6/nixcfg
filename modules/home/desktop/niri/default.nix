@@ -9,9 +9,8 @@
   niri = lib.getExe config.programs.niri.package;
   systemctl = config.systemd.user.systemctlPath;
 
-  defaultApps = config.myHome.profiles.defaultApps;
+  inherit (config.myHome.profiles) defaultApps colours;
 
-  colours = config.myHome.profiles.colours;
   coloursNh = config.myHome.profiles.coloursNoHash;
   inherit (config.mySnippets) fonts;
 in {
@@ -23,7 +22,51 @@ in {
 
   config = lib.mkIf config.myHome.desktop.niri.enable {
     myHome = {
-      profiles.defaultApps.enable = true;
+      programs = {
+        mpv.enable = true;
+        foot.enable = true;
+      };
+      profiles.defaultApps = {
+        enable = true;
+
+        archiveViewer = {
+          package = lib.mkDefault pkgs.file-roller;
+          icon = lib.mkDefault "org.gnome.FileRoller";
+        };
+        audioPlayer = {
+          package = lib.mkDefault config.programs.mpv.finalPackage;
+          icon = lib.mkDefault "mpv";
+        };
+        fileManager = {
+          package = lib.mkDefault pkgs.nautilus;
+          icon = lib.mkDefault "org.gnome.Nautilus";
+        };
+        imageViewer = {
+          package = lib.mkDefault pkgs.loupe;
+          icon = lib.mkDefault "org.gnome.Loupe";
+        };
+        pdfViewer = {
+          package = lib.mkDefault pkgs.papers;
+          icon = lib.mkDefault "org.gnome.Papers";
+        };
+        videoPlayer = {
+          package = lib.mkDefault config.programs.mpv.finalPackage;
+          icon = lib.mkDefault "mpv";
+        };
+        terminal = {
+          package = lib.mkDefault config.programs.foot.package;
+          exec = lib.mkDefault "${config.programs.foot.package}/bin/footclient";
+          icon = lib.mkDefault "foot";
+          term = lib.mkDefault "xterm-256color";
+          desktop = lib.mkDefault "footclient.desktop";
+        };
+        editor = {
+          package = lib.mkDefault config.programs.helix.package;
+          terminal = lib.mkDefault true;
+          icon = lib.mkDefault "helix";
+        };
+        terminalEditor.package = lib.mkDefault config.programs.helix.package;
+      };
     };
 
     home.packages = with pkgs; [
@@ -31,18 +74,10 @@ in {
       nautilus
       wl-clipboard
       swaybg
+      brightnessctl
+      morewaita-icon-theme
+      adw-gtk3
     ];
-
-    xdg.portal = {
-      config = {
-        niri = {
-          default = ["gnome" "gtk"];
-        };
-      };
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gnome
-      ];
-    };
 
     programs = {
       niri = {
@@ -62,12 +97,12 @@ in {
       swaylock = {
         enable = true;
         settings = {
-          color = "808080";
           font-size = 24;
           indicator-idle-visible = false;
           indicator-radius = 100;
-          line-color = coloursNh.accent;
           show-failed-attempts = true;
+          color = coloursNh.background;
+          line-color = coloursNh.accent;
         };
       };
 
@@ -98,6 +133,34 @@ in {
     };
 
     services = {
+      darkman = {
+        enable = true;
+        settings = {
+          usegeoclue = true;
+          portal = true;
+          dbusserver = true;
+        };
+        darkModeScripts = {
+          gtk-theme = ''
+            ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3-dark'"
+
+            niri msg action do-screen-transition && ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+          '';
+        };
+        lightModeScripts = {
+          gtk-theme = ''
+            ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3'"
+
+            niri msg action do-screen-transition && ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+          '';
+        };
+      };
+
+      gnome-keyring = {
+        enable = true;
+        components = ["pkcs11" "secrets" "ssh"];
+      };
+
       polkit-gnome.enable = true;
       swaync = {
         enable = true;

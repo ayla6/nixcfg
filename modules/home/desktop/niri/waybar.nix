@@ -36,7 +36,6 @@ in {
     layer = "top";
     modules-left = [
       "niri/workspaces"
-      "niri/window"
     ];
     modules-center = [
       "clock#date"
@@ -50,7 +49,7 @@ in {
     ];
 
     clock = {
-      format = "{:%H:%M:%S}";
+      format = "{:%H:%M}";
     };
 
     "clock#date" = {
@@ -77,7 +76,6 @@ in {
       format = "{icon} {volume}%";
       format-muted = "${icons.volume.muted} {volume}%";
       format-icons = icons.volume.levels;
-      reverse-scrolling = 1;
       tooltip = false;
       on-click = "wpctl set-default $(wpctl status | awk '/Sinks:/,/Sources:/ {if ($0 ~ /^[ \t]*[0-9]/ && $0 !~ /\\*/) {print $2; exit}}' | tr -d '.')";
     };
@@ -122,6 +120,7 @@ in {
     }
     #workspaces button {
       border-radius: 2px;
+      color: ${foreground};
     }
     #workspaces button.active {
       background-color: ${light_accent};

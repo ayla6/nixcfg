@@ -13,6 +13,6 @@
   screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
 
   animations = {
-    slowdown = 0.75;
+    slowdown = 0.5;
   };
 }

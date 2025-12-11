@@ -8,6 +8,7 @@
     ./gnome
     ./plasma
     ./cosmic
+    ./niri
   ];
 
   options.myNixOS.desktop.enable = lib.mkOption {
@@ -115,6 +116,10 @@
 
       pulseaudio = {
         support32Bit = true;
+      };
+
+      geoclue2 = {
+        enable = true;
       };
     };
 
