@@ -66,13 +66,17 @@ in {
           options = {
             accent = mkAlias blue;
             light_accent = mkAlias blue;
+
+            fg = mkAlias white;
+            bg = mkAlias black;
+
             bg1 = mkAlias background;
             bg2 = mkAlias background;
             bg3 = mkAlias background;
             bg4 = mkAlias background;
 
-            foreground = mkAlias white;
-            background = mkAlias black;
+            foreground = mkAlias fg;
+            background = mkAlias bg;
 
             black = mkBase "#000000";
             red = mkBase "#ff0000";

@@ -54,6 +54,8 @@
     g = builtins.fromTOML "x=0x${builtins.substring 2 2 cleanHex}";
     b = builtins.fromTOML "x=0x${builtins.substring 4 2 cleanHex}";
   in "${toString r.x} ${toString g.x} ${toString b.x}";
+
+  coloursNh = config.myHome.profiles.coloursNoHash;
 in {
   # agatha stands for ayla's got a theme(a) or something. very creative i know
   # not yet where i want it to be
@@ -61,7 +63,7 @@ in {
   config = lib.mkMerge [
     (lib.mkIf (config.myHome.profiles.theme == "agatha") {
       myHome.profiles.colours = {
-        inherit foreground background black red green yellow blue magenta cyan white grey br_red br_green br_yellow br_blue br_magenta br_cyan br_white bg1 bg2 bg3 bg4;
+        inherit fg foreground background black red green yellow blue magenta cyan white grey br_red br_green br_yellow br_blue br_magenta br_cyan br_white bg bg1 bg2 bg3 bg4;
         accent = pink;
         light_accent = light-pink;
       };
@@ -70,6 +72,45 @@ in {
         helix.settings.theme = "agatha";
         zellij.settings.theme = "agatha";
         bat.config.theme = "agatha";
+        swaylock.settings = {
+          color = coloursNh.bg;
+
+          indicator-radius = 100;
+          indicator-thickness = 12;
+
+          inside-color = coloursNh.bg1;
+          ring-color = coloursNh.accent;
+          line-color = coloursNh.accent;
+          text-color = coloursNh.fg;
+
+          inside-clear-color = coloursNh.bg2;
+          ring-clear-color = coloursNh.blue;
+          line-clear-color = coloursNh.blue;
+          text-clear-color = coloursNh.fg;
+
+          inside-ver-color = coloursNh.bg3;
+          ring-ver-color = coloursNh.cyan;
+          line-ver-color = coloursNh.cyan;
+          text-ver-color = coloursNh.fg;
+
+          inside-wrong-color = coloursNh.bg4;
+          ring-wrong-color = coloursNh.red;
+          line-wrong-color = coloursNh.red;
+          text-wrong-color = coloursNh.red;
+
+          inside-caps-lock-color = coloursNh.bg1;
+          ring-caps-lock-color = coloursNh.yellow;
+          line-caps-lock-color = coloursNh.yellow;
+          text-caps-lock-color = coloursNh.yellow;
+
+          key-hl-color = coloursNh.light_accent;
+          bs-hl-color = coloursNh.accent;
+          separator-color = coloursNh.bg;
+
+          layout-text-color = coloursNh.fg;
+          layout-bg-color = coloursNh.bg1;
+          layout-border-color = coloursNh.accent;
+        };
       };
     })
 
@@ -91,9 +132,9 @@ in {
           "string" = green;
 
           "constant" = fg;
-          "constant.character" = fg;
-          "constant.character.escape" = fg;
 
+          "constant.character" = cyan;
+          "constant.character.escape" = cyan;
           "constant.numeric" = cyan;
 
           "variable" = fg;
@@ -151,11 +192,11 @@ in {
           "ui.help" = {bg = bg1;};
           "ui.text.directory" = {
             fg = pink;
-            modifiers = ["bold"];
+            # modifiers = ["bold"];
           };
           "ui.text.focus" = {
             bg = bg1;
-            modifiers = ["bold"];
+            # modifiers = ["bold"];
           };
           "ui.selection" = {bg = bg2;};
           "ui.selection.primary" = {bg = bg3;};
@@ -170,7 +211,7 @@ in {
           "ui.menu" = {bg = bg1;};
           "ui.menu.selected" = {
             bg = bg3;
-            modifiers = ["bold"];
+            # modifiers = ["bold"];
           };
           "ui.virtual.whitespace" = bg1;
           "ui.virtual.indent-guide" = bg1;
@@ -179,35 +220,41 @@ in {
           "ui.virtual.wrap" = {fg = bg3;};
           "ui.virtual.jump-label" = {
             fg = dark-red;
-            modifiers = ["bold"];
+            # modifiers = ["bold"];
           };
 
+          # Cozette doesn't support dashed or strikethrough
           "diagnostic.warning" = {
             underline = {
               color = yellow;
-              style = "dashed";
+              style = "line";
+              # style = "dashed";
             };
           };
           "diagnostic.error" = {
             underline = {
               color = dark-red;
-              style = "dashed";
+              style = "line";
+              # style = "dashed";
             };
           };
           "diagnostic.info" = {
             underline = {
               color = light-pink;
-              style = "dashed";
+              style = "line";
+              # style = "dashed";
             };
           };
           "diagnostic.hint" = {
             underline = {
               color = blue;
-              style = "dashed";
+              style = "line";
+              # style = "dashed";
             };
           };
           "diagnostic.unnecessary" = {modifiers = ["dim"];};
-          "diagnostic.deprecated" = {modifiers = ["crossed_out"];};
+          "diagnostic.deprecated" = {bg = dark-yellow;};
+          # "diagnostic.deprecated" = {modifiers = ["crossed_out"];};
 
           "markup.heading" = {
             fg = cyan;
@@ -215,10 +262,11 @@ in {
           };
           "markup.bold" = {modifiers = ["bold"];};
           "markup.italic" = {modifiers = ["italic"];};
-          "markup.strikethrough" = {modifiers = ["crossed_out"];};
+          "markup.strikethrough" = {bg = dark-red;};
+          # "markup.strikethrough" = {modifiers = ["crossed_out"];};
           "markup.link.url" = {
             fg = blue;
-            modifiers = ["underlined"];
+            underline = {style = "line";};
           };
           "markup.link.text" = dark-red;
           "markup.raw" = {

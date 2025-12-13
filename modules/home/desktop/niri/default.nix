@@ -11,7 +11,6 @@
 
   inherit (config.myHome.profiles) defaultApps colours;
 
-  coloursNh = config.myHome.profiles.coloursNoHash;
   inherit (config.mySnippets) fonts;
 in {
   imports = [inputs.niri.homeModules.niri];
@@ -101,8 +100,6 @@ in {
           indicator-idle-visible = false;
           indicator-radius = 100;
           show-failed-attempts = true;
-          color = coloursNh.background;
-          line-color = coloursNh.accent;
         };
       };
 
@@ -179,7 +176,7 @@ in {
           }
         ];
         events = {
-          "before-sleep" = "${niri} msg action power-off-monitors";
+          "before-sleep" = "${pkgs.swaylock}/bin/swaylock --daemonize && ${niri} msg action power-off-monitors";
           "after-resume" = "${niri} msg action power-on-monitors";
         };
       };
