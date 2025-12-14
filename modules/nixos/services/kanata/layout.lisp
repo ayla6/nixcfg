@@ -85,14 +85,17 @@
      _    _    _    _    _
 )
 
+;; i've learned that the devil is called acer.
+;; hardcoded that ctrl v because i CANNOT press it with any of those other keys
+;; so might as well still have it useful
 (deflayer modn
           _    _    _    _    _    XX   _    _    _    _    _    _
           
-     _    @3q  @2w  @1f  @0p  _    XX   _    @5l  @6u  @4y  9    _
+     _    @3q  @2w  @1f  @0p  8    XX   7    @5l  @6u  @4y  9    _
 
      @nav @ha  @hr  @hs  @ht  ret  XX   ret  @hn  @he  @hi  @ho  _
 
-     _    _    _    _    _    8  XX XX  7    _    _    _    _
+     _    _    _    _    _    C-v  XX XX  _    _    _    _    _
 
      _    _    _    _    _
 )
