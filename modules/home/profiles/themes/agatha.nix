@@ -192,11 +192,11 @@ in {
           "ui.help" = {bg = bg1;};
           "ui.text.directory" = {
             fg = pink;
-            # modifiers = ["bold"];
+            modifiers = ["bold"];
           };
           "ui.text.focus" = {
             bg = bg1;
-            # modifiers = ["bold"];
+            modifiers = ["bold"];
           };
           "ui.selection" = {bg = bg2;};
           "ui.selection.primary" = {bg = bg3;};
@@ -211,7 +211,7 @@ in {
           "ui.menu" = {bg = bg1;};
           "ui.menu.selected" = {
             bg = bg3;
-            # modifiers = ["bold"];
+            modifiers = ["bold"];
           };
           "ui.virtual.whitespace" = bg1;
           "ui.virtual.indent-guide" = bg1;
@@ -220,41 +220,35 @@ in {
           "ui.virtual.wrap" = {fg = bg3;};
           "ui.virtual.jump-label" = {
             fg = dark-red;
-            # modifiers = ["bold"];
+            modifiers = ["bold"];
           };
 
-          # Cozette doesn't support dashed or strikethrough
           "diagnostic.warning" = {
             underline = {
               color = yellow;
-              style = "line";
-              # style = "dashed";
+              style = "dashed";
             };
           };
           "diagnostic.error" = {
             underline = {
               color = dark-red;
-              style = "line";
-              # style = "dashed";
+              style = "dashed";
             };
           };
           "diagnostic.info" = {
             underline = {
               color = light-pink;
-              style = "line";
-              # style = "dashed";
+              style = "dashed";
             };
           };
           "diagnostic.hint" = {
             underline = {
               color = blue;
-              style = "line";
-              # style = "dashed";
+              style = "dashed";
             };
           };
           "diagnostic.unnecessary" = {modifiers = ["dim"];};
-          "diagnostic.deprecated" = {bg = dark-yellow;};
-          # "diagnostic.deprecated" = {modifiers = ["crossed_out"];};
+          "diagnostic.deprecated" = {modifiers = ["crossed_out"];};
 
           "markup.heading" = {
             fg = cyan;
@@ -262,8 +256,7 @@ in {
           };
           "markup.bold" = {modifiers = ["bold"];};
           "markup.italic" = {modifiers = ["italic"];};
-          "markup.strikethrough" = {bg = dark-red;};
-          # "markup.strikethrough" = {modifiers = ["crossed_out"];};
+          "markup.strikethrough" = {modifiers = ["crossed_out"];};
           "markup.link.url" = {
             fg = blue;
             underline = {style = "line";};

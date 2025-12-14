@@ -116,9 +116,6 @@ in {
             i = "move_line_up";
             o = "move_char_right";
 
-            a = "goto_line_start";
-            t = "goto_line_end";
-
             j = "move_next_word_end";
             J = "move_next_long_word_end";
             k = "search_next";

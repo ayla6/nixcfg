@@ -24,6 +24,7 @@
       config.mySnippets.fonts.sans-serif.package
       config.mySnippets.fonts.serif.package
       config.mySnippets.fonts.monospace.package
+      config.mySnippets.fonts.pixel.package
       config.mySnippets.fonts.emoji.package
     ];
 

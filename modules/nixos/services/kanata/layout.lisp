@@ -11,24 +11,30 @@
   rgt right
 
   ;; change modes
-  sym (layer-toggle symbols)
-  nav (layer-toggle navigation)
-  num (layer-toggle numbers)
+  sym (layer-while-held symbols)
+  nav (layer-while-held navigation)
   
   game (layer-switch game)
   base (layer-switch base)
 
-  ;; mouse movement
-  ;; mlf (movemouse-accel-left 10 500 1 5)
-  ;; mrt (movemouse-accel-right 10 500 1 5)
-  ;; mup (movemouse-accel-up 10 500 1 5)
-  ;; mdn (movemouse-accel-down 10 500 1 5)
+  spl (tap-hold 200 200 spc (layer-while-held modn))
 
-  ;; mouse wheel
-  ;; mwu (mwheel-up 10 10)
-  ;; mwd (mwheel-down 10 10)
-  ;; mwl (mwheel-left 10 10)
-  ;; mwr (mwheel-right 10 10)
+  ha (tap-hold-press 200 150 a lmet)
+  hr (tap-hold-press 200 150 r lalt)
+  hs (tap-hold-press 200 150 s lsft)
+  ht (tap-hold-press 200 150 t lctl)
+  hn (tap-hold-press 200 150 n rctl)
+  he (tap-hold-press 200 150 e rsft)
+  hi (tap-hold-press 200 150 i lalt)
+  ho (tap-hold-press 200 150 o rmet)
+  
+  3q (tap-dance 200 (3 q))
+  2w (tap-dance 200 (2 w))
+  1f (tap-dance 200 (1 f))
+  0p (tap-dance 200 (0 p))
+  5l (tap-dance 200 (5 l))
+  6u (tap-dance 200 (6 u))
+  4y (tap-dance 200 (4 y))
 
   ;; looks more obvious
   ! S-1
@@ -64,7 +70,7 @@
 
   lsft   z    x    c    d    v  XX XX  k    h    ,    .    rsft
 
-  lctl   lalt spc  @sym ralt
+  lctl   lalt @spl @sym ralt
 )
 
 (deflayer symbols
@@ -76,18 +82,17 @@
 
      _    @#   `    @*   @po  @& XX XX  @|   @pc  @<   @>   _
 
-     _    @num _    _    _
+     _    _    _    _    _
 )
 
-;; the devil made kanata so you actually have to hold @sym then hold @num and then release @ralt to be able to use numbers holy shit
-(deflayer numbers
+(deflayer modn
           _    _    _    _    _    XX   _    _    _    _    _    _
           
-     _    _    _    _    _    _    XX   _    _    _    _    _    _
+     _    @3q  @2w  @1f  @0p  _    XX   _    @5l  @6u  @4y  9    _
 
-     @nav 0    1    2    3    .    XX   ,    4    5    6    9    _
+     @nav @ha  @hr  @hs  @ht  ret  XX   ret  @hn  @he  @hi  @ho  _
 
-     _    _    _    _    8    8  XX XX  7    7    _    _    _
+     _    _    _    _    _    8  XX XX  7    _    _    _    _
 
      _    _    _    _    _
 )
@@ -95,11 +100,11 @@
 (deflayer navigation
           _    _    _    _    _    XX   _    _    _    _    _    _
 
-     _    _    C-x  C-c  C-v  _    XX   _    pgdn home end  pgup  _
+     _    _    _    pgup _    _    XX   _    _    ret  del  _    _
 
-     XX   _    lalt lsft lctl C-a  XX   ret  left down up   @rgt del
+     XX   _    home pgdn end  _    XX   ret  left down up   @rgt del
 
-     _    _    _    _    esc  esc XX XX bspc bspc    _    _    _
+     _    _    _    _    esc  esc XX XX bspc bspc _    _    _
 
      _    _    _    _    _
 )
@@ -113,7 +118,7 @@
 
      _    d    z    x    c    v  XX XX  _    _    _    _    _
 
-     _    _    _    _    _
+     _    _    spc  _    _
 )
 
 (deflayer empty
@@ -121,7 +126,7 @@
 
      _    _    _    _    _    _    XX   _    _    _    _    _    _
 
-     @nav    _    _    _    _    _    XX   _    _    _    _    _    _
+     @nav _    _    _    _    _    XX   _    _    _    _    _    _
 
      _    _    _    _    _    _  XX XX  _    _    _    _    _
 

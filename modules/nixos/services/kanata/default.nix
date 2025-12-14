@@ -14,6 +14,7 @@
       enable = true;
       keyboards.internalKeyboard = {
         config = builtins.readFile ./layout.lisp;
+        extraDefCfg = "process-unmapped-keys yes";
       };
     };
 

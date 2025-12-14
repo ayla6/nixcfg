@@ -20,6 +20,7 @@
           rustc
           cargo
           clippy
+          cloc
 
           # applications
           aseprite
