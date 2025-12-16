@@ -55,7 +55,7 @@
         screenshot-template = "%wH.%wM.%wS.%wT-#%#00n";
 
         # YouTube-dl format
-        ytdl-format = "bv*[vcodec^=vp9][height<=?1080][vcodec!=av01]+ba/best";
+        ytdl-format = "(bv*+ba/b)[vcodec!*=av01][vcodec!*=vp9][height<=?1440]";
       };
       profiles = {
         video = {

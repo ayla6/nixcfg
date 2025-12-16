@@ -107,7 +107,6 @@ in {
   style = with colours; ''
     * {
       font-family: ${fonts.pixel.name}, ${fonts.monospace.name}, sans-serif;
-      font-weight: bold;
       font-size: 12px;
       min-height: 0;
       padding: 0;
