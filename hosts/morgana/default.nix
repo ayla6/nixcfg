@@ -21,6 +21,12 @@
     packages = with pkgs; [cozette];
   };
 
+  environment.variables = {
+    MESA_VK_DEVICE_SELECT = "0x8086\\:0x3ea0";
+    MESA_VK_DEVICE_SELECT_FORCE_DEFAULT_DEVICE = "1";
+    LIBGL_ALWAYS_SOFTWARE = "0";
+  };
+
   myNixOS = {
     programs = {
       lanzaboote.enable = true;

@@ -42,6 +42,7 @@ in {
       "clock"
     ];
     modules-right = [
+      "tray"
       "network"
       "wireplumber"
       "idle_inhibitor"
