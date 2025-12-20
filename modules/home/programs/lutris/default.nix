@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  osConfig,
   ...
 }: {
   options.myHome.programs.lutris.enable = lib.mkEnableOption "lutris";
@@ -15,10 +16,10 @@
         winetricks
         gamescope
         umu-launcher
+        wineWow64Packages.waylandFull
       ];
 
-      protonPackages = with pkgs; [proton-ge-bin];
-      winePackages = with pkgs; [wineWow64Packages.waylandFull];
+      steamPackage = osConfig.programs.steam.package;
     };
   };
 }
