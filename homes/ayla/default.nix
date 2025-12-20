@@ -36,6 +36,10 @@
           inkscape
           qbittorrent
 
+          gamescope
+          mangohud
+          wineWow64Packages.waylandFull
+
           fend
           libqalculate
 

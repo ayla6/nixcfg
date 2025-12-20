@@ -101,7 +101,10 @@
 
       gnome.gnome-keyring.enable = true;
       gvfs.enable = true; # Mount, trash, etc.
-      libinput.enable = true;
+      libinput = {
+        enable = true;
+        touchpad.tapping = true;
+      };
 
       pipewire = {
         enable = true;
