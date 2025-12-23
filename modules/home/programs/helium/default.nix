@@ -35,15 +35,15 @@ in {
           };
         }
 
-        rec {
-          id = "lkbebcjgcmobigpeffafkodonchffocl"; # bypass-paywalls-clean
-          version = "4.2.0.0";
+        # rec {
+        #   id = "lkbebcjgcmobigpeffafkodonchffocl"; # bypass-paywalls-clean
+        #   version = "4.2.0.0";
 
-          crxPath = pkgs.fetchurl {
-            url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass-paywalls-chrome-clean-${version}.crx";
-            sha256 = "sha256-B++3RussuUv3AtDi2MnZH+SojCPOMnOXWW8GI3pI8lk=";
-          };
-        }
+        #   crxPath = pkgs.fetchurl {
+        #     url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass-paywalls-chrome-clean-${version}.crx";
+        #     sha256 = "sha256-B++3RussuUv3AtDi2MnZH+SojCPOMnOXWW8GI3pI8lk=";
+        #   };
+        # }
       ];
 
       package = pkgs.helium.override {

@@ -11,7 +11,7 @@
       sharedModules = [
         {
           services.easyeffects = {
-            enable = true;
+            enable = false;
             # yeah i literally just got aly's t440p's config i have no idea if they're similar in how they suck but mine do suck
             preset = "T440p.json";
           };

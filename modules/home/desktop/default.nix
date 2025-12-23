@@ -28,6 +28,11 @@
       config.mySnippets.fonts.emoji.package
     ];
 
+    home.sessionVariables = {
+      XCURSOR_THEME = "Adwaita";
+      XCURSOR_SIZE = 24;
+    };
+
     dconf = {
       enable = true;
 
