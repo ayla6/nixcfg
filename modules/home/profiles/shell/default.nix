@@ -28,6 +28,7 @@
         wl-clipboard
         libnotify
         sd
+        file
       ];
 
       sessionVariables = {

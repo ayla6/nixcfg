@@ -1300,11 +1300,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1760740637,
-        "narHash": "sha256-ZMBSooid+ECg63h+tYYbAXaS/rTZlcVuUNxCEmtoL1Y=",
+        "lastModified": 1766576457,
+        "narHash": "sha256-fXJELdnaFE0VBB1LfvL/dlyoqdf6OC7iJemmdo0tyUI=",
         "owner": "ayla6",
         "repo": "secrets",
-        "rev": "909f53bbd69b1a44f1c99b2d759e7b47191f5a5d",
+        "rev": "3f11bc679a5e623f92dea347cb162922a89aa6a3",
         "type": "github"
       },
       "original": {

@@ -22,6 +22,8 @@ in {
         zlib
         curl
         glibc
+        nss
+        nspr
 
         # for games like crypt of the necrodancer
         pkgsFlac8.flac
