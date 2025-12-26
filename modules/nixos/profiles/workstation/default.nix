@@ -59,7 +59,7 @@
         "vm.watermark_scale_factor" = lib.mkDefault 125;
       };
 
-      # kernelModules = ["ntsync"];
+      kernelModules = ["ntsync"];
       kernelPackages = pkgs.linuxPackages_cachyos;
     };
 

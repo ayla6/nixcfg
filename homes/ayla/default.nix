@@ -35,6 +35,7 @@
           krita
           inkscape
           qbittorrent
+          anki
 
           gamescope
           mangohud
