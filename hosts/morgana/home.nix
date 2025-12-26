@@ -8,6 +8,10 @@
 
     # trap 'systemctl --user start easyeffects' EXIT
 
+    export PROTON_USE_WOW64=1
+    export PROTON_USE_NTSYNC=1
+    export DXVK_FRAME_RATE=60
+
     ${pkgs.gamescope}/bin/gamescope -O HDMI-A-1 \
       --prefer-vk-device 0x8086:0x3ea0 \
       --backend wayland \
