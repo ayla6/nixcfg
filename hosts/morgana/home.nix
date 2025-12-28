@@ -1,6 +1,7 @@
 {
   self,
   pkgs,
+  lib,
   ...
 }: let
   steamui = pkgs.writeShellScriptBin "steamui" ''
@@ -12,9 +13,8 @@
     export PROTON_USE_NTSYNC=1
     export DXVK_FRAME_RATE=60
 
-    ${pkgs.gamescope}/bin/gamescope -O HDMI-A-1 \
+    ${lib.getExe pkgs.gamescope} -O HDMI-A-1 \
       --prefer-vk-device 0x8086:0x3ea0 \
-      --backend wayland \
       --force-grab-cursor \
       -r 60 -w 1920 -h 1080 -W 1920 -H 1080 -f -e \
       --xwayland-count 2 -- \
