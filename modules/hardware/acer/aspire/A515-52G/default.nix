@@ -27,8 +27,7 @@
     };
 
     myHardware = {
-      # disabled it to see if my laptop gets less hot
-      nvidia.gpu.enable = false;
+      nvidia.gpu.enable = true;
       intel = {
         cpu.enable = true;
         gpu.enable = true;

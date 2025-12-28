@@ -15,6 +15,7 @@
       keyboards.internalKeyboard = {
         config = builtins.readFile ./layout.lisp;
         extraDefCfg = "process-unmapped-keys yes";
+        devices = ["/dev/input/by-path/platform-i8042-serio-0-event-kbd" "/dev/input/by-id/usb-Logitech_Logitech_USB_Keyboard-event-kbd" "/dev/input/by-id/usb-Logitech_Logitech_USB_Keyboard-hidraw"];
       };
     };
 

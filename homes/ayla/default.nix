@@ -125,9 +125,6 @@
       };
 
       myHome = {
-        # desktop.gnome.enable = true;
-        desktop.niri.enable = true;
-
         programs = {
           lutris.enable = true;
         };

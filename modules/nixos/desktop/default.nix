@@ -9,6 +9,7 @@
     ./plasma
     ./cosmic
     ./niri
+    ./steam
   ];
 
   options.myNixOS.desktop.enable = lib.mkOption {
