@@ -79,7 +79,7 @@
             key <AB03>	{[	 c,	 C,  ccedilla,  Ccedilla		]};
             key <AB04>	{[	 v,	 V		]};
             key <AB05>	{[	 b,	 B		]};
-            key <AB06>	{[	 n,	 N		]};
+            key <AB06>	{[	 n,	 N,	 ntilde,    Ntilde]};
             key <AB07>	{[	 m,	 M		]};
             key <AB08>	{[   comma,	 less		]};
             key <AB09>	{[  period,	 greater,  ellipsis	]};
