@@ -17,12 +17,6 @@ in {
   options.myHardware.nvidia.gpu.enable = lib.mkEnableOption "Use the NVIDIA proprietary GPU drivers.";
 
   config = lib.mkIf config.myHardware.nvidia.gpu.enable {
-    boot = {
-      extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
-      kernelModules = ["nvidia"];
-      kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
-    };
-
     # Load nvidia driver for Xorg and Wayland
     services.xserver.videoDrivers = [
       "modesetting"
