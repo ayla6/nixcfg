@@ -118,11 +118,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766450762,
-        "narHash": "sha256-U1fzRdFXJshgAspB/IuYN7hVRcHhk0nUDYzZX0EBI/k=",
+        "lastModified": 1767488056,
+        "narHash": "sha256-4k4P1RtWqDJ1FTBiD3pjrqU8KNI0A4V9wa4n5rYfh3c=",
         "owner": "ayla6",
         "repo": "pkgs",
-        "rev": "60bec22c4d9d3628ed3c1a66edbc7b0c255693a2",
+        "rev": "4775ed429447c57745de1ae64fc4ad1509ced4bb",
         "type": "github"
       },
       "original": {
@@ -883,11 +883,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1766486718,
-        "narHash": "sha256-mpBf9jM5oQOwilR3ctz2RxHeTwrnq97YVnmheK+L8Q8=",
+        "lastModified": 1767377696,
+        "narHash": "sha256-OShXLsMyF9hxmiID1p4QF+ekqreViHM9105ej05S2uI=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "6ed9381160d73d8b5aaf45e46d0dc305a53c9247",
+        "rev": "ba6ea712dc2da0b01c6a8d02dd9e86973663e4de",
         "type": "github"
       },
       "original": {
@@ -916,11 +916,11 @@
     "niri-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1766483519,
-        "narHash": "sha256-LRSUhcm2erq/v/6EkwVP86kdVyRSsZ+AYQgwsKJMwCM=",
+        "lastModified": 1767160009,
+        "narHash": "sha256-aTj88rDBdhmzaGXoFPOsHjXYM2OjNttixsGftT/X0dI=",
         "owner": "YaLTeR",
         "repo": "niri",
-        "rev": "4d295418ce8e8e110060396bb485c4f0c381d37e",
+        "rev": "cf0b4bc0ca93ab5c18b562ada1d8609b67b3c4e3",
         "type": "github"
       },
       "original": {
@@ -1047,11 +1047,11 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1766201043,
-        "narHash": "sha256-eplAP+rorKKd0gNjV3rA6+0WMzb1X1i16F5m5pASnjA=",
+        "lastModified": 1767325753,
+        "narHash": "sha256-yA/CuWyqm+AQo2ivGy6PlYrjZBQm7jfbe461+4HF2fo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b3aad468604d3e488d627c0b43984eb60e75e782",
+        "rev": "64049ca74d63e971b627b5f3178d95642e61cedd",
         "type": "github"
       },
       "original": {
@@ -1142,11 +1142,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1766309749,
-        "narHash": "sha256-3xY8CZ4rSnQ0NqGhMKAy5vgC+2IVK0NoVEzDoOh4DA4=",
+        "lastModified": 1767379071,
+        "narHash": "sha256-EgE0pxsrW9jp9YFMkHL9JMXxcqi/OoumPJYwf+Okucw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+        "rev": "fb7944c166a3b630f177938e478f0378e64ce108",
         "type": "github"
       },
       "original": {
@@ -1162,11 +1162,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1766490743,
-        "narHash": "sha256-otj7yMnAjsi25HHjq+Gdv63cD7VXiFyC7p2Eb1fBb24=",
+        "lastModified": 1767476746,
+        "narHash": "sha256-8MoEw+0uOURkd2xbUyWrfrEjh+/hSZyCFGjWYPN+Tdw=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "a92c46f54f0aeaf6bc7aae6d84e085379cd4b9bf",
+        "rev": "ed59c24d452493c9c0d3d297c1b6c0412d353b4c",
         "type": "github"
       },
       "original": {
@@ -1373,11 +1373,11 @@
         "sqlite-lib-src": "sqlite-lib-src"
       },
       "locked": {
-        "lastModified": 1766480143,
-        "narHash": "sha256-2wLr6aqsPnVINlCsjbYeGArHAv4hShNn8q7G64ql2YI=",
+        "lastModified": 1767161698,
+        "narHash": "sha256-6xpBVglsI3ov1MFmgcGqkqRqw/hgChbPKdWTLxp5uF0=",
         "ref": "refs/heads/master",
-        "rev": "2642ed24b17f4761279835675d744b5bd23b7eaa",
-        "revCount": 1771,
+        "rev": "422468f93020ef202e69f811bf72736092c47db3",
+        "revCount": 1780,
         "type": "git",
         "url": "https://tangled.org/@tangled.org/core"
       },
@@ -1393,11 +1393,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766451061,
-        "narHash": "sha256-dRJp8AerTh6+3wBRZWiG3Z+o1MLLTYj19W5JtIIGJ3A=",
+        "lastModified": 1767488409,
+        "narHash": "sha256-dWVaaPQRgEv764rnQQMFq/p9m2TdX1GOVAWIglulhTo=",
         "owner": "tgirlcloud",
         "repo": "pkgs",
-        "rev": "f63dbf024636bd90dbfd3ae9ba25513d7064e090",
+        "rev": "f51fd4b88bff8febe3c9d6ff38f6ef88702545c1",
         "type": "github"
       },
       "original": {

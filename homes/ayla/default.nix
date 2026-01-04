@@ -23,7 +23,7 @@
           cloc
 
           # applications
-          # aseprite
+          aseprite
           rclone
           #rclone-browser
           signal-desktop-bin
