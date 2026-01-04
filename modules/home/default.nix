@@ -14,5 +14,13 @@
     shell.enableFishIntegration = true;
   };
 
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      inputs.nur.overlays.default
+      inputs.aylapkgs.overlays.default
+    ];
+  };
+
   programs.home-manager.enable = true;
 }

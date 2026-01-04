@@ -151,6 +151,12 @@
           port = 6034;
           vHost = "twotter.${config.mySnippets.tailnet.name}";
         };
+
+        navidrome = {
+          hostName = "nanpi";
+          port = 4533;
+          vHost = "navidrome.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };

@@ -51,9 +51,9 @@
             key <AD01>	{[	 q,	 Q, atilde, Atilde		]};
             key <AD02>	{[	 w,	 W		]};
             key <AD03>	{[	 e,	 E, eacute, Eacute		]};
-            key <AD04>	{[	 r,	 R, atilde, Atilde		]};
+            key <AD04>	{[	 r,	 R,  acircumflex, Acircumflex		]};
             key <AD05>	{[	 t,	 T		]};
-            key <AD06>	{[	 y,	 Y		]};
+            key <AD06>	{[	 y,	 Y,	ocircumflex, Ocircumflex	]};
             key <AD07>	{[	 u,	 U, uacute, Uacute		]};
             key <AD08>	{[	 i,	 I, iacute, Iacute		]};
             key <AD09>	{[	 o,	 O, oacute, Oacute		]};
@@ -63,7 +63,7 @@
 
             key <AC01>	{[	 a,	 A,  aacute, Aacute		]};
             key <AC02>	{[	 s,	 S,  agrave, Agrave		]};
-            key <AC03>	{[	 d,	 D		]};
+            key <AC03>	{[	 d,	 D	]};
             key <AC04>	{[	 f,	 F		]};
             key <AC05>	{[	 g,	 G		]};
             key <AC06>	{[	 h,	 H		]};

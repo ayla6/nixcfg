@@ -67,12 +67,12 @@
         "protocol.http" = {
           hls-bitrate = "max";
           cache = true;
-          no-cache-pause = true;
+          cache-pause = false;
         };
         "protocol.https" = {
           hls-bitrate = "max";
           cache = true;
-          no-cache-pause = true;
+          cache-pause = false;
         };
         "image-hq" = {
           profile-cond = "get('current-tracks/video/image') and width < 10000";

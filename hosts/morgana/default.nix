@@ -155,7 +155,6 @@
       global = {
         "workgroup" = "WORKGROUP";
         "server string" = "smbnix";
-        "netbios name" = "smbnix";
         "security" = "user";
 
         "bind interfaces only" = "yes";

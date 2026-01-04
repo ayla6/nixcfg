@@ -1,8 +1,6 @@
 {
   pkgs,
   lib,
-  config,
-  inputs,
   ...
 }: {
   config = lib.mkMerge [
@@ -10,15 +8,12 @@
       home = {
         packages = with pkgs; [
           # development
-          ffmpeg-full
-          love
           luajit
-          #nodejs
           bun
           typescript
-          clang
-          rustc
-          cargo
+          # clang
+          # rustc
+          # cargo
           clippy
           cloc
 
@@ -26,25 +21,14 @@
           aseprite
           rclone
           #rclone-browser
-          signal-desktop-bin
-          bitwarden-desktop
           yt-dlp
-          obsidian
-          gimp
-          kdePackages.kdenlive
-          krita
-          inkscape
-          qbittorrent
-          anki
-
-          gamescope
-          mangohud
-          wineWow64Packages.waylandFull
 
           fend
           libqalculate
 
-          inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.v3
+          bchunk
+          mame-tools
+          compsize
         ];
 
         username = "ayla";
@@ -52,53 +36,32 @@
       };
 
       programs.home-manager.enable = true;
+      programs.helium.package = lib.mkForce null;
 
       xdg.enable = true;
 
       myHome = {
+        desktop.enable = true;
         programs = {
           helium.enable = true;
           fastfetch.enable = true;
-          firefox = {
-            enable = true;
-            mode = "sidebar";
-          };
+          # firefox = {
+          #   enable = true;
+          #   mode = "sidebar";
+          # };
           git.enable = true;
           helix.enable = true;
           jujutsu.enable = true;
-          micro.enable = true;
-          mpv.enable = true;
+          # mpv.enable = true;
           ssh.enable = true;
-          zed-editor.enable = true;
-          foot.enable = true;
+          # zed-editor.enable = true;
           yazi.enable = true;
+          foot.enable = true;
         };
 
         profiles = {
           betterLocations.enable = true;
           shell.enable = true;
-          fixMimeTypes.enable = true;
-          defaultApps = {
-            enable = true;
-            forceMimeAssociations = true;
-            terminal = {
-              inherit (config.programs.foot) package;
-              exec = "${config.programs.foot.package}/bin/footclient";
-              icon = "foot";
-              term = "xterm-256color";
-              desktop = "footclient.desktop";
-            };
-            editor = {
-              inherit (config.programs.helix) package;
-              terminal = true;
-              icon = "helix";
-            };
-            terminalEditor.package = config.programs.helix.package;
-            webBrowser = {
-              inherit (config.programs.helium) package;
-              icon = "helium";
-            };
-          };
         };
       };
 
@@ -116,50 +79,10 @@
 
         sessionVariables = {
           GOPATH = "/home/ayla/.go";
-        };
-
-        packages = with pkgs; [
-          # libraries
-          libsecret
-        ];
-      };
-
-      myHome = {
-        programs = {
-          lutris.enable = true;
-        };
-      };
-
-      services.flatpak = {
-        packages = [
-          # creative
-          "com.obsproject.Studio"
-
-          # gaming
-          "com.github.Anuken.Mindustry"
-          "io.mgba.mGBA"
-          "net.kuribo64.melonDS"
-          "org.openttd.OpenTTD"
-          "org.prismlauncher.PrismLauncher"
-
-          # internet
-          "org.nicotine_plus.Nicotine"
-          "org.qbittorrent.qBittorrent"
-
-          # media
-          "com.github.iwalton3.jellyfin-media-player"
-          "org.audacityteam.Audacity"
-
-          # productivity
-          "com.calibre_ebook.calibre"
-
-          # utilities
-          "com.github.tchx84.Flatseal"
-          "org.keepassxc.KeePassXC"
-        ];
-        update.auto = {
-          enable = true;
-          onCalendar = "daily";
+          SUDO_EDITOR = "hx";
+          EDITOR = "hx";
+          QT_IM_MODULE = "fcitx";
+          XMODIFIERS = "@im=fcitx";
         };
       };
     })

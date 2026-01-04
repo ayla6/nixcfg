@@ -7,6 +7,7 @@
   options.myHome.programs.ssh.enable = lib.mkEnableOption "openssh client";
 
   config = lib.mkIf config.myHome.programs.ssh.enable {
+    services.ssh-agent.enable = true;
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;

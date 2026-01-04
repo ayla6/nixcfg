@@ -15,6 +15,7 @@
   nav (layer-while-held navigation)
   
   game (layer-switch game)
+  cgame (layer-switch colemak-game)
   base (layer-switch base)
 
   spl (tap-hold 200 200 spc (layer-while-held modn))
@@ -64,7 +65,7 @@
 (deflayer base
          1    2    3    4    5    6    XX   7    8    9    0    -
 
-  tab    q    w    f    p    b    XX   j    l    u    y    @sc  XX
+  tab    q    w    f    p    b  @cgame j    l    u    y    @sc  XX
 
   @nav   a    r    s    t    g  @game  m    n    e    i    o    '
 
@@ -113,15 +114,27 @@
 )
 
 (deflayer game
-          _    _    _    _    _    XX   _    _    _    _    _    _
+          1    2    3    4    5    =    6    7    8    9    0    -
 
-     _    t    q    w    e    r    XX   _    _    _    _    _    _
+     _    q    w    e    r    t  @base  y    u    i    o    p    _
 
-     @nav g    a    s    d    f  @base  _    _    _    _    _    _
+     @nav a    s    d    f    g  @base  h    j    k    l    ;    _
 
-     _    d    z    x    c    v  XX XX  _    _    _    _    _
+     _    _    z    x    c    v  XX XX  b    n    m    _    _
 
      _    _    spc  _    _
+)
+
+(deflayer colemak-game
+         1    2    3    4    5    6    XX   7    8    9    0    -
+
+  tab    q    w    f    p    b  @base  j    l    u    y    @sc  XX
+
+  @nav   a    r    s    t    g  @base  m    n    e    i    o    '
+
+  lsft   z    x    c    d    v  XX XX  k    h    ,    .    rsft
+
+  lctl   lalt spc  @sym ralt
 )
 
 (deflayer empty

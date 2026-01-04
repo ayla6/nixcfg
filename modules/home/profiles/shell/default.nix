@@ -16,16 +16,14 @@
       packages = with pkgs; [
         (lib.hiPrio uutils-coreutils-noprefix)
         curl
-        btop
         nixos-rebuild
         wget
         imagemagick
-        wl-clipboard
-        p7zip-rar
+        # wl-clipboard
+        # p7zip-rar
         zip
         xz
         unzip
-        wl-clipboard
         libnotify
         sd
         file
@@ -40,14 +38,13 @@
         tree = "eza --tree";
         top = "btop";
         cat = "bat -pp";
-        ytmusic = "yt-dlp -f 251 --remux-video opus --embed-metadata --embed-thumbnail -o \"%(album)s/%(disc_number>0)s%(disc_number)02d-%(track_number)02d %(title)s.%(ext)s\"";
+        ytmusic = "yt-dlp --js-runtimes deno:${lib.getExe pkgs.deno} -f 251 --remux-video opus --embed-metadata --cookies-from-browser chromium -o \"%(album)s/%(disc_number>0)s%(disc_number)02d-%(track_number)02d %(title)s.%(ext)s\"";
         nix-shell = "nix-shell --run fish";
       };
     };
 
     programs = {
       bat.enable = true;
-      btop.enable = true;
 
       direnv = {
         enable = true;

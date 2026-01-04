@@ -122,10 +122,10 @@ in {
         args = ["${pkgs.vue-language-server}/lib/language-tools/packages/language-server/bin/vue-language-server.js" "--stdio"];
       };
 
-      bash-language-server = mkLspServer "bash-language-server" {
-        command = lib.getExe pkgs.bash-language-server;
-        args = ["start"];
-      };
+      # bash-language-server = mkLspServer "bash-language-server" {
+      #   command = lib.getExe pkgs.bash-language-server;
+      #   args = ["start"];
+      # };
 
       fish-lsp = mkLspServer "fish-lsp" {
         command = lib.getExe pkgs.fish-lsp;
@@ -393,7 +393,7 @@ in {
       bash = mkLanguage "bash" {
         full-name = "Shell Script";
         file-types = ["sh" "bash" "dash" "ksh" "mksh"];
-        language-servers = ["bash-language-server"];
+        # language-servers = ["bash-language-server"];
         formatter = "shfmt";
       };
 

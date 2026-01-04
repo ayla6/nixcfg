@@ -101,6 +101,16 @@
           path = "/data/Phone ROMs";
         };
 
+        "Hydrus" = {
+          devices = [
+            "morgana"
+            "nanpi"
+          ];
+
+          id = "t2khc-gphig";
+          path = "/data/hydrus";
+        };
+
         "RetroArch Saves" = {
           devices = [
             "morgana"

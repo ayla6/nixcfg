@@ -17,6 +17,7 @@
     ./jellyseerr
     ./karakeep
     ./miniflux
+    ./navidrome
     ./nitter
     ./ntfy
     ./pds

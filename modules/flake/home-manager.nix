@@ -1,7 +1,14 @@
-_: {
+{inputs, self, ...}: {
   flake = {
     homeConfigurations = {
-      ayla = {imports = [../../homes/ayla ../home];};
+      ayla = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs self;};
+        modules = [
+          ../../homes/ayla
+          ../home
+        ];
+      };
     };
 
     homeModules = {
