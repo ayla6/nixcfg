@@ -40,6 +40,9 @@ in {
           MusicFolder = "/data/Music";
           Address = "0.0.0.0";
           Port = service.port;
+          AuthRequestLimit = 5;
+          AuthWindowLength = "10m";
+          EnableSharing = true;
         };
         environmentFile = config.age.secrets.navidrome.path;
       };
