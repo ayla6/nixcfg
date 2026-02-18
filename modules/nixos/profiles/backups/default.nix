@@ -223,6 +223,13 @@ in {
         paths = ["/var/lib/vaultwarden"];
       }
       {
+        name = "navidrome";
+        inherit (config.services.navidrome) enable;
+        paths = ["/var/lib/navidrome"];
+        exclude = ["cache"];
+        backupMode = "notify";
+      }
+      {
         name = "passwords";
         enable = builtins.elem config.networking.hostName config.mySnippets.syncthing.folders."Passwords".devices;
         paths = [config.mySnippets.syncthing.folders."Passwords".path];

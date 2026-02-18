@@ -8,6 +8,8 @@
 
   network = config.mySnippets.tailnet;
   service = network.networkMap.${name};
+  publicNetwork = config.mySnippets.aylac-top;
+  publicService = publicNetwork.networkMap.${name};
 in {
   options.myNixOS.services.${name} = {
     enable = lib.mkEnableOption "${name} server";
@@ -27,6 +29,10 @@ in {
         reverse_proxy ${service.hostName}:${toString service.port}
       '';
 
+      cloudflared.tunnels."${publicNetwork.cloudflareTunnel}".ingress = lib.mkIf cfg.autoProxy {
+        "${publicService.vHost}" = "http://${publicService.hostName}:${toString service.port}";
+      };
+
       navidrome = {
         enable = true;
         openFirewall = true;
@@ -35,6 +41,7 @@ in {
           Address = "0.0.0.0";
           Port = service.port;
         };
+        environmentFile = config.age.secrets.navidrome.path;
       };
     };
   };

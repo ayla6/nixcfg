@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    ./home.nix
     ./secrets.nix
     ./notifier.nix
     ./backups.nix
@@ -43,11 +42,11 @@
       copyparty.enable = false;
       dnsmasq.enable = true;
       forgejo.enable = true;
-      glance.enable = true;
       jellyfin.enable = true;
       jellyseerr.enable = true;
       karakeep.enable = false;
-      miniflux.enable = true;
+      navidrome.enable = true;
+      # miniflux.enable = true;
       ntfy.enable = true;
       pds.enable = true;
       privatebin.enable = true;

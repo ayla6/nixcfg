@@ -58,6 +58,12 @@
           port = 7748;
           vHost = "bin.aylac.top";
         };
+
+        navidrome = {
+          inherit (config.mySnippets.tailnet.networkMap.navidrome) hostName;
+          inherit (config.mySnippets.tailnet.networkMap.navidrome) port;
+          vHost = "nvidia.aylac.top";
+        };
       };
     };
   };
