@@ -157,6 +157,12 @@
           port = 4533;
           vHost = "navidrome.${config.mySnippets.tailnet.name}";
         };
+
+        octo-fiesta = {
+          hostName = "nanpi";
+          port = 5274;
+          vHost = "octo-fiesta.${config.mySnippets.tailnet.name}";
+        };
       };
     };
   };

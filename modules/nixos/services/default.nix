@@ -35,5 +35,7 @@
     ./webdav-server-rs
     ./xkb
     ./kanata
+    ./podman
+    ./octo-fiesta
   ];
 }

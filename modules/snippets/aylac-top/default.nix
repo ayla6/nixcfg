@@ -64,6 +64,12 @@
           inherit (config.mySnippets.tailnet.networkMap.navidrome) port;
           vHost = "nvidia.aylac.top";
         };
+
+        octo-fiesta = {
+          inherit (config.mySnippets.tailnet.networkMap.octo-fiesta) hostName;
+          inherit (config.mySnippets.tailnet.networkMap.octo-fiesta) port;
+          vHost = "onlyfans.aylac.top";
+        };
       };
     };
   };

@@ -46,7 +46,7 @@
       jellyseerr.enable = true;
       karakeep.enable = false;
       navidrome.enable = true;
-      # miniflux.enable = true;
+      octo-fiesta.enable = true;
       ntfy.enable = true;
       pds.enable = true;
       privatebin.enable = true;
@@ -61,7 +61,7 @@
         enable = true;
         certFile = config.age.secrets.syncthingCert.path;
         keyFile = config.age.secrets.syncthingKey.path;
-        user = "ayla";
+        user = "root";
       };
       tailscale = {
         enable = true;

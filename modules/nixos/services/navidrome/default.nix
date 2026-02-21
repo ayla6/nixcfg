@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   name = "navidrome";
@@ -34,6 +35,7 @@ in {
       };
 
       navidrome = {
+        package = pkgs.navidrome-ayla;
         enable = true;
         openFirewall = true;
         settings = {
@@ -43,6 +45,7 @@ in {
           AuthRequestLimit = 5;
           AuthWindowLength = "10m";
           EnableSharing = true;
+          PreferSortTags = true;
         };
         environmentFile = config.age.secrets.navidrome.path;
       };
