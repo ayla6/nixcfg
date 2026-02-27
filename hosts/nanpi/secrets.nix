@@ -9,5 +9,6 @@
     syncthingKey.file = "${self.inputs.secrets}/ayla/syncthing/nanpi/key.age";
     ntfyAuto.file = "${self.inputs.secrets}/ntfyAuto.age";
     navidrome.file = "${self.inputs.secrets}/navidrome.age";
+    slskd.file = "${self.inputs.secrets}/slskd.age";
   };
 }

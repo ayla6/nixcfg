@@ -35,7 +35,7 @@ in {
 
     webuiPort = lib.mkOption {
       type = lib.types.port;
-      default = 8080;
+      default = config.mySnippets.tailnet.networkMap.qbittorrent.port;
       description = "qBittorrent web UI port.";
     };
 

@@ -39,20 +39,16 @@
       audiobookshelf.enable = false;
       caddy.enable = true;
       cloudflared.enable = true;
-      copyparty.enable = false;
       dnsmasq.enable = true;
       forgejo.enable = true;
       jellyfin.enable = true;
       jellyseerr.enable = true;
-      karakeep.enable = false;
       navidrome.enable = true;
-      octo-fiesta.enable = true;
       ntfy.enable = true;
       pds.enable = true;
       privatebin.enable = true;
       qbittorrent = {
         enable = true;
-        webuiPort = config.mySnippets.tailnet.networkMap.qbittorrent.port;
         openFirewall = true;
       };
       radicale.enable = true;

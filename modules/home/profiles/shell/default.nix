@@ -38,7 +38,7 @@
         tree = "eza --tree";
         top = "btop";
         cat = "bat -pp";
-        ytmusic = "yt-dlp --js-runtimes deno:${lib.getExe pkgs.deno} -f 251 --remux-video opus --embed-metadata --cookies-from-browser chromium -o \"%(album)s/%(disc_number>0)s%(disc_number)02d-%(track_number)02d %(title)s.%(ext)s\"";
+        ytmusic = "yt-dlp --js-runtimes deno:${lib.getExe pkgs.deno} -f 251 --remux-video opus --embed-metadata --cookies-from-browser chromium --parse-metadata \"%(track_number,playlist_index)s:%(meta_track)s\" -o \"%(album)s/%(disc_number,1)02d-%(track_number,playlist_index)02d %(title)s.%(ext)s\"";
         nix-shell = "nix-shell --run fish";
       };
     };

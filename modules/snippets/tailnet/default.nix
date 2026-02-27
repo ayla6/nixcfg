@@ -100,7 +100,7 @@
 
         qbittorrent = {
           hostName = "nanpi";
-          port = 8080;
+          port = 8923;
           vHost = "qbittorrent.${config.mySnippets.tailnet.name}";
         };
 
@@ -162,6 +162,12 @@
           hostName = "nanpi";
           port = 5274;
           vHost = "octo-fiesta.${config.mySnippets.tailnet.name}";
+        };
+
+        slskd = {
+          hostName = "nanpi";
+          port = 5030;
+          vHost = "slskd.${config.mySnippets.tailnet.name}";
         };
       };
     };

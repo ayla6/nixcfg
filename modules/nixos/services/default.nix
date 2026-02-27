@@ -37,5 +37,6 @@
     ./kanata
     ./podman
     ./octo-fiesta
+    ./slskd
   ];
 }

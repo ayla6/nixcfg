@@ -90,11 +90,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771628566,
-        "narHash": "sha256-EPCIeRgpAjPmfAYfXkI6EawBgwR5MEuWqYZeWp6g7sc=",
+        "lastModified": 1772222209,
+        "narHash": "sha256-YkQrBwBVopy3AKX0N46rCRs0oPpFQzozzkGbsqypI5M=",
         "owner": "ayla6",
         "repo": "pkgs",
-        "rev": "b80dc2d066809b3ae9a00b7e344747b25e9c1474",
+        "rev": "bf4577615ddf3d1f74411638698633cb5728c507",
         "type": "github"
       },
       "original": {
@@ -1072,11 +1072,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1771433023,
-        "narHash": "sha256-OtjoBGtBcEYfFjkYYKzFxjTJqt9jwr/IprmTscKZJNI=",
+        "lastModified": 1771740052,
+        "narHash": "sha256-lMcUqrFn7GgGQiWYOVc8+tU2BngFlB7giYSACxph1CI=",
         "owner": "ayla6",
         "repo": "secrets",
-        "rev": "07f1593c19da4b94a4e67f27c03c8370b6600762",
+        "rev": "206de27e8747dd0497520cfdc8df81508af15ca2",
         "type": "github"
       },
       "original": {

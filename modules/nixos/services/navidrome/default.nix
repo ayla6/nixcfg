@@ -46,6 +46,7 @@ in {
           AuthWindowLength = "10m";
           EnableSharing = true;
           PreferSortTags = true;
+          CoverArtMaxResolution = 0;
         };
         environmentFile = config.age.secrets.navidrome.path;
       };

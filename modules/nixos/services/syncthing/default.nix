@@ -26,21 +26,21 @@
     systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";
 
     services = {
-      caddy.virtualHosts =
-        lib.mkIf
-        (
-          config.myNixOS.services.caddy.enable
-          && config.myNixOS.services.tailscale.enable
-        ) {
-          "syncthing-${config.networking.hostName}.${config.mySnippets.tailnet.name}" = {
-            extraConfig = ''
-              bind tailscale/syncthing-${config.networking.hostName}
-              reverse_proxy localhost:8384 {
-                header_up Host localhost
-              }
-            '';
-          };
-        };
+      # caddy.virtualHosts =
+      #   lib.mkIf
+      #   (
+      #     config.myNixOS.services.caddy.enable
+      #     && config.myNixOS.services.tailscale.enable
+      #   ) {
+      #     "syncthing-${config.networking.hostName}.${config.mySnippets.tailnet.name}" = {
+      #       extraConfig = ''
+      #         bind tailscale/syncthing-${config.networking.hostName}
+      #         reverse_proxy localhost:8384 {
+      #           header_up Host localhost
+      #         }
+      #       '';
+      #     };
+      #   };
 
       syncthing = let
         cfg = config.myNixOS.services.syncthing;
